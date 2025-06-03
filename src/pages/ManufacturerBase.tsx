@@ -3,32 +3,44 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Search, Filter, ArrowLeft, Zap, Shield, Globe, Star, CheckCircle } from "lucide-react";
+import { Search, Filter, ArrowLeft, Zap, Shield, Globe, Star, CheckCircle, Database, TrendingUp, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const ManufacturerBase = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+
+  const toggleFilter = (filter: string) => {
+    setSelectedFilters(prev => 
+      prev.includes(filter) 
+        ? prev.filter(f => f !== filter)
+        : [...prev, filter]
+    );
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-blue-900 text-white">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b">
+      <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-xl">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <Link to="/">
-                <Button variant="ghost" size="sm" className="rounded-full">
+                <Button variant="ghost" size="sm" className="rounded-full text-gray-300 hover:text-white">
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   Back
                 </Button>
               </Link>
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center space-x-4">
                 <img 
-                  src="/lovable-uploads/6eb78a22-dce5-46e7-8899-e05debdec84e.png" 
+                  src="/lovable-uploads/0014a989-3a3c-4d12-94b3-4e2301cc77b1.png" 
                   alt="Div1 Logo" 
                   className="h-8 w-auto"
                 />
                 <div>
-                  <h1 className="text-xl font-bold">Manufacturer-Base</h1>
-                  <Badge variant="secondary" className="text-xs rounded-full">AI Product Intelligence</Badge>
+                  <h1 className="text-xl font-bold text-white">Manufacturer-Base</h1>
+                  <Badge variant="secondary" className="text-xs bg-blue-600/20 text-blue-300 border-blue-500/30">AI Product Intelligence</Badge>
                 </div>
               </div>
             </div>
@@ -39,26 +51,26 @@ const ManufacturerBase = () => {
       <div className="container mx-auto px-6 py-12">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4 px-4 py-2 rounded-full">
+          <Badge variant="outline" className="mb-6 px-6 py-3 rounded-full border-blue-500/30 bg-blue-600/10 text-blue-300">
             🔍 Real-time Product Intelligence
           </Badge>
-          <h2 className="text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-6xl font-bold text-white mb-8">
             Find the perfect 
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"> building products </span>
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"> building products </span>
           </h2>
-          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
             Discover products from thousands of manufacturers with AI-powered search, real-time availability, and quality scoring.
           </p>
         </div>
 
         {/* Search Interface */}
-        <Card className="mb-12 shadow-xl border-0 overflow-hidden">
-          <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50">
-            <CardTitle className="flex items-center text-2xl">
-              <Search className="h-6 w-6 mr-3 text-blue-600" />
+        <Card className="mb-12 shadow-2xl border-0 overflow-hidden bg-gray-800/50 backdrop-blur-sm border border-gray-700">
+          <CardHeader className="bg-gradient-to-r from-blue-600/10 to-purple-600/10">
+            <CardTitle className="flex items-center text-2xl text-white">
+              <Search className="h-6 w-6 mr-3 text-blue-400" />
               Advanced Product Search
             </CardTitle>
-            <CardDescription className="text-lg">
+            <CardDescription className="text-lg text-gray-300">
               GraphQL federation with Elasticsearch semantic search
             </CardDescription>
           </CardHeader>
@@ -68,119 +80,132 @@ const ManufacturerBase = () => {
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <Input 
                   placeholder="Search products, materials, specifications..." 
-                  className="pl-12 h-14 text-lg border-2 rounded-2xl focus:border-blue-500 transition-colors"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-12 h-14 text-lg border-2 rounded-2xl focus:border-blue-500 transition-colors bg-gray-900/50 border-gray-600 text-white placeholder:text-gray-400"
                 />
               </div>
-              <Button size="lg" className="px-8 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600">
+              <Button size="lg" className="px-8 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
                 <Search className="h-5 w-5 mr-2" />
                 Search
               </Button>
-              <Button variant="outline" size="lg" className="px-6 rounded-2xl border-2">
+              <Button variant="outline" size="lg" className="px-6 rounded-2xl border-2 border-gray-600 text-gray-300 hover:bg-gray-800">
                 <Filter className="h-5 w-5 mr-2" />
                 Filters
               </Button>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Badge variant="outline" className="px-4 py-2 rounded-full hover:bg-blue-50 transition-colors cursor-pointer">Steel Products</Badge>
-              <Badge variant="outline" className="px-4 py-2 rounded-full hover:bg-green-50 transition-colors cursor-pointer">LEED Certified</Badge>
-              <Badge variant="outline" className="px-4 py-2 rounded-full hover:bg-purple-50 transition-colors cursor-pointer">In Stock</Badge>
-              <Badge variant="secondary" className="px-4 py-2 rounded-full cursor-pointer">+ Add Filter</Badge>
+              {["Steel Products", "LEED Certified", "In Stock", "High Quality Score", "Local Supplier"].map(filter => (
+                <Badge 
+                  key={filter}
+                  variant={selectedFilters.includes(filter) ? "default" : "outline"} 
+                  className={`px-4 py-2 rounded-full cursor-pointer transition-colors ${
+                    selectedFilters.includes(filter) 
+                      ? "bg-blue-600 text-white" 
+                      : "border-gray-500 text-gray-300 hover:bg-gray-700"
+                  }`}
+                  onClick={() => toggleFilter(filter)}
+                >
+                  {filter}
+                </Badge>
+              ))}
+              <Badge variant="secondary" className="px-4 py-2 rounded-full cursor-pointer bg-gray-700 text-gray-300">+ Add Filter</Badge>
             </div>
           </CardContent>
         </Card>
 
-        {/* Architecture Overview */}
+        {/* Real-time Data Pipeline */}
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
-          <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
+          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-blue-500/50">
             <CardHeader>
-              <div className="bg-blue-100 rounded-2xl p-3 w-fit mb-4 group-hover:bg-blue-200 transition-colors">
-                <Zap className="h-8 w-8 text-blue-600" />
+              <div className="bg-blue-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-blue-500/30 transition-colors">
+                <Zap className="h-8 w-8 text-blue-400" />
               </div>
-              <CardTitle className="text-xl">Real-Time Ingestion</CardTitle>
+              <CardTitle className="text-xl text-white">Real-Time Ingestion</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-300 mb-6">
                 Apache Kafka + Debezium for continuous data streaming from manufacturer sources.
               </p>
-              <ul className="space-y-3 text-sm text-gray-600">
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
-                  <span>Adaptive scraping strategies</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
-                  <span>ML optimization</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
-                  <span>Multi-source federation</span>
-                </li>
-              </ul>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-400">Data Sources:</span>
+                  <Badge variant="default" className="bg-green-600">847 Active</Badge>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-400">Updates/Min:</span>
+                  <Badge variant="secondary" className="bg-blue-600">15.2K</Badge>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-400">Processing Lag:</span>
+                  <Badge variant="outline" className="border-green-500 text-green-400">< 500ms</Badge>
+                </div>
+              </div>
             </CardContent>
           </Card>
 
-          <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
+          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-green-500/50">
             <CardHeader>
-              <div className="bg-green-100 rounded-2xl p-3 w-fit mb-4 group-hover:bg-green-200 transition-colors">
-                <Shield className="h-8 w-8 text-green-600" />
+              <div className="bg-green-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-green-500/30 transition-colors">
+                <Shield className="h-8 w-8 text-green-400" />
               </div>
-              <CardTitle className="text-xl">Quality Assurance</CardTitle>
+              <CardTitle className="text-xl text-white">Quality Assurance</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-300 mb-6">
                 Multi-layer validation with confidence scoring and anomaly detection.
               </p>
-              <ul className="space-y-3 text-sm text-gray-600">
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
-                  <span>Completeness validation</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
-                  <span>Cross-reference checking</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
-                  <span>Business rule enforcement</span>
-                </li>
-              </ul>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-400">Data Quality:</span>
+                  <Badge variant="default" className="bg-green-600">98.7%</Badge>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-400">Validated Today:</span>
+                  <Badge variant="secondary" className="bg-blue-600">2.3M</Badge>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-400">Anomalies Detected:</span>
+                  <Badge variant="outline" className="border-yellow-500 text-yellow-400">247</Badge>
+                </div>
+              </div>
             </CardContent>
           </Card>
 
-          <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg">
+          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-purple-500/50">
             <CardHeader>
-              <div className="bg-purple-100 rounded-2xl p-3 w-fit mb-4 group-hover:bg-purple-200 transition-colors">
-                <Globe className="h-8 w-8 text-purple-600" />
+              <div className="bg-purple-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-purple-500/30 transition-colors">
+                <Globe className="h-8 w-8 text-purple-400" />
               </div>
-              <CardTitle className="text-xl">Global Availability</CardTitle>
+              <CardTitle className="text-xl text-white">Global Availability</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-300 mb-6">
                 Kubernetes-native deployment with Istio service mesh for global scale.
               </p>
-              <ul className="space-y-3 text-sm text-gray-600">
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
-                  <span>Multi-region deployment</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
-                  <span>CDN optimization</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
-                  <span>99.99% uptime SLA</span>
-                </li>
-              </ul>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-400">Uptime:</span>
+                  <Badge variant="default" className="bg-green-600">99.97%</Badge>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-400">Response Time:</span>
+                  <Badge variant="secondary" className="bg-blue-600">< 100ms</Badge>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-400">Global Regions:</span>
+                  <Badge variant="outline" className="border-purple-500 text-purple-400">12 Active</Badge>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>
 
         {/* Sample Product Results */}
-        <Card className="shadow-xl border-0">
+        <Card className="shadow-2xl border-0 bg-gray-800/50 border border-gray-700">
           <CardHeader>
-            <CardTitle className="text-2xl">Featured Products</CardTitle>
-            <CardDescription className="text-lg">Real-time product intelligence with quality scoring</CardDescription>
+            <CardTitle className="text-2xl text-white">Featured Products</CardTitle>
+            <CardDescription className="text-lg text-gray-300">Real-time product intelligence with quality scoring</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -191,7 +216,9 @@ const ManufacturerBase = () => {
                   completeness: 98,
                   sustainability: "LEED Certified",
                   availability: "In Stock",
-                  rating: 4.9
+                  rating: 4.9,
+                  price: "$2,450/ton",
+                  updated: "2 min ago"
                 },
                 {
                   name: "Insulated Glass Units",
@@ -199,7 +226,9 @@ const ManufacturerBase = () => {
                   completeness: 95,
                   sustainability: "Energy Star",
                   availability: "2-3 weeks",
-                  rating: 4.7
+                  rating: 4.7,
+                  price: "$145/sq ft",
+                  updated: "5 min ago"
                 },
                 {
                   name: "Concrete Admixtures",
@@ -207,33 +236,46 @@ const ManufacturerBase = () => {
                   completeness: 92,
                   sustainability: "Green Building",
                   availability: "In Stock",
-                  rating: 4.8
+                  rating: 4.8,
+                  price: "$850/pallet",
+                  updated: "1 min ago"
                 }
               ].map((product, index) => (
-                <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-blue-200 cursor-pointer">
+                <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-blue-500/50 cursor-pointer bg-gray-900/50 border-gray-600">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
-                      <h4 className="font-semibold text-lg group-hover:text-blue-600 transition-colors">{product.name}</h4>
+                      <h4 className="font-semibold text-lg group-hover:text-blue-400 transition-colors text-white">{product.name}</h4>
                       <div className="flex items-center space-x-1">
-                        <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                        <span className="text-sm font-medium">{product.rating}</span>
+                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        <span className="text-sm font-medium text-gray-300">{product.rating}</span>
                       </div>
                     </div>
-                    <p className="text-gray-600 mb-4">{product.manufacturer}</p>
+                    <p className="text-gray-400 mb-4">{product.manufacturer}</p>
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">Data Quality:</span>
-                        <Badge variant={product.completeness > 95 ? "default" : "secondary"} className="rounded-full">
+                        <span className="text-sm text-gray-400">Data Quality:</span>
+                        <Badge variant={product.completeness > 95 ? "default" : "secondary"} className={product.completeness > 95 ? "bg-green-600" : "bg-blue-600"}>
                           {product.completeness}%
                         </Badge>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">Sustainability:</span>
-                        <Badge variant="outline" className="rounded-full">{product.sustainability}</Badge>
+                        <span className="text-sm text-gray-400">Sustainability:</span>
+                        <Badge variant="outline" className="border-green-500 text-green-400">{product.sustainability}</Badge>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">Availability:</span>
-                        <span className="text-green-600 font-medium">{product.availability}</span>
+                        <span className="text-sm text-gray-400">Availability:</span>
+                        <span className="text-green-400 font-medium">{product.availability}</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-400">Price:</span>
+                        <span className="text-blue-400 font-medium">{product.price}</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-400">Updated:</span>
+                        <div className="flex items-center space-x-1">
+                          <Clock className="h-3 w-3 text-gray-400" />
+                          <span className="text-xs text-gray-400">{product.updated}</span>
+                        </div>
                       </div>
                     </div>
                   </CardContent>
