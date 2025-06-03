@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -7,9 +6,9 @@ import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-blue-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-blue-900 text-white">
       {/* Header */}
-      <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-xl">
+      <header className="border-b border-gray-800 bg-black/50 backdrop-blur-xl">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
@@ -33,7 +32,7 @@ const Index = () => {
               <Link to="/master1" className="text-gray-300 hover:text-white transition-colors font-medium">
                 Master1
               </Link>
-              <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+              <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600">
                 <Users className="h-4 w-4 mr-2" />
                 Sign In
               </Button>
@@ -44,7 +43,7 @@ const Index = () => {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden py-24">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-orange-600/10"></div>
         <div className="container mx-auto px-6 relative">
           <div className="text-center max-w-5xl mx-auto">
             <Badge variant="outline" className="mb-8 px-6 py-3 text-sm font-medium rounded-full border-blue-500/30 bg-blue-600/10 text-blue-300">
@@ -52,18 +51,18 @@ const Index = () => {
             </Badge>
             <h2 className="text-7xl font-bold text-white mb-8 leading-tight">
               Transform your 
-              <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"> construction </span>
+              <span className="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent"> construction </span>
               workflow
             </h2>
             <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-4xl mx-auto">
               Streamline product discovery, project planning, and specification management with our comprehensive AI-driven ecosystem designed for AEC professionals.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Button size="lg" className="text-lg px-10 py-6 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-2xl hover:shadow-blue-500/25 transition-all">
+              <Button size="lg" className="text-lg px-10 py-6 rounded-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 shadow-2xl hover:shadow-orange-500/25 transition-all">
                 Get Started Free
                 <ArrowRight className="ml-3 h-6 w-6" />
               </Button>
-              <Button variant="outline" size="lg" className="text-lg px-10 py-6 rounded-full border-2 border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white">
+              <Button variant="outline" size="lg" className="text-lg px-10 py-6 rounded-full border-2 border-blue-600 text-blue-300 hover:bg-blue-800 hover:text-white">
                 Watch Demo
               </Button>
             </div>
@@ -82,7 +81,7 @@ const Index = () => {
       </section>
 
       {/* Modules Section */}
-      <section className="py-24 bg-gray-800/30">
+      <section className="py-24 bg-gray-900/30">
         <div className="container mx-auto px-6">
           <div className="text-center mb-20">
             <h3 className="text-5xl font-bold text-white mb-8">Three powerful modules</h3>
@@ -91,13 +90,13 @@ const Index = () => {
 
           <div className="grid lg:grid-cols-3 gap-10">
             {/* Manufacturer-Base Module */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-blue-500/50">
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-black to-gray-900 border border-gray-700 hover:border-orange-500/50">
               <CardHeader className="pb-8">
                 <div className="flex items-center justify-between mb-6">
-                  <div className="bg-blue-600/20 rounded-2xl p-4 group-hover:bg-blue-500/30 transition-colors">
-                    <Database className="h-10 w-10 text-blue-400" />
+                  <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors">
+                    <Database className="h-10 w-10 text-orange-400" />
                   </div>
-                  <Badge variant="outline" className="rounded-full border-blue-500/30 text-blue-300">Module 1</Badge>
+                  <Badge variant="outline" className="rounded-full border-orange-500/30 text-orange-300">Module 1</Badge>
                 </div>
                 <CardTitle className="text-2xl mb-3 text-white">Manufacturer-Base</CardTitle>
                 <CardDescription className="text-base leading-relaxed text-gray-300">
@@ -120,7 +119,7 @@ const Index = () => {
                   </li>
                 </ul>
                 <Link to="/manufacturer-base">
-                  <Button className="w-full rounded-full group-hover:bg-blue-600 transition-colors bg-blue-700 hover:bg-blue-600">
+                  <Button className="w-full rounded-full group-hover:bg-orange-600 transition-colors bg-orange-600 hover:bg-orange-700">
                     Explore Products
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -129,13 +128,13 @@ const Index = () => {
             </Card>
 
             {/* Engage Module */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-green-500/50">
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-black to-gray-900 border border-gray-700 hover:border-orange-500/50">
               <CardHeader className="pb-8">
                 <div className="flex items-center justify-between mb-6">
-                  <div className="bg-green-600/20 rounded-2xl p-4 group-hover:bg-green-500/30 transition-colors">
-                    <MessageSquare className="h-10 w-10 text-green-400" />
+                  <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors">
+                    <MessageSquare className="h-10 w-10 text-orange-400" />
                   </div>
-                  <Badge variant="outline" className="rounded-full border-green-500/30 text-green-300">Module 2</Badge>
+                  <Badge variant="outline" className="rounded-full border-orange-500/30 text-orange-300">Module 2</Badge>
                 </div>
                 <CardTitle className="text-2xl mb-3 text-white">Engage</CardTitle>
                 <CardDescription className="text-base leading-relaxed text-gray-300">
@@ -158,7 +157,7 @@ const Index = () => {
                   </li>
                 </ul>
                 <Link to="/engage">
-                  <Button variant="secondary" className="w-full rounded-full group-hover:bg-green-600 transition-colors bg-green-700 hover:bg-green-600 text-white">
+                  <Button variant="secondary" className="w-full rounded-full group-hover:bg-orange-600 transition-colors bg-orange-600 hover:bg-orange-700 text-white">
                     Start Charter
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -167,13 +166,13 @@ const Index = () => {
             </Card>
 
             {/* Master1 Module */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-purple-500/50">
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-black to-gray-900 border border-gray-700 hover:border-orange-500/50">
               <CardHeader className="pb-8">
                 <div className="flex items-center justify-between mb-6">
-                  <div className="bg-purple-600/20 rounded-2xl p-4 group-hover:bg-purple-500/30 transition-colors">
-                    <FileText className="h-10 w-10 text-purple-400" />
+                  <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors">
+                    <FileText className="h-10 w-10 text-orange-400" />
                   </div>
-                  <Badge variant="outline" className="rounded-full border-purple-500/30 text-purple-300">Module 3</Badge>
+                  <Badge variant="outline" className="rounded-full border-orange-500/30 text-orange-300">Module 3</Badge>
                 </div>
                 <CardTitle className="text-2xl mb-3 text-white">Master1</CardTitle>
                 <CardDescription className="text-base leading-relaxed text-gray-300">
@@ -196,7 +195,7 @@ const Index = () => {
                   </li>
                 </ul>
                 <Link to="/master1">
-                  <Button variant="outline" className="w-full rounded-full border-2 border-purple-500 text-purple-300 hover:bg-purple-600 hover:text-white transition-colors">
+                  <Button variant="outline" className="w-full rounded-full border-2 border-orange-500 text-orange-300 hover:bg-orange-600 hover:text-white transition-colors">
                     Process Specs
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -208,7 +207,7 @@ const Index = () => {
       </section>
 
       {/* Technical Features */}
-      <section className="py-24 bg-gray-900/50">
+      <section className="py-24 bg-black/50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-20">
             <h3 className="text-5xl font-bold text-white mb-8">Enterprise-grade architecture</h3>
@@ -227,24 +226,24 @@ const Index = () => {
                 icon: Database,
                 title: "Event-Driven",
                 description: "Apache Kafka with real-time processing",
-                color: "green"
+                color: "orange"
               },
               {
                 icon: MessageSquare,
                 title: "AI/ML Pipeline",
                 description: "TensorFlow Extended with MLOps",
-                color: "purple"
+                color: "orange"
               },
               {
                 icon: Shield,
                 title: "Security First",
                 description: "Zero-trust with differential privacy",
-                color: "orange"
+                color: "blue"
               }
             ].map((feature, index) => (
               <div key={index} className="text-center group">
-                <div className={`bg-${feature.color}-600/20 rounded-2xl p-6 w-20 h-20 mx-auto mb-8 flex items-center justify-center group-hover:bg-${feature.color}-500/30 transition-colors`}>
-                  <feature.icon className={`h-10 w-10 text-${feature.color}-400`} />
+                <div className={`${feature.color === 'orange' ? 'bg-orange-600/20' : 'bg-blue-600/20'} rounded-2xl p-6 w-20 h-20 mx-auto mb-8 flex items-center justify-center ${feature.color === 'orange' ? 'group-hover:bg-orange-500/30' : 'group-hover:bg-blue-500/30'} transition-colors`}>
+                  <feature.icon className={`h-10 w-10 ${feature.color === 'orange' ? 'text-orange-400' : 'text-blue-400'}`} />
                 </div>
                 <h4 className="font-semibold text-xl mb-4 text-white">{feature.title}</h4>
                 <p className="text-gray-400">{feature.description}</p>
@@ -255,7 +254,7 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 border-t border-gray-800 py-16">
+      <footer className="bg-black border-t border-gray-800 py-16">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-12">
             <div>
