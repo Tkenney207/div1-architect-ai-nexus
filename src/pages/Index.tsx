@@ -31,7 +31,7 @@ const Index = () => {
               <Link to="/master1" className="text-gray-300 hover:text-white transition-colors font-medium">
                 Master1
               </Link>
-              <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600">
+              <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 border-0">
                 <Users className="h-4 w-4 mr-2" />
                 Sign In
               </Button>
@@ -65,11 +65,11 @@ const Index = () => {
               Streamline product discovery, project planning, and specification management with our comprehensive AI-driven ecosystem designed for AEC professionals.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Button size="lg" className="text-lg px-10 py-6 rounded-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 shadow-2xl hover:shadow-orange-500/25 transition-all">
+              <Button size="lg" className="text-lg px-10 py-6 rounded-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 shadow-2xl hover:shadow-orange-500/25 transition-all border-0 text-white font-semibold">
                 Get Started Free
                 <ArrowRight className="ml-3 h-6 w-6" />
               </Button>
-              <Button variant="outline" size="lg" className="text-lg px-10 py-6 rounded-full border-2 border-blue-600 text-blue-300 hover:bg-blue-800 hover:text-white">
+              <Button variant="outline" size="lg" className="text-lg px-10 py-6 rounded-full border-2 border-orange-500/50 text-orange-300 hover:bg-orange-600 hover:text-white hover:border-orange-600 transition-all font-semibold">
                 Watch Demo
               </Button>
             </div>
@@ -126,7 +126,7 @@ const Index = () => {
                   </li>
                 </ul>
                 <Link to="/manufacturer-base">
-                  <Button className="w-full rounded-full group-hover:bg-orange-600 transition-colors bg-orange-600 hover:bg-orange-700">
+                  <Button className="w-full rounded-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 transition-all border-0 text-white font-semibold py-3">
                     Explore Products
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -164,7 +164,7 @@ const Index = () => {
                   </li>
                 </ul>
                 <Link to="/engage">
-                  <Button variant="secondary" className="w-full rounded-full group-hover:bg-orange-600 transition-colors bg-orange-600 hover:bg-orange-700 text-white">
+                  <Button className="w-full rounded-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 transition-all border-0 text-white font-semibold py-3">
                     Start Charter
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -202,7 +202,7 @@ const Index = () => {
                   </li>
                 </ul>
                 <Link to="/master1">
-                  <Button variant="outline" className="w-full rounded-full border-2 border-orange-500 text-orange-300 hover:bg-orange-600 hover:text-white transition-colors">
+                  <Button className="w-full rounded-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 transition-all border-0 text-white font-semibold py-3">
                     Process Specs
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
