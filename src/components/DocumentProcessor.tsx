@@ -4,12 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { FileText, Upload, Download, Check, AlertTriangle, Brain, Shield, Zap } from "lucide-react";
+import { FileText, Upload, Download, Check, AlertTriangle, Brain, Shield, Zap, ChevronDown, ChevronUp } from "lucide-react";
 import { useSpecificationProcessor } from "@/hooks/useSpecificationProcessor";
+import { SpecificationAnalysis } from "./SpecificationAnalysis";
 
 export const DocumentProcessor = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [dragActive, setDragActive] = useState(false);
+  const [expandedFiles, setExpandedFiles] = useState<Set<string>>(new Set());
   const { 
     uploadSpecification, 
     processDocument, 
@@ -44,6 +46,16 @@ export const DocumentProcessor = () => {
     e.stopPropagation();
     setDragActive(false);
     handleFileUpload(e.dataTransfer.files);
+  };
+
+  const toggleExpanded = (fileId: string) => {
+    const newExpanded = new Set(expandedFiles);
+    if (newExpanded.has(fileId)) {
+      newExpanded.delete(fileId);
+    } else {
+      newExpanded.add(fileId);
+    }
+    setExpandedFiles(newExpanded);
   };
 
   return (
@@ -128,7 +140,7 @@ export const DocumentProcessor = () => {
               Drop your specification files here or click to upload
             </p>
             <p className="text-sm text-gray-500 mb-4">
-              Supports Word documents, PDFs, and text files
+              Supports Word documents, PDFs, and text files. Analysis begins automatically.
             </p>
             <input
               ref={fileInputRef}
@@ -149,16 +161,37 @@ export const DocumentProcessor = () => {
         </CardContent>
       </Card>
 
-      {/* Uploaded Files */}
+      {/* Processing Status */}
+      {processingStatus && (
+        <Card className="bg-blue-900/20 border-blue-500/30">
+          <CardContent className="p-6">
+            <div className="flex items-center space-x-4">
+              <div className="animate-spin h-6 w-6 border-2 border-blue-400 border-t-transparent rounded-full"></div>
+              <div className="flex-1">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-white font-medium">{processingStatus.stage}</span>
+                  <span className="text-blue-400">{processingStatus.progress}%</span>
+                </div>
+                <div className="w-full bg-gray-700 rounded-full h-2">
+                  <div 
+                    className="bg-blue-500 h-2 rounded-full transition-all duration-300" 
+                    style={{ width: `${processingStatus.progress}%` }}
+                  ></div>
+                </div>
+                <p className="text-sm text-gray-300 mt-2">{processingStatus.message}</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Uploaded Files with Analysis */}
       {uploadedFiles.length > 0 && (
-        <Card className="bg-gray-800/50 border-gray-700">
-          <CardHeader>
-            <CardTitle className="text-white">Uploaded Specifications</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {uploadedFiles.map((file) => (
-                <div key={file.id} className="flex items-center justify-between p-4 bg-gray-900 rounded-lg">
+        <div className="space-y-6">
+          {uploadedFiles.map((file) => (
+            <Card key={file.id} className="bg-gray-800/50 border-gray-700">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center space-x-3">
                     <FileText className="h-8 w-8 text-blue-400" />
                     <div>
@@ -171,24 +204,45 @@ export const DocumentProcessor = () => {
                   <div className="flex items-center space-x-3">
                     <Badge 
                       variant={file.status === 'processed' ? 'default' : 'outline'}
-                      className={file.status === 'processed' ? 'bg-green-600' : 'border-yellow-500 text-yellow-400'}
+                      className={file.status === 'processed' ? 'bg-green-600' : 
+                        file.status === 'processing' ? 'bg-blue-600' : 'border-yellow-500 text-yellow-400'}
                     >
-                      {file.status}
+                      {file.status === 'processing' ? 'Analyzing...' : file.status}
                     </Badge>
-                    <Button 
-                      size="sm"
-                      onClick={() => processDocument(file.id)}
-                      disabled={file.status === 'processing' || isLoading}
-                      className="bg-purple-600 hover:bg-purple-700"
-                    >
-                      {file.status === 'processing' ? 'Processing...' : 'Review'}
-                    </Button>
+                    {file.status === 'processed' && file.analysisResults && (
+                      <Button 
+                        size="sm"
+                        variant="outline"
+                        onClick={() => toggleExpanded(file.id)}
+                        className="border-blue-500 text-blue-400"
+                      >
+                        {expandedFiles.has(file.id) ? (
+                          <>
+                            <ChevronUp className="h-4 w-4 mr-2" />
+                            Hide Analysis
+                          </>
+                        ) : (
+                          <>
+                            <ChevronDown className="h-4 w-4 mr-2" />
+                            View Analysis
+                          </>
+                        )}
+                      </Button>
+                    )}
                   </div>
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+                
+                {/* Show analysis results if file is processed and expanded */}
+                {file.status === 'processed' && file.analysisResults && expandedFiles.has(file.id) && (
+                  <SpecificationAnalysis 
+                    fileName={file.name} 
+                    analysis={file.analysisResults} 
+                  />
+                )}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       )}
 
       {/* AI Processing Features */}
@@ -208,15 +262,15 @@ export const DocumentProcessor = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Check className="h-4 w-4 text-green-400" />
-                <span className="text-sm text-gray-300">Content Synthesis</span>
+                <span className="text-sm text-gray-300">Manufacturer Analysis</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Check className="h-4 w-4 text-green-400" />
-                <span className="text-sm text-gray-300">Gap Analysis</span>
+                <span className="text-sm text-gray-300">Code Compliance Check</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Check className="h-4 w-4 text-green-400" />
-                <span className="text-sm text-gray-300">Language Standardization</span>
+                <span className="text-sm text-gray-300">Performance Validation</span>
               </div>
             </div>
           </CardContent>
@@ -226,7 +280,7 @@ export const DocumentProcessor = () => {
           <CardHeader>
             <CardTitle className="text-white flex items-center space-x-3">
               <Shield className="h-5 w-5 text-green-400" />
-              <span>Compliance Check</span>
+              <span>Standards Review</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -237,11 +291,11 @@ export const DocumentProcessor = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Check className="h-4 w-4 text-green-400" />
-                <span className="text-sm text-gray-300">LEED Requirements</span>
+                <span className="text-sm text-gray-300">Building Codes</span>
               </div>
               <div className="flex items-center space-x-3">
                 <AlertTriangle className="h-4 w-4 text-yellow-400" />
-                <span className="text-sm text-gray-300">ICC Code Updates</span>
+                <span className="text-sm text-gray-300">LEED Requirements</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Check className="h-4 w-4 text-green-400" />
@@ -280,38 +334,6 @@ export const DocumentProcessor = () => {
           </CardContent>
         </Card>
       </div>
-
-      {/* Compliance Results */}
-      {complianceResults.length > 0 && (
-        <Card className="bg-gray-800/50 border-gray-700">
-          <CardHeader>
-            <CardTitle className="text-white">Compliance Analysis Results</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {complianceResults.map((result, index) => (
-                <div key={index} className="p-4 bg-gray-900 rounded-lg">
-                  <div className="flex items-center justify-between mb-2">
-                    <h4 className="font-semibold text-white">{result.section}</h4>
-                    <Badge 
-                      variant={result.status === 'compliant' ? 'default' : 'destructive'}
-                      className={result.status === 'compliant' ? 'bg-green-600' : 'bg-red-600'}
-                    >
-                      {result.status}
-                    </Badge>
-                  </div>
-                  <p className="text-gray-300 text-sm mb-2">{result.description}</p>
-                  {result.recommendations && (
-                    <div className="text-sm text-blue-400">
-                      Recommendation: {result.recommendations}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 };

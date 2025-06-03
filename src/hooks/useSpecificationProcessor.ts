@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 
@@ -9,6 +8,69 @@ interface UploadedFile {
   uploadDate: string;
   status: 'uploaded' | 'processing' | 'processed' | 'error';
   type: string;
+  analysisResults?: DocumentAnalysis;
+}
+
+interface DocumentAnalysis {
+  manufacturerCompliance: ManufacturerAnalysis[];
+  codeCompliance: CodeCompliance[];
+  materialStandards: MaterialStandard[];
+  sustainabilityMetrics: SustainabilityMetric[];
+  performanceSpecs: PerformanceSpec[];
+  overview: AnalysisOverview;
+}
+
+interface ManufacturerAnalysis {
+  manufacturer: string;
+  products: string[];
+  status: 'current' | 'outdated' | 'discontinued';
+  alternatives?: string[];
+  lastUpdated: string;
+}
+
+interface CodeCompliance {
+  code: string;
+  section: string;
+  status: 'compliant' | 'non-compliant' | 'requires-update';
+  currentVersion: string;
+  specifiedVersion: string;
+  description: string;
+  recommendations?: string;
+}
+
+interface MaterialStandard {
+  standard: string;
+  material: string;
+  status: 'compliant' | 'outdated' | 'missing';
+  currentStandard: string;
+  specifiedStandard: string;
+  criticalityLevel: 'high' | 'medium' | 'low';
+}
+
+interface SustainabilityMetric {
+  category: string;
+  metric: string;
+  value: string;
+  benchmark: string;
+  status: 'exceeds' | 'meets' | 'below' | 'not-specified';
+  recommendations?: string;
+}
+
+interface PerformanceSpec {
+  component: string;
+  specification: string;
+  measuredValue: string;
+  requiredValue: string;
+  status: 'pass' | 'fail' | 'marginal';
+  testMethod: string;
+}
+
+interface AnalysisOverview {
+  overallCompliance: number;
+  criticalIssues: number;
+  warningsCount: number;
+  upToDatePercentage: number;
+  lastReviewDate: string;
 }
 
 interface ComplianceResult {
@@ -32,7 +94,6 @@ export const useSpecificationProcessor = () => {
 
   const uploadMutation = useMutation({
     mutationFn: async (file: File) => {
-      // Simulate file upload
       const fileData: UploadedFile = {
         id: Math.random().toString(36).substr(2, 9),
         name: file.name,
@@ -44,13 +105,17 @@ export const useSpecificationProcessor = () => {
       
       setUploadedFiles(prev => [...prev, fileData]);
       
+      // Automatically start processing after upload
+      setTimeout(() => {
+        processMutation.mutate(fileData.id);
+      }, 500);
+      
       return fileData;
     }
   });
 
   const processMutation = useMutation({
     mutationFn: async (fileId: string) => {
-      // Update file status to processing
       setUploadedFiles(prev => 
         prev.map(file => 
           file.id === fileId 
@@ -59,76 +124,179 @@ export const useSpecificationProcessor = () => {
         )
       );
 
-      // Simulate processing stages
       const stages = [
-        { stage: 'Document Analysis', progress: 20, message: 'Analyzing document structure and content...' },
-        { stage: 'CSI Format Validation', progress: 40, message: 'Validating against CSI MasterFormat standards...' },
-        { stage: 'Compliance Checking', progress: 60, message: 'Checking compliance with ASTM, LEED, and building codes...' },
-        { stage: 'AI Enhancement', progress: 80, message: 'Applying AI-driven improvements and standardization...' },
-        { stage: 'Finalization', progress: 100, message: 'Finalizing processed specification...' }
+        { stage: 'Document Parsing', progress: 15, message: 'Extracting text and structure from document...' },
+        { stage: 'Manufacturer Analysis', progress: 30, message: 'Analyzing manufacturer specifications and products...' },
+        { stage: 'Code Compliance Check', progress: 45, message: 'Validating against building codes and standards...' },
+        { stage: 'Material Standards Review', progress: 60, message: 'Checking ASTM, ANSI, and industry standards...' },
+        { stage: 'Sustainability Assessment', progress: 75, message: 'Evaluating LEED and sustainability metrics...' },
+        { stage: 'Performance Validation', progress: 90, message: 'Verifying performance specifications...' },
+        { stage: 'Report Generation', progress: 100, message: 'Finalizing comprehensive analysis report...' }
       ];
 
       for (const stage of stages) {
         setProcessingStatus(stage);
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        await new Promise(resolve => setTimeout(resolve, 1200));
       }
 
-      // Generate mock compliance results
-      const mockResults: ComplianceResult[] = [
-        {
-          section: 'Section 07 21 00 - Thermal Insulation',
-          status: 'compliant',
-          description: 'Thermal insulation specifications meet current ASTM C518 standards.',
-          standardsChecked: ['ASTM C518', 'IECC 2021', 'ASHRAE 90.1']
-        },
-        {
-          section: 'Section 03 30 00 - Cast-in-Place Concrete',
-          status: 'warning',
-          description: 'Concrete specifications reference outdated ACI 318-14 standard.',
-          recommendations: 'Update reference to ACI 318-19 for current compliance.',
-          standardsChecked: ['ACI 318', 'ASTM C150', 'ASTM C33']
-        },
-        {
-          section: 'Section 09 51 00 - Acoustical Ceilings',
-          status: 'compliant',
-          description: 'Ceiling specifications align with ASTM E1264 and accessibility requirements.',
-          standardsChecked: ['ASTM E1264', 'ADA 2010', 'IBC 2021']
-        },
-        {
-          section: 'Section 08 11 00 - Steel Doors and Frames',
-          status: 'non-compliant',
-          description: 'Fire rating specifications do not meet current UL standards.',
-          recommendations: 'Update fire rating requirements to comply with UL 10C-2009 standard.',
-          standardsChecked: ['UL 10C', 'NFPA 80', 'SDI 117']
+      // Generate comprehensive analysis results
+      const mockAnalysis: DocumentAnalysis = {
+        manufacturerCompliance: [
+          {
+            manufacturer: "USG Corporation",
+            products: ["Sheetrock Brand Gypsum Panels", "Durock Cement Board"],
+            status: "current",
+            lastUpdated: "2024-03-15"
+          },
+          {
+            manufacturer: "Armstrong World Industries",
+            products: ["Mineral Fiber Ceiling Tiles"],
+            status: "outdated",
+            alternatives: ["Armstrong Ultima Vector", "USG Mars Climaplus"],
+            lastUpdated: "2022-08-20"
+          },
+          {
+            manufacturer: "Dow Chemical",
+            products: ["STYROFOAM Insulation"],
+            status: "discontinued",
+            alternatives: ["Owens Corning FOAMULAR", "Johns Manville CI Max"],
+            lastUpdated: "2023-12-01"
+          }
+        ],
+        codeCompliance: [
+          {
+            code: "IBC 2021",
+            section: "Chapter 7 - Fire-Resistance-Rated Construction",
+            status: "compliant",
+            currentVersion: "2021",
+            specifiedVersion: "2021",
+            description: "Fire-rated assemblies meet current requirements"
+          },
+          {
+            code: "NFPA 70 (NEC)",
+            section: "Article 250 - Grounding",
+            status: "requires-update",
+            currentVersion: "2023",
+            specifiedVersion: "2020",
+            description: "Electrical grounding specifications reference outdated code",
+            recommendations: "Update to NEC 2023 requirements for enhanced safety"
+          },
+          {
+            code: "ADA 2010",
+            section: "Section 4.13 - Doors",
+            status: "non-compliant",
+            currentVersion: "2010 (with 2016 updates)",
+            specifiedVersion: "2010",
+            description: "Door hardware specifications missing tactile requirements",
+            recommendations: "Add tactile surface requirements per 2016 ADA updates"
+          }
+        ],
+        materialStandards: [
+          {
+            standard: "ASTM C36",
+            material: "Gypsum Wallboard",
+            status: "compliant",
+            currentStandard: "ASTM C36/C36M-23",
+            specifiedStandard: "ASTM C36/C36M-23",
+            criticalityLevel: "high"
+          },
+          {
+            standard: "ASTM E84",
+            material: "Surface Burning Characteristics",
+            status: "outdated",
+            currentStandard: "ASTM E84-23",
+            specifiedStandard: "ASTM E84-20",
+            criticalityLevel: "high"
+          },
+          {
+            standard: "ASTM C1396",
+            material: "Gypsum Board",
+            status: "missing",
+            currentStandard: "ASTM C1396/C1396M-23",
+            specifiedStandard: "Not specified",
+            criticalityLevel: "medium"
+          }
+        ],
+        sustainabilityMetrics: [
+          {
+            category: "LEED v4.1",
+            metric: "Recycled Content",
+            value: "45%",
+            benchmark: "≥50%",
+            status: "below",
+            recommendations: "Consider materials with higher recycled content to meet LEED requirements"
+          },
+          {
+            category: "Indoor Air Quality",
+            metric: "VOC Emissions",
+            value: "0.25 mg/m³",
+            benchmark: "≤0.5 mg/m³",
+            status: "exceeds"
+          },
+          {
+            category: "Carbon Footprint",
+            metric: "Embodied Carbon",
+            value: "Not specified",
+            benchmark: "Per LCA standards",
+            status: "not-specified",
+            recommendations: "Request EPD (Environmental Product Declaration) from manufacturers"
+          }
+        ],
+        performanceSpecs: [
+          {
+            component: "Thermal Insulation",
+            specification: "R-Value",
+            measuredValue: "R-30",
+            requiredValue: "R-38",
+            status: "fail",
+            testMethod: "ASTM C518"
+          },
+          {
+            component: "Acoustic Ceiling Tiles",
+            specification: "NRC Rating",
+            measuredValue: "0.85",
+            requiredValue: "≥0.80",
+            status: "pass",
+            testMethod: "ASTM C423"
+          },
+          {
+            component: "Concrete Strength",
+            specification: "Compressive Strength",
+            measuredValue: "4,500 psi",
+            requiredValue: "4,000 psi",
+            status: "pass",
+            testMethod: "ASTM C39"
+          }
+        ],
+        overview: {
+          overallCompliance: 78,
+          criticalIssues: 3,
+          warningsCount: 7,
+          upToDatePercentage: 65,
+          lastReviewDate: new Date().toISOString()
         }
-      ];
+      };
 
-      setComplianceResults(mockResults);
-
-      // Update file status to processed
       setUploadedFiles(prev => 
         prev.map(file => 
           file.id === fileId 
-            ? { ...file, status: 'processed' } 
+            ? { ...file, status: 'processed', analysisResults: mockAnalysis } 
             : file
         )
       );
 
       setProcessingStatus(null);
       
-      return mockResults;
+      return mockAnalysis;
     }
   });
 
   const downloadMutation = useMutation({
     mutationFn: async () => {
-      // Simulate master spec download
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // In a real implementation, this would trigger a file download
       console.log('Downloading AI-generated Master Specification...');
       
-      // Create a mock download blob
       const content = `
 # AI-Generated CSI MasterFormat Specification Guide
 ## Compiled from Industry-Leading Master Specifications
@@ -188,7 +356,6 @@ This specification guide has been synthesized using AI from multiple industry-st
 
   const validateMutation = useMutation({
     mutationFn: async (fileId: string) => {
-      // Simulate compliance validation
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       const mockValidationResults: ComplianceResult[] = [
