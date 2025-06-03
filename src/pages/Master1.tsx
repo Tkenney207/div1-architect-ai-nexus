@@ -8,18 +8,18 @@ import { DocumentProcessor } from "@/components/DocumentProcessor";
 
 const Master1 = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-purple-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
       <Header />
 
       <div className="container mx-auto px-6 py-12">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-6 px-6 py-3 rounded-full border-purple-500/30 bg-purple-600/10 text-purple-300">
+          <Badge variant="outline" className="mb-6 px-6 py-3 rounded-full border-blue-500/30 bg-blue-600/10 text-blue-300">
             📄 Intelligent Document Processing
           </Badge>
           <h2 className="text-6xl font-bold text-white mb-8">
             Process specifications with 
-            <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"> AI precision </span>
+            <span className="bg-gradient-to-r from-blue-400 to-slate-300 bg-clip-text text-transparent"> AI precision </span>
           </h2>
           <p className="text-xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
             Multi-modal document processing with real-time standards validation, semantic deduplication, and automated compliance checking.
@@ -33,10 +33,10 @@ const Master1 = () => {
 
         {/* Architecture Features */}
         <div className="grid lg:grid-cols-3 gap-8 mt-16">
-          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-purple-500/50">
+          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-slate-800/50 border border-slate-700 hover:border-blue-500/50">
             <CardHeader>
-              <div className="bg-purple-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-purple-500/30 transition-colors">
-                <FileText className="h-8 w-8 text-purple-400" />
+              <div className="bg-blue-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-blue-500/30 transition-colors">
+                <FileText className="h-8 w-8 text-blue-400" />
               </div>
               <CardTitle className="text-xl text-white">Document Understanding</CardTitle>
             </CardHeader>
@@ -65,10 +65,10 @@ const Master1 = () => {
             </CardContent>
           </Card>
 
-          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-blue-500/50">
+          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-slate-800/50 border border-slate-700 hover:border-blue-500/50">
             <CardHeader>
-              <div className="bg-blue-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-blue-500/30 transition-colors">
-                <Brain className="h-8 w-8 text-blue-400" />
+              <div className="bg-slate-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-slate-500/30 transition-colors">
+                <Brain className="h-8 w-8 text-slate-400" />
               </div>
               <CardTitle className="text-xl text-white">Intelligent Synthesis</CardTitle>
             </CardHeader>
@@ -97,7 +97,7 @@ const Master1 = () => {
             </CardContent>
           </Card>
 
-          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-green-500/50">
+          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-slate-800/50 border border-slate-700 hover:border-green-500/50">
             <CardHeader>
               <div className="bg-green-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-green-500/30 transition-colors">
                 <Shield className="h-8 w-8 text-green-400" />

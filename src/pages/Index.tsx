@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -9,7 +10,7 @@ import { ManufacturerBaseIcon, EngageIcon, Master1Icon } from "@/components/Modu
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-blue-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
       <Header />
 
       {/* Hero Section */}
@@ -20,7 +21,7 @@ const Index = () => {
             {/* Large Hero Logo */}
             <div className="relative group mb-12">
               <div className="absolute -inset-4 bg-gradient-to-r from-orange-600 via-blue-600 to-orange-600 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition duration-500"></div>
-              <div className="relative bg-black/30 backdrop-blur-sm rounded-3xl p-8 border border-orange-500/20">
+              <div className="relative bg-slate-900/30 backdrop-blur-sm rounded-3xl p-8 border border-orange-500/20">
                 <Div1Logo size="xl" className="mx-auto hover:scale-110 transition-transform duration-500 drop-shadow-2xl filter brightness-110" />
               </div>
             </div>
@@ -50,7 +51,7 @@ const Index = () => {
       </section>
 
       {/* Solutions Section */}
-      <section className="py-24 bg-gray-900/30">
+      <section className="py-24 bg-slate-800/30">
         <div className="container mx-auto px-6">
           <div className="text-center mb-20">
             <h3 className="text-5xl font-bold text-white mb-8">Three powerful solutions</h3>
@@ -59,7 +60,7 @@ const Index = () => {
 
           <div className="grid lg:grid-cols-3 gap-10">
             {/* Manufacturer-Base Module */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-black to-gray-900 border border-gray-700 hover:border-orange-500/50">
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-orange-500/50">
               <CardHeader className="pb-8">
                 <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors w-fit mb-6">
                   <ManufacturerBaseIcon className="text-orange-400" />
@@ -94,7 +95,7 @@ const Index = () => {
             </Card>
 
             {/* Engage Module */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-black to-gray-900 border border-gray-700 hover:border-orange-500/50">
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-orange-500/50">
               <CardHeader className="pb-8">
                 <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors w-fit mb-6">
                   <EngageIcon className="text-orange-400" />
@@ -129,7 +130,7 @@ const Index = () => {
             </Card>
 
             {/* Master1 Module */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-black to-gray-900 border border-gray-700 hover:border-orange-500/50">
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-orange-500/50">
               <CardHeader className="pb-8">
                 <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors w-fit mb-6">
                   <Master1Icon className="text-orange-400" />
@@ -167,7 +168,7 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black border-t border-gray-800 py-16">
+      <footer className="bg-slate-900 border-t border-slate-700 py-16">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-12">
             <div>
@@ -208,7 +209,7 @@ const Index = () => {
             </div>
           </div>
           
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+          <div className="border-t border-slate-700 mt-12 pt-8 text-center text-gray-400">
             © 2024 Div1 Platform Suite. All rights reserved.
           </div>
         </div>
