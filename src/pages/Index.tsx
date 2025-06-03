@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Users, CheckCircle, Star } from "lucide-react";
+import { ArrowRight, Users, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import Div1Logo from "@/components/Div1Logo";
 import { ManufacturerBaseIcon, EngageIcon, Master1Icon } from "@/components/ModuleIcons";
@@ -89,11 +89,8 @@ const Index = () => {
             {/* Manufacturer-Base Module */}
             <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-black to-gray-900 border border-gray-700 hover:border-orange-500/50">
               <CardHeader className="pb-8">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors">
-                    <ManufacturerBaseIcon className="text-orange-400" />
-                  </div>
-                  <Badge variant="outline" className="rounded-full border-orange-500/30 text-orange-300">Solution 1</Badge>
+                <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors w-fit mb-6">
+                  <ManufacturerBaseIcon className="text-orange-400" />
                 </div>
                 <CardTitle className="text-2xl mb-3 text-white">Manufacturer-Base</CardTitle>
                 <CardDescription className="text-base leading-relaxed text-gray-300">
@@ -127,11 +124,8 @@ const Index = () => {
             {/* Engage Module */}
             <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-black to-gray-900 border border-gray-700 hover:border-orange-500/50">
               <CardHeader className="pb-8">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors">
-                    <EngageIcon className="text-orange-400" />
-                  </div>
-                  <Badge variant="outline" className="rounded-full border-orange-500/30 text-orange-300">Solution 2</Badge>
+                <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors w-fit mb-6">
+                  <EngageIcon className="text-orange-400" />
                 </div>
                 <CardTitle className="text-2xl mb-3 text-white">Engage</CardTitle>
                 <CardDescription className="text-base leading-relaxed text-gray-300">
@@ -165,11 +159,8 @@ const Index = () => {
             {/* Master1 Module */}
             <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-black to-gray-900 border border-gray-700 hover:border-orange-500/50">
               <CardHeader className="pb-8">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors">
-                    <Master1Icon className="text-orange-400" />
-                  </div>
-                  <Badge variant="outline" className="rounded-full border-orange-500/30 text-orange-300">Solution 3</Badge>
+                <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors w-fit mb-6">
+                  <Master1Icon className="text-orange-400" />
                 </div>
                 <CardTitle className="text-2xl mb-3 text-white">Master1</CardTitle>
                 <CardDescription className="text-base leading-relaxed text-gray-300">
