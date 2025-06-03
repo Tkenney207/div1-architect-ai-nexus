@@ -15,7 +15,7 @@ const Index = () => {
               <div className="relative group">
                 <div className="absolute -inset-2 bg-gradient-to-r from-orange-600 to-blue-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
                 <img 
-                  src="/lovable-uploads/0014a989-3a3c-4d12-94b3-4e2301cc77b1.png" 
+                  src="/lovable-uploads/7c679dfc-7e78-4131-93f6-c96d4c5764e0.png" 
                   alt="Div1 Logo" 
                   className="relative h-16 w-auto hover:scale-105 transition-transform duration-300 drop-shadow-2xl"
                 />
@@ -54,11 +54,11 @@ const Index = () => {
               <div className="absolute -inset-4 bg-gradient-to-r from-orange-600 via-blue-600 to-orange-600 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition duration-500 animate-pulse"></div>
               <div className="relative bg-black/30 backdrop-blur-sm rounded-3xl p-8 border border-orange-500/20">
                 <img 
-                  src="/lovable-uploads/0014a989-3a3c-4d12-94b3-4e2301cc77b1.png" 
+                  src="/lovable-uploads/7c679dfc-7e78-4131-93f6-c96d4c5764e0.png" 
                   alt="Div1 Platform" 
-                  className="h-32 w-auto mx-auto hover:scale-110 transition-transform duration-500 drop-shadow-2xl filter brightness-110"
+                  className="h-40 w-auto mx-auto hover:scale-110 transition-transform duration-500 drop-shadow-2xl filter brightness-110"
                 />
-                <div className="mt-4">
+                <div className="mt-6">
                   <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-400 via-blue-400 to-orange-400 bg-clip-text text-transparent">
                     DIV1 PLATFORM
                   </h1>
@@ -283,9 +283,9 @@ const Index = () => {
             <div>
               <div className="flex items-center space-x-3 mb-6">
                 <img 
-                  src="/lovable-uploads/0014a989-3a3c-4d12-94b3-4e2301cc77b1.png" 
+                  src="/lovable-uploads/7c679dfc-7e78-4131-93f6-c96d4c5764e0.png" 
                   alt="Div1 Logo" 
-                  className="h-8 w-auto"
+                  className="h-10 w-auto"
                 />
                 <span className="text-xl font-semibold text-white">Platform</span>
               </div>
