@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Database, MessageSquare, FileText, Users, Cog, CheckCircle, Star, Shield, Zap, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
+import Div1Logo from "@/components/Div1Logo";
 
 const Index = () => {
   return (
@@ -14,11 +15,9 @@ const Index = () => {
             <div className="flex items-center space-x-6">
               <div className="relative group">
                 <div className="absolute -inset-2 bg-gradient-to-r from-orange-600 to-blue-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
-                <img 
-                  src="/lovable-uploads/7c679dfc-7e78-4131-93f6-c96d4c5764e0.png" 
-                  alt="Div1 Logo" 
-                  className="relative h-16 w-auto hover:scale-105 transition-transform duration-300 drop-shadow-2xl"
-                />
+                <div className="relative">
+                  <Div1Logo size="md" className="hover:scale-105 transition-transform duration-300 drop-shadow-2xl" />
+                </div>
               </div>
               <div>
                 <h1 className="text-3xl font-bold text-white bg-gradient-to-r from-orange-400 to-blue-400 bg-clip-text text-transparent">Platform Suite</h1>
@@ -53,11 +52,7 @@ const Index = () => {
             <div className="relative group mb-12">
               <div className="absolute -inset-4 bg-gradient-to-r from-orange-600 via-blue-600 to-orange-600 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition duration-500 animate-pulse"></div>
               <div className="relative bg-black/30 backdrop-blur-sm rounded-3xl p-8 border border-orange-500/20">
-                <img 
-                  src="/lovable-uploads/7c679dfc-7e78-4131-93f6-c96d4c5764e0.png" 
-                  alt="Div1 Platform" 
-                  className="h-40 w-auto mx-auto hover:scale-110 transition-transform duration-500 drop-shadow-2xl filter brightness-110"
-                />
+                <Div1Logo size="xl" className="mx-auto hover:scale-110 transition-transform duration-500 drop-shadow-2xl filter brightness-110" />
                 <div className="mt-6">
                   <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-400 via-blue-400 to-orange-400 bg-clip-text text-transparent">
                     DIV1 PLATFORM
@@ -282,11 +277,7 @@ const Index = () => {
           <div className="grid md:grid-cols-4 gap-12">
             <div>
               <div className="flex items-center space-x-3 mb-6">
-                <img 
-                  src="/lovable-uploads/7c679dfc-7e78-4131-93f6-c96d4c5764e0.png" 
-                  alt="Div1 Logo" 
-                  className="h-10 w-auto"
-                />
+                <Div1Logo size="sm" />
                 <span className="text-xl font-semibold text-white">Platform</span>
               </div>
               <p className="text-gray-400 leading-relaxed">
