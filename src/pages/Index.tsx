@@ -11,15 +11,18 @@ const Index = () => {
       <header className="border-b border-gray-800 bg-black/50 backdrop-blur-xl">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <img 
-                src="/lovable-uploads/0014a989-3a3c-4d12-94b3-4e2301cc77b1.png" 
-                alt="Div1 Logo" 
-                className="h-10 w-auto"
-              />
+            <div className="flex items-center space-x-6">
+              <div className="relative group">
+                <div className="absolute -inset-2 bg-gradient-to-r from-orange-600 to-blue-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
+                <img 
+                  src="/lovable-uploads/0014a989-3a3c-4d12-94b3-4e2301cc77b1.png" 
+                  alt="Div1 Logo" 
+                  className="relative h-16 w-auto hover:scale-105 transition-transform duration-300 drop-shadow-2xl"
+                />
+              </div>
               <div>
-                <h1 className="text-2xl font-bold text-white">Platform Suite</h1>
-                <Badge variant="secondary" className="text-xs bg-blue-600/20 text-blue-300 border-blue-500/30">v2.0</Badge>
+                <h1 className="text-3xl font-bold text-white bg-gradient-to-r from-orange-400 to-blue-400 bg-clip-text text-transparent">Platform Suite</h1>
+                <Badge variant="secondary" className="text-xs bg-orange-600/20 text-orange-300 border-orange-500/30">v2.0</Badge>
               </div>
             </div>
             <nav className="hidden md:flex items-center space-x-8">
@@ -46,8 +49,28 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-orange-600/10"></div>
         <div className="container mx-auto px-6 relative">
           <div className="text-center max-w-5xl mx-auto">
-            <Badge variant="outline" className="mb-8 px-6 py-3 text-sm font-medium rounded-full border-blue-500/30 bg-blue-600/10 text-blue-300">
-              ✨ AI-Powered AEC Platform
+            {/* Large Hero Logo */}
+            <div className="relative group mb-12">
+              <div className="absolute -inset-4 bg-gradient-to-r from-orange-600 via-blue-600 to-orange-600 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition duration-500 animate-pulse"></div>
+              <div className="relative bg-black/30 backdrop-blur-sm rounded-3xl p-8 border border-orange-500/20">
+                <img 
+                  src="/lovable-uploads/0014a989-3a3c-4d12-94b3-4e2301cc77b1.png" 
+                  alt="Div1 Platform" 
+                  className="h-32 w-auto mx-auto hover:scale-110 transition-transform duration-500 drop-shadow-2xl filter brightness-110"
+                />
+                <div className="mt-4">
+                  <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-400 via-blue-400 to-orange-400 bg-clip-text text-transparent">
+                    DIV1 PLATFORM
+                  </h1>
+                  <p className="text-orange-300/80 text-sm font-medium tracking-widest uppercase mt-2">
+                    AI-Powered AEC Ecosystem
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <Badge variant="outline" className="mb-8 px-6 py-3 text-sm font-medium rounded-full border-orange-500/30 bg-orange-600/10 text-orange-300">
+              ✨ Next-Generation Construction Intelligence
             </Badge>
             <h2 className="text-7xl font-bold text-white mb-8 leading-tight">
               Transform your 
