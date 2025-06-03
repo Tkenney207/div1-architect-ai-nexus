@@ -1,40 +1,14 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Brain, Shield, Zap, CheckCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import Header from "@/components/Header";
 import { ConversationalInterface } from "@/components/ConversationalInterface";
 
 const Engage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-green-900 text-white">
-      {/* Header */}
-      <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-xl">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Link to="/">
-                <Button variant="ghost" size="sm" className="rounded-full text-gray-300 hover:text-white">
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  Back
-                </Button>
-              </Link>
-              <div className="flex items-center space-x-4">
-                <img 
-                  src="/lovable-uploads/0014a989-3a3c-4d12-94b3-4e2301cc77b1.png" 
-                  alt="Div1 Logo" 
-                  className="h-8 w-auto"
-                />
-                <div>
-                  <h1 className="text-xl font-bold text-white">Engage</h1>
-                  <Badge variant="secondary" className="text-xs bg-green-600/20 text-green-300 border-green-500/30">AI Project Charter</Badge>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       <div className="container mx-auto px-6 py-12">
         {/* Hero Section */}

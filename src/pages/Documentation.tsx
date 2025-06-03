@@ -1,32 +1,12 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Book, FileText, Code } from "lucide-react";
-import { Link } from "react-router-dom";
-import Div1Logo from "@/components/Div1Logo";
+import { Book, FileText, Code } from "lucide-react";
+import Header from "@/components/Header";
 
 const Documentation = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-blue-900 text-white">
-      {/* Header */}
-      <header className="border-b border-gray-800 bg-black/50 backdrop-blur-xl">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-6">
-              <Link to="/" className="flex items-center space-x-3">
-                <Div1Logo size="sm" />
-                <span className="text-xl font-semibold">Platform</span>
-              </Link>
-            </div>
-            <Link to="/">
-              <Button variant="outline" size="sm" className="rounded-full border-orange-500/50 text-orange-300 hover:bg-orange-600 hover:text-white">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Home
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Content */}
       <section className="py-24">
