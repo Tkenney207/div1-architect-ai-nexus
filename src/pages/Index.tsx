@@ -1,5 +1,3 @@
-
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -75,21 +73,11 @@ const Index = () => {
                 Watch Demo
               </Button>
             </div>
-            <div className="mt-16 flex items-center justify-center space-x-12 text-sm text-gray-400">
-              <div className="flex items-center space-x-3">
-                <CheckCircle className="h-5 w-5 text-green-400" />
-                <span>No credit card required</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Star className="h-5 w-5 text-yellow-400" />
-                <span>Trusted by 1000+ teams</span>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Modules Section */}
+      {/* Solutions Section */}
       <section className="py-24 bg-gray-900/30">
         <div className="container mx-auto px-6">
           <div className="text-center mb-20">
