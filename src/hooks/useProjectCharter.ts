@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+import { useOpenAI } from './useOpenAI';
 
 interface Message {
   id: string;
@@ -39,32 +40,53 @@ export const useProjectCharter = () => {
     type: ''
   });
   const [stakeholders, setStakeholders] = useState<Stakeholder[]>([]);
+  const [conversationHistory, setConversationHistory] = useState<Array<{role: 'user' | 'assistant', content: string}>>([]);
+  
+  const { sendMessage: sendOpenAIMessage, isLoading: isAILoading, apiKey, setApiKey } = useOpenAI();
+
+  const systemPrompt = `You are an expert AI project charter assistant specializing in construction and development projects. Your role is to:
+
+1. Help users define their project vision, scope, and requirements
+2. Ask intelligent follow-up questions to gather comprehensive project information
+3. Identify key stakeholders and their roles
+4. Extract important project details like budget, timeline, sustainability goals, and constraints
+5. Maintain a conversational, professional tone while being thorough
+
+Key guidelines:
+- Ask one focused question at a time to avoid overwhelming the user
+- Build on previous responses - don't repeat questions you've already asked
+- When you have enough information about a topic, move to the next important aspect
+- Be specific about construction/development terminology and considerations
+- Help identify potential risks, constraints, or missing requirements
+
+Current project context: ${projectData.name ? `Project "${projectData.name}" - ${projectData.description}` : 'New project being defined'}`;
 
   const createProjectMutation = useMutation({
     mutationFn: async (projectName: string) => {
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       const newProject: ProjectData = {
         id: Math.random().toString(36).substr(2, 9),
         name: projectName,
         description: '',
-        type: 'commercial'
+        type: ''
       };
       
       setProjectData(newProject);
       
-      // Initialize with AI welcome message
       const welcomeMessage: Message = {
         id: Math.random().toString(36).substr(2, 9),
-        content: `Hello! I'm your AI project charter assistant. I see you've created a project called "${projectName}". Let's start by understanding your project better. Can you tell me about the type of project, its purpose, and any initial goals you have in mind?`,
+        content: `Hello! I'm your AI project charter assistant. I see you've created a project called "${projectName}". Let's start by understanding your project better. What type of project is this - commercial, residential, healthcare, industrial, or something else? And what's the main purpose or goal you're trying to achieve?`,
         sender: 'ai',
         timestamp: new Date().toISOString()
       };
       
       setMessages([welcomeMessage]);
+      setConversationHistory([{
+        role: 'assistant',
+        content: welcomeMessage.content
+      }]);
       
-      // Initialize default stakeholders
       const defaultStakeholders: Stakeholder[] = [
         {
           id: '1',
@@ -105,14 +127,16 @@ export const useProjectCharter = () => {
       ];
       
       setStakeholders(defaultStakeholders);
-      
       return newProject;
     }
   });
 
   const sendMessageMutation = useMutation({
     mutationFn: async (content: string) => {
-      // Add user message
+      if (!apiKey) {
+        throw new Error('Please set your OpenAI API key first');
+      }
+
       const userMessage: Message = {
         id: Math.random().toString(36).substr(2, 9),
         content,
@@ -122,59 +146,36 @@ export const useProjectCharter = () => {
       
       setMessages(prev => [...prev, userMessage]);
       
-      // Simulate AI processing
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Generate AI response based on content
-      let aiResponse = '';
-      
-      if (content.toLowerCase().includes('commercial') || content.toLowerCase().includes('office')) {
-        aiResponse = "Great! A commercial office project. I'd like to understand more about the scale and vision. What's the approximate size in square feet, and what are the key functional requirements? Also, do you have any sustainability goals or specific performance targets in mind?";
-        setProjectData(prev => ({ ...prev, type: 'commercial office', description: content }));
-      } else if (content.toLowerCase().includes('residential')) {
-        aiResponse = "Excellent! A residential project. Can you tell me more about the type of residential development - is this single-family, multi-family, or mixed-use? What's the target market, and are there any specific design philosophies or community goals driving this project?";
-        setProjectData(prev => ({ ...prev, type: 'residential', description: content }));
-      } else if (content.toLowerCase().includes('healthcare') || content.toLowerCase().includes('hospital')) {
-        aiResponse = "A healthcare facility - this is a specialized project type with unique requirements. What type of healthcare services will be provided? We'll need to consider infection control, accessibility, technology infrastructure, and regulatory compliance. What's the expected patient capacity?";
-        setProjectData(prev => ({ ...prev, type: 'healthcare', description: content }));
-      } else if (content.toLowerCase().includes('budget') || content.toLowerCase().includes('cost')) {
-        const budgetMatch = content.match(/\$?(\d+(?:,\d{3})*(?:\.\d{2})?)/);
-        if (budgetMatch) {
-          const budget = parseFloat(budgetMatch[1].replace(/,/g, ''));
-          setProjectData(prev => ({ ...prev, budget }));
-          aiResponse = `Thank you for sharing the budget information. With a budget of $${budget.toLocaleString()}, we can start aligning the project scope and expectations. What are your top three priorities for this budget allocation - quality, schedule, sustainability, or other factors?`;
-        } else {
-          aiResponse = "I understand budget is important. Could you share the anticipated budget range for this project? This will help me tailor the charter discussions and ensure realistic scope expectations.";
-        }
-      } else if (content.toLowerCase().includes('sustainable') || content.toLowerCase().includes('green') || content.toLowerCase().includes('leed')) {
-        aiResponse = "Sustainability is a key focus - excellent! Are you targeting specific certifications like LEED, WELL, or Living Building Challenge? What sustainability priorities are most important: energy efficiency, material selection, indoor air quality, or operational carbon reduction?";
-        setProjectData(prev => ({ 
-          ...prev, 
-          objectives: [...(prev.objectives || []), 'Achieve sustainability certification', 'Minimize environmental impact']
-        }));
-      } else if (content.toLowerCase().includes('timeline') || content.toLowerCase().includes('schedule')) {
-        aiResponse = "Timeline is crucial for project success. Based on what you've shared, I'd recommend we discuss this with your construction team during their stakeholder interview. Are there any hard deadlines we need to work around - occupancy dates, lease expirations, or seasonal considerations?";
-        setProjectData(prev => ({ ...prev, timeline: content }));
-      } else {
-        aiResponse = "Thank you for that information. I'm building a comprehensive understanding of your project. Based on what you've shared so far, would you like to start generating the stakeholder interview guides, or are there other aspects of the project vision you'd like to discuss first?";
-      }
-      
-      const aiMessage: Message = {
-        id: Math.random().toString(36).substr(2, 9),
-        content: aiResponse,
-        sender: 'ai',
-        timestamp: new Date().toISOString()
-      };
-      
-      setMessages(prev => [...prev, aiMessage]);
-      
-      return aiMessage;
+      const newConversationHistory = [...conversationHistory, { role: 'user' as const, content }];
+      setConversationHistory(newConversationHistory);
+
+      return new Promise((resolve, reject) => {
+        sendOpenAIMessage(
+          { messages: newConversationHistory, systemPrompt },
+          {
+            onSuccess: (aiResponse: string) => {
+              const aiMessage: Message = {
+                id: Math.random().toString(36).substr(2, 9),
+                content: aiResponse,
+                sender: 'ai',
+                timestamp: new Date().toISOString()
+              };
+              
+              setMessages(prev => [...prev, aiMessage]);
+              setConversationHistory(prev => [...prev, { role: 'assistant', content: aiResponse }]);
+              resolve(aiMessage);
+            },
+            onError: (error: any) => {
+              reject(error);
+            }
+          }
+        );
+      });
     }
   });
 
   const generateLinksMutation = useMutation({
     mutationFn: async () => {
-      // Simulate API call to generate unique interview links
       await new Promise(resolve => setTimeout(resolve, 1500));
       
       const updatedStakeholders = stakeholders.map(stakeholder => ({
@@ -185,7 +186,6 @@ export const useProjectCharter = () => {
       
       setStakeholders(updatedStakeholders);
       
-      // Add AI message about links being generated
       const aiMessage: Message = {
         id: Math.random().toString(36).substr(2, 9),
         content: "Perfect! I've generated unique interview links for each stakeholder. Each link is customized based on their role and will guide them through a conversational interview tailored to their expertise and perspective. You can now share these links with your team members. The interviews are anonymized, so participants can share candid feedback.",
@@ -218,6 +218,8 @@ export const useProjectCharter = () => {
     messages,
     projectData,
     stakeholders,
-    isLoading: createProjectMutation.isPending || sendMessageMutation.isPending || generateLinksMutation.isPending
+    isLoading: createProjectMutation.isPending || sendMessageMutation.isPending || generateLinksMutation.isPending,
+    apiKey,
+    setApiKey
   };
 };
