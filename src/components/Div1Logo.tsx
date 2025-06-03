@@ -16,42 +16,42 @@ const Div1Logo: React.FC<Div1LogoProps> = ({ className = '', size = 'md' }) => {
 
   return (
     <svg
-      viewBox="0 0 120 40"
+      viewBox="0 0 140 40"
       className={`${sizeClasses[size]} ${className}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       {/* "Div" text */}
       <text 
-        x="2" 
+        x="4" 
         y="30" 
         fontFamily="Arial, sans-serif" 
-        fontSize="32" 
-        fontWeight="700" 
+        fontSize="34" 
+        fontWeight="900" 
         fill="white"
-        letterSpacing="-0.5px"
+        letterSpacing="0"
       >
         Div
       </text>
       
       {/* Square box for "1" */}
       <rect 
-        x="80" 
-        y="4" 
-        width="32" 
-        height="32" 
+        x="95" 
+        y="3" 
+        width="34" 
+        height="34" 
         fill="none" 
         stroke="white" 
-        strokeWidth="2"
+        strokeWidth="3"
       />
       
       {/* "1" inside the box */}
       <text 
-        x="96" 
-        y="26" 
+        x="112" 
+        y="28" 
         fontFamily="Arial, sans-serif" 
-        fontSize="24" 
-        fontWeight="700" 
+        fontSize="26" 
+        fontWeight="900" 
         fill="white"
         textAnchor="middle"
       >
