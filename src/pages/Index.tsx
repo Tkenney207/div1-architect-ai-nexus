@@ -1,7 +1,8 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Users } from "lucide-react";
+import { ArrowRight, Users, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import Div1Logo from "@/components/Div1Logo";
 import { ManufacturerBaseIcon, EngageIcon, Master1Icon } from "@/components/ModuleIcons";
@@ -91,7 +92,7 @@ const Index = () => {
       <section className="py-24 bg-gray-900/30">
         <div className="container mx-auto px-6">
           <div className="text-center mb-20">
-            <h3 className="text-5xl font-bold text-white mb-8">Three powerful modules</h3>
+            <h3 className="text-5xl font-bold text-white mb-8">Three powerful solutions</h3>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">Interconnected tools designed to work seamlessly together for your complete AEC workflow</p>
           </div>
 
@@ -103,7 +104,7 @@ const Index = () => {
                   <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors">
                     <ManufacturerBaseIcon className="text-orange-400" />
                   </div>
-                  <Badge variant="outline" className="rounded-full border-orange-500/30 text-orange-300">Module 1</Badge>
+                  <Badge variant="outline" className="rounded-full border-orange-500/30 text-orange-300">Solution 1</Badge>
                 </div>
                 <CardTitle className="text-2xl mb-3 text-white">Manufacturer-Base</CardTitle>
                 <CardDescription className="text-base leading-relaxed text-gray-300">
@@ -141,7 +142,7 @@ const Index = () => {
                   <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors">
                     <EngageIcon className="text-orange-400" />
                   </div>
-                  <Badge variant="outline" className="rounded-full border-orange-500/30 text-orange-300">Module 2</Badge>
+                  <Badge variant="outline" className="rounded-full border-orange-500/30 text-orange-300">Solution 2</Badge>
                 </div>
                 <CardTitle className="text-2xl mb-3 text-white">Engage</CardTitle>
                 <CardDescription className="text-base leading-relaxed text-gray-300">
@@ -179,7 +180,7 @@ const Index = () => {
                   <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors">
                     <Master1Icon className="text-orange-400" />
                   </div>
-                  <Badge variant="outline" className="rounded-full border-orange-500/30 text-orange-300">Module 3</Badge>
+                  <Badge variant="outline" className="rounded-full border-orange-500/30 text-orange-300">Solution 3</Badge>
                 </div>
                 <CardTitle className="text-2xl mb-3 text-white">Master1</CardTitle>
                 <CardDescription className="text-base leading-relaxed text-gray-300">
@@ -228,7 +229,7 @@ const Index = () => {
             </div>
             
             <div>
-              <h5 className="font-semibold mb-6 text-lg text-white">Modules</h5>
+              <h5 className="font-semibold mb-6 text-lg text-white">Solutions</h5>
               <ul className="space-y-3 text-gray-400">
                 <li><Link to="/manufacturer-base" className="hover:text-white transition-colors">Manufacturer-Base</Link></li>
                 <li><Link to="/engage" className="hover:text-white transition-colors">Engage</Link></li>
