@@ -138,7 +138,7 @@ const ManufacturerBase = () => {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-400">Processing Lag:</span>
-                  <Badge variant="outline" className="border-green-500 text-green-400">< 500ms</Badge>
+                  <Badge variant="outline" className="border-green-500 text-green-400">{"< 500ms"}</Badge>
                 </div>
               </div>
             </CardContent>
@@ -190,7 +190,7 @@ const ManufacturerBase = () => {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-400">Response Time:</span>
-                  <Badge variant="secondary" className="bg-blue-600">< 100ms</Badge>
+                  <Badge variant="secondary" className="bg-blue-600">{"< 100ms"}</Badge>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-400">Global Regions:</span>
