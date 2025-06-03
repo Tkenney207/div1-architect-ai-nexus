@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -137,9 +136,18 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       {/* Overview */}
       <Card className="bg-gray-800/50 border-gray-700">
         <CardHeader>
-          <CardTitle className="text-white flex items-center space-x-3">
-            <FileText className="h-5 w-5 text-blue-400" />
-            <span>Analysis Overview - {fileName}</span>
+          <CardTitle className="text-white flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <FileText className="h-5 w-5 text-blue-400" />
+              <span>Analysis Overview - {fileName}</span>
+            </div>
+            <Button 
+              size="sm"
+              className="bg-purple-600 hover:bg-purple-700"
+            >
+              <TrendingUp className="h-4 w-4 mr-2" />
+              Review Changes
+            </Button>
           </CardTitle>
         </CardHeader>
         <CardContent>

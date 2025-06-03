@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,11 +6,14 @@ import { Input } from "@/components/ui/input";
 import { FileText, Upload, Download, Check, AlertTriangle, Brain, Shield, Zap, ChevronDown, ChevronUp } from "lucide-react";
 import { useSpecificationProcessor } from "@/hooks/useSpecificationProcessor";
 import { SpecificationAnalysis } from "./SpecificationAnalysis";
+import { SpecificationReviewWindow } from "./SpecificationReviewWindow";
+import { useSpecificationReview } from "@/hooks/useSpecificationReview";
 
 export const DocumentProcessor = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [dragActive, setDragActive] = useState(false);
   const [expandedFiles, setExpandedFiles] = useState<Set<string>>(new Set());
+  const [showReviewWindow, setShowReviewWindow] = useState<string | null>(null);
   const { 
     uploadSpecification, 
     processDocument, 
@@ -22,6 +24,15 @@ export const DocumentProcessor = () => {
     complianceResults,
     isLoading 
   } = useSpecificationProcessor();
+  const { 
+    suggestions,
+    generateSuggestions,
+    approveSuggestion,
+    rejectSuggestion,
+    approveAllSuggestions,
+    downloadRevisedSpecification,
+    setSuggestions
+  } = useSpecificationReview();
 
   const handleFileUpload = (files: FileList | null) => {
     if (files && files.length > 0) {
@@ -56,6 +67,12 @@ export const DocumentProcessor = () => {
       newExpanded.add(fileId);
     }
     setExpandedFiles(newExpanded);
+  };
+
+  const handleShowReview = (fileId: string, fileName: string) => {
+    const mockSuggestions = generateSuggestions(fileName);
+    setSuggestions(mockSuggestions);
+    setShowReviewWindow(fileId);
   };
 
   return (
@@ -209,25 +226,34 @@ export const DocumentProcessor = () => {
                     >
                       {file.status === 'processing' ? 'Analyzing...' : file.status}
                     </Badge>
-                    {file.status === 'processed' && file.analysisResults && (
-                      <Button 
-                        size="sm"
-                        variant="outline"
-                        onClick={() => toggleExpanded(file.id)}
-                        className="border-blue-500 text-blue-400"
-                      >
-                        {expandedFiles.has(file.id) ? (
-                          <>
-                            <ChevronUp className="h-4 w-4 mr-2" />
-                            Hide Analysis
-                          </>
-                        ) : (
-                          <>
-                            <ChevronDown className="h-4 w-4 mr-2" />
-                            View Analysis
-                          </>
-                        )}
-                      </Button>
+                    {file.status === 'processed' && (
+                      <>
+                        <Button 
+                          size="sm"
+                          onClick={() => handleShowReview(file.id, file.name)}
+                          className="bg-purple-600 hover:bg-purple-700"
+                        >
+                          Review Changes
+                        </Button>
+                        <Button 
+                          size="sm"
+                          variant="outline"
+                          onClick={() => toggleExpanded(file.id)}
+                          className="border-blue-500 text-blue-400"
+                        >
+                          {expandedFiles.has(file.id) ? (
+                            <>
+                              <ChevronUp className="h-4 w-4 mr-2" />
+                              Hide Analysis
+                            </>
+                          ) : (
+                            <>
+                              <ChevronDown className="h-4 w-4 mr-2" />
+                              View Analysis
+                            </>
+                          )}
+                        </Button>
+                      </>
                     )}
                   </div>
                 </div>
@@ -243,6 +269,24 @@ export const DocumentProcessor = () => {
             </Card>
           ))}
         </div>
+      )}
+
+      {/* Review Window */}
+      {showReviewWindow && (
+        <SpecificationReviewWindow
+          fileName={uploadedFiles.find(f => f.id === showReviewWindow)?.name || ''}
+          fileContent="[Original specification content would be loaded here...]"
+          suggestions={suggestions}
+          onClose={() => setShowReviewWindow(null)}
+          onApproveSuggestion={approveSuggestion}
+          onRejectSuggestion={rejectSuggestion}
+          onApproveAll={approveAllSuggestions}
+          onDownloadRevised={() => {
+            const approvedSuggestions = suggestions.filter(s => s.status === 'approved');
+            const fileName = uploadedFiles.find(f => f.id === showReviewWindow)?.name || 'specification';
+            downloadRevisedSpecification(fileName, approvedSuggestions);
+          }}
+        />
       )}
 
       {/* AI Processing Features */}
