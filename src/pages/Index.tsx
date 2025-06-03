@@ -19,10 +19,6 @@ const Index = () => {
                   <Div1Logo size="md" className="hover:scale-105 transition-transform duration-300 drop-shadow-2xl" />
                 </div>
               </div>
-              <div>
-                <h1 className="text-3xl font-bold text-white bg-gradient-to-r from-orange-400 to-blue-400 bg-clip-text text-transparent">Platform Suite</h1>
-                <Badge variant="secondary" className="text-xs bg-orange-600/20 text-orange-300 border-orange-500/30">v2.0</Badge>
-              </div>
             </div>
             <nav className="hidden md:flex items-center space-x-8">
               <Link to="/manufacturer-base" className="text-gray-300 hover:text-white transition-colors font-medium">
