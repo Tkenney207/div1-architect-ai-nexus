@@ -1,9 +1,11 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FileText, Brain, Shield, CheckCircle } from "lucide-react";
 import Header from "@/components/Header";
 import { DocumentProcessor } from "@/components/DocumentProcessor";
+import { ServiceConfiguration } from "@/components/ServiceConfiguration";
 
 const Master1 = () => {
   return (
@@ -25,8 +27,13 @@ const Master1 = () => {
           </p>
         </div>
 
+        {/* Service Configuration */}
+        <ServiceConfiguration />
+
         {/* Document Processing Interface */}
-        <DocumentProcessor />
+        <div className="mt-16">
+          <DocumentProcessor />
+        </div>
 
         {/* Architecture Features */}
         <div className="grid lg:grid-cols-3 gap-8 mt-16">
