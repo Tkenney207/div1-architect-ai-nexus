@@ -1,8 +1,9 @@
 
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Users, CheckCircle } from "lucide-react";
+import { ArrowRight, Users, CheckCircle, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import Div1Logo from "@/components/Div1Logo";
 import { ManufacturerBaseIcon, EngageIcon, Master1Icon } from "@/components/ModuleIcons";
