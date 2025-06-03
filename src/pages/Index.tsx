@@ -220,18 +220,18 @@ const Index = () => {
             <div>
               <h5 className="font-semibold mb-6 text-lg text-white">Resources</h5>
               <ul className="space-y-3 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">API Reference</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Support</a></li>
+                <li><Link to="/documentation" className="hover:text-white transition-colors">Documentation</Link></li>
+                <li><Link to="/api-reference" className="hover:text-white transition-colors">API Reference</Link></li>
+                <li><Link to="/support" className="hover:text-white transition-colors">Support</Link></li>
               </ul>
             </div>
             
             <div>
               <h5 className="font-semibold mb-6 text-lg text-white">Company</h5>
               <ul className="space-y-3 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Privacy</a></li>
+                <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
+                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+                <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link></li>
               </ul>
             </div>
           </div>
