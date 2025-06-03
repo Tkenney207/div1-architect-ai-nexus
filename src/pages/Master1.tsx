@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { FileText, Brain, Shield, CheckCircle } from "lucide-react";
 import Header from "@/components/Header";
 import { DocumentProcessor } from "@/components/DocumentProcessor";
-import { ServiceConfiguration } from "@/components/ServiceConfiguration";
 
 const Master1 = () => {
   return (
@@ -26,9 +25,6 @@ const Master1 = () => {
             Multi-modal document processing with real-time standards validation, semantic deduplication, and automated compliance checking.
           </p>
         </div>
-
-        {/* Service Configuration */}
-        <ServiceConfiguration />
 
         {/* Document Processing Interface */}
         <div className="mt-16">
