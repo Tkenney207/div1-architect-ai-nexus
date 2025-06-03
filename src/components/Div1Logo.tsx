@@ -16,30 +16,64 @@ const Div1Logo: React.FC<Div1LogoProps> = ({ className = '', size = 'md' }) => {
 
   return (
     <svg
-      viewBox="0 0 140 40"
+      viewBox="0 0 180 50"
       className={`${sizeClasses[size]} ${className}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* "Div" text */}
+      {/* "D" */}
       <text 
-        x="4" 
-        y="30" 
+        x="0" 
+        y="40" 
         fontFamily="Arial, sans-serif" 
-        fontSize="34" 
-        fontWeight="900" 
+        fontSize="48" 
+        fontWeight="700" 
         fill="white"
-        letterSpacing="0"
+        letterSpacing="2px"
       >
-        Div
+        D
+      </text>
+      
+      {/* "i" without dot */}
+      <text 
+        x="45" 
+        y="40" 
+        fontFamily="Arial, sans-serif" 
+        fontSize="48" 
+        fontWeight="700" 
+        fill="white"
+        letterSpacing="2px"
+      >
+        i
+      </text>
+      
+      {/* Dot over "i" */}
+      <circle 
+        cx="52" 
+        cy="12" 
+        r="4" 
+        fill="white"
+      />
+      
+      {/* "v" */}
+      <text 
+        x="70" 
+        y="40" 
+        fontFamily="Arial, sans-serif" 
+        fontSize="48" 
+        fontWeight="700" 
+        fill="white"
+        letterSpacing="2px"
+      >
+        v
       </text>
       
       {/* Square box for "1" */}
       <rect 
-        x="95" 
-        y="3" 
-        width="34" 
-        height="34" 
+        x="125" 
+        y="5" 
+        width="40" 
+        height="40" 
         fill="none" 
         stroke="white" 
         strokeWidth="3"
@@ -47,11 +81,11 @@ const Div1Logo: React.FC<Div1LogoProps> = ({ className = '', size = 'md' }) => {
       
       {/* "1" inside the box */}
       <text 
-        x="112" 
-        y="28" 
+        x="145" 
+        y="35" 
         fontFamily="Arial, sans-serif" 
-        fontSize="26" 
-        fontWeight="900" 
+        fontSize="32" 
+        fontWeight="700" 
         fill="white"
         textAnchor="middle"
       >
