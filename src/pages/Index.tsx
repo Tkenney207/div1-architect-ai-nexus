@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -10,7 +9,7 @@ import { ManufacturerBaseIcon, EngageIcon, Master1Icon } from "@/components/Modu
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white">
       <Header />
 
       {/* Hero Section */}
@@ -18,10 +17,10 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-orange-600/10"></div>
         <div className="container mx-auto px-6 relative">
           <div className="text-center max-w-5xl mx-auto">
-            {/* Large Hero Logo */}
+            {/* Large Hero Logo - melted into background */}
             <div className="relative group mb-12">
-              <div className="absolute -inset-4 bg-gradient-to-r from-orange-600 via-blue-600 to-orange-600 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition duration-500"></div>
-              <div className="relative bg-slate-900/30 backdrop-blur-sm rounded-3xl p-8 border border-orange-500/20">
+              <div className="absolute -inset-4 bg-gradient-to-r from-orange-600 via-blue-600 to-orange-600 rounded-3xl blur-lg opacity-20 group-hover:opacity-30 transition duration-500"></div>
+              <div className="relative p-8">
                 <Div1Logo size="xl" className="mx-auto hover:scale-110 transition-transform duration-500 drop-shadow-2xl filter brightness-110" />
               </div>
             </div>
