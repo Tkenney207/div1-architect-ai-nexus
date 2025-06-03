@@ -1,223 +1,242 @@
 
 import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 
-export interface ProcessedDocument {
+interface UploadedFile {
   id: string;
-  filename: string;
-  size: string;
-  status: 'uploaded' | 'processing' | 'processed' | 'error';
-  uploadedAt: string;
-  processingSteps: ProcessingStep[];
-  extractedSections?: SpecificationSection[];
-  qualityMetrics?: QualityMetrics;
-}
-
-export interface ProcessingStep {
   name: string;
-  status: 'pending' | 'processing' | 'completed' | 'error';
-  progress: number;
-  description: string;
+  size: string;
+  uploadDate: string;
+  status: 'uploaded' | 'processing' | 'processed' | 'error';
+  type: string;
 }
 
-export interface SpecificationSection {
-  division: string;
+interface ComplianceResult {
   section: string;
-  title: string;
-  content: string;
-  compliance: string[];
-  conflicts: string[];
-  confidence: number;
+  status: 'compliant' | 'non-compliant' | 'warning';
+  description: string;
+  recommendations?: string;
+  standardsChecked: string[];
 }
 
-export interface QualityMetrics {
-  textExtractionQuality: number;
-  tableRecognition: number;
-  csiClassificationConfidence: number;
-  standardsComplianceScore: number;
-  semanticSimilarity: number;
+interface ProcessingStatus {
+  stage: string;
+  progress: number;
+  message: string;
 }
-
-const mockProcessingSteps: ProcessingStep[] = [
-  {
-    name: 'Layout Analysis (LayoutLMv3)',
-    status: 'completed',
-    progress: 100,
-    description: 'Document structure and layout analysis'
-  },
-  {
-    name: 'Table Extraction',
-    status: 'completed',
-    progress: 100,
-    description: 'Extracting tabular data and specifications'
-  },
-  {
-    name: 'CSI Section Mapping',
-    status: 'processing',
-    progress: 75,
-    description: 'Mapping content to CSI MasterFormat divisions'
-  },
-  {
-    name: 'Compliance Validation',
-    status: 'pending',
-    progress: 25,
-    description: 'Validating against industry standards'
-  }
-];
-
-const mockSections: SpecificationSection[] = [
-  {
-    division: 'Division 03 - Concrete',
-    section: '03 30 00',
-    title: 'Cast-in-Place Concrete',
-    content: 'Concrete specifications for structural applications...',
-    compliance: ['ASTM C150'],
-    conflicts: [],
-    confidence: 96
-  },
-  {
-    division: 'Division 05 - Metals',
-    section: '05 12 00',
-    title: 'Structural Steel Framing',
-    content: 'Steel framing specifications and requirements...',
-    compliance: ['AISC 360'],
-    conflicts: [],
-    confidence: 98
-  },
-  {
-    division: 'Division 07 - Thermal/Moisture',
-    section: '07 21 00',
-    title: 'Thermal Insulation',
-    content: 'Insulation specifications and performance criteria...',
-    compliance: ['ASTM C518'],
-    conflicts: ['Conflicting R-value requirements', 'Material compatibility issues'],
-    confidence: 87
-  }
-];
 
 export const useSpecificationProcessor = () => {
-  const [documents, setDocuments] = useState<ProcessedDocument[]>([
-    {
-      id: '1',
-      filename: 'Structural_Specs_v2.pdf',
-      size: '2.4 MB',
-      status: 'processed',
-      uploadedAt: '2024-01-15T10:30:00Z',
-      processingSteps: mockProcessingSteps.map(step => 
-        step.name === 'CSI Section Mapping' ? { ...step, status: 'completed', progress: 100 } :
-        step.name === 'Compliance Validation' ? { ...step, status: 'completed', progress: 100 } : step
-      ),
-      extractedSections: mockSections,
-      qualityMetrics: {
-        textExtractionQuality: 98.5,
-        tableRecognition: 96.2,
-        csiClassificationConfidence: 94.7,
-        standardsComplianceScore: 92.1,
-        semanticSimilarity: 95.3
+  const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
+  const [processingStatus, setProcessingStatus] = useState<ProcessingStatus | null>(null);
+  const [complianceResults, setComplianceResults] = useState<ComplianceResult[]>([]);
+
+  const uploadMutation = useMutation({
+    mutationFn: async (file: File) => {
+      // Simulate file upload
+      const fileData: UploadedFile = {
+        id: Math.random().toString(36).substr(2, 9),
+        name: file.name,
+        size: `${(file.size / 1024 / 1024).toFixed(2)} MB`,
+        uploadDate: new Date().toISOString(),
+        status: 'uploaded',
+        type: file.type
+      };
+      
+      setUploadedFiles(prev => [...prev, fileData]);
+      
+      return fileData;
+    }
+  });
+
+  const processMutation = useMutation({
+    mutationFn: async (fileId: string) => {
+      // Update file status to processing
+      setUploadedFiles(prev => 
+        prev.map(file => 
+          file.id === fileId 
+            ? { ...file, status: 'processing' } 
+            : file
+        )
+      );
+
+      // Simulate processing stages
+      const stages = [
+        { stage: 'Document Analysis', progress: 20, message: 'Analyzing document structure and content...' },
+        { stage: 'CSI Format Validation', progress: 40, message: 'Validating against CSI MasterFormat standards...' },
+        { stage: 'Compliance Checking', progress: 60, message: 'Checking compliance with ASTM, LEED, and building codes...' },
+        { stage: 'AI Enhancement', progress: 80, message: 'Applying AI-driven improvements and standardization...' },
+        { stage: 'Finalization', progress: 100, message: 'Finalizing processed specification...' }
+      ];
+
+      for (const stage of stages) {
+        setProcessingStatus(stage);
+        await new Promise(resolve => setTimeout(resolve, 1500));
       }
-    },
-    {
-      id: '2',
-      filename: 'MEP_Requirements.docx',
-      size: '1.8 MB',
-      status: 'processing',
-      uploadedAt: '2024-01-15T11:15:00Z',
-      processingSteps: mockProcessingSteps
-    },
-    {
-      id: '3',
-      filename: 'Architectural_Plans.pdf',
-      size: '5.2 MB',
-      status: 'uploaded',
-      uploadedAt: '2024-01-15T11:45:00Z',
-      processingSteps: mockProcessingSteps.map(step => ({ ...step, status: 'pending', progress: 0 }))
-    }
-  ]);
 
-  const uploadDocument = async (file: File) => {
-    const newDocument: ProcessedDocument = {
-      id: Date.now().toString(),
-      filename: file.name,
-      size: `${(file.size / (1024 * 1024)).toFixed(1)} MB`,
-      status: 'uploaded',
-      uploadedAt: new Date().toISOString(),
-      processingSteps: mockProcessingSteps.map(step => ({ ...step, status: 'pending', progress: 0 }))
-    };
+      // Generate mock compliance results
+      const mockResults: ComplianceResult[] = [
+        {
+          section: 'Section 07 21 00 - Thermal Insulation',
+          status: 'compliant',
+          description: 'Thermal insulation specifications meet current ASTM C518 standards.',
+          standardsChecked: ['ASTM C518', 'IECC 2021', 'ASHRAE 90.1']
+        },
+        {
+          section: 'Section 03 30 00 - Cast-in-Place Concrete',
+          status: 'warning',
+          description: 'Concrete specifications reference outdated ACI 318-14 standard.',
+          recommendations: 'Update reference to ACI 318-19 for current compliance.',
+          standardsChecked: ['ACI 318', 'ASTM C150', 'ASTM C33']
+        },
+        {
+          section: 'Section 09 51 00 - Acoustical Ceilings',
+          status: 'compliant',
+          description: 'Ceiling specifications align with ASTM E1264 and accessibility requirements.',
+          standardsChecked: ['ASTM E1264', 'ADA 2010', 'IBC 2021']
+        },
+        {
+          section: 'Section 08 11 00 - Steel Doors and Frames',
+          status: 'non-compliant',
+          description: 'Fire rating specifications do not meet current UL standards.',
+          recommendations: 'Update fire rating requirements to comply with UL 10C-2009 standard.',
+          standardsChecked: ['UL 10C', 'NFPA 80', 'SDI 117']
+        }
+      ];
 
-    setDocuments(prev => [...prev, newDocument]);
+      setComplianceResults(mockResults);
 
-    // Simulate processing
-    setTimeout(() => {
-      setDocuments(prev => prev.map(doc => 
-        doc.id === newDocument.id ? { ...doc, status: 'processing' } : doc
-      ));
+      // Update file status to processed
+      setUploadedFiles(prev => 
+        prev.map(file => 
+          file.id === fileId 
+            ? { ...file, status: 'processed' } 
+            : file
+        )
+      );
+
+      setProcessingStatus(null);
       
-      // Simulate step-by-step processing
-      simulateProcessing(newDocument.id);
-    }, 1000);
+      return mockResults;
+    }
+  });
 
-    return newDocument;
-  };
+  const downloadMutation = useMutation({
+    mutationFn: async () => {
+      // Simulate master spec download
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // In a real implementation, this would trigger a file download
+      console.log('Downloading AI-generated Master Specification...');
+      
+      // Create a mock download blob
+      const content = `
+# AI-Generated CSI MasterFormat Specification Guide
+## Compiled from Industry-Leading Master Specifications
 
-  const simulateProcessing = async (documentId: string) => {
-    const steps = mockProcessingSteps;
-    
-    for (let i = 0; i < steps.length; i++) {
+### Division 00 - Procurement and Contracting Requirements
+### Division 01 - General Requirements
+### Division 02 - Existing Conditions
+### Division 03 - Concrete
+### Division 04 - Masonry
+### Division 05 - Metals
+### Division 06 - Wood, Plastics, and Composites
+### Division 07 - Thermal and Moisture Protection
+### Division 08 - Openings
+### Division 09 - Finishes
+### Division 10 - Specialties
+### Division 11 - Equipment
+### Division 12 - Furnishings
+### Division 13 - Special Construction
+### Division 14 - Conveying Equipment
+### Division 21 - Fire Suppression
+### Division 22 - Plumbing
+### Division 23 - Heating, Ventilating, and Air Conditioning (HVAC)
+### Division 25 - Integrated Automation
+### Division 26 - Electrical
+### Division 27 - Communications
+### Division 28 - Electronic Safety and Security
+### Division 31 - Earthwork
+### Division 32 - Exterior Improvements
+### Division 33 - Utilities
+### Division 34 - Transportation
+### Division 35 - Waterway and Marine Construction
+### Division 40 - Process Integration
+### Division 41 - Material Processing and Handling Equipment
+### Division 42 - Process Heating, Cooling, and Drying Equipment
+### Division 43 - Process Gas and Liquid Handling, Purification, and Storage Equipment
+### Division 44 - Pollution Control Equipment
+### Division 45 - Industry-Specific Manufacturing Equipment
+### Division 46 - Water and Wastewater Equipment
+### Division 48 - Electrical Power Generation
+
+This specification guide has been synthesized using AI from multiple industry-standard master specifications, ensuring comprehensive coverage while maintaining compliance with current building codes and standards.
+      `;
+      
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'AI-Master-Specification-Guide.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      return true;
+    }
+  });
+
+  const validateMutation = useMutation({
+    mutationFn: async (fileId: string) => {
+      // Simulate compliance validation
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      setDocuments(prev => prev.map(doc => {
-        if (doc.id === documentId) {
-          const updatedSteps = [...doc.processingSteps];
-          updatedSteps[i] = { ...updatedSteps[i], status: 'processing', progress: 50 };
-          return { ...doc, processingSteps: updatedSteps };
+      const mockValidationResults: ComplianceResult[] = [
+        {
+          section: 'General Compliance',
+          status: 'compliant',
+          description: 'Document structure follows CSI MasterFormat guidelines.',
+          standardsChecked: ['CSI MasterFormat 2018']
+        },
+        {
+          section: 'Code References',
+          status: 'warning',
+          description: 'Some code references may be outdated.',
+          recommendations: 'Review and update code references to current versions.',
+          standardsChecked: ['IBC 2021', 'NFPA 2021', 'ADA 2010']
         }
-        return doc;
-      }));
-
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      ];
       
-      setDocuments(prev => prev.map(doc => {
-        if (doc.id === documentId) {
-          const updatedSteps = [...doc.processingSteps];
-          updatedSteps[i] = { ...updatedSteps[i], status: 'completed', progress: 100 };
-          
-          // If this is the last step, mark document as processed
-          const isLastStep = i === steps.length - 1;
-          return { 
-            ...doc, 
-            processingSteps: updatedSteps,
-            status: isLastStep ? 'processed' : 'processing',
-            extractedSections: isLastStep ? mockSections : undefined,
-            qualityMetrics: isLastStep ? {
-              textExtractionQuality: 95.5 + Math.random() * 3,
-              tableRecognition: 93.2 + Math.random() * 4,
-              csiClassificationConfidence: 91.7 + Math.random() * 5,
-              standardsComplianceScore: 89.1 + Math.random() * 6,
-              semanticSimilarity: 92.1 + Math.random() * 4
-            } : undefined
-          };
-        }
-        return doc;
-      }));
+      setComplianceResults(prev => [...prev, ...mockValidationResults]);
+      
+      return mockValidationResults;
     }
+  });
+
+  const uploadSpecification = (file: File) => {
+    uploadMutation.mutate(file);
   };
 
-  const generateMasterSpecification = async () => {
-    // Simulate master spec generation
-    const processedDocs = documents.filter(doc => doc.status === 'processed');
-    if (processedDocs.length === 0) return null;
+  const processDocument = (fileId: string) => {
+    processMutation.mutate(fileId);
+  };
 
-    // This would normally call the AI synthesis engine
-    return {
-      title: 'AI-Generated Master Specification',
-      sections: mockSections,
-      generatedAt: new Date().toISOString(),
-      sourceDocuments: processedDocs.map(doc => doc.filename)
-    };
+  const downloadMasterSpec = () => {
+    downloadMutation.mutate();
+  };
+
+  const validateCompliance = (fileId: string) => {
+    validateMutation.mutate(fileId);
   };
 
   return {
-    documents,
-    uploadDocument,
-    generateMasterSpecification
+    uploadSpecification,
+    processDocument,
+    downloadMasterSpec,
+    validateCompliance,
+    uploadedFiles,
+    processingStatus,
+    complianceResults,
+    isLoading: uploadMutation.isPending || processMutation.isPending || downloadMutation.isPending || validateMutation.isPending
   };
 };
