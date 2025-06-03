@@ -8,50 +8,50 @@ interface Div1LogoProps {
 
 const Div1Logo: React.FC<Div1LogoProps> = ({ className = '', size = 'md' }) => {
   const sizeClasses = {
-    sm: 'h-8 w-auto',
-    md: 'h-12 w-auto',
-    lg: 'h-20 w-auto',
-    xl: 'h-28 w-auto'
+    sm: 'h-6 w-auto',
+    md: 'h-10 w-auto',
+    lg: 'h-16 w-auto',
+    xl: 'h-24 w-auto'
   };
 
   return (
     <svg
-      viewBox="0 0 180 50"
+      viewBox="0 0 120 40"
       className={`${sizeClasses[size]} ${className}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       {/* "Div" text */}
       <text 
-        x="5" 
-        y="38" 
+        x="2" 
+        y="30" 
         fontFamily="Arial, sans-serif" 
-        fontSize="42" 
-        fontWeight="400" 
+        fontSize="32" 
+        fontWeight="700" 
         fill="white"
-        letterSpacing="-1px"
+        letterSpacing="-0.5px"
       >
         Div
       </text>
       
       {/* Square box for "1" */}
       <rect 
-        x="130" 
-        y="6" 
-        width="38" 
-        height="38" 
+        x="80" 
+        y="4" 
+        width="32" 
+        height="32" 
         fill="none" 
         stroke="white" 
-        strokeWidth="2.5"
+        strokeWidth="2"
       />
       
       {/* "1" inside the box */}
       <text 
-        x="149" 
-        y="32" 
+        x="96" 
+        y="26" 
         fontFamily="Arial, sans-serif" 
-        fontSize="28" 
-        fontWeight="400" 
+        fontSize="24" 
+        fontWeight="700" 
         fill="white"
         textAnchor="middle"
       >
