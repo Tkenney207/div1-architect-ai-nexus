@@ -1,7 +1,8 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Database, MessageSquare, FileText, Users, Cog, CheckCircle, Star, Shield, Zap, Globe } from "lucide-react";
+import { ArrowRight, Database, MessageSquare, FileText, Users, CheckCircle, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import Div1Logo from "@/components/Div1Logo";
 
@@ -208,53 +209,6 @@ const Index = () => {
                 </Link>
               </CardContent>
             </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Technical Features */}
-      <section className="py-24 bg-black/50">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-20">
-            <h3 className="text-5xl font-bold text-white mb-8">Enterprise-grade architecture</h3>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">Built with modern engineering practices for scale, security, and performance</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-            {[
-              {
-                icon: Cog,
-                title: "Kubernetes Native",
-                description: "Microservices with Istio service mesh",
-                color: "blue"
-              },
-              {
-                icon: Database,
-                title: "Event-Driven",
-                description: "Apache Kafka with real-time processing",
-                color: "orange"
-              },
-              {
-                icon: MessageSquare,
-                title: "AI/ML Pipeline",
-                description: "TensorFlow Extended with MLOps",
-                color: "orange"
-              },
-              {
-                icon: Shield,
-                title: "Security First",
-                description: "Zero-trust with differential privacy",
-                color: "blue"
-              }
-            ].map((feature, index) => (
-              <div key={index} className="text-center group">
-                <div className={`${feature.color === 'orange' ? 'bg-orange-600/20' : 'bg-blue-600/20'} rounded-2xl p-6 w-20 h-20 mx-auto mb-8 flex items-center justify-center ${feature.color === 'orange' ? 'group-hover:bg-orange-500/30' : 'group-hover:bg-blue-500/30'} transition-colors`}>
-                  <feature.icon className={`h-10 w-10 ${feature.color === 'orange' ? 'text-orange-400' : 'text-blue-400'}`} />
-                </div>
-                <h4 className="font-semibold text-xl mb-4 text-white">{feature.title}</h4>
-                <p className="text-gray-400">{feature.description}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
