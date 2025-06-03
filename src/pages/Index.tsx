@@ -2,9 +2,10 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Database, MessageSquare, FileText, Users, CheckCircle, Star } from "lucide-react";
+import { ArrowRight, Users, CheckCircle, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import Div1Logo from "@/components/Div1Logo";
+import { ManufacturerBaseIcon, EngageIcon, Master1Icon } from "@/components/ModuleIcons";
 
 const Index = () => {
   return (
@@ -101,7 +102,7 @@ const Index = () => {
               <CardHeader className="pb-8">
                 <div className="flex items-center justify-between mb-6">
                   <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors">
-                    <Database className="h-10 w-10 text-orange-400" />
+                    <ManufacturerBaseIcon className="text-orange-400" />
                   </div>
                   <Badge variant="outline" className="rounded-full border-orange-500/30 text-orange-300">Module 1</Badge>
                 </div>
@@ -139,7 +140,7 @@ const Index = () => {
               <CardHeader className="pb-8">
                 <div className="flex items-center justify-between mb-6">
                   <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors">
-                    <MessageSquare className="h-10 w-10 text-orange-400" />
+                    <EngageIcon className="text-orange-400" />
                   </div>
                   <Badge variant="outline" className="rounded-full border-orange-500/30 text-orange-300">Module 2</Badge>
                 </div>
@@ -177,7 +178,7 @@ const Index = () => {
               <CardHeader className="pb-8">
                 <div className="flex items-center justify-between mb-6">
                   <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors">
-                    <FileText className="h-10 w-10 text-orange-400" />
+                    <Master1Icon className="text-orange-400" />
                   </div>
                   <Badge variant="outline" className="rounded-full border-orange-500/30 text-orange-300">Module 3</Badge>
                 </div>
