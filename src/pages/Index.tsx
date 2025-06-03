@@ -1,8 +1,7 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Users, CheckCircle, Star } from "lucide-react";
+import { ArrowRight, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import Div1Logo from "@/components/Div1Logo";
 import { ManufacturerBaseIcon, EngageIcon, Master1Icon } from "@/components/ModuleIcons";
@@ -32,7 +31,7 @@ const Index = () => {
               <Link to="/master1" className="text-gray-300 hover:text-white transition-colors font-medium">
                 Master1
               </Link>
-              <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 border-0">
+              <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 border-0 font-semibold">
                 <Users className="h-4 w-4 mr-2" />
                 Sign In
               </Button>
