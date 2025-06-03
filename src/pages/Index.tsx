@@ -49,14 +49,6 @@ const Index = () => {
               <div className="absolute -inset-4 bg-gradient-to-r from-orange-600 via-blue-600 to-orange-600 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition duration-500"></div>
               <div className="relative bg-black/30 backdrop-blur-sm rounded-3xl p-8 border border-orange-500/20">
                 <Div1Logo size="xl" className="mx-auto hover:scale-110 transition-transform duration-500 drop-shadow-2xl filter brightness-110" />
-                <div className="mt-6">
-                  <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-400 via-blue-400 to-orange-400 bg-clip-text text-transparent">
-                    DIV1 PLATFORM
-                  </h1>
-                  <p className="text-orange-300/80 text-sm font-medium tracking-widest uppercase mt-2">
-                    AI-Powered AEC Ecosystem
-                  </p>
-                </div>
               </div>
             </div>
             
