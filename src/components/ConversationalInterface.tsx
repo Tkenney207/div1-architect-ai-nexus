@@ -1,17 +1,14 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MessageSquare, Users, Send, Mic, FileText, Share, BarChart3, CheckCircle } from "lucide-react";
 import { useProjectCharter } from "@/hooks/useProjectCharter";
-import { OpenAIKeySetup } from "./OpenAIKeySetup";
 
 export const ConversationalInterface = () => {
   const [message, setMessage] = useState('');
   const [isRecording, setIsRecording] = useState(false);
-  const [showKeySetup, setShowKeySetup] = useState(false);
   const { 
     createProject, 
     sendMessage, 
@@ -19,25 +16,10 @@ export const ConversationalInterface = () => {
     messages, 
     projectData, 
     stakeholders, 
-    isLoading,
-    apiKey,
-    setApiKey
+    isLoading
   } = useProjectCharter();
 
-  useEffect(() => {
-    // Load API key from localStorage on component mount
-    const savedKey = localStorage.getItem('openai_api_key');
-    if (savedKey) {
-      setApiKey(savedKey);
-    }
-  }, [setApiKey]);
-
   const handleSendMessage = () => {
-    if (!apiKey) {
-      setShowKeySetup(true);
-      return;
-    }
-    
     if (message.trim()) {
       sendMessage(message);
       setMessage('');
@@ -56,18 +38,6 @@ export const ConversationalInterface = () => {
     // Voice recording logic would go here
   };
 
-  if (showKeySetup && !apiKey) {
-    return (
-      <div className="space-y-8">
-        <OpenAIKeySetup 
-          apiKey={apiKey}
-          setApiKey={setApiKey}
-          onComplete={() => setShowKeySetup(false)}
-        />
-      </div>
-    );
-  }
-
   return (
     <div className="space-y-8">
       {/* Project Setup */}
@@ -76,11 +46,9 @@ export const ConversationalInterface = () => {
           <CardTitle className="text-white flex items-center space-x-3">
             <MessageSquare className="h-6 w-6 text-green-400" />
             <span>AI Project Charter Assistant</span>
-            {apiKey && (
-              <Badge variant="outline" className="border-green-500 text-green-400 ml-auto">
-                AI Connected
-              </Badge>
-            )}
+            <Badge variant="outline" className="border-yellow-500 text-yellow-400 ml-auto">
+              Backend Integration Needed
+            </Badge>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">

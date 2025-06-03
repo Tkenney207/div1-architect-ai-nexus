@@ -1,7 +1,6 @@
 
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { useOpenAI } from './useOpenAI';
 
 interface Message {
   id: string;
@@ -40,26 +39,6 @@ export const useProjectCharter = () => {
     type: ''
   });
   const [stakeholders, setStakeholders] = useState<Stakeholder[]>([]);
-  const [conversationHistory, setConversationHistory] = useState<Array<{role: 'user' | 'assistant', content: string}>>([]);
-  
-  const { sendMessage: sendOpenAIMessage, isLoading: isAILoading, apiKey, setApiKey } = useOpenAI();
-
-  const systemPrompt = `You are an expert AI project charter assistant specializing in construction and development projects. Your role is to:
-
-1. Help users define their project vision, scope, and requirements
-2. Ask intelligent follow-up questions to gather comprehensive project information
-3. Identify key stakeholders and their roles
-4. Extract important project details like budget, timeline, sustainability goals, and constraints
-5. Maintain a conversational, professional tone while being thorough
-
-Key guidelines:
-- Ask one focused question at a time to avoid overwhelming the user
-- Build on previous responses - don't repeat questions you've already asked
-- When you have enough information about a topic, move to the next important aspect
-- Be specific about construction/development terminology and considerations
-- Help identify potential risks, constraints, or missing requirements
-
-Current project context: ${projectData.name ? `Project "${projectData.name}" - ${projectData.description}` : 'New project being defined'}`;
 
   const createProjectMutation = useMutation({
     mutationFn: async (projectName: string) => {
@@ -82,10 +61,6 @@ Current project context: ${projectData.name ? `Project "${projectData.name}" - $
       };
       
       setMessages([welcomeMessage]);
-      setConversationHistory([{
-        role: 'assistant',
-        content: welcomeMessage.content
-      }]);
       
       const defaultStakeholders: Stakeholder[] = [
         {
@@ -133,10 +108,6 @@ Current project context: ${projectData.name ? `Project "${projectData.name}" - $
 
   const sendMessageMutation = useMutation({
     mutationFn: async (content: string) => {
-      if (!apiKey) {
-        throw new Error('Please set your OpenAI API key first');
-      }
-
       const userMessage: Message = {
         id: Math.random().toString(36).substr(2, 9),
         content,
@@ -146,31 +117,18 @@ Current project context: ${projectData.name ? `Project "${projectData.name}" - $
       
       setMessages(prev => [...prev, userMessage]);
       
-      const newConversationHistory = [...conversationHistory, { role: 'user' as const, content }];
-      setConversationHistory(newConversationHistory);
-
-      return new Promise((resolve, reject) => {
-        sendOpenAIMessage(
-          { messages: newConversationHistory, systemPrompt },
-          {
-            onSuccess: (aiResponse: string) => {
-              const aiMessage: Message = {
-                id: Math.random().toString(36).substr(2, 9),
-                content: aiResponse,
-                sender: 'ai',
-                timestamp: new Date().toISOString()
-              };
-              
-              setMessages(prev => [...prev, aiMessage]);
-              setConversationHistory(prev => [...prev, { role: 'assistant', content: aiResponse }]);
-              resolve(aiMessage);
-            },
-            onError: (error: any) => {
-              reject(error);
-            }
-          }
-        );
-      });
+      // Simulate AI response for now - you'll replace this with your backend call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      const aiMessage: Message = {
+        id: Math.random().toString(36).substr(2, 9),
+        content: "I'm ready to help with your project charter. Please integrate your OpenAI backend to enable AI responses.",
+        sender: 'ai',
+        timestamp: new Date().toISOString()
+      };
+      
+      setMessages(prev => [...prev, aiMessage]);
+      return aiMessage;
     }
   });
 
@@ -218,8 +176,6 @@ Current project context: ${projectData.name ? `Project "${projectData.name}" - $
     messages,
     projectData,
     stakeholders,
-    isLoading: createProjectMutation.isPending || sendMessageMutation.isPending || generateLinksMutation.isPending,
-    apiKey,
-    setApiKey
+    isLoading: createProjectMutation.isPending || sendMessageMutation.isPending || generateLinksMutation.isPending
   };
 };
