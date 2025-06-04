@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -39,7 +40,7 @@ const ManufacturerBase = () => {
             </CardHeader>
             <CardContent>
               <p className="text-gray-300 mb-6">
-                Apache Kafka + Debezium for continuous data streaming from manufacturer sources.
+                Live product data streams from manufacturer catalogs, ensuring you always have the latest pricing, availability, and specifications.
               </p>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
@@ -67,7 +68,7 @@ const ManufacturerBase = () => {
             </CardHeader>
             <CardContent>
               <p className="text-gray-300 mb-6">
-                Multi-layer validation with confidence scoring and anomaly detection.
+                AI-powered verification ensures product information accuracy, completeness, and reliability across all manufacturer data.
               </p>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
@@ -95,7 +96,7 @@ const ManufacturerBase = () => {
             </CardHeader>
             <CardContent>
               <p className="text-gray-300 mb-6">
-                Kubernetes-native deployment with Istio service mesh for global scale.
+                Worldwide access to manufacturer databases with regional pricing, local distributors, and shipping availability information.
               </p>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
