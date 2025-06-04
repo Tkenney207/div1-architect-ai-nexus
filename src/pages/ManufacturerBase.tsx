@@ -68,7 +68,7 @@ const ManufacturerBase = () => {
             </CardHeader>
             <CardContent>
               <p className="text-gray-300 mb-6">
-                Advanced algorithms evaluate product data completeness, accuracy, and manufacturer reputation to provide quality scores for informed decision-making.
+                AI-powered algorithms analyze product data completeness, manufacturer reliability, and specification accuracy to provide quality scores for informed procurement decisions.
               </p>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
@@ -96,7 +96,7 @@ const ManufacturerBase = () => {
             </CardHeader>
             <CardContent>
               <p className="text-gray-300 mb-6">
-                Track price fluctuations, demand patterns, and emerging product categories across the construction industry to make strategic sourcing decisions.
+                Comprehensive market intelligence tracking price movements, demand patterns, and emerging product categories to optimize sourcing strategies and timing.
               </p>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
