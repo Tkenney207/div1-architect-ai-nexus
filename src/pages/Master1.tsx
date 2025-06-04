@@ -24,7 +24,7 @@ const Master1 = () => {
           <div className="max-w-4xl mx-auto mb-12">
             <h3 className="text-2xl font-semibold text-blue-300 mb-6">Upload. Validate. Publish.</h3>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              Specification synthesis and real-time code compliance engine.
+              AI Specification review and updating engine.
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 text-left">
               <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-700">
