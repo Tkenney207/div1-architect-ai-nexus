@@ -28,10 +28,12 @@ const Index = () => {
             <Badge variant="outline" className="mb-8 px-6 py-3 text-sm font-medium rounded-full border-orange-500/30 bg-orange-600/10 text-orange-300">
               ✨ Next-Generation Construction Intelligence
             </Badge>
-            <h2 className="text-7xl font-bold text-white mb-8 leading-tight">
-              From input to output — AI that 
-              <span className="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent"> understands what makes AEC work. </span>
+            <h2 className="text-7xl font-bold text-white mb-4 leading-tight">
+              <span className="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent">From input to output</span>
             </h2>
+            <h3 className="text-4xl font-semibold text-gray-300 mb-8">
+              AI that understands what makes AEC work.
+            </h3>
             <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-4xl mx-auto">
               Streamline product discovery, project planning, and specification management with our comprehensive AI-driven ecosystem designed for AEC professionals.
             </p>
