@@ -24,7 +24,7 @@ const Engage = () => {
           <div className="max-w-4xl mx-auto mb-12">
             <h3 className="text-2xl font-semibold text-green-300 mb-6">Capture intent. Structure requirements.</h3>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              AI-powered project charter workspace that extracts stakeholder goals and technical needs through structured interviews.
+              AI-powered project charter generation -  extract stakeholder goals and technical needs through Agentic guided & structured interviews.
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
               <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
