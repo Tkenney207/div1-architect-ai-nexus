@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -33,7 +34,7 @@ const Engage = () => {
                 <p className="text-gray-200 text-sm">Provides clean input for specification generation</p>
               </div>
               <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
-                <p className="text-gray-200 text-sm">Fully private, encrypted, and compliant</p>
+                <p className="text-gray-200 text-sm">Easily generate and send Engage AI interview links to all project stakeholders</p>
               </div>
             </div>
           </div>
