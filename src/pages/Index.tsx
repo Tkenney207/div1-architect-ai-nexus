@@ -25,9 +25,6 @@ const Index = () => {
               </div>
             </div>
             
-            <Badge variant="outline" className="mb-8 px-6 py-3 text-sm font-medium rounded-full border-orange-500/30 bg-orange-600/10 text-orange-300">
-              ✨ Next-Generation Construction Intelligence
-            </Badge>
             <h2 className="text-7xl font-bold text-white mb-4 leading-tight">
               <span className="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent">From input to output</span>
             </h2>
