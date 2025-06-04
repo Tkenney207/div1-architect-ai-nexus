@@ -17,18 +17,39 @@ const Signup = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    company: ""
+    company: "",
+    title: ""
   });
+  const [emailError, setEmailError] = useState("");
+
+  const validateWorkEmail = (email: string) => {
+    const personalDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com', 'icloud.com'];
+    const domain = email.split('@')[1]?.toLowerCase();
+    return !personalDomains.includes(domain);
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+
+    if (name === 'email') {
+      if (value && !validateWorkEmail(value)) {
+        setEmailError("Please use a work email address");
+      } else {
+        setEmailError("");
+      }
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateWorkEmail(formData.email)) {
+      setEmailError("Please use a work email address");
+      return;
+    }
     console.log("Signup form submitted:", formData);
     // Handle signup logic here
   };
@@ -82,12 +103,28 @@ const Signup = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="email" className="text-white">Email</Label>
+                  <Label htmlFor="email" className="text-white">Work Email</Label>
                   <Input
                     id="email"
                     name="email"
                     type="email"
                     value={formData.email}
+                    onChange={handleInputChange}
+                    className="bg-slate-700 border-slate-600 text-white"
+                    required
+                  />
+                  {emailError && (
+                    <p className="text-red-400 text-sm mt-1">{emailError}</p>
+                  )}
+                </div>
+
+                <div>
+                  <Label htmlFor="title" className="text-white">Job Title</Label>
+                  <Input
+                    id="title"
+                    name="title"
+                    type="text"
+                    value={formData.title}
                     onChange={handleInputChange}
                     className="bg-slate-700 border-slate-600 text-white"
                     required
@@ -103,7 +140,7 @@ const Signup = () => {
                     value={formData.company}
                     onChange={handleInputChange}
                     className="bg-slate-700 border-slate-600 text-white"
-                    placeholder="Optional"
+                    required
                   />
                 </div>
 
