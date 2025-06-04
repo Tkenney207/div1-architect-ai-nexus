@@ -21,9 +21,29 @@ const Master1 = () => {
             Process specifications with 
             <span className="bg-gradient-to-r from-blue-400 to-slate-300 bg-clip-text text-transparent"> AI precision </span>
           </h2>
-          <p className="text-xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
-            Multi-modal document processing with real-time standards validation, semantic deduplication, and automated compliance checking.
-          </p>
+          <div className="max-w-4xl mx-auto mb-12">
+            <h3 className="text-2xl font-semibold text-blue-300 mb-6">Upload. Validate. Publish.</h3>
+            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+              Specification synthesis and real-time code compliance engine.
+            </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 text-left">
+              <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-700">
+                <p className="text-gray-200 text-sm">AI creates structured specs based on project + product inputs</p>
+              </div>
+              <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-700">
+                <p className="text-gray-200 text-sm">Detects duplicates, gaps, and conflicting requirements</p>
+              </div>
+              <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-700">
+                <p className="text-gray-200 text-sm">Runs clause-level validation against building codes (ICC, ADA, LEED, ASTM, etc.)</p>
+              </div>
+              <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-700">
+                <p className="text-gray-200 text-sm">Outputs editable, versioned, fully auditable specifications</p>
+              </div>
+              <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-700">
+                <p className="text-gray-200 text-sm">Delivers ready-to-submit specifications — faster, safer, smarter.</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Document Processing Interface */}
