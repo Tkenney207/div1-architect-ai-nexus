@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -14,8 +15,25 @@ const Index = () => {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden py-24">
+        {/* Video Background */}
+        <div className="absolute inset-0 w-full h-full">
+          <video
+            className="w-full h-full object-cover opacity-20"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src="/lovable-uploads/architects-working.mp4" type="video/mp4" />
+            {/* Fallback for browsers that don't support video */}
+            Your browser does not support the video tag.
+          </video>
+          {/* Dark overlay to ensure text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-blue-950/80 to-slate-900/80"></div>
+        </div>
+        
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-orange-600/10"></div>
-        <div className="container mx-auto px-6 relative">
+        <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-5xl mx-auto">
             {/* Large Hero Logo - melted into background */}
             <div className="relative group mb-12">
