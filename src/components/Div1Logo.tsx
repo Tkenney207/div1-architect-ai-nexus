@@ -16,7 +16,7 @@ const Div1Logo: React.FC<Div1LogoProps> = ({ className = '', size = 'md' }) => {
 
   return (
     <img
-      src="/lovable-uploads/8f321891-d9dc-4c1a-8fc3-275369102a99.png"
+      src="/lovable-uploads/f697aada-ee5e-4230-9990-1919c395d1b8.png"
       alt="Div1 Logo"
       className={`${sizeClasses[size]} ${className}`}
     />
