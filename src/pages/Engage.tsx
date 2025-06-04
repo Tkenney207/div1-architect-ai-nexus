@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -14,9 +13,6 @@ const Engage = () => {
       <div className="container mx-auto px-6 py-12">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-6 px-6 py-3 rounded-full border-green-500/30 bg-green-600/10 text-green-300">
-            🤖 Conversational Intelligence
-          </Badge>
           <h2 className="text-6xl font-bold text-white mb-8">
             Create project charters with 
             <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent"> AI guidance </span>
