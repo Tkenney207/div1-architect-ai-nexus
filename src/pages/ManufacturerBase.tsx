@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Zap, Shield, Globe } from "lucide-react";
+import { Zap, Shield, TrendingUp } from "lucide-react";
 import Header from "@/components/Header";
 import { ProductSearchInterface } from "@/components/ProductSearchInterface";
 
@@ -64,24 +64,24 @@ const ManufacturerBase = () => {
               <div className="bg-green-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-green-500/30 transition-colors">
                 <Shield className="h-8 w-8 text-green-400" />
               </div>
-              <CardTitle className="text-xl text-white">Quality Assurance</CardTitle>
+              <CardTitle className="text-xl text-white">Quality Scoring</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-300 mb-6">
-                AI-powered verification ensures product information accuracy, completeness, and reliability across all manufacturer data.
+                Advanced algorithms evaluate product data completeness, accuracy, and manufacturer reputation to provide quality scores for informed decision-making.
               </p>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400">Data Quality:</span>
-                  <Badge variant="default" className="bg-green-600">98.7%</Badge>
+                  <span className="text-sm text-gray-400">Avg Quality Score:</span>
+                  <Badge variant="default" className="bg-green-600">94.2/100</Badge>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400">Validated Today:</span>
+                  <span className="text-sm text-gray-400">Products Scored:</span>
                   <Badge variant="secondary" className="bg-blue-600">2.3M</Badge>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400">Anomalies Detected:</span>
-                  <Badge variant="outline" className="border-yellow-500 text-yellow-400">247</Badge>
+                  <span className="text-sm text-gray-400">Score Updates:</span>
+                  <Badge variant="outline" className="border-yellow-500 text-yellow-400">Real-time</Badge>
                 </div>
               </div>
             </CardContent>
@@ -90,26 +90,26 @@ const ManufacturerBase = () => {
           <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-purple-500/50">
             <CardHeader>
               <div className="bg-purple-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-purple-500/30 transition-colors">
-                <Globe className="h-8 w-8 text-purple-400" />
+                <TrendingUp className="h-8 w-8 text-purple-400" />
               </div>
-              <CardTitle className="text-xl text-white">Global Availability</CardTitle>
+              <CardTitle className="text-xl text-white">Market Trends</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-300 mb-6">
-                Worldwide access to manufacturer databases with regional pricing, local distributors, and shipping availability information.
+                Track price fluctuations, demand patterns, and emerging product categories across the construction industry to make strategic sourcing decisions.
               </p>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400">Uptime:</span>
-                  <Badge variant="default" className="bg-green-600">99.97%</Badge>
+                  <span className="text-sm text-gray-400">Trending Products:</span>
+                  <Badge variant="default" className="bg-green-600">156 New</Badge>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400">Response Time:</span>
-                  <Badge variant="secondary" className="bg-blue-600">{"< 100ms"}</Badge>
+                  <span className="text-sm text-gray-400">Price Changes:</span>
+                  <Badge variant="secondary" className="bg-blue-600">3.2% ↓</Badge>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400">Global Regions:</span>
-                  <Badge variant="outline" className="border-purple-500 text-purple-400">12 Active</Badge>
+                  <span className="text-sm text-gray-400">Market Analysis:</span>
+                  <Badge variant="outline" className="border-purple-500 text-purple-400">Weekly</Badge>
                 </div>
               </div>
             </CardContent>
