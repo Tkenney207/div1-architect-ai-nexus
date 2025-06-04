@@ -27,6 +27,9 @@ const Header = () => {
             <Link to="/master1" className="text-gray-300 hover:text-white transition-colors font-medium">
               Master1
             </Link>
+            <Link to="/about" className="text-gray-300 hover:text-white transition-colors font-medium">
+              About
+            </Link>
             <Link to="/signin">
               <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 border-0 font-semibold">
                 <Users className="h-4 w-4 mr-2" />
