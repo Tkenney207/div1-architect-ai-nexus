@@ -30,7 +30,7 @@ const ManufacturerBase = () => {
         <ProductSearchInterface />
 
         {/* Real-time Data Pipeline */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-16 mt-16">
+        <div className="grid lg:grid-cols-2 gap-8 mb-16 mt-16">
           <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-blue-500/50">
             <CardHeader>
               <div className="bg-blue-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-blue-500/30 transition-colors">
@@ -82,34 +82,6 @@ const ManufacturerBase = () => {
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-400">Score Updates:</span>
                   <Badge variant="outline" className="border-yellow-500 text-yellow-400">Real-time</Badge>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-purple-500/50">
-            <CardHeader>
-              <div className="bg-purple-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-purple-500/30 transition-colors">
-                <TrendingUp className="h-8 w-8 text-purple-400" />
-              </div>
-              <CardTitle className="text-xl text-white">Market Trends</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-300 mb-6">
-                Comprehensive market intelligence tracking price movements, demand patterns, and emerging product categories to optimize sourcing strategies and timing.
-              </p>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400">Trending Products:</span>
-                  <Badge variant="default" className="bg-green-600">156 New</Badge>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400">Price Changes:</span>
-                  <Badge variant="secondary" className="bg-blue-600">3.2% ↓</Badge>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400">Market Analysis:</span>
-                  <Badge variant="outline" className="border-purple-500 text-purple-400">Weekly</Badge>
                 </div>
               </div>
             </CardContent>
