@@ -29,9 +29,8 @@ const Index = () => {
               ✨ Next-Generation Construction Intelligence
             </Badge>
             <h2 className="text-7xl font-bold text-white mb-8 leading-tight">
-              Transform your 
-              <span className="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent"> construction </span>
-              workflow
+              From input to output — AI that 
+              <span className="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent"> understands what makes AEC work. </span>
             </h2>
             <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-4xl mx-auto">
               Streamline product discovery, project planning, and specification management with our comprehensive AI-driven ecosystem designed for AEC professionals.
