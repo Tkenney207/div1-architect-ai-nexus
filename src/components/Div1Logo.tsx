@@ -3,7 +3,7 @@ import React from 'react';
 
 interface Div1LogoProps {
   className?: string;
-  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '5xl';
 }
 
 const Div1Logo: React.FC<Div1LogoProps> = ({ className = '', size = 'lg' }) => {
@@ -12,7 +12,8 @@ const Div1Logo: React.FC<Div1LogoProps> = ({ className = '', size = 'lg' }) => {
     md: 'h-10 w-auto',
     lg: 'h-16 w-auto',
     xl: 'h-24 w-auto',
-    '2xl': 'h-32 w-auto'
+    '2xl': 'h-32 w-auto',
+    '5xl': 'h-80 w-auto'
   };
 
   return (
