@@ -24,7 +24,7 @@ const ManufacturerBase = () => {
           <div className="max-w-4xl mx-auto mb-12">
             <h3 className="text-2xl font-semibold text-blue-300 mb-6">Manufacturer-Base™<br />Ingest. Structure. Verify.</h3>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              AI-driven ingestion and normalization of manufacturer product data — from PDFs, websites, CAD, images, and spreadsheets.
+              AI-driven ingestion and normalization at your figure tips: A single source for standardized manufacturer product data — from PDFs, websites, CAD, images, and spreadsheets - easily searchable, easily accessible.
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
               <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
