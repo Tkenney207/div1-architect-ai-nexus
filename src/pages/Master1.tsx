@@ -18,8 +18,8 @@ const Master1 = () => {
             📄 Intelligent Document Processing
           </Badge>
           <h2 className="text-6xl font-bold text-white mb-8">
-            Process specifications with 
-            <span className="bg-gradient-to-r from-blue-400 to-slate-300 bg-clip-text text-transparent"> AI precision </span>
+            AI Specification review and 
+            <span className="bg-gradient-to-r from-blue-400 to-slate-300 bg-clip-text text-transparent"> updating engine </span>
           </h2>
           <div className="max-w-4xl mx-auto mb-12">
             <h3 className="text-2xl font-semibold text-blue-300 mb-6">Upload. Validate. Publish.</h3>
