@@ -3,15 +3,16 @@ import React from 'react';
 
 interface Div1LogoProps {
   className?: string;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 }
 
-const Div1Logo: React.FC<Div1LogoProps> = ({ className = '', size = 'md' }) => {
+const Div1Logo: React.FC<Div1LogoProps> = ({ className = '', size = 'lg' }) => {
   const sizeClasses = {
     sm: 'h-6 w-auto',
     md: 'h-10 w-auto',
     lg: 'h-16 w-auto',
-    xl: 'h-24 w-auto'
+    xl: 'h-24 w-auto',
+    '2xl': 'h-32 w-auto'
   };
 
   return (
