@@ -8,18 +8,20 @@ interface Div1LogoProps {
 
 const Div1Logo: React.FC<Div1LogoProps> = ({ className = '', size = 'lg' }) => {
   const sizeClasses = {
-    sm: 'text-sm',
-    md: 'text-base',
-    lg: 'text-xl',
-    xl: 'text-2xl',
-    '2xl': 'text-3xl',
-    '5xl': 'text-6xl'
+    sm: 'h-6 w-auto',
+    md: 'h-10 w-auto',
+    lg: 'h-16 w-auto',
+    xl: 'h-24 w-auto',
+    '2xl': 'h-32 w-auto',
+    '5xl': 'h-80 w-auto'
   };
 
   return (
-    <span className={`font-semibold text-white ${sizeClasses[size]} ${className}`}>
-      AI Specification review and updating engine
-    </span>
+    <img
+      src="/lovable-uploads/d6c80344-0532-45db-bdd5-ed65dcfce08c.png"
+      alt="Div1 Logo"
+      className={`${sizeClasses[size]} ${className}`}
+    />
   );
 };
 
