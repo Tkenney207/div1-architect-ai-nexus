@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -14,9 +13,6 @@ const Master1 = () => {
       <div className="container mx-auto px-6 py-12">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-6 px-6 py-3 rounded-full border-blue-500/30 bg-blue-600/10 text-blue-300">
-            📄 Intelligent Document Processing
-          </Badge>
           <h2 className="text-6xl font-bold text-white mb-8">
             Process specifications with 
             <span className="bg-gradient-to-r from-blue-400 to-slate-300 bg-clip-text text-transparent"> AI precision </span>
