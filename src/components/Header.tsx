@@ -13,7 +13,7 @@ const Header = () => {
             <Link to="/" className="relative group">
               <div className="absolute -inset-2 bg-gradient-to-r from-orange-600 to-blue-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
               <div className="relative">
-                <Div1Logo size="md" className="hover:scale-105 transition-transform duration-300 drop-shadow-2xl" />
+                <Div1Logo size="xl" className="hover:scale-105 transition-transform duration-300 drop-shadow-2xl" />
               </div>
             </Link>
           </div>
