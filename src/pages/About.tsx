@@ -6,11 +6,6 @@ import Header from "@/components/Header";
 const About = () => {
   const platformData = [
     {
-      module: "Manufacturer-Base",
-      outcome: "Clean, enriched, searchable product data",
-      usedBy: "Manufacturers, Specifiers"
-    },
-    {
       module: "Engage",
       outcome: "Structured project charter from stakeholders", 
       usedBy: "Owners, PMs, Architects"
@@ -31,7 +26,7 @@ const About = () => {
           <div className="text-center mb-16">
             <h1 className="text-5xl font-bold text-white mb-6">Platform Summary</h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Three integrated modules delivering intelligent solutions for the AEC industry
+              Two integrated modules delivering intelligent solutions for the AEC industry
             </p>
           </div>
 

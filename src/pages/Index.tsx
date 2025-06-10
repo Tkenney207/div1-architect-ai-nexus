@@ -6,7 +6,7 @@ import { ArrowRight, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import Div1Logo from "@/components/Div1Logo";
 import Header from "@/components/Header";
-import { ManufacturerBaseIcon, EngageIcon, Master1Icon } from "@/components/ModuleIcons";
+import { EngageIcon, Master1Icon } from "@/components/ModuleIcons";
 
 const Index = () => {
   return (
@@ -50,7 +50,7 @@ const Index = () => {
               AI that understands what makes AEC work.
             </h3>
             <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-4xl mx-auto">
-              Streamline product discovery, project planning, and specification management with our comprehensive AI-driven ecosystem designed for AEC professionals.
+              Streamline project planning and specification management with our comprehensive AI-driven ecosystem designed for AEC professionals.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Link to="/signup">
@@ -71,46 +71,11 @@ const Index = () => {
       <section className="py-24 bg-slate-800/30">
         <div className="container mx-auto px-6">
           <div className="text-center mb-20">
-            <h3 className="text-5xl font-bold text-white mb-8">Three powerful solutions</h3>
+            <h3 className="text-5xl font-bold text-white mb-8">Two powerful solutions</h3>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">Interconnected tools designed to work seamlessly together for your complete AEC workflow</p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-10">
-            {/* Manufacturer-Base Module */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-orange-500/50">
-              <CardHeader className="pb-8">
-                <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors w-fit mb-6">
-                  <ManufacturerBaseIcon className="text-orange-400" />
-                </div>
-                <CardTitle className="text-2xl mb-3 text-white">Manufacturer-Base</CardTitle>
-                <CardDescription className="text-base leading-relaxed text-gray-300">
-                  AI-driven product intelligence with real-time data aggregation and semantic search
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-4 mb-10 text-sm text-gray-400">
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                    <span>Microservices with Kafka streams</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                    <span>Multi-modal data normalization</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                    <span>GraphQL federation</span>
-                  </li>
-                </ul>
-                <Link to="/manufacturer-base">
-                  <Button className="w-full rounded-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 transition-all border-0 text-white font-semibold py-3">
-                    Explore Products
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-
+          <div className="grid lg:grid-cols-2 gap-10 max-w-4xl mx-auto">
             {/* Engage Module */}
             <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-orange-500/50">
               <CardHeader className="pb-8">
@@ -201,7 +166,6 @@ const Index = () => {
             <div>
               <h5 className="font-semibold mb-6 text-lg text-white">Solutions</h5>
               <ul className="space-y-3 text-gray-400">
-                <li><Link to="/manufacturer-base" className="hover:text-white transition-colors">Manufacturer-Base</Link></li>
                 <li><Link to="/engage" className="hover:text-white transition-colors">Engage</Link></li>
                 <li><Link to="/master1" className="hover:text-white transition-colors">Master1</Link></li>
               </ul>

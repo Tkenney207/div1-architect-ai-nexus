@@ -5,7 +5,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import ManufacturerBase from "./pages/ManufacturerBase";
 import Engage from "./pages/Engage";
 import Master1 from "./pages/Master1";
 import Documentation from "./pages/Documentation";
@@ -28,7 +27,6 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/manufacturer-base" element={<ManufacturerBase />} />
           <Route path="/engage" element={<Engage />} />
           <Route path="/master1" element={<Master1 />} />
           <Route path="/documentation" element={<Documentation />} />
