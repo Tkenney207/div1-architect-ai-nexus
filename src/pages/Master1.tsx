@@ -1,4 +1,5 @@
 
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -81,24 +82,20 @@ const Master1 = () => {
             </CardHeader>
             <CardContent>
               <p className="text-gray-300 mb-6">
-                Semantic deduplication and conflict resolution with gap analysis.
+                Eliminate internal inconsistencies.
               </p>
               <ul className="space-y-3 text-sm text-gray-400">
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Vector similarity matching</span>
+                <li className="flex items-start space-x-3">
+                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <span>Section Numbers: Follow CSI MasterFormat updates.</span>
                 </li>
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Multi-criteria conflict resolution</span>
+                <li className="flex items-start space-x-3">
+                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <span>Cross-References: Align terms and scopes between related sections (e.g., waterproofing & roofing).</span>
                 </li>
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Automated gap identification</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Content harmonization</span>
+                <li className="flex items-start space-x-3">
+                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <span>Terminology Consistency: "Installer" vs. "Applicator" vs. "Contractor."</span>
                 </li>
               </ul>
             </CardContent>
@@ -138,3 +135,4 @@ const Master1 = () => {
 };
 
 export default Master1;
+
