@@ -1,9 +1,9 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FileText, Brain, Shield, CheckCircle } from "lucide-react";
 import Header from "@/components/Header";
-import { DocumentProcessor } from "@/components/DocumentProcessor";
 
 const Master1 = () => {
   return (
@@ -40,11 +40,6 @@ const Master1 = () => {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Document Processing Interface */}
-        <div className="mt-16">
-          <DocumentProcessor />
         </div>
 
         {/* Architecture Features */}
