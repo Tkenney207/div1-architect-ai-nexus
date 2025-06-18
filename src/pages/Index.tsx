@@ -37,12 +37,12 @@ const Index = () => {
             {/* Large Hero Logo */}
             <div className="relative group mb-16">
               <div className="absolute -inset-6 bg-gradient-to-r from-orange-200 via-blue-200 to-orange-200 rounded-3xl blur-xl opacity-40 group-hover:opacity-60 transition duration-500"></div>
-              <div className="relative p-12 bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/60">
+              <div className="relative p-12 bg-slate-800/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-slate-600/40">
                 <Div1Logo size="5xl" className="mx-auto hover:scale-105 transition-transform duration-500 drop-shadow-lg" />
               </div>
             </div>
             
-            <div className="bg-slate-900/20 backdrop-blur-sm rounded-3xl p-12 mb-12">
+            <div className="bg-slate-900/30 backdrop-blur-sm rounded-3xl p-12 mb-12 border border-slate-600/30">
               <h2 className="text-8xl font-light text-white mb-6 leading-tight tracking-tight drop-shadow-lg">
                 <span className="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent font-medium">From input to output</span>
               </h2>
