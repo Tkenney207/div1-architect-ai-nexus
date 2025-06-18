@@ -140,6 +140,11 @@ export const useProjectCharter = () => {
           throw error;
         }
 
+        // Check if data contains an error from the edge function
+        if (data && data.error) {
+          throw new Error(`API Error: ${data.error}${data.errorType ? ` (${data.errorType})` : ''}`);
+        }
+
         let aiResponse = data.response;
 
         // Check if the AI response suggests charter completion
@@ -166,24 +171,21 @@ export const useProjectCharter = () => {
       } catch (error) {
         console.error('Error calling AI:', error);
         
-        // Extract the actual error message from the API response
+        // Extract the actual error message
         let errorMessage = "I apologize, but I'm having trouble connecting to the AI service right now.";
         
-        if (error && typeof error === 'object') {
-          // Check for Supabase function error with details
-          if ('message' in error && error.message) {
-            errorMessage += ` Error: ${error.message}`;
-          }
+        if (error && typeof error === 'object' && 'message' in error) {
+          const errorStr = error.message as string;
           
-          // Check for nested error details
-          if ('details' in error && error.details) {
-            errorMessage += ` Details: ${error.details}`;
+          // Check for specific OpenAI quota error
+          if (errorStr.includes('exceeded your current quota') || errorStr.includes('insufficient_quota')) {
+            errorMessage = "⚠️ **OpenAI API Quota Exceeded**\n\nYour OpenAI API key has exceeded its usage quota or billing limits. Please:\n\n1. Check your OpenAI billing at https://platform.openai.com/account/billing\n2. Add payment method or increase quota\n3. Try again once resolved\n\nThe AI service will work once your OpenAI account is properly configured.";
+          } else if (errorStr.includes('API Error:')) {
+            // Show the actual API error
+            errorMessage = `🔧 **API Error**\n\n${errorStr}\n\nPlease check your OpenAI API configuration and try again.`;
+          } else {
+            errorMessage += ` Error: ${errorStr}`;
           }
-        }
-        
-        // If it's a quota error, provide specific guidance
-        if (errorMessage.includes('quota') || errorMessage.includes('429')) {
-          errorMessage = "⚠️ **OpenAI API Quota Exceeded**\n\nYour OpenAI API key has exceeded its usage quota or billing limits. Please:\n\n1. Check your OpenAI billing at https://platform.openai.com/account/billing\n2. Add payment method or increase quota\n3. Try again once resolved\n\nThe AI service will work once your OpenAI account is properly configured.";
         }
         
         const errorMessageObj: Message = {

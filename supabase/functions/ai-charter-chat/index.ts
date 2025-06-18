@@ -22,7 +22,10 @@ serve(async (req) => {
 
     if (!openAIApiKey) {
       console.error('OpenAI API key not found');
-      return new Response(JSON.stringify({ error: 'OpenAI API key not configured' }), {
+      return new Response(JSON.stringify({ 
+        error: 'OpenAI API key not configured',
+        errorType: 'config' 
+      }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -78,7 +81,23 @@ Be conversational, professional, and ask one focused question at a time. When yo
     if (!response.ok) {
       const errorText = await response.text();
       console.error('OpenAI API error:', errorText);
-      return new Response(JSON.stringify({ error: `OpenAI API error: ${response.status}` }), {
+      
+      // Parse the OpenAI error response
+      let errorDetails = { message: `HTTP ${response.status}`, type: 'api_error' };
+      try {
+        const errorData = JSON.parse(errorText);
+        if (errorData.error) {
+          errorDetails = errorData.error;
+        }
+      } catch (e) {
+        console.error('Failed to parse OpenAI error:', e);
+      }
+
+      return new Response(JSON.stringify({ 
+        error: errorDetails.message || `OpenAI API error: ${response.status}`,
+        errorType: errorDetails.type || 'api_error',
+        errorCode: errorDetails.code || response.status
+      }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -89,7 +108,10 @@ Be conversational, professional, and ask one focused question at a time. When yo
 
     if (!data.choices || !data.choices[0] || !data.choices[0].message) {
       console.error('Invalid OpenAI response structure:', data);
-      return new Response(JSON.stringify({ error: 'Invalid response from OpenAI' }), {
+      return new Response(JSON.stringify({ 
+        error: 'Invalid response from OpenAI',
+        errorType: 'invalid_response' 
+      }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -102,7 +124,10 @@ Be conversational, professional, and ask one focused question at a time. When yo
     });
   } catch (error) {
     console.error('Error in ai-charter-chat function:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ 
+      error: error.message,
+      errorType: 'function_error' 
+    }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
