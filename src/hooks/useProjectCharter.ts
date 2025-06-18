@@ -140,9 +140,9 @@ export const useProjectCharter = () => {
           throw error;
         }
 
-        // Check if data contains an error from the edge function
+        // Check if the response contains an error from the edge function
         if (data && data.error) {
-          throw new Error(`API Error: ${data.error}${data.errorType ? ` (${data.errorType})` : ''}`);
+          throw new Error(data.error);
         }
 
         let aiResponse = data.response;
@@ -180,9 +180,9 @@ export const useProjectCharter = () => {
           // Check for specific OpenAI quota error
           if (errorStr.includes('exceeded your current quota') || errorStr.includes('insufficient_quota')) {
             errorMessage = "⚠️ **OpenAI API Quota Exceeded**\n\nYour OpenAI API key has exceeded its usage quota or billing limits. Please:\n\n1. Check your OpenAI billing at https://platform.openai.com/account/billing\n2. Add payment method or increase quota\n3. Try again once resolved\n\nThe AI service will work once your OpenAI account is properly configured.";
-          } else if (errorStr.includes('API Error:')) {
-            // Show the actual API error
-            errorMessage = `🔧 **API Error**\n\n${errorStr}\n\nPlease check your OpenAI API configuration and try again.`;
+          } else if (errorStr.includes('Edge Function returned a non-2xx status code')) {
+            // This indicates a server error - likely the OpenAI quota issue
+            errorMessage = "⚠️ **Service Temporarily Unavailable**\n\nThe AI service is currently experiencing issues, likely due to API quota limits. Please:\n\n1. Check your OpenAI account billing and usage\n2. Ensure your API key has sufficient quota\n3. Try again in a few moments\n\nIf the issue persists, please verify your OpenAI API configuration.";
           } else {
             errorMessage += ` Error: ${errorStr}`;
           }
