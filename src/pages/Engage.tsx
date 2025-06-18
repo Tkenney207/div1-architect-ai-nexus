@@ -23,20 +23,6 @@ const Engage = () => {
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
               AI-powered project charter generation -  extract stakeholder goals and technical needs through Agentic guided & structured interviews.
             </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
-              <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
-                <p className="text-gray-200 text-sm">Auto-generates project briefs from conversations</p>
-              </div>
-              <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
-                <p className="text-gray-200 text-sm">Links goals to product categories and performance standards</p>
-              </div>
-              <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
-                <p className="text-gray-200 text-sm">Provides clean input for specification generation</p>
-              </div>
-              <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
-                <p className="text-gray-200 text-sm">Easily generate and send Engage AI interview links to all project stakeholders</p>
-              </div>
-            </div>
           </div>
         </div>
 
