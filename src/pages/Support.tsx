@@ -34,44 +34,47 @@ const Support = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-orange-50 text-gray-900 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
       <Header />
 
-      {/* Content */}
-      <section className="py-32 flex-1">
+      {/* Hero Section */}
+      <section className="py-20">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-20">
-            <div className="bg-gradient-to-br from-orange-100 to-orange-50 rounded-3xl p-6 w-fit mx-auto mb-12 shadow-lg">
-              <MessageCircle className="h-16 w-16 text-orange-500" />
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 text-blue-700 text-sm font-medium mb-8">
+              <MessageCircle className="h-4 w-4 mr-2" />
+              24/7 Support Available
             </div>
-            <h1 className="text-6xl font-light text-gray-900 mb-8 tracking-tight">Support</h1>
-            <p className="text-2xl text-gray-600 max-w-4xl mx-auto font-light leading-relaxed">
-              Get help when you need it. Our support team is here to assist you.
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-slate-900 to-blue-900 bg-clip-text text-transparent mb-6">
+              We're Here to Help
+            </h1>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Get expert support when you need it. Our team is ready to assist you with any questions.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-16">
+          <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <Card className="bg-white/90 backdrop-blur-sm border border-slate-200 shadow-xl">
-              <CardHeader className="pt-10 pb-8">
-                <CardTitle className="text-gray-900 text-3xl font-light">Submit a Support Request</CardTitle>
-                <CardDescription className="text-gray-600 text-lg font-light">
+            <Card className="border-0 shadow-lg bg-white">
+              <CardHeader>
+                <CardTitle className="text-slate-900 text-2xl">Submit a Support Request</CardTitle>
+                <CardDescription className="text-slate-600">
                   Fill out the form below and we'll get back to you as soon as possible.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="px-10 pb-10">
+              <CardContent>
                 <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <FormField
                       control={form.control}
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-gray-700 text-lg font-medium">Name</FormLabel>
+                          <FormLabel className="text-slate-700">Name</FormLabel>
                           <FormControl>
                             <Input 
                               placeholder="Your full name" 
-                              className="bg-white border-slate-300 text-gray-900 text-lg py-6 rounded-xl focus:border-orange-400 focus:ring-orange-400" 
+                              className="border-slate-200 focus:border-blue-500" 
                               {...field} 
                             />
                           </FormControl>
@@ -85,12 +88,12 @@ const Support = () => {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-gray-700 text-lg font-medium">Email</FormLabel>
+                          <FormLabel className="text-slate-700">Email</FormLabel>
                           <FormControl>
                             <Input 
                               type="email" 
                               placeholder="your@email.com" 
-                              className="bg-white border-slate-300 text-gray-900 text-lg py-6 rounded-xl focus:border-orange-400 focus:ring-orange-400" 
+                              className="border-slate-200 focus:border-blue-500" 
                               {...field} 
                             />
                           </FormControl>
@@ -104,11 +107,11 @@ const Support = () => {
                       name="subject"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-gray-700 text-lg font-medium">Subject</FormLabel>
+                          <FormLabel className="text-slate-700">Subject</FormLabel>
                           <FormControl>
                             <Input 
                               placeholder="What's this about?" 
-                              className="bg-white border-slate-300 text-gray-900 text-lg py-6 rounded-xl focus:border-orange-400 focus:ring-orange-400" 
+                              className="border-slate-200 focus:border-blue-500" 
                               {...field} 
                             />
                           </FormControl>
@@ -122,12 +125,12 @@ const Support = () => {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-gray-700 text-lg font-medium">Message</FormLabel>
+                          <FormLabel className="text-slate-700">Message</FormLabel>
                           <FormControl>
                             <Textarea 
                               placeholder="Please describe your issue or question in detail..." 
-                              rows={6} 
-                              className="bg-white border-slate-300 text-gray-900 text-lg rounded-xl focus:border-orange-400 focus:ring-orange-400" 
+                              rows={5} 
+                              className="border-slate-200 focus:border-blue-500" 
                               {...field} 
                             />
                           </FormControl>
@@ -136,8 +139,8 @@ const Support = () => {
                       )}
                     />
                     
-                    <Button type="submit" className="w-full bg-gradient-to-r from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500 text-lg py-6 rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-105">
-                      <Send className="h-5 w-5 mr-3" />
+                    <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-full">
+                      <Send className="h-4 w-4 mr-2" />
                       Submit Support Request
                     </Button>
                   </form>
@@ -146,47 +149,47 @@ const Support = () => {
             </Card>
 
             {/* Contact Info */}
-            <div className="space-y-8">
-              <Card className="bg-white/90 backdrop-blur-sm border border-slate-200 shadow-lg hover:shadow-xl transition-all">
-                <CardContent className="p-10">
-                  <div className="flex items-center space-x-6">
-                    <div className="bg-gradient-to-br from-orange-100 to-orange-50 rounded-2xl p-4 shadow-md">
-                      <Mail className="h-8 w-8 text-orange-500" />
+            <div className="space-y-6">
+              <Card className="border-0 shadow-lg bg-white">
+                <CardContent className="p-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3">
+                      <Mail className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-gray-900 font-medium text-xl mb-2">Email Support</h3>
-                      <p className="text-gray-700 text-lg">support@div1.ai</p>
-                      <p className="text-base text-gray-500 mt-2">We typically respond within 24 hours</p>
+                      <h3 className="text-slate-900 font-semibold">Email Support</h3>
+                      <p className="text-slate-600">support@div1.ai</p>
+                      <p className="text-sm text-slate-500 mt-1">We typically respond within 24 hours</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/90 backdrop-blur-sm border border-slate-200 shadow-lg hover:shadow-xl transition-all">
-                <CardContent className="p-10">
-                  <div className="flex items-center space-x-6">
-                    <div className="bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl p-4 shadow-md">
-                      <MessageCircle className="h-8 w-8 text-blue-500" />
+              <Card className="border-0 shadow-lg bg-white">
+                <CardContent className="p-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3">
+                      <MessageCircle className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-gray-900 font-medium text-xl mb-2">Live Chat</h3>
-                      <p className="text-gray-700 text-lg">Available Now</p>
-                      <p className="text-base text-gray-500 mt-2">Click the chat button to get instant help</p>
+                      <h3 className="text-slate-900 font-semibold">Live Chat</h3>
+                      <p className="text-slate-600">Available Now</p>
+                      <p className="text-sm text-slate-500 mt-1">Click the chat button to get instant help</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/90 backdrop-blur-sm border border-slate-200 shadow-lg hover:shadow-xl transition-all">
-                <CardContent className="p-10">
-                  <div className="flex items-center space-x-6">
-                    <div className="bg-gradient-to-br from-green-100 to-green-50 rounded-2xl p-4 shadow-md">
-                      <Phone className="h-8 w-8 text-green-500" />
+              <Card className="border-0 shadow-lg bg-white">
+                <CardContent className="p-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-3">
+                      <Phone className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-gray-900 font-medium text-xl mb-2">Phone Support</h3>
-                      <p className="text-gray-700 text-lg">(802) 233-2529</p>
-                      <p className="text-base text-gray-500 mt-2">Direct phone support for premium users</p>
+                      <h3 className="text-slate-900 font-semibold">Phone Support</h3>
+                      <p className="text-slate-600">(802) 233-2529</p>
+                      <p className="text-sm text-slate-500 mt-1">Available during business hours</p>
                     </div>
                   </div>
                 </CardContent>
