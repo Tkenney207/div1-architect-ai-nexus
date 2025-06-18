@@ -5,12 +5,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Eye, EyeOff } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Div1Logo from "@/components/Div1Logo";
 import Header from "@/components/Header";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -21,6 +24,10 @@ const Signup = () => {
     title: ""
   });
   const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const { signUp } = useAuth();
+  const navigate = useNavigate();
 
   const validateWorkEmail = (email: string) => {
     const personalDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com', 'icloud.com'];
@@ -42,16 +49,70 @@ const Signup = () => {
         setEmailError("");
       }
     }
+
+    if (name === 'confirmPassword' || name === 'password') {
+      if (name === 'confirmPassword') {
+        if (value !== formData.password) {
+          setPasswordError("Passwords do not match");
+        } else {
+          setPasswordError("");
+        }
+      } else {
+        if (formData.confirmPassword && value !== formData.confirmPassword) {
+          setPasswordError("Passwords do not match");
+        } else {
+          setPasswordError("");
+        }
+      }
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validation
     if (!validateWorkEmail(formData.email)) {
       setEmailError("Please use a work email address");
       return;
     }
-    console.log("Signup form submitted:", formData);
-    // Handle signup logic here
+
+    if (formData.password !== formData.confirmPassword) {
+      setPasswordError("Passwords do not match");
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      setPasswordError("Password must be at least 6 characters");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const { error } = await signUp(formData.email, formData.password, {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        company: formData.company,
+        title: formData.title
+      });
+
+      if (error) {
+        console.error('Signup error:', error);
+        if (error.message.includes('already registered')) {
+          toast.error("This email is already registered. Please sign in instead.");
+        } else {
+          toast.error(error.message || "Failed to create account");
+        }
+      } else {
+        toast.success("Account created successfully! Please check your email to verify your account.");
+        navigate('/signin');
+      }
+    } catch (error) {
+      console.error('Signup error:', error);
+      toast.error("Failed to create account");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -86,6 +147,7 @@ const Signup = () => {
                       onChange={handleInputChange}
                       className="bg-slate-700 border-slate-600 text-white"
                       required
+                      disabled={loading}
                     />
                   </div>
                   <div>
@@ -98,6 +160,7 @@ const Signup = () => {
                       onChange={handleInputChange}
                       className="bg-slate-700 border-slate-600 text-white"
                       required
+                      disabled={loading}
                     />
                   </div>
                 </div>
@@ -112,6 +175,7 @@ const Signup = () => {
                     onChange={handleInputChange}
                     className="bg-slate-700 border-slate-600 text-white"
                     required
+                    disabled={loading}
                   />
                   {emailError && (
                     <p className="text-red-400 text-sm mt-1">{emailError}</p>
@@ -128,6 +192,7 @@ const Signup = () => {
                     onChange={handleInputChange}
                     className="bg-slate-700 border-slate-600 text-white"
                     required
+                    disabled={loading}
                   />
                 </div>
 
@@ -141,6 +206,7 @@ const Signup = () => {
                     onChange={handleInputChange}
                     className="bg-slate-700 border-slate-600 text-white"
                     required
+                    disabled={loading}
                   />
                 </div>
 
@@ -155,11 +221,14 @@ const Signup = () => {
                       onChange={handleInputChange}
                       className="bg-slate-700 border-slate-600 text-white pr-10"
                       required
+                      disabled={loading}
+                      minLength={6}
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
                       className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                      disabled={loading}
                     >
                       {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                     </button>
@@ -176,15 +245,20 @@ const Signup = () => {
                     onChange={handleInputChange}
                     className="bg-slate-700 border-slate-600 text-white"
                     required
+                    disabled={loading}
                   />
+                  {passwordError && (
+                    <p className="text-red-400 text-sm mt-1">{passwordError}</p>
+                  )}
                 </div>
 
                 <Button 
                   type="submit" 
                   className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-semibold py-3 rounded-full"
+                  disabled={loading}
                 >
-                  Create Account
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  {loading ? "Creating Account..." : "Create Account"}
+                  {!loading && <ArrowRight className="ml-2 h-4 w-4" />}
                 </Button>
               </form>
 

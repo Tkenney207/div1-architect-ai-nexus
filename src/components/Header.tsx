@@ -6,13 +6,19 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Users, ChevronDown, Home, UserPlus } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Users, ChevronDown, Home, UserPlus, LogOut, User } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import Div1Logo from "@/components/Div1Logo";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Header = () => {
-  // TODO: Replace with actual authentication state
-  const isLoggedIn = false; // This would come from your auth context/state
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/');
+  };
 
   return (
     <header className="border-b border-gray-800 bg-black/50 backdrop-blur-xl">
@@ -27,7 +33,7 @@ const Header = () => {
             </Link>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            {isLoggedIn ? (
+            {user ? (
               <>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -62,18 +68,37 @@ const Header = () => {
               Master1
             </Link>
             <div className="flex items-center space-x-3">
-              <Link to="/signup">
-                <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 border-0 font-semibold">
-                  <UserPlus className="h-4 w-4 mr-2" />
-                  Sign Up
-                </Button>
-              </Link>
-              <Link to="/signin">
-                <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 border-0 font-semibold">
-                  <Users className="h-4 w-4 mr-2" />
-                  Login
-                </Button>
-              </Link>
+              {user ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 border-0 font-semibold">
+                      <User className="h-4 w-4 mr-2" />
+                      {user.email}
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-gray-800 border-gray-700">
+                    <DropdownMenuItem onClick={handleSignOut} className="text-gray-300 hover:text-white transition-colors cursor-pointer">
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Sign Out
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <>
+                  <Link to="/signup">
+                    <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 border-0 font-semibold">
+                      <UserPlus className="h-4 w-4 mr-2" />
+                      Sign Up
+                    </Button>
+                  </Link>
+                  <Link to="/signin">
+                    <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 border-0 font-semibold">
+                      <Users className="h-4 w-4 mr-2" />
+                      Login
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
           </nav>
         </div>

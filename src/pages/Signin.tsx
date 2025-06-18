@@ -1,20 +1,32 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, Eye, EyeOff } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Div1Logo from "@/components/Div1Logo";
 import Header from "@/components/Header";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 
 const Signin = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: ""
   });
+
+  const { signIn, user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate('/dashboard');
+    }
+  }, [user, navigate]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -23,10 +35,32 @@ const Signin = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login form submitted:", formData);
-    // Handle login logic here
+    setLoading(true);
+
+    try {
+      const { error } = await signIn(formData.email, formData.password);
+
+      if (error) {
+        console.error('Signin error:', error);
+        if (error.message.includes('Invalid login credentials')) {
+          toast.error("Invalid email or password");
+        } else if (error.message.includes('Email not confirmed')) {
+          toast.error("Please check your email and confirm your account first");
+        } else {
+          toast.error(error.message || "Failed to sign in");
+        }
+      } else {
+        toast.success("Welcome back!");
+        navigate('/dashboard');
+      }
+    } catch (error) {
+      console.error('Signin error:', error);
+      toast.error("Failed to sign in");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -60,6 +94,7 @@ const Signin = () => {
                     onChange={handleInputChange}
                     className="bg-slate-700 border-slate-600 text-white"
                     required
+                    disabled={loading}
                   />
                 </div>
 
@@ -74,11 +109,13 @@ const Signin = () => {
                       onChange={handleInputChange}
                       className="bg-slate-700 border-slate-600 text-white pr-10"
                       required
+                      disabled={loading}
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
                       className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                      disabled={loading}
                     >
                       {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                     </button>
@@ -94,9 +131,10 @@ const Signin = () => {
                 <Button 
                   type="submit" 
                   className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-semibold py-3 rounded-full"
+                  disabled={loading}
                 >
-                  Login
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  {loading ? "Signing In..." : "Login"}
+                  {!loading && <ArrowRight className="ml-2 h-4 w-4" />}
                 </Button>
               </form>
 
