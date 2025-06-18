@@ -1,12 +1,41 @@
 
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Brain, Shield, CheckCircle } from "lucide-react";
+import { FileText, Brain, Shield, CheckCircle, Upload } from "lucide-react";
 import Header from "@/components/Header";
+import { useState, useRef } from "react";
 
 const Master1 = () => {
+  const [dragActive, setDragActive] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleDrag = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === 'dragenter' || e.type === 'dragover') {
+      setDragActive(true);
+    } else if (e.type === 'dragleave') {
+      setDragActive(false);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    const files = e.dataTransfer.files;
+    if (files && files.length > 0) {
+      console.log('Files dropped:', Array.from(files).map(f => f.name));
+    }
+  };
+
+  const handleFileUpload = (files: FileList | null) => {
+    if (files && files.length > 0) {
+      console.log('Files selected:', Array.from(files).map(f => f.name));
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
       <Header />
@@ -23,25 +52,54 @@ const Master1 = () => {
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
               AI Specification review and updating engine.
             </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 text-left">
-              <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-700">
-                <p className="text-gray-200 text-sm">AI creates structured specs based on project + product inputs</p>
-              </div>
-              <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-700">
-                <p className="text-gray-200 text-sm">Detects duplicates, gaps, and conflicting requirements</p>
-              </div>
-              <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-700">
-                <p className="text-gray-200 text-sm">Runs clause-level validation against building codes (ICC, ADA, LEED, ASTM, etc.)</p>
-              </div>
-              <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-700">
-                <p className="text-gray-200 text-sm">Outputs editable, versioned, fully auditable specifications</p>
-              </div>
-              <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-700">
-                <p className="text-gray-200 text-sm">Delivers ready-to-submit specifications — faster, safer, smarter.</p>
-              </div>
-            </div>
           </div>
         </div>
+
+        {/* Upload Section */}
+        <Card className="bg-gray-800/50 border-gray-700 mb-16">
+          <CardHeader>
+            <CardTitle className="text-white flex items-center space-x-3">
+              <Upload className="h-6 w-6 text-blue-400" />
+              <span>Upload Your Specifications</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div 
+              className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
+                dragActive 
+                  ? 'border-blue-500 bg-blue-900/20' 
+                  : 'border-gray-600 hover:border-gray-500'
+              }`}
+              onDragEnter={handleDrag}
+              onDragLeave={handleDrag}
+              onDragOver={handleDrag}
+              onDrop={handleDrop}
+            >
+              <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-300 mb-4">
+                Drop your specification files here or click to upload
+              </p>
+              <p className="text-sm text-gray-500 mb-4">
+                Supports Word documents, PDFs, and text files. Analysis begins automatically.
+              </p>
+              <input
+                ref={fileInputRef}
+                type="file"
+                multiple
+                accept=".doc,.docx,.pdf,.txt"
+                onChange={(e) => handleFileUpload(e.target.files)}
+                className="hidden"
+              />
+              <Button 
+                onClick={() => fileInputRef.current?.click()}
+                variant="outline"
+                className="border-blue-500 text-blue-400 hover:bg-blue-600"
+              >
+                Select Files
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Architecture Features */}
         <div className="grid lg:grid-cols-3 gap-8 mt-16">
@@ -135,4 +193,3 @@ const Master1 = () => {
 };
 
 export default Master1;
-
