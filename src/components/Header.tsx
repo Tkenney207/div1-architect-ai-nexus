@@ -20,6 +20,25 @@ const Header = () => {
     navigate('/');
   };
 
+  // Extract user's name from metadata or use email as fallback
+  const getUserDisplayName = () => {
+    if (!user) return '';
+    
+    const firstName = user.user_metadata?.first_name || '';
+    const lastName = user.user_metadata?.last_name || '';
+    
+    if (firstName && lastName) {
+      return `${firstName} ${lastName}`;
+    } else if (firstName) {
+      return firstName;
+    } else if (lastName) {
+      return lastName;
+    }
+    
+    // Fallback to email if no name is available
+    return user.email;
+  };
+
   return (
     <header className="border-b border-gray-800 bg-black/50 backdrop-blur-xl">
       <div className="container mx-auto px-6 py-4">
@@ -49,7 +68,7 @@ const Header = () => {
                     <DropdownMenuTrigger asChild>
                       <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 border-0 font-semibold">
                         <User className="h-4 w-4 mr-2" />
-                        {user.email}
+                        {getUserDisplayName()}
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="bg-gray-800 border-gray-700">
