@@ -10,15 +10,15 @@ import { EngageIcon, Master1Icon } from "@/components/ModuleIcons";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-orange-50 text-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white">
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-32">
+      <section className="relative overflow-hidden py-24">
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full">
           <video
-            className="w-full h-full object-cover opacity-10"
+            className="w-full h-full object-cover opacity-20"
             autoPlay
             muted
             loop
@@ -28,38 +28,38 @@ const Index = () => {
             {/* Fallback for browsers that don't support video */}
             Your browser does not support the video tag.
           </video>
-          {/* Light overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-blue-50/60 to-orange-50/60"></div>
+          {/* Dark overlay to ensure text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-blue-950/80 to-slate-900/80"></div>
         </div>
         
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-100/20 to-orange-100/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-orange-600/10"></div>
         <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center max-w-6xl mx-auto">
-            {/* Large Hero Logo */}
-            <div className="relative group mb-16">
-              <div className="absolute -inset-6 bg-gradient-to-r from-orange-200 via-blue-200 to-orange-200 rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition duration-500"></div>
-              <div className="relative p-12 bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/50">
-                <Div1Logo size="5xl" className="mx-auto hover:scale-105 transition-transform duration-500 drop-shadow-lg" />
+          <div className="text-center max-w-5xl mx-auto">
+            {/* Large Hero Logo - melted into background */}
+            <div className="relative group mb-12">
+              <div className="absolute -inset-4 bg-gradient-to-r from-orange-600 via-blue-600 to-orange-600 rounded-3xl blur-lg opacity-20 group-hover:opacity-30 transition duration-500"></div>
+              <div className="relative p-8">
+                <Div1Logo size="5xl" className="mx-auto hover:scale-110 transition-transform duration-500 drop-shadow-2xl filter brightness-110" />
               </div>
             </div>
             
-            <h2 className="text-8xl font-light text-gray-900 mb-6 leading-tight tracking-tight">
-              <span className="bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent font-medium">From input to output</span>
+            <h2 className="text-7xl font-bold text-white mb-4 leading-tight">
+              <span className="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent">From input to output</span>
             </h2>
-            <h3 className="text-5xl font-light text-gray-700 mb-12 tracking-wide">
+            <h3 className="text-4xl font-semibold text-gray-300 mb-8">
               AI that understands what makes AEC work.
             </h3>
-            <p className="text-2xl text-gray-600 mb-16 leading-relaxed max-w-5xl mx-auto font-light">
+            <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-4xl mx-auto">
               Streamline project planning and specification management with our comprehensive AI-driven ecosystem designed for AEC professionals.
             </p>
-            <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Link to="/signup">
-                <Button size="lg" className="text-xl px-12 py-8 rounded-full bg-gradient-to-r from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500 shadow-xl hover:shadow-2xl transition-all border-0 text-white font-medium hover:scale-105">
+                <Button size="lg" className="text-lg px-10 py-6 rounded-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 shadow-2xl hover:shadow-orange-500/25 transition-all border-0 text-white font-semibold">
                   Get Started Free
-                  <ArrowRight className="ml-4 h-6 w-6" />
+                  <ArrowRight className="ml-3 h-6 w-6" />
                 </Button>
               </Link>
-              <Button variant="outline" size="lg" className="text-xl px-12 py-8 rounded-full border-2 border-orange-300 text-orange-600 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all font-medium bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-105">
+              <Button variant="outline" size="lg" className="text-lg px-10 py-6 rounded-full border-2 border-orange-500/50 text-orange-300 hover:bg-orange-600 hover:text-white hover:border-orange-600 transition-all font-semibold">
                 Watch Demo
               </Button>
             </div>
@@ -68,114 +68,114 @@ const Index = () => {
       </section>
 
       {/* Solutions Section */}
-      <section className="py-32 bg-gradient-to-br from-white via-slate-50 to-blue-50">
+      <section className="py-24 bg-slate-800/30">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-24">
-            <h3 className="text-6xl font-light text-gray-900 mb-12 tracking-tight">Three powerful solutions</h3>
-            <p className="text-2xl text-gray-600 max-w-4xl mx-auto font-light leading-relaxed">Interconnected tools designed to work seamlessly together for your complete AEC workflow</p>
+          <div className="text-center mb-20">
+            <h3 className="text-5xl font-bold text-white mb-8">Three powerful solutions</h3>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">Interconnected tools designed to work seamlessly together for your complete AEC workflow</p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Engage Module */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-4 bg-white/90 backdrop-blur-sm border border-orange-100 hover:border-orange-200">
-              <CardHeader className="pb-10 pt-12">
-                <div className="bg-gradient-to-br from-orange-100 to-orange-50 rounded-3xl p-6 group-hover:from-orange-200 group-hover:to-orange-100 transition-all w-fit mb-8 shadow-md">
-                  <EngageIcon className="text-orange-500 h-10 w-10" />
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-orange-500/50">
+              <CardHeader className="pb-8">
+                <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors w-fit mb-6">
+                  <EngageIcon className="text-orange-400" />
                 </div>
-                <CardTitle className="text-3xl mb-4 text-gray-900 font-light">Engage</CardTitle>
-                <CardDescription className="text-lg leading-relaxed text-gray-600 font-light">
+                <CardTitle className="text-2xl mb-3 text-white">Engage</CardTitle>
+                <CardDescription className="text-base leading-relaxed text-gray-300">
                   AI-facilitated project charter with conversational intelligence and privacy protection
                 </CardDescription>
               </CardHeader>
-              <CardContent className="px-8 pb-10">
-                <ul className="space-y-5 mb-12 text-base text-gray-600">
-                  <li className="flex items-center space-x-4">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+              <CardContent>
+                <ul className="space-y-4 mb-10 text-sm text-gray-400">
+                  <li className="flex items-center space-x-3">
+                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
                     <span>Multi-agent conversation system</span>
                   </li>
-                  <li className="flex items-center space-x-4">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  <li className="flex items-center space-x-3">
+                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
                     <span>Privacy-preserving architecture</span>
                   </li>
-                  <li className="flex items-center space-x-4">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  <li className="flex items-center space-x-3">
+                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
                     <span>Real-time sentiment analysis</span>
                   </li>
                 </ul>
                 <Link to="/engage">
-                  <Button className="w-full rounded-full bg-gradient-to-r from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500 transition-all border-0 text-white font-medium py-4 text-lg shadow-lg hover:shadow-xl hover:scale-105">
+                  <Button className="w-full rounded-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 transition-all border-0 text-white font-semibold py-3">
                     Start Charter
-                    <ArrowRight className="ml-3 h-5 w-5" />
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               </CardContent>
             </Card>
 
             {/* Division1 Module */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-4 bg-white/90 backdrop-blur-sm border border-blue-100 hover:border-blue-200">
-              <CardHeader className="pb-10 pt-12">
-                <div className="bg-gradient-to-br from-blue-100 to-blue-50 rounded-3xl p-6 group-hover:from-blue-200 group-hover:to-blue-100 transition-all w-fit mb-8 shadow-md">
-                  <FileText className="h-10 w-10 text-blue-500" />
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-purple-500/50">
+              <CardHeader className="pb-8">
+                <div className="bg-purple-600/20 rounded-2xl p-4 group-hover:bg-purple-500/30 transition-colors w-fit mb-6">
+                  <FileText className="h-8 w-8 text-purple-400" />
                 </div>
-                <CardTitle className="text-3xl mb-4 text-gray-900 font-light">Division1</CardTitle>
-                <CardDescription className="text-lg leading-relaxed text-gray-600 font-light">
+                <CardTitle className="text-2xl mb-3 text-white">Division1</CardTitle>
+                <CardDescription className="text-base leading-relaxed text-gray-300">
                   Generate complete CSI MasterFormat Division 01 specifications from project charter data with AI precision
                 </CardDescription>
               </CardHeader>
-              <CardContent className="px-8 pb-10">
-                <ul className="space-y-5 mb-12 text-base text-gray-600">
-                  <li className="flex items-center space-x-4">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+              <CardContent>
+                <ul className="space-y-4 mb-10 text-sm text-gray-400">
+                  <li className="flex items-center space-x-3">
+                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
                     <span>Automated charter-to-spec mapping</span>
                   </li>
-                  <li className="flex items-center space-x-4">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  <li className="flex items-center space-x-3">
+                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
                     <span>3-part CSI format Division 01 generation</span>
                   </li>
-                  <li className="flex items-center space-x-4">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  <li className="flex items-center space-x-3">
+                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
                     <span>Side-by-side editing interface</span>
                   </li>
                 </ul>
                 <Link to="/division1">
-                  <Button className="w-full rounded-full bg-gradient-to-r from-blue-500 to-blue-400 hover:from-blue-600 hover:to-blue-500 transition-all border-0 text-white font-medium py-4 text-lg shadow-lg hover:shadow-xl hover:scale-105">
+                  <Button className="w-full rounded-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 transition-all border-0 text-white font-semibold py-3">
                     Generate Specs
-                    <ArrowRight className="ml-3 h-5 w-5" />
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               </CardContent>
             </Card>
 
             {/* Master1 Module */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-4 bg-white/90 backdrop-blur-sm border border-purple-100 hover:border-purple-200">
-              <CardHeader className="pb-10 pt-12">
-                <div className="bg-gradient-to-br from-purple-100 to-purple-50 rounded-3xl p-6 group-hover:from-purple-200 group-hover:to-purple-100 transition-all w-fit mb-8 shadow-md">
-                  <Master1Icon className="text-purple-500 h-10 w-10" />
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-blue-500/50">
+              <CardHeader className="pb-8">
+                <div className="bg-blue-600/20 rounded-2xl p-4 group-hover:bg-blue-500/30 transition-colors w-fit mb-6">
+                  <Master1Icon className="text-blue-400" />
                 </div>
-                <CardTitle className="text-3xl mb-4 text-gray-900 font-light">Master1</CardTitle>
-                <CardDescription className="text-lg leading-relaxed text-gray-600 font-light">
+                <CardTitle className="text-2xl mb-3 text-white">Master1</CardTitle>
+                <CardDescription className="text-base leading-relaxed text-gray-300">
                   Intelligent specification synthesis with compliance validation and standards checking
                 </CardDescription>
               </CardHeader>
-              <CardContent className="px-8 pb-10">
-                <ul className="space-y-5 mb-12 text-base text-gray-600">
-                  <li className="flex items-center space-x-4">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+              <CardContent>
+                <ul className="space-y-4 mb-10 text-sm text-gray-400">
+                  <li className="flex items-center space-x-3">
+                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
                     <span>Multi-modal document processing</span>
                   </li>
-                  <li className="flex items-center space-x-4">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  <li className="flex items-center space-x-3">
+                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
                     <span>Real-time standards validation</span>
                   </li>
-                  <li className="flex items-center space-x-4">
-                    <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                  <li className="flex items-center space-x-3">
+                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
                     <span>Automated compliance checking</span>
                   </li>
                 </ul>
                 <Link to="/master1">
-                  <Button className="w-full rounded-full bg-gradient-to-r from-purple-500 to-purple-400 hover:from-purple-600 hover:to-purple-500 transition-all border-0 text-white font-medium py-4 text-lg shadow-lg hover:shadow-xl hover:scale-105">
+                  <Button className="w-full rounded-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 transition-all border-0 text-white font-semibold py-3">
                     Process Specs
-                    <ArrowRight className="ml-3 h-5 w-5" />
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
               </CardContent>
@@ -185,48 +185,48 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-br from-slate-100 to-blue-100 border-t border-slate-200 py-20">
+      <footer className="bg-slate-900 border-t border-slate-700 py-16">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-16">
+          <div className="grid md:grid-cols-4 gap-12">
             <div>
-              <div className="flex items-center space-x-4 mb-8">
+              <div className="flex items-center space-x-3 mb-6">
                 <Div1Logo size="sm" />
-                <span className="text-2xl font-light text-gray-900">Platform</span>
+                <span className="text-xl font-semibold text-white">Platform</span>
               </div>
-              <p className="text-gray-600 leading-relaxed font-light text-lg">
+              <p className="text-gray-400 leading-relaxed">
                 AI-driven ecosystem for the Architecture, Engineering, and Construction industry.
               </p>
             </div>
             
             <div>
-              <h5 className="font-medium mb-8 text-xl text-gray-900">Solutions</h5>
-              <ul className="space-y-4 text-gray-600 font-light">
-                <li><Link to="/engage" className="hover:text-gray-900 transition-colors text-lg">Engage</Link></li>
-                <li><Link to="/division1" className="hover:text-gray-900 transition-colors text-lg">Division1</Link></li>
-                <li><Link to="/master1" className="hover:text-gray-900 transition-colors text-lg">Master1</Link></li>
+              <h5 className="font-semibold mb-6 text-lg text-white">Solutions</h5>
+              <ul className="space-y-3 text-gray-400">
+                <li><Link to="/engage" className="hover:text-white transition-colors">Engage</Link></li>
+                <li><Link to="/division1" className="hover:text-white transition-colors">Division1</Link></li>
+                <li><Link to="/master1" className="hover:text-white transition-colors">Master1</Link></li>
               </ul>
             </div>
             
             <div>
-              <h5 className="font-medium mb-8 text-xl text-gray-900">Resources</h5>
-              <ul className="space-y-4 text-gray-600 font-light">
-                <li><Link to="/documentation" className="hover:text-gray-900 transition-colors text-lg">Documentation</Link></li>
-                <li><Link to="/security" className="hover:text-gray-900 transition-colors text-lg">Security</Link></li>
-                <li><Link to="/support" className="hover:text-gray-900 transition-colors text-lg">Support</Link></li>
+              <h5 className="font-semibold mb-6 text-lg text-white">Resources</h5>
+              <ul className="space-y-3 text-gray-400">
+                <li><Link to="/documentation" className="hover:text-white transition-colors">Documentation</Link></li>
+                <li><Link to="/security" className="hover:text-white transition-colors">Security</Link></li>
+                <li><Link to="/support" className="hover:text-white transition-colors">Support</Link></li>
               </ul>
             </div>
             
             <div>
-              <h5 className="font-medium mb-8 text-xl text-gray-900">Company</h5>
-              <ul className="space-y-4 text-gray-600 font-light">
-                <li><Link to="/about" className="hover:text-gray-900 transition-colors text-lg">About</Link></li>
-                <li><Link to="/contact" className="hover:text-gray-900 transition-colors text-lg">Contact</Link></li>
-                <li><Link to="/privacy" className="hover:text-gray-900 transition-colors text-lg">Privacy</Link></li>
+              <h5 className="font-semibold mb-6 text-lg text-white">Company</h5>
+              <ul className="space-y-3 text-gray-400">
+                <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
+                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+                <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-slate-300 mt-16 pt-12 text-center text-gray-500 font-light text-lg">
+          <div className="border-t border-slate-700 mt-12 pt-8 text-center text-gray-400">
             © 2024 Div1 Platform Suite. All rights reserved.
           </div>
         </div>
