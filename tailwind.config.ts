@@ -20,19 +20,29 @@ export default {
 		},
 		extend: {
 			colors: {
+				// Custom palette for relaxed affluence
 				navy: {
+					DEFAULT: '#1A2B49', // Classic Navy - Primary
 					50: '#f0f4ff',
 					100: '#e0e9ff',
 					200: '#c7d8ff',
 					300: '#a5c0ff',
 					400: '#8197ff',
-					500: '#6366f1',
-					600: '#4f46e5',
-					700: '#4338ca',
-					800: '#3730a3',
-					900: '#1e3a8a',
-					950: '#0f172a',
+					500: '#426A8C', // Oxford Blue
+					600: '#1A2B49', // Classic Navy
+					700: '#152238',
+					800: '#101929',
+					900: '#0c141f',
+					950: '#1A2B49',
 				},
+				ivory: '#F7F3ED', // Warm Ivory
+				pebble: '#D9D6D0', // Soft Pebble Gray
+				rose: '#E6B7B3', // Dusty Rose
+				oxford: '#426A8C', // Oxford Blue
+				mint: '#D6F0E5', // Mint Cream
+				maize: '#F2D8A7', // Faded Maize
+				sky: '#C2D3DF', // Pale Sky
+				brass: '#C6A664', // Brass Gold - Highlight/CTA
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
