@@ -12,7 +12,7 @@ import Engage from "./pages/Engage";
 import Division1 from "./pages/Division1";
 import Master1 from "./pages/Master1";
 import Documentation from "./pages/Documentation";
-import ApiReference from "./pages/ApiReference";
+import Security from "./pages/Security";
 import Support from "./pages/Support";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -44,7 +44,7 @@ const App = () => {
             <Route path="/division1" element={<Division1 />} />
             <Route path="/master1" element={<Master1 />} />
             <Route path="/documentation" element={<Documentation />} />
-            <Route path="/api-reference" element={<ApiReference />} />
+            <Route path="/security" element={<Security />} />
             <Route path="/support" element={<Support />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

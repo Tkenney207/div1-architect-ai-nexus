@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -211,7 +210,7 @@ const Index = () => {
               <h5 className="font-semibold mb-6 text-lg text-white">Resources</h5>
               <ul className="space-y-3 text-gray-400">
                 <li><Link to="/documentation" className="hover:text-white transition-colors">Documentation</Link></li>
-                <li><Link to="/api-reference" className="hover:text-white transition-colors">API Reference</Link></li>
+                <li><Link to="/security" className="hover:text-white transition-colors">Security</Link></li>
                 <li><Link to="/support" className="hover:text-white transition-colors">Support</Link></li>
               </ul>
             </div>
