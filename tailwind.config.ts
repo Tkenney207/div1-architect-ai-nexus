@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -19,6 +20,19 @@ export default {
 		},
 		extend: {
 			colors: {
+				navy: {
+					50: '#f0f4ff',
+					100: '#e0e9ff',
+					200: '#c7d8ff',
+					300: '#a5c0ff',
+					400: '#8197ff',
+					500: '#6366f1',
+					600: '#4f46e5',
+					700: '#4338ca',
+					800: '#3730a3',
+					900: '#1e3a8a',
+					950: '#0f172a',
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
