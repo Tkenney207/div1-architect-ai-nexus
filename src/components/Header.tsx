@@ -21,6 +21,9 @@ const Header = () => {
             <Link to="/engage" className="text-gray-300 hover:text-white transition-colors font-medium">
               Engage
             </Link>
+            <Link to="/division1" className="text-gray-300 hover:text-white transition-colors font-medium">
+              Division 1
+            </Link>
             <Link to="/master1" className="text-gray-300 hover:text-white transition-colors font-medium">
               Master1
             </Link>

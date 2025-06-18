@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Engage from "./pages/Engage";
+import Division1 from "./pages/Division1";
 import Master1 from "./pages/Master1";
 import Documentation from "./pages/Documentation";
 import ApiReference from "./pages/ApiReference";
@@ -28,6 +29,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/engage" element={<Engage />} />
+          <Route path="/division1" element={<Division1 />} />
           <Route path="/master1" element={<Master1 />} />
           <Route path="/documentation" element={<Documentation />} />
           <Route path="/api-reference" element={<ApiReference />} />

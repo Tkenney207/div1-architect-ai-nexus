@@ -29,6 +29,10 @@ interface ProjectData {
   vision?: string;
   objectives?: string[];
   constraints?: string[];
+  sustainabilityGoals?: string[];
+  qualityRequirements?: string[];
+  submittalProcedures?: string[];
+  wasteManagement?: string[];
 }
 
 export const useProjectCharter = () => {
@@ -39,6 +43,7 @@ export const useProjectCharter = () => {
     type: ''
   });
   const [stakeholders, setStakeholders] = useState<Stakeholder[]>([]);
+  const [charterComplete, setCharterComplete] = useState(false);
 
   const createProjectMutation = useMutation({
     mutationFn: async (projectName: string) => {
@@ -117,12 +122,38 @@ export const useProjectCharter = () => {
       
       setMessages(prev => [...prev, userMessage]);
       
-      // Simulate AI response for now - you'll replace this with your backend call
+      // Simulate AI response and charter completion
       await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Check if charter might be complete based on message content
+      const isCompletionMessage = content.toLowerCase().includes('complete') || 
+                                 content.toLowerCase().includes('finished') ||
+                                 content.toLowerCase().includes('done');
+      
+      let aiResponse = "I'm ready to help with your project charter. Please integrate your OpenAI backend to enable AI responses.";
+      
+      if (isCompletionMessage) {
+        aiResponse = `Great! Your project charter is now complete with comprehensive stakeholder input and project details. 
+
+🎉 **Charter Complete!** 
+
+Now that we have all the essential project information, would you like me to generate your Division 1 specifications? I can automatically create CSI MasterFormat specifications using the charter data we've collected.
+
+[**Generate Division 1 Specifications →**](/division1)
+
+This will create professional specifications including:
+- 011000 Summary of Work
+- 013100 Project Management 
+- 014000 Quality Requirements
+- 018113 Sustainable Design Requirements
+- And more based on your charter data`;
+        
+        setCharterComplete(true);
+      }
       
       const aiMessage: Message = {
         id: Math.random().toString(36).substr(2, 9),
-        content: "I'm ready to help with your project charter. Please integrate your OpenAI backend to enable AI responses.",
+        content: aiResponse,
         sender: 'ai',
         timestamp: new Date().toISOString()
       };
@@ -176,6 +207,7 @@ export const useProjectCharter = () => {
     messages,
     projectData,
     stakeholders,
+    charterComplete,
     isLoading: createProjectMutation.isPending || sendMessageMutation.isPending || generateLinksMutation.isPending
   };
 };
