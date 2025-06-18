@@ -14,6 +14,7 @@ import Projects from "./pages/Projects";
 import Support from "./pages/Support";
 import Security from "./pages/Security";
 import NotFound from "./pages/NotFound";
+import Footer from "./components/Footer";
 import { AuthProvider } from "./contexts/AuthContext";
 
 const queryClient = new QueryClient();
@@ -23,21 +24,26 @@ const App = () => (
     <AuthProvider>
       <TooltipProvider>
         <Toaster />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/engage" element={<Engage />} />
-            <Route path="/division1" element={<Division1 />} />
-            <Route path="/master1" element={<Master1 />} />
-            <Route path="/signin" element={<Signin />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/support" element={<Support />} />
-            <Route path="/security" element={<Security />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <div className="min-h-screen flex flex-col">
+          <BrowserRouter>
+            <div className="flex-1">
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/engage" element={<Engage />} />
+                <Route path="/division1" element={<Division1 />} />
+                <Route path="/master1" element={<Master1 />} />
+                <Route path="/signin" element={<Signin />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/support" element={<Support />} />
+                <Route path="/security" element={<Security />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
+            <Footer />
+          </BrowserRouter>
+        </div>
       </TooltipProvider>
     </AuthProvider>
   </QueryClientProvider>
