@@ -5,7 +5,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { MessageCircle, Mail, Phone, Send } from "lucide-react";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import SupportChatbot from "@/components/SupportChatbot";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -196,7 +195,6 @@ const Support = () => {
         </div>
       </section>
 
-      <Footer />
       <SupportChatbot />
     </div>
   );
