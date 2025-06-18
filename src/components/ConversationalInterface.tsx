@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,6 +17,7 @@ export const ConversationalInterface = () => {
     messages, 
     projectData, 
     stakeholders, 
+    charterComplete,
     isLoading
   } = useProjectCharter();
 
@@ -46,6 +48,9 @@ export const ConversationalInterface = () => {
           <CardTitle className="text-white flex items-center space-x-3">
             <MessageSquare className="h-6 w-6 text-green-400" />
             <span>AI Project Charter Assistant</span>
+            {charterComplete && (
+              <Badge className="bg-green-600 text-white">Charter Complete</Badge>
+            )}
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -65,7 +70,7 @@ export const ConversationalInterface = () => {
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h3 className="text-xl font-semibold text-white">{projectData.name}</h3>
-                  <p className="text-gray-400">{projectData.description}</p>
+                  <p className="text-gray-400">{projectData.description || 'Building your project charter...'}</p>
                 </div>
                 <Badge variant="outline" className="border-green-500 text-green-400">
                   Active Project
@@ -73,25 +78,41 @@ export const ConversationalInterface = () => {
               </div>
               
               {/* Chat Interface */}
-              <div className="bg-gray-900 rounded-lg p-4 h-96 overflow-y-auto mb-4">
+              <div className="bg-gray-900 rounded-lg p-4 h-96 overflow-y-auto mb-4 space-y-4">
+                {messages.length === 0 && (
+                  <div className="text-center text-gray-400 py-8">
+                    <MessageSquare className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                    <p>Your AI charter assistant is ready to help!</p>
+                    <p className="text-sm">Ask questions about your project to build a comprehensive charter.</p>
+                  </div>
+                )}
+                
                 {messages.map((msg, index) => (
-                  <div key={index} className={`mb-4 ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}>
-                    <div className={`inline-block p-3 rounded-lg max-w-xs ${
+                  <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+                    <div className={`max-w-[80%] p-3 rounded-lg ${
                       msg.sender === 'user' 
                         ? 'bg-green-600 text-white' 
                         : 'bg-gray-700 text-gray-200'
                     }`}>
-                      <div className="whitespace-pre-wrap">{msg.content}</div>
-                    </div>
-                    <div className="text-xs text-gray-500 mt-1">
-                      {new Date(msg.timestamp).toLocaleTimeString()}
+                      <div className="whitespace-pre-wrap text-sm">{msg.content}</div>
+                      <div className="text-xs opacity-70 mt-1">
+                        {new Date(msg.timestamp).toLocaleTimeString()}
+                      </div>
                     </div>
                   </div>
                 ))}
+                
                 {isLoading && (
-                  <div className="text-left mb-4">
-                    <div className="inline-block p-3 rounded-lg bg-gray-700 text-gray-200">
-                      AI is thinking...
+                  <div className="flex justify-start">
+                    <div className="bg-gray-700 text-gray-200 p-3 rounded-lg">
+                      <div className="flex items-center space-x-2">
+                        <div className="animate-pulse flex space-x-1">
+                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                        </div>
+                        <span className="text-sm">AI is thinking...</span>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -104,14 +125,16 @@ export const ConversationalInterface = () => {
                     placeholder="Describe your project or ask questions..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="bg-gray-900 border-gray-600 text-white"
-                    onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                    className="bg-gray-900 border-gray-600 text-white placeholder-gray-400"
+                    onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && handleSendMessage()}
                   />
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={toggleRecording}
                     className={`border-gray-600 ${isRecording ? 'bg-red-600 text-white' : 'text-gray-300'}`}
+                    disabled
+                    title="Voice recording coming soon"
                   >
                     <Mic className="h-4 w-4" />
                   </Button>
@@ -153,15 +176,25 @@ export const ConversationalInterface = () => {
                       </Badge>
                     </div>
                     <p className="text-sm text-gray-400 mb-3">{stakeholder.description}</p>
-                    {stakeholder.interviewLink && (
-                      <Button 
-                        size="sm" 
-                        variant="outline"
-                        className="w-full border-blue-500 text-blue-400 hover:bg-blue-600"
-                      >
-                        <Share className="h-4 w-4 mr-2" />
-                        Share Interview Link
-                      </Button>
+                    {stakeholder.interviewLink ? (
+                      <div className="space-y-2">
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          className="w-full border-blue-500 text-blue-400 hover:bg-blue-600"
+                          onClick={() => window.open(stakeholder.interviewLink, '_blank')}
+                        >
+                          <Share className="h-4 w-4 mr-2" />
+                          Open Interview Link
+                        </Button>
+                        <div className="text-xs text-gray-500 break-all">
+                          {stakeholder.interviewLink}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="text-sm text-gray-500">
+                        Generate links to create interview
+                      </div>
                     )}
                   </CardContent>
                 </Card>
@@ -171,9 +204,10 @@ export const ConversationalInterface = () => {
             <Button 
               onClick={generateStakeholderLinks}
               className="bg-blue-600 hover:bg-blue-700"
+              disabled={isLoading}
             >
               <Users className="h-4 w-4 mr-2" />
-              Generate Interview Links
+              {stakeholders.some(s => s.interviewLink) ? 'Regenerate Interview Links' : 'Generate Interview Links'}
             </Button>
           </CardContent>
         </Card>
@@ -199,7 +233,7 @@ export const ConversationalInterface = () => {
                 </div>
                 <div className="w-full bg-gray-700 rounded-full h-2">
                   <div 
-                    className="bg-green-500 h-2 rounded-full" 
+                    className="bg-green-500 h-2 rounded-full transition-all duration-300" 
                     style={{
                       width: `${(stakeholders.filter(s => s.status === 'completed').length / stakeholders.length) * 100}%`
                     }}
@@ -220,15 +254,15 @@ export const ConversationalInterface = () => {
               <div className="space-y-3 text-sm">
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="h-4 w-4 text-green-400" />
-                  <span className="text-gray-300">Project vision aligned</span>
+                  <span className="text-gray-300">AI assistant connected</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="h-4 w-4 text-green-400" />
-                  <span className="text-gray-300">Budget constraints identified</span>
+                  <span className="text-gray-300">Project charter started</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <CheckCircle className="h-4 w-4 text-yellow-400" />
-                  <span className="text-gray-300">Risk factors noted</span>
+                  <CheckCircle className={`h-4 w-4 ${messages.length > 5 ? 'text-green-400' : 'text-gray-400'}`} />
+                  <span className="text-gray-300">Requirements gathering</span>
                 </div>
               </div>
             </CardContent>
@@ -244,15 +278,18 @@ export const ConversationalInterface = () => {
             <CardContent>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-gray-300">Completion</span>
-                  <span className="text-purple-400">67%</span>
+                  <span className="text-gray-300">Messages</span>
+                  <span className="text-purple-400">{messages.length}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-300">Sections</span>
-                  <span className="text-white">7/10</span>
+                  <span className="text-gray-300">Stakeholders</span>
+                  <span className="text-white">{stakeholders.length}</span>
                 </div>
-                <div className="w-full bg-gray-700 rounded-full h-2">
-                  <div className="bg-purple-500 h-2 rounded-full" style={{width: '67%'}}></div>
+                <div className="flex justify-between">
+                  <span className="text-gray-300">Status</span>
+                  <span className={charterComplete ? 'text-green-400' : 'text-yellow-400'}>
+                    {charterComplete ? 'Complete' : 'In Progress'}
+                  </span>
                 </div>
               </div>
             </CardContent>
