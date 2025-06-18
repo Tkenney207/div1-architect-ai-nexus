@@ -10,56 +10,40 @@ import { EngageIcon, Master1Icon } from "@/components/ModuleIcons";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white">
+    <div className="min-h-screen bg-gray-50">
       <Header />
 
       {/* Hero Section */}
       <section className="relative overflow-hidden py-24">
-        {/* Video Background */}
-        <div className="absolute inset-0 w-full h-full">
-          <video
-            className="w-full h-full object-cover opacity-20"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src="/lovable-uploads/architects-working.mp4" type="video/mp4" />
-            {/* Fallback for browsers that don't support video */}
-            Your browser does not support the video tag.
-          </video>
-          {/* Dark overlay to ensure text readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-blue-950/80 to-slate-900/80"></div>
-        </div>
-        
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-orange-600/10"></div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-5xl mx-auto">
-            {/* Large Hero Logo - melted into background */}
-            <div className="relative group mb-12">
-              <div className="absolute -inset-4 bg-gradient-to-r from-orange-600 via-blue-600 to-orange-600 rounded-3xl blur-lg opacity-20 group-hover:opacity-30 transition duration-500"></div>
-              <div className="relative p-8">
-                <Div1Logo size="5xl" className="mx-auto hover:scale-110 transition-transform duration-500 drop-shadow-2xl filter brightness-110" />
-              </div>
+            {/* Large Hero Logo */}
+            <div className="mb-16">
+              <Div1Logo size="5xl" className="mx-auto hover:scale-105 transition-transform duration-500" />
             </div>
             
-            <h2 className="text-7xl font-bold text-white mb-4 leading-tight">
-              <span className="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent">From input to output</span>
-            </h2>
-            <h3 className="text-4xl font-semibold text-gray-300 mb-8">
+            <h1 className="text-6xl md:text-7xl font-light text-gray-900 mb-6 leading-tight">
+              <span className="text-orange-500 font-medium">From input to output</span>
+            </h1>
+            <h2 className="text-3xl md:text-4xl font-light text-gray-700 mb-12">
               AI that understands what makes AEC work.
-            </h3>
-            <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-4xl mx-auto">
-              Streamline project planning and specification management with our comprehensive AI-driven ecosystem designed for AEC professionals.
-            </p>
+            </h2>
+            
+            {/* Hero Content Box */}
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-12 mb-16 max-w-4xl mx-auto">
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Streamline project planning and specification management with our comprehensive AI-driven ecosystem designed for AEC professionals.
+              </p>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Link to="/signup">
-                <Button size="lg" className="text-lg px-10 py-6 rounded-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 shadow-2xl hover:shadow-orange-500/25 transition-all border-0 text-white font-semibold">
+                <Button size="lg" className="text-lg px-12 py-4 rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-medium transition-colors">
                   Get Started Free
-                  <ArrowRight className="ml-3 h-6 w-6" />
+                  <ArrowRight className="ml-3 h-5 w-5" />
                 </Button>
               </Link>
-              <Button variant="outline" size="lg" className="text-lg px-10 py-6 rounded-full border-2 border-orange-500/50 text-orange-300 hover:bg-orange-600 hover:text-white hover:border-orange-600 transition-all font-semibold">
+              <Button variant="outline" size="lg" className="text-lg px-12 py-4 rounded-lg border-2 border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors font-medium">
                 Watch Demo
               </Button>
             </div>
@@ -68,42 +52,48 @@ const Index = () => {
       </section>
 
       {/* Solutions Section */}
-      <section className="py-24 bg-slate-800/30">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-20">
-            <h3 className="text-5xl font-bold text-white mb-8">Three powerful solutions</h3>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">Interconnected tools designed to work seamlessly together for your complete AEC workflow</p>
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-8">Three powerful solutions</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">Interconnected tools designed to work seamlessly together for your complete AEC workflow</p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Engage Module */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-orange-500/50">
-              <CardHeader className="pb-8">
-                <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors w-fit mb-6">
-                  <EngageIcon className="text-orange-400" />
+            <Card className="group hover:shadow-lg transition-all duration-300 bg-white border border-gray-200">
+              <CardHeader className="p-8">
+                <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center group-hover:bg-orange-200 transition-colors mb-6">
+                  <EngageIcon className="text-orange-500" />
                 </div>
-                <CardTitle className="text-2xl mb-3 text-white">Engage</CardTitle>
-                <CardDescription className="text-base leading-relaxed text-gray-300">
+                <CardTitle className="text-2xl font-medium mb-4 text-gray-900">Engage</CardTitle>
+                <CardDescription className="text-base leading-relaxed text-gray-600">
                   AI-facilitated project charter with conversational intelligence and privacy protection
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <ul className="space-y-4 mb-10 text-sm text-gray-400">
+              <CardContent className="px-8 pb-8">
+                <ul className="space-y-4 mb-10 text-sm text-gray-600">
                   <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
+                    <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="h-3 w-3 text-green-600" />
+                    </div>
                     <span>Multi-agent conversation system</span>
                   </li>
                   <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
+                    <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="h-3 w-3 text-green-600" />
+                    </div>
                     <span>Privacy-preserving architecture</span>
                   </li>
                   <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
+                    <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="h-3 w-3 text-green-600" />
+                    </div>
                     <span>Real-time sentiment analysis</span>
                   </li>
                 </ul>
                 <Link to="/engage">
-                  <Button className="w-full rounded-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 transition-all border-0 text-white font-semibold py-3">
+                  <Button className="w-full rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 transition-colors">
                     Start Charter
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -112,33 +102,39 @@ const Index = () => {
             </Card>
 
             {/* Division1 Module */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-purple-500/50">
-              <CardHeader className="pb-8">
-                <div className="bg-purple-600/20 rounded-2xl p-4 group-hover:bg-purple-500/30 transition-colors w-fit mb-6">
-                  <FileText className="h-8 w-8 text-purple-400" />
+            <Card className="group hover:shadow-lg transition-all duration-300 bg-white border border-gray-200">
+              <CardHeader className="p-8">
+                <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center group-hover:bg-purple-200 transition-colors mb-6">
+                  <FileText className="h-8 w-8 text-purple-500" />
                 </div>
-                <CardTitle className="text-2xl mb-3 text-white">Division1</CardTitle>
-                <CardDescription className="text-base leading-relaxed text-gray-300">
+                <CardTitle className="text-2xl font-medium mb-4 text-gray-900">Division1</CardTitle>
+                <CardDescription className="text-base leading-relaxed text-gray-600">
                   Generate complete CSI MasterFormat Division 01 specifications from project charter data with AI precision
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <ul className="space-y-4 mb-10 text-sm text-gray-400">
+              <CardContent className="px-8 pb-8">
+                <ul className="space-y-4 mb-10 text-sm text-gray-600">
                   <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
+                    <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="h-3 w-3 text-green-600" />
+                    </div>
                     <span>Automated charter-to-spec mapping</span>
                   </li>
                   <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
+                    <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="h-3 w-3 text-green-600" />
+                    </div>
                     <span>3-part CSI format Division 01 generation</span>
                   </li>
                   <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
+                    <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="h-3 w-3 text-green-600" />
+                    </div>
                     <span>Side-by-side editing interface</span>
                   </li>
                 </ul>
                 <Link to="/division1">
-                  <Button className="w-full rounded-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 transition-all border-0 text-white font-semibold py-3">
+                  <Button className="w-full rounded-lg bg-purple-500 hover:bg-purple-600 text-white font-medium py-3 transition-colors">
                     Generate Specs
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -147,33 +143,39 @@ const Index = () => {
             </Card>
 
             {/* Master1 Module */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-blue-500/50">
-              <CardHeader className="pb-8">
-                <div className="bg-blue-600/20 rounded-2xl p-4 group-hover:bg-blue-500/30 transition-colors w-fit mb-6">
-                  <Master1Icon className="text-blue-400" />
+            <Card className="group hover:shadow-lg transition-all duration-300 bg-white border border-gray-200">
+              <CardHeader className="p-8">
+                <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-blue-200 transition-colors mb-6">
+                  <Master1Icon className="text-blue-500" />
                 </div>
-                <CardTitle className="text-2xl mb-3 text-white">Master1</CardTitle>
-                <CardDescription className="text-base leading-relaxed text-gray-300">
+                <CardTitle className="text-2xl font-medium mb-4 text-gray-900">Master1</CardTitle>
+                <CardDescription className="text-base leading-relaxed text-gray-600">
                   Intelligent specification synthesis with compliance validation and standards checking
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <ul className="space-y-4 mb-10 text-sm text-gray-400">
+              <CardContent className="px-8 pb-8">
+                <ul className="space-y-4 mb-10 text-sm text-gray-600">
                   <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
+                    <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="h-3 w-3 text-green-600" />
+                    </div>
                     <span>Multi-modal document processing</span>
                   </li>
                   <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
+                    <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="h-3 w-3 text-green-600" />
+                    </div>
                     <span>Real-time standards validation</span>
                   </li>
                   <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
+                    <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="h-3 w-3 text-green-600" />
+                    </div>
                     <span>Automated compliance checking</span>
                   </li>
                 </ul>
                 <Link to="/master1">
-                  <Button className="w-full rounded-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 transition-all border-0 text-white font-semibold py-3">
+                  <Button className="w-full rounded-lg bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 transition-colors">
                     Process Specs
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -185,13 +187,13 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 border-t border-slate-700 py-16">
+      <footer className="bg-gray-900 py-16">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-12">
             <div>
               <div className="flex items-center space-x-3 mb-6">
                 <Div1Logo size="sm" />
-                <span className="text-xl font-semibold text-white">Platform</span>
+                <span className="text-xl font-medium text-white">Platform</span>
               </div>
               <p className="text-gray-400 leading-relaxed">
                 AI-driven ecosystem for the Architecture, Engineering, and Construction industry.
@@ -199,7 +201,7 @@ const Index = () => {
             </div>
             
             <div>
-              <h5 className="font-semibold mb-6 text-lg text-white">Solutions</h5>
+              <h5 className="font-medium mb-6 text-lg text-white">Solutions</h5>
               <ul className="space-y-3 text-gray-400">
                 <li><Link to="/engage" className="hover:text-white transition-colors">Engage</Link></li>
                 <li><Link to="/division1" className="hover:text-white transition-colors">Division1</Link></li>
@@ -208,7 +210,7 @@ const Index = () => {
             </div>
             
             <div>
-              <h5 className="font-semibold mb-6 text-lg text-white">Resources</h5>
+              <h5 className="font-medium mb-6 text-lg text-white">Resources</h5>
               <ul className="space-y-3 text-gray-400">
                 <li><Link to="/documentation" className="hover:text-white transition-colors">Documentation</Link></li>
                 <li><Link to="/security" className="hover:text-white transition-colors">Security</Link></li>
@@ -217,7 +219,7 @@ const Index = () => {
             </div>
             
             <div>
-              <h5 className="font-semibold mb-6 text-lg text-white">Company</h5>
+              <h5 className="font-medium mb-6 text-lg text-white">Company</h5>
               <ul className="space-y-3 text-gray-400">
                 <li><Link to="/about" className="hover:text-white transition-colors">About</Link></li>
                 <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
@@ -226,7 +228,7 @@ const Index = () => {
             </div>
           </div>
           
-          <div className="border-t border-slate-700 mt-12 pt-8 text-center text-gray-400">
+          <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
             © 2024 Div1 Platform Suite. All rights reserved.
           </div>
         </div>
