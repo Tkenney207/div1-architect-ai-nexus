@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { ArrowRight, CheckCircle, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 import Div1Logo from "@/components/Div1Logo";
 import Header from "@/components/Header";
@@ -71,11 +71,11 @@ const Index = () => {
       <section className="py-24 bg-slate-800/30">
         <div className="container mx-auto px-6">
           <div className="text-center mb-20">
-            <h3 className="text-5xl font-bold text-white mb-8">Two powerful solutions</h3>
+            <h3 className="text-5xl font-bold text-white mb-8">Three powerful solutions</h3>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">Interconnected tools designed to work seamlessly together for your complete AEC workflow</p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-10 max-w-4xl mx-auto">
+          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Engage Module */}
             <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-orange-500/50">
               <CardHeader className="pb-8">
@@ -111,11 +111,46 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            {/* Master1 Module */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-orange-500/50">
+            {/* Division 1 Module */}
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-purple-500/50">
               <CardHeader className="pb-8">
-                <div className="bg-orange-600/20 rounded-2xl p-4 group-hover:bg-orange-500/30 transition-colors w-fit mb-6">
-                  <Master1Icon className="text-orange-400" />
+                <div className="bg-purple-600/20 rounded-2xl p-4 group-hover:bg-purple-500/30 transition-colors w-fit mb-6">
+                  <FileText className="h-8 w-8 text-purple-400" />
+                </div>
+                <CardTitle className="text-2xl mb-3 text-white">Division 1</CardTitle>
+                <CardDescription className="text-base leading-relaxed text-gray-300">
+                  Generate complete CSI Division 1 specifications from project charter data with AI precision
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-4 mb-10 text-sm text-gray-400">
+                  <li className="flex items-center space-x-3">
+                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
+                    <span>Automated charter-to-spec mapping</span>
+                  </li>
+                  <li className="flex items-center space-x-3">
+                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
+                    <span>3-part CSI format generation</span>
+                  </li>
+                  <li className="flex items-center space-x-3">
+                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
+                    <span>Side-by-side editing interface</span>
+                  </li>
+                </ul>
+                <Link to="/division1">
+                  <Button className="w-full rounded-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 transition-all border-0 text-white font-semibold py-3">
+                    Generate Specs
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
+            {/* Master1 Module */}
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-blue-500/50">
+              <CardHeader className="pb-8">
+                <div className="bg-blue-600/20 rounded-2xl p-4 group-hover:bg-blue-500/30 transition-colors w-fit mb-6">
+                  <Master1Icon className="text-blue-400" />
                 </div>
                 <CardTitle className="text-2xl mb-3 text-white">Master1</CardTitle>
                 <CardDescription className="text-base leading-relaxed text-gray-300">
@@ -138,7 +173,7 @@ const Index = () => {
                   </li>
                 </ul>
                 <Link to="/master1">
-                  <Button className="w-full rounded-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 transition-all border-0 text-white font-semibold py-3">
+                  <Button className="w-full rounded-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 transition-all border-0 text-white font-semibold py-3">
                     Process Specs
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
