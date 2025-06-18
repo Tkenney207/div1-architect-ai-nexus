@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -59,12 +60,6 @@ const Header = () => {
             </Link>
             <Link to="/master1" className="text-gray-300 hover:text-white transition-colors font-medium">
               Master1
-            </Link>
-            <Link to="/support" className="text-gray-300 hover:text-white transition-colors font-medium">
-              Support
-            </Link>
-            <Link to="/security" className="text-gray-300 hover:text-white transition-colors font-medium">
-              Security
             </Link>
             <div className="flex items-center space-x-3">
               {user ? (
