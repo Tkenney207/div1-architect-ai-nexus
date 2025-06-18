@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -39,25 +40,25 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white/80 backdrop-blur-xl border-b border-slate-200/50 sticky top-0 z-50">
+    <header className="border-b border-gray-800 bg-black/50 backdrop-blur-xl">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-6">
             <Link to="/" className="relative group">
-              <div className="absolute -inset-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-xl blur opacity-0 group-hover:opacity-20 transition duration-300"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-orange-600 to-blue-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
               <div className="relative">
-                <Div1Logo size="xl" className="hover:scale-105 transition-transform duration-300" />
+                <Div1Logo size="xl" className="hover:scale-105 transition-transform duration-300 drop-shadow-2xl" />
               </div>
             </Link>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/engage" className="text-slate-600 hover:text-slate-900 transition-colors font-medium">
+            <Link to="/engage" className="text-gray-300 hover:text-white transition-colors font-medium">
               Engage
             </Link>
-            <Link to="/division1" className="text-slate-600 hover:text-slate-900 transition-colors font-medium">
+            <Link to="/division1" className="text-gray-300 hover:text-white transition-colors font-medium">
               Division 1
             </Link>
-            <Link to="/master1" className="text-slate-600 hover:text-slate-900 transition-colors font-medium">
+            <Link to="/master1" className="text-gray-300 hover:text-white transition-colors font-medium">
               Master1
             </Link>
             <div className="flex items-center space-x-3">
@@ -65,35 +66,37 @@ const Header = () => {
                 <>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white font-medium">
+                      <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 border-0 font-semibold">
                         <User className="h-4 w-4 mr-2" />
                         {getUserDisplayName()}
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className="bg-white border border-slate-200 shadow-lg">
-                      <DropdownMenuItem onClick={handleSignOut} className="text-slate-600 hover:text-slate-900 transition-colors cursor-pointer">
+                    <DropdownMenuContent className="bg-gray-800 border-gray-700">
+                      <DropdownMenuItem onClick={handleSignOut} className="text-gray-300 hover:text-white transition-colors cursor-pointer">
                         <LogOut className="h-4 w-4 mr-2" />
                         Sign Out
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                   <Link to="/dashboard">
-                    <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium">
+                    <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 border-0 font-semibold">
                       <Home className="h-4 w-4 mr-2" />
-                      Dashboard
+                      Home
                     </Button>
                   </Link>
                 </>
               ) : (
                 <>
-                  <Link to="/signin">
-                    <Button size="sm" variant="ghost" className="rounded-full px-6 text-slate-600 hover:text-slate-900 font-medium">
-                      Sign In
+                  <Link to="/signup">
+                    <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 border-0 font-semibold">
+                      <UserPlus className="h-4 w-4 mr-2" />
+                      Sign Up
                     </Button>
                   </Link>
-                  <Link to="/signup">
-                    <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium">
-                      Get Started
+                  <Link to="/signin">
+                    <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 border-0 font-semibold">
+                      <Users className="h-4 w-4 mr-2" />
+                      Login
                     </Button>
                   </Link>
                 </>
