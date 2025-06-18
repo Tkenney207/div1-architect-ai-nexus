@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -111,15 +110,15 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            {/* Division 1 Module */}
+            {/* Division01 Module */}
             <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-xl hover:-translate-y-3 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 hover:border-purple-500/50">
               <CardHeader className="pb-8">
                 <div className="bg-purple-600/20 rounded-2xl p-4 group-hover:bg-purple-500/30 transition-colors w-fit mb-6">
                   <FileText className="h-8 w-8 text-purple-400" />
                 </div>
-                <CardTitle className="text-2xl mb-3 text-white">Division 1</CardTitle>
+                <CardTitle className="text-2xl mb-3 text-white">Division01</CardTitle>
                 <CardDescription className="text-base leading-relaxed text-gray-300">
-                  Generate complete CSI Division 1 specifications from project charter data with AI precision
+                  Generate complete CSI Division01 specifications from project charter data with AI precision
                 </CardDescription>
               </CardHeader>
               <CardContent>
