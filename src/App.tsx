@@ -6,6 +6,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Index from "./pages/Index";
+import Dashboard from "./pages/Dashboard";
+import Projects from "./pages/Projects";
 import Engage from "./pages/Engage";
 import Division1 from "./pages/Division1";
 import Master1 from "./pages/Master1";
@@ -36,6 +38,8 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/projects" element={<Projects />} />
             <Route path="/engage" element={<Engage />} />
             <Route path="/division1" element={<Division1 />} />
             <Route path="/master1" element={<Master1 />} />
