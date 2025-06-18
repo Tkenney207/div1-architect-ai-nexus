@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -48,7 +49,7 @@ const Master1 = () => {
               <div className="bg-blue-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-blue-500/30 transition-colors">
                 <FileText className="h-8 w-8 text-blue-400" />
               </div>
-              <CardTitle className="text-xl text-white">Document Understanding</CardTitle>
+              <CardTitle className="text-xl text-white">Technical Content Comprehension</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-300 mb-6">
