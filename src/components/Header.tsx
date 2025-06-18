@@ -61,9 +61,6 @@ const Header = () => {
             <Link to="/master1" className="text-gray-300 hover:text-white transition-colors font-medium">
               Master1
             </Link>
-            <Link to="/about" className="text-gray-300 hover:text-white transition-colors font-medium">
-              About
-            </Link>
             <div className="flex items-center space-x-3">
               <Link to="/signup">
                 <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 border-0 font-semibold">
