@@ -11,6 +11,11 @@ const About = () => {
       usedBy: "Owners, PMs, Architects"
     },
     {
+      module: "Division1",
+      outcome: "AI-generated CSI MasterFormat specifications from charter data",
+      usedBy: "Spec Writers, Engineers, Architects"
+    },
+    {
       module: "Master1",
       outcome: "Validated, editable specs with AI acceleration",
       usedBy: "Spec Writers, Engineers, Contractors"
@@ -26,7 +31,7 @@ const About = () => {
           <div className="text-center mb-16">
             <h1 className="text-5xl font-bold text-white mb-6">Platform Summary</h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Two integrated modules delivering intelligent solutions for the AEC industry
+              Three integrated modules delivering intelligent solutions for the AEC industry
             </p>
           </div>
 
