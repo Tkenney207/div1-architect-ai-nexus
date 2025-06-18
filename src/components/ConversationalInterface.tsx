@@ -1,11 +1,11 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MessageSquare, Users, Send, Mic, FileText, Share, BarChart3, CheckCircle } from "lucide-react";
+import { MessageSquare, Users, Send, Mic, FileText, Share, BarChart3, CheckCircle, Copy } from "lucide-react";
 import { useProjectCharter } from "@/hooks/useProjectCharter";
+import { toast } from "@/hooks/use-toast";
 
 export const ConversationalInterface = () => {
   const [message, setMessage] = useState('');
@@ -38,6 +38,53 @@ export const ConversationalInterface = () => {
   const toggleRecording = () => {
     setIsRecording(!isRecording);
     // Voice recording logic would go here
+  };
+
+  const handleCopyLink = async (link: string, stakeholderRole: string) => {
+    try {
+      await navigator.clipboard.writeText(link);
+      toast({
+        title: "Link Copied!",
+        description: `Interview link for ${stakeholderRole} copied to clipboard.`,
+      });
+    } catch (err) {
+      // Fallback for browsers that don't support clipboard API
+      const textArea = document.createElement('textarea');
+      textArea.value = link;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      toast({
+        title: "Link Copied!",
+        description: `Interview link for ${stakeholderRole} copied to clipboard.`,
+      });
+    }
+  };
+
+  const handleShareLink = async (link: string, stakeholderRole: string) => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `Interview Link - ${stakeholderRole}`,
+          text: `Please complete this stakeholder interview for our project: ${projectData.name}`,
+          url: link,
+        });
+        toast({
+          title: "Link Shared!",
+          description: `Interview link for ${stakeholderRole} shared successfully.`,
+        });
+      } catch (err) {
+        // User cancelled sharing or error occurred
+        if (err.name !== 'AbortError') {
+          // Fallback to copy
+          handleCopyLink(link, stakeholderRole);
+        }
+      }
+    } else {
+      // Fallback for browsers that don't support Web Share API
+      handleCopyLink(link, stakeholderRole);
+    }
   };
 
   return (
@@ -177,17 +224,36 @@ export const ConversationalInterface = () => {
                     </div>
                     <p className="text-sm text-gray-400 mb-3">{stakeholder.description}</p>
                     {stakeholder.interviewLink ? (
-                      <div className="space-y-2">
+                      <div className="space-y-3">
+                        <div className="flex space-x-2">
+                          <Button 
+                            size="sm" 
+                            variant="outline"
+                            className="flex-1 border-blue-500 text-blue-400 hover:bg-blue-600 hover:text-white"
+                            onClick={() => handleCopyLink(stakeholder.interviewLink!, stakeholder.role)}
+                          >
+                            <Copy className="h-4 w-4 mr-2" />
+                            Copy Link
+                          </Button>
+                          <Button 
+                            size="sm" 
+                            variant="outline"
+                            className="flex-1 border-green-500 text-green-400 hover:bg-green-600 hover:text-white"
+                            onClick={() => handleShareLink(stakeholder.interviewLink!, stakeholder.role)}
+                          >
+                            <Share className="h-4 w-4 mr-2" />
+                            Share
+                          </Button>
+                        </div>
                         <Button 
                           size="sm" 
-                          variant="outline"
-                          className="w-full border-blue-500 text-blue-400 hover:bg-blue-600"
+                          variant="ghost"
+                          className="w-full text-blue-400 hover:bg-blue-600/20"
                           onClick={() => window.open(stakeholder.interviewLink, '_blank')}
                         >
-                          <Share className="h-4 w-4 mr-2" />
-                          Open Interview Link
+                          Open Interview →
                         </Button>
-                        <div className="text-xs text-gray-500 break-all">
+                        <div className="text-xs text-gray-500 break-all font-mono bg-gray-800 p-2 rounded">
                           {stakeholder.interviewLink}
                         </div>
                       </div>
