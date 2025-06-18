@@ -18,6 +18,16 @@ serve(async (req) => {
   try {
     const { message, projectData, messages } = await req.json();
 
+    console.log('Received request:', { message, projectData, messagesCount: messages?.length });
+
+    if (!openAIApiKey) {
+      console.error('OpenAI API key not found');
+      return new Response(JSON.stringify({ error: 'OpenAI API key not configured' }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     // Build conversation context
     const systemPrompt = `You are an AI project charter assistant specializing in construction and architecture projects. Your role is to help users create comprehensive project charters by gathering essential information through conversational interviews.
 
@@ -36,10 +46,23 @@ Current project context:
 
 Be conversational, professional, and ask one focused question at a time. When you sense the charter is becoming comprehensive, suggest completion and offer to generate Division 1 specifications.`;
 
-    const conversationHistory = messages.map((msg: any) => ({
+    const conversationHistory = messages?.map((msg: any) => ({
       role: msg.sender === 'user' ? 'user' : 'assistant',
       content: msg.content
-    }));
+    })) || [];
+
+    const requestBody = {
+      model: 'gpt-4o-mini',
+      messages: [
+        { role: 'system', content: systemPrompt },
+        ...conversationHistory,
+        { role: 'user', content: message }
+      ],
+      temperature: 0.7,
+      max_tokens: 500,
+    };
+
+    console.log('Making OpenAI request with body:', JSON.stringify(requestBody, null, 2));
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -47,19 +70,31 @@ Be conversational, professional, and ask one focused question at a time. When yo
         'Authorization': `Bearer ${openAIApiKey}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        model: 'gpt-4o-mini',
-        messages: [
-          { role: 'system', content: systemPrompt },
-          ...conversationHistory,
-          { role: 'user', content: message }
-        ],
-        temperature: 0.7,
-        max_tokens: 500,
-      }),
+      body: JSON.stringify(requestBody),
     });
 
+    console.log('OpenAI response status:', response.status);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('OpenAI API error:', errorText);
+      return new Response(JSON.stringify({ error: `OpenAI API error: ${response.status}` }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     const data = await response.json();
+    console.log('OpenAI response data:', JSON.stringify(data, null, 2));
+
+    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+      console.error('Invalid OpenAI response structure:', data);
+      return new Response(JSON.stringify({ error: 'Invalid response from OpenAI' }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     const aiResponse = data.choices[0].message.content;
 
     return new Response(JSON.stringify({ response: aiResponse }), {
