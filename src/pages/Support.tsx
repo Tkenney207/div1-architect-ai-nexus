@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -6,6 +5,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { MessageCircle, Mail, Phone, Send } from "lucide-react";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import SupportChatbot from "@/components/SupportChatbot";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -33,11 +34,11 @@ const Support = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-blue-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-blue-900 text-white flex flex-col">
       <Header />
 
       {/* Content */}
-      <section className="py-24">
+      <section className="py-24 flex-1">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <div className="bg-orange-600/20 rounded-2xl p-4 w-fit mx-auto mb-8">
@@ -169,8 +170,8 @@ const Support = () => {
                     </div>
                     <div>
                       <h3 className="text-white font-semibold">Live Chat</h3>
-                      <p className="text-gray-300">Coming Soon</p>
-                      <p className="text-sm text-gray-400 mt-1">24/7 support chat will be available soon</p>
+                      <p className="text-gray-300">Available Now</p>
+                      <p className="text-sm text-gray-400 mt-1">Click the chat button to get instant help</p>
                     </div>
                   </div>
                 </CardContent>
@@ -194,6 +195,9 @@ const Support = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
+      <SupportChatbot />
     </div>
   );
 };
