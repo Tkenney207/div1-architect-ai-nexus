@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -41,18 +40,20 @@ const Support = () => {
       <section className="py-32 flex-1">
         <div className="container mx-auto px-6">
           <div className="text-center mb-20">
-            <div className="bg-gradient-to-br from-orange-100 to-orange-50 rounded-3xl p-6 w-fit mx-auto mb-12 shadow-lg">
-              <MessageCircle className="h-16 w-16 text-orange-500" />
+            <div className="bg-slate-800/5 backdrop-blur-sm rounded-3xl p-12 max-w-4xl mx-auto mb-12">
+              <div className="bg-gradient-to-br from-orange-100 to-orange-50 rounded-3xl p-6 w-fit mx-auto mb-8 shadow-lg">
+                <MessageCircle className="h-16 w-16 text-orange-500" />
+              </div>
+              <h1 className="text-6xl font-light text-gray-900 mb-8 tracking-tight">Support</h1>
+              <p className="text-2xl text-gray-700 max-w-4xl mx-auto font-light leading-relaxed">
+                Get help when you need it. Our support team is here to assist you.
+              </p>
             </div>
-            <h1 className="text-6xl font-light text-gray-900 mb-8 tracking-tight">Support</h1>
-            <p className="text-2xl text-gray-600 max-w-4xl mx-auto font-light leading-relaxed">
-              Get help when you need it. Our support team is here to assist you.
-            </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-16">
             {/* Contact Form */}
-            <Card className="bg-white/90 backdrop-blur-sm border border-slate-200 shadow-xl">
+            <Card className="bg-white/95 backdrop-blur-sm border border-slate-200 shadow-xl">
               <CardHeader className="pt-10 pb-8">
                 <CardTitle className="text-gray-900 text-3xl font-light">Submit a Support Request</CardTitle>
                 <CardDescription className="text-gray-600 text-lg font-light">
@@ -147,7 +148,7 @@ const Support = () => {
 
             {/* Contact Info */}
             <div className="space-y-8">
-              <Card className="bg-white/90 backdrop-blur-sm border border-slate-200 shadow-lg hover:shadow-xl transition-all">
+              <Card className="bg-white/95 backdrop-blur-sm border border-slate-200 shadow-lg hover:shadow-xl transition-all">
                 <CardContent className="p-10">
                   <div className="flex items-center space-x-6">
                     <div className="bg-gradient-to-br from-orange-100 to-orange-50 rounded-2xl p-4 shadow-md">
@@ -162,7 +163,7 @@ const Support = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/90 backdrop-blur-sm border border-slate-200 shadow-lg hover:shadow-xl transition-all">
+              <Card className="bg-white/95 backdrop-blur-sm border border-slate-200 shadow-lg hover:shadow-xl transition-all">
                 <CardContent className="p-10">
                   <div className="flex items-center space-x-6">
                     <div className="bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl p-4 shadow-md">
@@ -177,7 +178,7 @@ const Support = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/90 backdrop-blur-sm border border-slate-200 shadow-lg hover:shadow-xl transition-all">
+              <Card className="bg-white/95 backdrop-blur-sm border border-slate-200 shadow-lg hover:shadow-xl transition-all">
                 <CardContent className="p-10">
                   <div className="flex items-center space-x-6">
                     <div className="bg-gradient-to-br from-green-100 to-green-50 rounded-2xl p-4 shadow-md">

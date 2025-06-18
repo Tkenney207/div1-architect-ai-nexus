@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -30,22 +29,24 @@ const Division1 = () => {
     <>
       {/* Hero Section */}
       <div className="text-center mb-20">
-        <h2 className="text-7xl font-light text-gray-900 mb-12 tracking-tight">
-          Generate Division 1 with 
-          <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent font-medium"> AI precision </span>
-        </h2>
-        <div className="max-w-5xl mx-auto mb-16">
-          <h3 className="text-3xl font-light text-purple-600 mb-8">Choose your approach to Division 01 specifications</h3>
-          <p className="text-2xl text-gray-600 mb-12 leading-relaxed font-light">
-            Three powerful ways to create, enhance, and review CSI MasterFormat Division 01 specifications with AI-powered assistance.
-          </p>
+        <div className="bg-slate-800/5 backdrop-blur-sm rounded-3xl p-12 max-w-6xl mx-auto mb-16">
+          <h2 className="text-7xl font-light text-gray-900 mb-12 tracking-tight">
+            Generate Division 1 with 
+            <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent font-medium"> AI precision </span>
+          </h2>
+          <div className="max-w-5xl mx-auto">
+            <h3 className="text-3xl font-light text-purple-700 mb-8">Choose your approach to Division 01 specifications</h3>
+            <p className="text-2xl text-gray-700 mb-12 leading-relaxed font-light">
+              Three powerful ways to create, enhance, and review CSI MasterFormat Division 01 specifications with AI-powered assistance.
+            </p>
+          </div>
         </div>
       </div>
 
       {/* Module Selection Cards */}
       <div className="grid lg:grid-cols-3 gap-12 mb-20">
         {/* Module 1: Charter to Division 1 */}
-        <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-lg hover:-translate-y-4 bg-white/90 backdrop-blur-sm border border-purple-100 hover:border-purple-200">
+        <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-lg hover:-translate-y-4 bg-white/95 backdrop-blur-sm border border-purple-100 hover:border-purple-200">
           <CardHeader className="pb-10 pt-12">
             <div className="bg-gradient-to-br from-purple-100 to-purple-50 rounded-3xl p-6 group-hover:from-purple-200 group-hover:to-purple-100 transition-all w-fit mb-8 shadow-md">
               <FileText className="h-10 w-10 text-purple-500" />
@@ -81,7 +82,7 @@ const Division1 = () => {
         </Card>
 
         {/* Module 2: Guided Generation */}
-        <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-lg hover:-translate-y-4 bg-white/90 backdrop-blur-sm border border-blue-100 hover:border-blue-200">
+        <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-lg hover:-translate-y-4 bg-white/95 backdrop-blur-sm border border-blue-100 hover:border-blue-200">
           <CardHeader className="pb-10 pt-12">
             <div className="bg-gradient-to-br from-blue-100 to-blue-50 rounded-3xl p-6 group-hover:from-blue-200 group-hover:to-blue-100 transition-all w-fit mb-8 shadow-md">
               <Brain className="h-10 w-10 text-blue-500" />
@@ -117,7 +118,7 @@ const Division1 = () => {
         </Card>
 
         {/* Module 3: Review & Enhancement */}
-        <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-lg hover:-translate-y-4 bg-white/90 backdrop-blur-sm border border-green-100 hover:border-green-200">
+        <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-lg hover:-translate-y-4 bg-white/95 backdrop-blur-sm border border-green-100 hover:border-green-200">
           <CardHeader className="pb-10 pt-12">
             <div className="bg-gradient-to-br from-green-100 to-green-50 rounded-3xl p-6 group-hover:from-green-200 group-hover:to-green-100 transition-all w-fit mb-8 shadow-md">
               <Upload className="h-10 w-10 text-green-500" />
@@ -155,9 +156,11 @@ const Division1 = () => {
 
       {/* CSI Sections Coverage */}
       <div className="bg-gradient-to-br from-white to-slate-50 rounded-3xl p-16 shadow-xl border border-slate-200">
-        <h3 className="text-4xl font-light text-gray-900 mb-12 text-center tracking-tight">Complete Division 1 Coverage</h3>
+        <div className="bg-slate-800/5 backdrop-blur-sm rounded-3xl p-12 mb-12">
+          <h3 className="text-4xl font-light text-gray-900 mb-4 text-center tracking-tight">Complete Division 1 Coverage</h3>
+        </div>
         <div className="grid lg:grid-cols-3 gap-8">
-          <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white/90 backdrop-blur-sm border border-purple-100 hover:border-purple-200">
+          <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white/95 backdrop-blur-sm border border-purple-100 hover:border-purple-200">
             <CardHeader className="pt-8">
               <div className="bg-gradient-to-br from-purple-100 to-purple-50 rounded-2xl p-4 w-fit mb-6 group-hover:from-purple-200 group-hover:to-purple-100 transition-all shadow-sm">
                 <FileText className="h-8 w-8 text-purple-500" />
@@ -189,7 +192,7 @@ const Division1 = () => {
             </CardContent>
           </Card>
 
-          <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white/90 backdrop-blur-sm border border-blue-100 hover:border-blue-200">
+          <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white/95 backdrop-blur-sm border border-blue-100 hover:border-blue-200">
             <CardHeader className="pt-8">
               <div className="bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl p-4 w-fit mb-6 group-hover:from-blue-200 group-hover:to-blue-100 transition-all shadow-sm">
                 <Brain className="h-8 w-8 text-blue-500" />
@@ -217,7 +220,7 @@ const Division1 = () => {
             </CardContent>
           </Card>
 
-          <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white/90 backdrop-blur-sm border border-green-100 hover:border-green-200">
+          <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white/95 backdrop-blur-sm border border-green-100 hover:border-green-200">
             <CardHeader className="pt-8">
               <div className="bg-gradient-to-br from-green-100 to-green-50 rounded-2xl p-4 w-fit mb-6 group-hover:from-green-200 group-hover:to-green-100 transition-all shadow-sm">
                 <CheckCircle className="h-8 w-8 text-green-500" />

@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -18,7 +17,7 @@ const Index = () => {
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full">
           <video
-            className="w-full h-full object-cover opacity-10"
+            className="w-full h-full object-cover opacity-15"
             autoPlay
             muted
             loop
@@ -28,30 +27,33 @@ const Index = () => {
             {/* Fallback for browsers that don't support video */}
             Your browser does not support the video tag.
           </video>
-          {/* Light overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-blue-50/60 to-orange-50/60"></div>
+          {/* Enhanced overlay for better text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/40 via-blue-900/30 to-orange-900/40"></div>
         </div>
         
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-100/20 to-orange-100/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-800/20 to-slate-700/20"></div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-6xl mx-auto">
             {/* Large Hero Logo */}
             <div className="relative group mb-16">
-              <div className="absolute -inset-6 bg-gradient-to-r from-orange-200 via-blue-200 to-orange-200 rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition duration-500"></div>
-              <div className="relative p-12 bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/50">
+              <div className="absolute -inset-6 bg-gradient-to-r from-orange-200 via-blue-200 to-orange-200 rounded-3xl blur-xl opacity-40 group-hover:opacity-60 transition duration-500"></div>
+              <div className="relative p-12 bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/60">
                 <Div1Logo size="5xl" className="mx-auto hover:scale-105 transition-transform duration-500 drop-shadow-lg" />
               </div>
             </div>
             
-            <h2 className="text-8xl font-light text-gray-900 mb-6 leading-tight tracking-tight">
-              <span className="bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent font-medium">From input to output</span>
-            </h2>
-            <h3 className="text-5xl font-light text-gray-700 mb-12 tracking-wide">
-              AI that understands what makes AEC work.
-            </h3>
-            <p className="text-2xl text-gray-600 mb-16 leading-relaxed max-w-5xl mx-auto font-light">
-              Streamline project planning and specification management with our comprehensive AI-driven ecosystem designed for AEC professionals.
-            </p>
+            <div className="bg-slate-900/20 backdrop-blur-sm rounded-3xl p-12 mb-12">
+              <h2 className="text-8xl font-light text-white mb-6 leading-tight tracking-tight drop-shadow-lg">
+                <span className="bg-gradient-to-r from-blue-400 to-orange-400 bg-clip-text text-transparent font-medium">From input to output</span>
+              </h2>
+              <h3 className="text-5xl font-light text-white/90 mb-12 tracking-wide drop-shadow-md">
+                AI that understands what makes AEC work.
+              </h3>
+              <p className="text-2xl text-white/80 mb-16 leading-relaxed max-w-5xl mx-auto font-light drop-shadow-sm">
+                Streamline project planning and specification management with our comprehensive AI-driven ecosystem designed for AEC professionals.
+              </p>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
               <Link to="/signup">
                 <Button size="lg" className="text-xl px-12 py-8 rounded-full bg-gradient-to-r from-orange-500 to-orange-400 hover:from-orange-600 hover:to-orange-500 shadow-xl hover:shadow-2xl transition-all border-0 text-white font-medium hover:scale-105">
@@ -59,7 +61,7 @@ const Index = () => {
                   <ArrowRight className="ml-4 h-6 w-6" />
                 </Button>
               </Link>
-              <Button variant="outline" size="lg" className="text-xl px-12 py-8 rounded-full border-2 border-orange-300 text-orange-600 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all font-medium bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-105">
+              <Button variant="outline" size="lg" className="text-xl px-12 py-8 rounded-full border-2 border-white/60 text-white hover:bg-white/20 hover:border-white transition-all font-medium bg-white/10 backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-105">
                 Watch Demo
               </Button>
             </div>
@@ -71,13 +73,15 @@ const Index = () => {
       <section className="py-32 bg-gradient-to-br from-white via-slate-50 to-blue-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-24">
-            <h3 className="text-6xl font-light text-gray-900 mb-12 tracking-tight">Three powerful solutions</h3>
-            <p className="text-2xl text-gray-600 max-w-4xl mx-auto font-light leading-relaxed">Interconnected tools designed to work seamlessly together for your complete AEC workflow</p>
+            <div className="bg-slate-800/5 backdrop-blur-sm rounded-3xl p-12 max-w-5xl mx-auto">
+              <h3 className="text-6xl font-light text-gray-900 mb-12 tracking-tight">Three powerful solutions</h3>
+              <p className="text-2xl text-gray-700 max-w-4xl mx-auto font-light leading-relaxed">Interconnected tools designed to work seamlessly together for your complete AEC workflow</p>
+            </div>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
             {/* Engage Module */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-4 bg-white/90 backdrop-blur-sm border border-orange-100 hover:border-orange-200">
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-4 bg-white/95 backdrop-blur-sm border border-orange-100 hover:border-orange-200">
               <CardHeader className="pb-10 pt-12">
                 <div className="bg-gradient-to-br from-orange-100 to-orange-50 rounded-3xl p-6 group-hover:from-orange-200 group-hover:to-orange-100 transition-all w-fit mb-8 shadow-md">
                   <EngageIcon className="text-orange-500 h-10 w-10" />
@@ -112,7 +116,7 @@ const Index = () => {
             </Card>
 
             {/* Division1 Module */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-4 bg-white/90 backdrop-blur-sm border border-blue-100 hover:border-blue-200">
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-4 bg-white/95 backdrop-blur-sm border border-blue-100 hover:border-blue-200">
               <CardHeader className="pb-10 pt-12">
                 <div className="bg-gradient-to-br from-blue-100 to-blue-50 rounded-3xl p-6 group-hover:from-blue-200 group-hover:to-blue-100 transition-all w-fit mb-8 shadow-md">
                   <FileText className="h-10 w-10 text-blue-500" />
@@ -147,7 +151,7 @@ const Index = () => {
             </Card>
 
             {/* Master1 Module */}
-            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-4 bg-white/90 backdrop-blur-sm border border-purple-100 hover:border-purple-200">
+            <Card className="group hover:shadow-2xl transition-all duration-500 border-0 shadow-lg hover:-translate-y-4 bg-white/95 backdrop-blur-sm border border-purple-100 hover:border-purple-200">
               <CardHeader className="pb-10 pt-12">
                 <div className="bg-gradient-to-br from-purple-100 to-purple-50 rounded-3xl p-6 group-hover:from-purple-200 group-hover:to-purple-100 transition-all w-fit mb-8 shadow-md">
                   <Master1Icon className="text-purple-500 h-10 w-10" />
