@@ -74,7 +74,7 @@ const Header = () => {
               <Link to="/signin">
                 <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 border-0 font-semibold">
                   <Users className="h-4 w-4 mr-2" />
-                  Sign In
+                  Login
                 </Button>
               </Link>
             </div>

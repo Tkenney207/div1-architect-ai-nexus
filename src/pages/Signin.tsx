@@ -25,8 +25,8 @@ const Signin = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Signin form submitted:", formData);
-    // Handle signin logic here
+    console.log("Login form submitted:", formData);
+    // Handle login logic here
   };
 
   return (
@@ -38,12 +38,12 @@ const Signin = () => {
           <div className="text-center mb-8">
             <Div1Logo size="lg" className="mx-auto mb-6" />
             <h1 className="text-3xl font-bold mb-2">Welcome Back</h1>
-            <p className="text-gray-300">Sign in to continue your construction intelligence journey</p>
+            <p className="text-gray-300">Login to continue your construction intelligence journey</p>
           </div>
 
           <Card className="bg-slate-800/50 border-slate-700">
             <CardHeader>
-              <CardTitle className="text-white">Sign in to your account</CardTitle>
+              <CardTitle className="text-white">Login to your account</CardTitle>
               <CardDescription className="text-gray-300">
                 Access your AI-driven construction intelligence platform
               </CardDescription>
@@ -95,7 +95,7 @@ const Signin = () => {
                   type="submit" 
                   className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-semibold py-3 rounded-full"
                 >
-                  Sign In
+                  Login
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </form>
