@@ -1,6 +1,6 @@
-
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+import { supabase } from '@/integrations/supabase/client';
 
 interface Message {
   id: string;
@@ -122,44 +122,54 @@ export const useProjectCharter = () => {
       
       setMessages(prev => [...prev, userMessage]);
       
-      // Simulate AI response and charter completion
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Check if charter might be complete based on message content
-      const isCompletionMessage = content.toLowerCase().includes('complete') || 
-                                 content.toLowerCase().includes('finished') ||
-                                 content.toLowerCase().includes('done');
-      
-      let aiResponse = "I'm ready to help with your project charter. Please integrate your OpenAI backend to enable AI responses.";
-      
-      if (isCompletionMessage) {
-        aiResponse = `Great! Your project charter is now complete with comprehensive stakeholder input and project details. 
+      try {
+        // Call the AI Edge Function
+        const { data, error } = await supabase.functions.invoke('ai-charter-chat', {
+          body: {
+            message: content,
+            projectData,
+            messages: [...messages, userMessage]
+          }
+        });
 
-🎉 **Charter Complete!** 
+        if (error) throw error;
 
-Now that we have all the essential project information, would you like me to generate your Division 1 specifications? I can automatically create CSI MasterFormat specifications using the charter data we've collected.
+        let aiResponse = data.response;
 
-[**Generate Division 1 Specifications →**](/division1)
-
-This will create professional specifications including:
-- 011000 Summary of Work
-- 013100 Project Management 
-- 014000 Quality Requirements
-- 018113 Sustainable Design Requirements
-- And more based on your charter data`;
+        // Check if the AI response suggests charter completion
+        if (aiResponse.toLowerCase().includes('charter') && 
+            (aiResponse.toLowerCase().includes('complete') || 
+             aiResponse.toLowerCase().includes('finished') ||
+             aiResponse.toLowerCase().includes('division 1'))) {
+          setCharterComplete(true);
+          
+          // Enhance the response with navigation link
+          aiResponse += `\n\n🎉 **Charter Complete!** \n\nNow that we have all the essential project information, would you like me to generate your Division 1 specifications? I can automatically create CSI MasterFormat specifications using the charter data we've collected.\n\n[**Generate Division 1 Specifications →**](/division1)\n\nThis will create professional specifications including:\n- 011000 Summary of Work\n- 013100 Project Management \n- 014000 Quality Requirements\n- 018113 Sustainable Design Requirements\n- And more based on your charter data`;
+        }
         
-        setCharterComplete(true);
+        const aiMessage: Message = {
+          id: Math.random().toString(36).substr(2, 9),
+          content: aiResponse,
+          sender: 'ai',
+          timestamp: new Date().toISOString()
+        };
+        
+        setMessages(prev => [...prev, aiMessage]);
+        return aiMessage;
+
+      } catch (error) {
+        console.error('Error calling AI:', error);
+        
+        const errorMessage: Message = {
+          id: Math.random().toString(36).substr(2, 9),
+          content: "I apologize, but I'm having trouble connecting to the AI service right now. Please try again in a moment.",
+          sender: 'ai',
+          timestamp: new Date().toISOString()
+        };
+        
+        setMessages(prev => [...prev, errorMessage]);
+        return errorMessage;
       }
-      
-      const aiMessage: Message = {
-        id: Math.random().toString(36).substr(2, 9),
-        content: aiResponse,
-        sender: 'ai',
-        timestamp: new Date().toISOString()
-      };
-      
-      setMessages(prev => [...prev, aiMessage]);
-      return aiMessage;
     }
   });
 

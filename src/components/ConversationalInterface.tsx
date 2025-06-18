@@ -46,9 +46,6 @@ export const ConversationalInterface = () => {
           <CardTitle className="text-white flex items-center space-x-3">
             <MessageSquare className="h-6 w-6 text-green-400" />
             <span>AI Project Charter Assistant</span>
-            <Badge variant="outline" className="border-yellow-500 text-yellow-400 ml-auto">
-              Backend Integration Needed
-            </Badge>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -84,7 +81,7 @@ export const ConversationalInterface = () => {
                         ? 'bg-green-600 text-white' 
                         : 'bg-gray-700 text-gray-200'
                     }`}>
-                      {msg.content}
+                      <div className="whitespace-pre-wrap">{msg.content}</div>
                     </div>
                     <div className="text-xs text-gray-500 mt-1">
                       {new Date(msg.timestamp).toLocaleTimeString()}
