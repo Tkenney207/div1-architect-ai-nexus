@@ -74,7 +74,7 @@ const Index = () => {
             <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#D9D6D0' }}>
               <CardHeader className="p-8">
                 <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#D6F0E5' }}>
-                  <EngageIcon style={{ color: '#C6A664' }} />
+                  <EngageIcon className="text-brass" />
                 </div>
                 <CardTitle className="text-2xl font-medium mb-4" style={{ color: '#1A2B49' }}>Engage</CardTitle>
                 <CardDescription className="text-base leading-relaxed" style={{ color: '#426A8C' }}>
@@ -156,7 +156,7 @@ const Index = () => {
             <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#D9D6D0' }}>
               <CardHeader className="p-8">
                 <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#E6B7B3' }}>
-                  <Master1Icon style={{ color: '#1A2B49' }} />
+                  <Master1Icon className="text-navy" />
                 </div>
                 <CardTitle className="text-2xl font-medium mb-4" style={{ color: '#1A2B49' }}>Master1</CardTitle>
                 <CardDescription className="text-base leading-relaxed" style={{ color: '#426A8C' }}>
@@ -213,27 +213,27 @@ const Index = () => {
             <div>
               <h5 className="font-medium mb-6 text-lg" style={{ color: '#F7F3ED' }}>Solutions</h5>
               <ul className="space-y-3" style={{ color: '#D9D6D0' }}>
-                <li><Link to="/engage" className="transition-colors" style={{ color: '#D9D6D0' }} onMouseEnter={(e) => e.target.style.color = '#C6A664'} onMouseLeave={(e) => e.target.style.color = '#D9D6D0'}>Engage</Link></li>
-                <li><Link to="/division1" className="transition-colors" style={{ color: '#D9D6D0' }} onMouseEnter={(e) => e.target.style.color = '#C6A664'} onMouseLeave={(e) => e.target.style.color = '#D9D6D0'}>Division1</Link></li>
-                <li><Link to="/master1" className="transition-colors" style={{ color: '#D9D6D0' }} onMouseEnter={(e) => e.target.style.color = '#C6A664'} onMouseLeave={(e) => e.target.style.color = '#D9D6D0'}>Master1</Link></li>
+                <li><Link to="/engage" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>Engage</Link></li>
+                <li><Link to="/division1" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>Division1</Link></li>
+                <li><Link to="/master1" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>Master1</Link></li>
               </ul>
             </div>
             
             <div>
               <h5 className="font-medium mb-6 text-lg" style={{ color: '#F7F3ED' }}>Resources</h5>
               <ul className="space-y-3" style={{ color: '#D9D6D0' }}>
-                <li><Link to="/documentation" className="transition-colors" style={{ color: '#D9D6D0' }} onMouseEnter={(e) => e.target.style.color = '#C6A664'} onMouseLeave={(e) => e.target.style.color = '#D9D6D0'}>Documentation</Link></li>
-                <li><Link to="/security" className="transition-colors" style={{ color: '#D9D6D0' }} onMouseEnter={(e) => e.target.style.color = '#C6A664'} onMouseLeave={(e) => e.target.style.color = '#D9D6D0'}>Security</Link></li>
-                <li><Link to="/support" className="transition-colors" style={{ color: '#D9D6D0' }} onMouseEnter={(e) => e.target.style.color = '#C6A664'} onMouseLeave={(e) => e.target.style.color = '#D9D6D0'}>Support</Link></li>
+                <li><Link to="/documentation" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>Documentation</Link></li>
+                <li><Link to="/security" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>Security</Link></li>
+                <li><Link to="/support" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>Support</Link></li>
               </ul>
             </div>
             
             <div>
               <h5 className="font-medium mb-6 text-lg" style={{ color: '#F7F3ED' }}>Company</h5>
               <ul className="space-y-3" style={{ color: '#D9D6D0' }}>
-                <li><Link to="/about" className="transition-colors" style={{ color: '#D9D6D0' }} onMouseEnter={(e) => e.target.style.color = '#C6A664'} onMouseLeave={(e) => e.target.style.color = '#D9D6D0'}>About</Link></li>
-                <li><Link to="/contact" className="transition-colors" style={{ color: '#D9D6D0' }} onMouseEnter={(e) => e.target.style.color = '#C6A664'} onMouseLeave={(e) => e.target.style.color = '#D9D6D0'}>Contact</Link></li>
-                <li><Link to="/privacy" className="transition-colors" style={{ color: '#D9D6D0' }} onMouseEnter={(e) => e.target.style.color = '#C6A664'} onMouseLeave={(e) => e.target.style.color = '#D9D6D0'}>Privacy</Link></li>
+                <li><Link to="/about" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>About</Link></li>
+                <li><Link to="/contact" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>Contact</Link></li>
+                <li><Link to="/privacy" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>Privacy</Link></li>
               </ul>
             </div>
           </div>
