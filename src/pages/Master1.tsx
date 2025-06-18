@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -53,24 +52,20 @@ const Master1 = () => {
             </CardHeader>
             <CardContent>
               <p className="text-gray-300 mb-6">
-                LayoutLMv3 for document structure analysis with table extraction capabilities.
+                AI review of products, systems, or practices change.
               </p>
               <ul className="space-y-3 text-sm text-gray-400">
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Layout-aware parsing</span>
+                <li className="flex items-start space-x-3">
+                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <span>Materials & Products discontinued models, or old manufacturer names.</span>
                 </li>
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Table structure preservation</span>
+                <li className="flex items-start space-x-3">
+                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <span>Methods & Means: Construction techniques no longer in use or superseded.</span>
                 </li>
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>CSI division mapping</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Metadata extraction</span>
+                <li className="flex items-start space-x-3">
+                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <span>Performance Criteria: New testing standards, durability benchmarks, or code requirements.</span>
                 </li>
               </ul>
             </CardContent>
