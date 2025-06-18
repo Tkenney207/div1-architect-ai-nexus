@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -109,28 +108,24 @@ const Master1 = () => {
               <div className="bg-green-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-green-500/30 transition-colors">
                 <Shield className="h-8 w-8 text-green-400" />
               </div>
-              <CardTitle className="text-xl text-white">Compliance Validation</CardTitle>
+              <CardTitle className="text-xl text-white">Standard & Code Compliance Inference</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-300 mb-6">
-                Real-time validation against ASTM, LEED, ICC, ADA, and OSHA standards.
+                Real-time Code * Standard Compliance Analysis & Validation
               </p>
               <ul className="space-y-3 text-sm text-gray-400">
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Standards rule engine</span>
+                <li className="flex items-start space-x-3">
+                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <span>Referenced Standards: ASTM, ANSI, UL, NFPA, ASHRAE, etc.</span>
                 </li>
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Automated compliance checking</span>
+                <li className="flex items-start space-x-3">
+                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <span>Building Codes: IBC, IRC, energy codes (e.g., IECC), accessibility codes (ADA).</span>
                 </li>
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Violation reporting</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Version tracking</span>
+                <li className="flex items-start space-x-3">
+                  <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <span>Green Building: LEED, WELL, local sustainability requirements.</span>
                 </li>
               </ul>
             </CardContent>
