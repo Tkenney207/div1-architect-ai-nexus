@@ -21,7 +21,7 @@ const Division1 = () => {
           <div className="max-w-4xl mx-auto mb-12">
             <h3 className="text-2xl font-semibold text-purple-300 mb-6">Charter to Specification. Seamlessly.</h3>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              Transform project charter data into complete, editable CSI MasterFormat Division 1 specifications with AI-powered mapping and professional formatting.
+              Transform project charter data into complete, editable CSI MasterFormat Division 01 specifications with AI-powered mapping and professional formatting.
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
               <div className="bg-purple-800/30 rounded-lg p-4 border border-purple-700">

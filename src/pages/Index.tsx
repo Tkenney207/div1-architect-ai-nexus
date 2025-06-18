@@ -118,7 +118,7 @@ const Index = () => {
                 </div>
                 <CardTitle className="text-2xl mb-3 text-white">Division1</CardTitle>
                 <CardDescription className="text-base leading-relaxed text-gray-300">
-                  Generate complete CSI Division1 specifications from project charter data with AI precision
+                  Generate complete CSI MasterFormat Division 01 specifications from project charter data with AI precision
                 </CardDescription>
               </CardHeader>
               <CardContent>
