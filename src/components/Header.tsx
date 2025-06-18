@@ -6,7 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Users, ChevronDown, Home } from "lucide-react";
+import { Users, ChevronDown, Home, UserPlus } from "lucide-react";
 import { Link } from "react-router-dom";
 import Div1Logo from "@/components/Div1Logo";
 
@@ -64,12 +64,20 @@ const Header = () => {
             <Link to="/about" className="text-gray-300 hover:text-white transition-colors font-medium">
               About
             </Link>
-            <Link to="/signin">
-              <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 border-0 font-semibold">
-                <Users className="h-4 w-4 mr-2" />
-                Sign In
-              </Button>
-            </Link>
+            <div className="flex items-center space-x-3">
+              <Link to="/signup">
+                <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 border-0 font-semibold">
+                  <UserPlus className="h-4 w-4 mr-2" />
+                  Sign Up
+                </Button>
+              </Link>
+              <Link to="/signin">
+                <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 border-0 font-semibold">
+                  <Users className="h-4 w-4 mr-2" />
+                  Sign In
+                </Button>
+              </Link>
+            </div>
           </nav>
         </div>
       </div>
