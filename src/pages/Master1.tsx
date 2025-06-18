@@ -1,145 +1,141 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Brain, Shield, CheckCircle } from "lucide-react";
+import { ArrowLeft, FileText, Zap, CheckCircle, Layers, Users } from "lucide-react";
 import Header from "@/components/Header";
-import { DocumentProcessor } from "@/components/DocumentProcessor";
+import { CSISpecificationGenerator } from "@/components/CSISpecificationGenerator";
 
 const Master1 = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-blue-900 text-white">
       <Header />
 
       <div className="container mx-auto px-6 py-12">
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h2 className="text-6xl font-bold text-white mb-8">
-            Process specifications with 
-            <span className="bg-gradient-to-r from-blue-400 to-slate-300 bg-clip-text text-transparent"> AI precision </span>
+            Generate complete
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"> CSI specifications </span>
           </h2>
           <div className="max-w-4xl mx-auto mb-12">
-            <h3 className="text-2xl font-semibold text-blue-300 mb-6">Upload. Validate. Publish.</h3>
+            <h3 className="text-2xl font-semibold text-blue-300 mb-6">Transform charter data into Division 1 specs.</h3>
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              AI Specification review and updating engine.
+              AI-powered specification generation that converts Engage project charter data into complete, editable CSI MasterFormat Division 1 specifications.
             </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 text-left">
-              <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-700">
-                <p className="text-gray-200 text-sm">AI creates structured specs based on project + product inputs</p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
+              <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
+                <p className="text-gray-200 text-sm">Converts charter data to CSI MasterFormat specifications</p>
               </div>
-              <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-700">
-                <p className="text-gray-200 text-sm">Detects duplicates, gaps, and conflicting requirements</p>
+              <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
+                <p className="text-gray-200 text-sm">Generates all Division 1 sections with proper formatting</p>
               </div>
-              <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-700">
-                <p className="text-gray-200 text-sm">Runs clause-level validation against building codes (ICC, ADA, LEED, ASTM, etc.)</p>
+              <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
+                <p className="text-gray-200 text-sm">Maintains traceability to source charter data</p>
               </div>
-              <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-700">
-                <p className="text-gray-200 text-sm">Outputs editable, versioned, fully auditable specifications</p>
-              </div>
-              <div className="bg-slate-800/30 rounded-lg p-4 border border-slate-700">
-                <p className="text-gray-200 text-sm">Delivers ready-to-submit specifications — faster, safer, smarter.</p>
+              <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
+                <p className="text-gray-200 text-sm">Exports to DOCX, PDF, and CSI XML formats</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Document Processing Interface */}
-        <div className="mt-16">
-          <DocumentProcessor />
-        </div>
+        {/* CSI Specification Generator */}
+        <CSISpecificationGenerator />
 
-        {/* Architecture Features */}
+        {/* Features */}
         <div className="grid lg:grid-cols-3 gap-8 mt-16">
-          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-slate-800/50 border border-slate-700 hover:border-blue-500/50">
+          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-blue-500/50">
             <CardHeader>
               <div className="bg-blue-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-blue-500/30 transition-colors">
                 <FileText className="h-8 w-8 text-blue-400" />
               </div>
-              <CardTitle className="text-xl text-white">Document Understanding</CardTitle>
+              <CardTitle className="text-xl text-white">CSI MasterFormat Compliance</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-300 mb-6">
-                LayoutLMv3 for document structure analysis with table extraction capabilities.
+                Generates specifications following CSI MasterFormat standards with proper 3-part format.
               </p>
               <ul className="space-y-3 text-sm text-gray-400">
                 <li className="flex items-center space-x-3">
                   <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Layout-aware parsing</span>
+                  <span>Division 1 section coverage</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Table structure preservation</span>
+                  <span>3-part specification format</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>CSI division mapping</span>
+                  <span>Proper section numbering</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Metadata extraction</span>
+                  <span>Industry-standard language</span>
                 </li>
               </ul>
             </CardContent>
           </Card>
 
-          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-slate-800/50 border border-slate-700 hover:border-blue-500/50">
+          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-purple-500/50">
             <CardHeader>
-              <div className="bg-slate-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-slate-500/30 transition-colors">
-                <Brain className="h-8 w-8 text-slate-400" />
+              <div className="bg-purple-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-purple-500/30 transition-colors">
+                <Layers className="h-8 w-8 text-purple-400" />
               </div>
-              <CardTitle className="text-xl text-white">Intelligent Synthesis</CardTitle>
+              <CardTitle className="text-xl text-white">Charter Integration</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-300 mb-6">
-                Semantic deduplication and conflict resolution with gap analysis.
+                Seamlessly maps project charter data to appropriate specification sections.
               </p>
               <ul className="space-y-3 text-sm text-gray-400">
                 <li className="flex items-center space-x-3">
                   <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Vector similarity matching</span>
+                  <span>Automatic data mapping</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Multi-criteria conflict resolution</span>
+                  <span>Source traceability</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Automated gap identification</span>
+                  <span>Missing data identification</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Content harmonization</span>
+                  <span>Content validation</span>
                 </li>
               </ul>
             </CardContent>
           </Card>
 
-          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-slate-800/50 border border-slate-700 hover:border-green-500/50">
+          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-green-500/50">
             <CardHeader>
               <div className="bg-green-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-green-500/30 transition-colors">
-                <Shield className="h-8 w-8 text-green-400" />
+                <Users className="h-8 w-8 text-green-400" />
               </div>
-              <CardTitle className="text-xl text-white">Compliance Validation</CardTitle>
+              <CardTitle className="text-xl text-white">Export & Collaboration</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-300 mb-6">
-                Real-time validation against ASTM, LEED, ICC, ADA, and OSHA standards.
+                Export specifications in multiple formats for team collaboration and project delivery.
               </p>
               <ul className="space-y-3 text-sm text-gray-400">
                 <li className="flex items-center space-x-3">
                   <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Standards rule engine</span>
+                  <span>DOCX export</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Automated compliance checking</span>
+                  <span>PDF generation</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Violation reporting</span>
+                  <span>CSI XML format</span>
                 </li>
                 <li className="flex items-center space-x-3">
                   <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                  <span>Version tracking</span>
+                  <span>BIM platform integration</span>
                 </li>
               </ul>
             </CardContent>
