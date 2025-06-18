@@ -16,106 +16,118 @@ const Security = () => {
             <div className="bg-orange-600/20 rounded-2xl p-4 w-fit mx-auto mb-8">
               <Shield className="h-12 w-12 text-orange-400" />
             </div>
-            <h1 className="text-5xl font-bold text-white mb-6">Security & Privacy</h1>
+            <h1 className="text-5xl font-bold text-white mb-6">Security You Can Trust</h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Your data security and privacy are our top priorities. Learn how we protect your information in our closed-loop system.
+              At Div1, your data's safety is our top priority. From specifications to project insights, everything is protected with enterprise-grade security, so you can focus on building — not worrying.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
             <Card className="bg-gradient-to-br from-black to-gray-900 border border-gray-700 hover:border-green-500/50 transition-colors">
               <CardHeader>
                 <div className="bg-green-600/20 rounded-xl p-3 w-fit mb-4">
                   <Lock className="h-6 w-6 text-green-400" />
                 </div>
-                <CardTitle className="text-white">Data Protection</CardTitle>
+                <CardTitle className="text-white">Encrypted Data</CardTitle>
                 <CardDescription className="text-gray-300">
-                  Enterprise-grade security measures protect your sensitive project data
+                  All your information is encrypted in transit and at rest, just like online banking.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 text-gray-300">
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                    <span>End-to-end encryption</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                    <span>Zero-trust architecture</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                    <span>Role-based access control</span>
-                  </li>
-                </ul>
-              </CardContent>
             </Card>
 
             <Card className="bg-gradient-to-br from-black to-gray-900 border border-gray-700 hover:border-blue-500/50 transition-colors">
               <CardHeader>
                 <div className="bg-blue-600/20 rounded-xl p-3 w-fit mb-4">
-                  <Database className="h-6 w-6 text-blue-400" />
+                  <Shield className="h-6 w-6 text-blue-400" />
                 </div>
-                <CardTitle className="text-white">Closed-Loop System</CardTitle>
+                <CardTitle className="text-white">Strict Access Control</CardTitle>
                 <CardDescription className="text-gray-300">
-                  Your data stays within our secure, isolated environment
+                  Only the right people see the right data, thanks to role-based permissions.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 text-gray-300">
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                    <span>No external data sharing</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                    <span>Isolated processing environment</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                    <span>Data residency compliance</span>
-                  </li>
-                </ul>
-              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-br from-black to-gray-900 border border-gray-700 hover:border-orange-500/50 transition-colors">
+              <CardHeader>
+                <div className="bg-orange-600/20 rounded-xl p-3 w-fit mb-4">
+                  <Database className="h-6 w-6 text-orange-400" />
+                </div>
+                <CardTitle className="text-white">Trusted Cloud Hosting</CardTitle>
+                <CardDescription className="text-gray-300">
+                  We run on secure, reliable cloud infrastructure used by Fortune 500 companies.
+                </CardDescription>
+              </CardHeader>
             </Card>
           </div>
 
-          <Card className="bg-gradient-to-br from-black to-gray-900 border border-gray-700 max-w-4xl mx-auto">
-            <CardHeader>
-              <div className="bg-orange-600/20 rounded-xl p-3 w-fit mb-4">
-                <Eye className="h-6 w-6 text-orange-400" />
+          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto mb-16">
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-8 flex items-center">
+                <Eye className="h-8 w-8 text-orange-400 mr-3" />
+                Privacy by Design
+              </h2>
+              <div className="space-y-6">
+                <Card className="bg-gradient-to-br from-black to-gray-900 border border-gray-700">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-semibold text-white mb-3">You Control Your Data</h3>
+                    <p className="text-gray-300">
+                      We never share sensitive info — and our AI keeps personal inputs anonymous.
+                    </p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-gradient-to-br from-black to-gray-900 border border-gray-700">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-semibold text-white mb-3">Compliance Ready</h3>
+                    <p className="text-gray-300">
+                      Built to meet top industry standards like GDPR, SOC 2, and ISO 27001.
+                    </p>
+                  </CardContent>
+                </Card>
               </div>
-              <CardTitle className="text-white text-2xl">No LLM Training on Your Data</CardTitle>
-              <CardDescription className="text-gray-300 text-lg">
-                Your project data is never used to train AI models
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6 text-gray-300">
-              <div>
-                <h3 className="text-xl font-semibold text-white mb-3">Complete Data Isolation</h3>
-                <p>
-                  Your project charters, specifications, and documents remain completely isolated within our secure environment. 
-                  We never use your data to train, improve, or enhance any AI models or machine learning systems.
+            </div>
+
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-8 flex items-center">
+                <Shield className="h-8 w-8 text-green-400 mr-3" />
+                Always On Guard
+              </h2>
+              <div className="space-y-6">
+                <Card className="bg-gradient-to-br from-black to-gray-900 border border-gray-700">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-semibold text-white mb-3">Real-Time Threat Detection</h3>
+                    <p className="text-gray-300">
+                      We monitor for suspicious activity 24/7.
+                    </p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-gradient-to-br from-black to-gray-900 border border-gray-700">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-semibold text-white mb-3">Audit Trails</h3>
+                    <p className="text-gray-300">
+                      Every action is logged for full transparency and accountability.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <Card className="bg-gradient-to-br from-black to-gray-900 border border-gray-700 max-w-4xl mx-auto">
+              <CardContent className="p-8">
+                <h2 className="text-3xl font-bold text-white mb-4">Built-In Protection</h2>
+                <p className="text-xl text-gray-300 mb-6">
+                  With Div1, you get powerful tools backed by smart, secure technology — giving you confidence every step of the way.
                 </p>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold text-white mb-3">Proprietary Processing</h3>
-                <p>
-                  Our AI processes your data using pre-trained models in a closed-loop system. Your sensitive AEC project 
-                  information stays private and is never exposed to external training processes or third-party AI services.
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold text-white mb-3">Your Data, Your Control</h3>
-                <p>
-                  You maintain complete ownership and control over your data. We provide AI-powered insights without 
-                  compromising your intellectual property or competitive advantage.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+                <div className="flex items-center justify-center space-x-2">
+                  <CheckCircle className="h-6 w-6 text-green-400" />
+                  <span className="text-lg text-white font-semibold">Enterprise-Grade Security</span>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
     </div>

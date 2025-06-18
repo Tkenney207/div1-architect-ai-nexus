@@ -63,6 +63,9 @@ const Header = () => {
             <Link to="/support" className="text-gray-300 hover:text-white transition-colors font-medium">
               Support
             </Link>
+            <Link to="/security" className="text-gray-300 hover:text-white transition-colors font-medium">
+              Security
+            </Link>
             <div className="flex items-center space-x-3">
               {user ? (
                 <>
