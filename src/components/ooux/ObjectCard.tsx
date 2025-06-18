@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal } from "lucide-react";
+import { MoreHorizontal, Archive, Trash2, RotateCcw } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 interface ObjectCardProps {
@@ -50,8 +50,34 @@ export const ObjectCard: React.FC<ObjectCardProps> = ({
     return colors[status as keyof typeof colors] || 'bg-gray-500';
   };
 
+  const getActionIcon = (action: string) => {
+    switch (action) {
+      case 'archive':
+        return <Archive className="h-4 w-4 mr-2" />;
+      case 'unarchive':
+        return <RotateCcw className="h-4 w-4 mr-2" />;
+      case 'delete':
+        return <Trash2 className="h-4 w-4 mr-2" />;
+      default:
+        return null;
+    }
+  };
+
+  const getActionStyle = (action: string) => {
+    switch (action) {
+      case 'delete':
+        return 'text-red-600 hover:text-red-700';
+      case 'archive':
+        return 'text-yellow-600 hover:text-yellow-700';
+      case 'unarchive':
+        return 'text-green-600 hover:text-green-700';
+      default:
+        return '';
+    }
+  };
+
   return (
-    <Card className={`group hover:shadow-lg transition-all duration-200 ${className}`}>
+    <Card className={`group hover:shadow-lg transition-all duration-200 ${object.is_archived ? 'opacity-75 border-yellow-200' : ''} ${className}`}>
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-3">
@@ -60,11 +86,18 @@ export const ObjectCard: React.FC<ObjectCardProps> = ({
               <CardTitle className="text-lg font-semibold">
                 {object.name || object.title || `${objectType} ${object.id?.slice(-6)}`}
               </CardTitle>
-              {object.status && (
-                <Badge className={`mt-1 text-xs ${getStatusColor(object.status)}`}>
-                  {object.status.replace('-', ' ')}
-                </Badge>
-              )}
+              <div className="flex items-center gap-2 mt-1">
+                {object.status && (
+                  <Badge className={`text-xs ${getStatusColor(object.status)}`}>
+                    {object.status.replace('-', ' ')}
+                  </Badge>
+                )}
+                {object.is_archived && (
+                  <Badge variant="secondary" className="text-xs bg-yellow-100 text-yellow-800">
+                    Archived
+                  </Badge>
+                )}
+              </div>
             </div>
           </div>
           <DropdownMenu>
@@ -78,8 +111,9 @@ export const ObjectCard: React.FC<ObjectCardProps> = ({
                 <DropdownMenuItem 
                   key={action} 
                   onClick={() => onAction(action, object)}
-                  className="capitalize"
+                  className={`capitalize flex items-center ${getActionStyle(action)}`}
                 >
+                  {getActionIcon(action)}
                   {action.replace('-', ' ')}
                 </DropdownMenuItem>
               ))}

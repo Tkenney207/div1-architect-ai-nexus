@@ -6,53 +6,63 @@ import { ObjectDetailView } from "@/components/ooux/ObjectDetailView";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { Badge } from "@/components/ui/badge";
+import { useProjects, type Project } from "@/hooks/useProjects";
+import { useAuth } from "@/contexts/AuthContext";
+import { Archive, Trash2, RotateCcw } from "lucide-react";
+import { toast } from 'sonner';
 
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState<any>(null);
-  const [projects] = useState([
-    {
-      id: '1',
-      name: 'Downtown Office Complex',
-      description: 'A 25-story mixed-use development in the downtown core',
-      type: 'commercial',
-      status: 'charter-complete',
-      budget: 50000000,
-      location: 'Downtown City Center',
-      createdAt: '2024-01-01',
-      updatedAt: '2024-01-15',
-      owner: 'John Smith',
-      objectives: ['LEED Gold certification', 'Efficient space utilization', 'Sustainable design'],
-      sustainabilityGoals: ['30% energy reduction', 'Water conservation', 'Green materials']
-    },
-    {
-      id: '2',
-      name: 'Green Residential Tower',
-      description: 'Eco-friendly residential complex with 200 units',
-      type: 'residential',
-      status: 'in-progress',
-      budget: 25000000,
-      location: 'Riverside District',
-      createdAt: '2024-01-10',
-      updatedAt: '2024-01-14',
-      owner: 'Sarah Johnson',
-      objectives: ['Affordable housing', 'Community integration', 'Environmental stewardship'],
-      sustainabilityGoals: ['Net-zero energy', 'Rainwater harvesting', 'Urban farming spaces']
-    }
-  ]);
+  const { user } = useAuth();
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [showArchived, setShowArchived] = useState(false);
+  
+  const {
+    projects,
+    isLoading,
+    archiveProject,
+    unarchiveProject,
+    deleteProject,
+    isArchiving,
+    isDeleting,
+    isUnarchiving,
+  } = useProjects(showArchived);
 
-  const handleProjectAction = (action: string, project: any) => {
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white">
+        <Header />
+        <div className="container mx-auto px-6 py-12">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold mb-4">Please sign in to view your projects</h2>
+            <p className="text-gray-400">You need to be logged in to access your projects.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const handleProjectAction = (action: string, project: Project) => {
     switch (action) {
       case 'view':
         setSelectedProject(project);
         break;
       case 'edit':
-        console.log('Edit project:', project);
+        toast.info('Edit functionality coming soon');
         break;
       case 'duplicate':
-        console.log('Duplicate project:', project);
+        toast.info('Duplicate functionality coming soon');
         break;
       case 'archive':
-        console.log('Archive project:', project);
+        archiveProject(project.id);
+        break;
+      case 'unarchive':
+        unarchiveProject(project.id);
+        break;
+      case 'delete':
+        if (window.confirm('Are you sure you want to permanently delete this project? This action cannot be undone.')) {
+          deleteProject(project.id);
+        }
         break;
       default:
         console.log('Unknown action:', action);
@@ -60,8 +70,15 @@ const Projects = () => {
   };
 
   const handleCreateNew = () => {
-    console.log('Create new project');
+    toast.info('Create new project functionality coming soon');
   };
+
+  // Transform projects to match ObjectCard expectations
+  const transformedProjects = projects.map(project => ({
+    ...project,
+    owner: user?.email || 'Unknown',
+    updatedAt: project.updated_at,
+  }));
 
   if (selectedProject) {
     const relationships = {
@@ -132,11 +149,11 @@ const Projects = () => {
                   <div className="space-y-3">
                     <div className="flex justify-between">
                       <span className="text-gray-300">Budget</span>
-                      <span className="font-semibold">${selectedProject.budget?.toLocaleString()}</span>
+                      <span className="font-semibold">${selectedProject.budget?.toLocaleString() || 'Not set'}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-300">Location</span>
-                      <span className="font-semibold">{selectedProject.location}</span>
+                      <span className="font-semibold">{selectedProject.location || 'Not specified'}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-300">Objectives</span>
@@ -144,8 +161,15 @@ const Projects = () => {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-300">Sustainability Goals</span>
-                      <span className="font-semibold">{selectedProject.sustainabilityGoals?.length || 0}</span>
+                      <span className="font-semibold">{selectedProject.sustainability_goals?.length || 0}</span>
                     </div>
+                    {selectedProject.is_archived && (
+                      <div className="pt-2">
+                        <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">
+                          Archived Project
+                        </Badge>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -156,20 +180,70 @@ const Projects = () => {
     );
   }
 
+  const getActions = (project: Project) => {
+    if (project.is_archived) {
+      return ['view', 'unarchive', 'delete'];
+    }
+    return ['view', 'edit', 'duplicate', 'archive'];
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white">
       <Header />
       <div className="container mx-auto px-6 py-12">
-        <ObjectList
-          objects={projects}
-          objectType="Project"
-          actions={['view', 'edit', 'duplicate', 'archive']}
-          onAction={handleProjectAction}
-          onCreateNew={handleCreateNew}
-          title="Projects"
-          searchable={true}
-          filterable={true}
-        />
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h1 className="text-3xl font-bold">
+              {showArchived ? 'Archived Projects' : 'Projects'}
+            </h1>
+            <p className="text-gray-400 mt-2">
+              {showArchived 
+                ? 'View and manage your archived projects' 
+                : 'Manage your active projects'
+              }
+            </p>
+          </div>
+          <div className="flex gap-3">
+            <Button
+              variant={showArchived ? "default" : "outline"}
+              onClick={() => setShowArchived(!showArchived)}
+              className="flex items-center gap-2"
+            >
+              {showArchived ? (
+                <>
+                  <RotateCcw className="h-4 w-4" />
+                  View Active
+                </>
+              ) : (
+                <>
+                  <Archive className="h-4 w-4" />
+                  View Archived
+                </>
+              )}
+            </Button>
+          </div>
+        </div>
+
+        {isLoading ? (
+          <div className="text-center py-12">
+            <p className="text-gray-400">Loading projects...</p>
+          </div>
+        ) : (
+          <ObjectList
+            objects={transformedProjects.map(project => ({
+              ...project,
+              actions: getActions(project)
+            }))}
+            objectType="Project"
+            actions={showArchived ? ['view', 'unarchive', 'delete'] : ['view', 'edit', 'duplicate', 'archive']}
+            onAction={handleProjectAction}
+            onCreateNew={showArchived ? undefined : handleCreateNew}
+            title={showArchived ? `Archived Projects (${projects.length})` : `Active Projects (${projects.length})`}
+            emptyMessage={showArchived ? "No archived projects found" : "No active projects found"}
+            searchable={true}
+            filterable={true}
+          />
+        )}
       </div>
     </div>
   );

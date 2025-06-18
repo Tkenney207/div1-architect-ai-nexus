@@ -87,7 +87,7 @@ export const ObjectList: React.FC<ObjectListProps> = ({
               key={object.id}
               object={object}
               objectType={objectType}
-              actions={actions}
+              actions={object.actions || actions}
               onAction={onAction}
             />
           ))}
