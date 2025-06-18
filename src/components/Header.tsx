@@ -1,10 +1,19 @@
 
 import { Button } from "@/components/ui/button";
-import { Users } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Users, ChevronDown, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 import Div1Logo from "@/components/Div1Logo";
 
 const Header = () => {
+  // TODO: Replace with actual authentication state
+  const isLoggedIn = false; // This would come from your auth context/state
+
   return (
     <header className="border-b border-gray-800 bg-black/50 backdrop-blur-xl">
       <div className="container mx-auto px-6 py-4">
@@ -18,12 +27,31 @@ const Header = () => {
             </Link>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/dashboard" className="text-gray-300 hover:text-white transition-colors font-medium">
-              Dashboard
-            </Link>
-            <Link to="/projects" className="text-gray-300 hover:text-white transition-colors font-medium">
-              Projects
-            </Link>
+            {isLoggedIn ? (
+              <>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="text-gray-300 hover:text-white transition-colors font-medium flex items-center space-x-1">
+                      <Home className="h-4 w-4" />
+                      <span>Home</span>
+                      <ChevronDown className="h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-gray-800 border-gray-700">
+                    <DropdownMenuItem asChild>
+                      <Link to="/dashboard" className="text-gray-300 hover:text-white transition-colors cursor-pointer">
+                        Dashboard
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link to="/projects" className="text-gray-300 hover:text-white transition-colors cursor-pointer">
+                        Projects
+                      </Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </>
+            ) : null}
             <Link to="/engage" className="text-gray-300 hover:text-white transition-colors font-medium">
               Engage
             </Link>
