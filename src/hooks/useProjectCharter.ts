@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
@@ -146,6 +147,7 @@ export const useProjectCharter = () => {
         }
 
         let aiResponse = data.response;
+        let shouldGenerateLinks = false;
 
         // Check if the AI response suggests charter completion
         if (aiResponse.toLowerCase().includes('charter') && 
@@ -153,6 +155,7 @@ export const useProjectCharter = () => {
              aiResponse.toLowerCase().includes('finished') ||
              aiResponse.toLowerCase().includes('division 1'))) {
           setCharterComplete(true);
+          shouldGenerateLinks = true;
           
           // Enhance the response with navigation link
           aiResponse += `\n\n🎉 **Charter Complete!** \n\nNow that we have all the essential project information, would you like me to generate your Division 1 specifications? I can automatically create CSI MasterFormat specifications using the charter data we've collected.\n\n[**Generate Division 1 Specifications →**](/division1)\n\nThis will create professional specifications including:\n- 011000 Summary of Work\n- 013100 Project Management \n- 014000 Quality Requirements\n- 018113 Sustainable Design Requirements\n- And more based on your charter data`;
@@ -166,6 +169,15 @@ export const useProjectCharter = () => {
         };
         
         setMessages(prev => [...prev, aiMessage]);
+
+        // Auto-generate stakeholder links when charter is complete
+        if (shouldGenerateLinks && !stakeholders.some(s => s.interviewLink)) {
+          console.log('Charter complete - auto-generating stakeholder interview links...');
+          setTimeout(() => {
+            generateLinksMutation.mutate();
+          }, 1000);
+        }
+
         return aiMessage;
 
       } catch (error) {
@@ -215,7 +227,7 @@ export const useProjectCharter = () => {
       
       const aiMessage: Message = {
         id: Math.random().toString(36).substr(2, 9),
-        content: "Perfect! I've generated unique interview links for each stakeholder. Each link is customized based on their role and will guide them through a conversational interview tailored to their expertise and perspective. You can now share these links with your team members. The interviews are anonymized, so participants can share candid feedback.",
+        content: "Perfect! I've automatically generated unique interview links for each stakeholder since your charter is now complete. Each link is customized based on their role and will guide them through a conversational interview tailored to their expertise and perspective. You can now share these links with your team members. The interviews are anonymized, so participants can share candid feedback.",
         sender: 'ai',
         timestamp: new Date().toISOString()
       };
