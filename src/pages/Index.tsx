@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -129,7 +130,7 @@ const Index = () => {
                   </li>
                   <li className="flex items-center space-x-3">
                     <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
-                    <span>3-part CSI format generation</span>
+                    <span>3-part CSI format Division 01 generation</span>
                   </li>
                   <li className="flex items-center space-x-3">
                     <CheckCircle className="h-4 w-4 text-green-400 flex-shrink-0" />
