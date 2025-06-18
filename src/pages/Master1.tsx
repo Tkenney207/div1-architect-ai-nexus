@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -108,7 +109,7 @@ const Master1 = () => {
               <div className="bg-green-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-green-500/30 transition-colors">
                 <Shield className="h-8 w-8 text-green-400" />
               </div>
-              <CardTitle className="text-xl text-white">Standard & Code Compliance Inference</CardTitle>
+              <CardTitle className="text-xl text-white">Standard & Code Compliance</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-300 mb-6">
