@@ -123,7 +123,8 @@ export const useProjectCharter = () => {
       setMessages(prev => [...prev, userMessage]);
       
       try {
-        // Call the AI Edge Function
+        console.log('Calling AI edge function...');
+        
         const { data, error } = await supabase.functions.invoke('ai-charter-chat', {
           body: {
             message: content,
@@ -132,7 +133,12 @@ export const useProjectCharter = () => {
           }
         });
 
-        if (error) throw error;
+        console.log('Edge function response:', { data, error });
+
+        if (error) {
+          console.error('Supabase function error:', error);
+          throw error;
+        }
 
         let aiResponse = data.response;
 
@@ -160,15 +166,35 @@ export const useProjectCharter = () => {
       } catch (error) {
         console.error('Error calling AI:', error);
         
-        const errorMessage: Message = {
+        // Extract the actual error message from the API response
+        let errorMessage = "I apologize, but I'm having trouble connecting to the AI service right now.";
+        
+        if (error && typeof error === 'object') {
+          // Check for Supabase function error with details
+          if ('message' in error && error.message) {
+            errorMessage += ` Error: ${error.message}`;
+          }
+          
+          // Check for nested error details
+          if ('details' in error && error.details) {
+            errorMessage += ` Details: ${error.details}`;
+          }
+        }
+        
+        // If it's a quota error, provide specific guidance
+        if (errorMessage.includes('quota') || errorMessage.includes('429')) {
+          errorMessage = "⚠️ **OpenAI API Quota Exceeded**\n\nYour OpenAI API key has exceeded its usage quota or billing limits. Please:\n\n1. Check your OpenAI billing at https://platform.openai.com/account/billing\n2. Add payment method or increase quota\n3. Try again once resolved\n\nThe AI service will work once your OpenAI account is properly configured.";
+        }
+        
+        const errorMessageObj: Message = {
           id: Math.random().toString(36).substr(2, 9),
-          content: "I apologize, but I'm having trouble connecting to the AI service right now. Please try again in a moment.",
+          content: errorMessage,
           sender: 'ai',
           timestamp: new Date().toISOString()
         };
         
-        setMessages(prev => [...prev, errorMessage]);
-        return errorMessage;
+        setMessages(prev => [...prev, errorMessageObj]);
+        return errorMessageObj;
       }
     }
   });
