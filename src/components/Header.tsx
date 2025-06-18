@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -61,6 +60,9 @@ const Header = () => {
             <Link to="/master1" className="text-gray-300 hover:text-white transition-colors font-medium">
               Master1
             </Link>
+            <Link to="/support" className="text-gray-300 hover:text-white transition-colors font-medium">
+              Support
+            </Link>
             <div className="flex items-center space-x-3">
               {user ? (
                 <>
@@ -78,27 +80,12 @@ const Header = () => {
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 border-0 font-semibold">
-                        <Home className="h-4 w-4 mr-2" />
-                        Home
-                        <ChevronDown className="h-4 w-4 ml-1" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="bg-gray-800 border-gray-700">
-                      <DropdownMenuItem asChild>
-                        <Link to="/dashboard" className="text-gray-300 hover:text-white transition-colors cursor-pointer">
-                          Dashboard
-                        </Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem asChild>
-                        <Link to="/projects" className="text-gray-300 hover:text-white transition-colors cursor-pointer">
-                          Projects
-                        </Link>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                  <Link to="/dashboard">
+                    <Button size="sm" className="rounded-full px-6 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 border-0 font-semibold">
+                      <Home className="h-4 w-4 mr-2" />
+                      Home
+                    </Button>
+                  </Link>
                 </>
               ) : (
                 <>
