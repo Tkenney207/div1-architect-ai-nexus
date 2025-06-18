@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -201,6 +202,7 @@ const Index = () => {
               <h5 className="font-semibold mb-6 text-lg text-white">Solutions</h5>
               <ul className="space-y-3 text-gray-400">
                 <li><Link to="/engage" className="hover:text-white transition-colors">Engage</Link></li>
+                <li><Link to="/division1" className="hover:text-white transition-colors">Division1</Link></li>
                 <li><Link to="/master1" className="hover:text-white transition-colors">Master1</Link></li>
               </ul>
             </div>
