@@ -40,7 +40,7 @@ const Header = () => {
   };
 
   return (
-    <header style={{ backgroundColor: '#0F1B2E' }} className="border-b-2" style={{ backgroundColor: '#0F1B2E', borderBottomColor: '#162239' }}>
+    <header className="border-b-2" style={{ backgroundColor: '#0F1B2E', borderBottomColor: '#162239' }}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-6">
