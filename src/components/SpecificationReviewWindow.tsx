@@ -33,21 +33,29 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
 
   const {
     suggestions,
+    setSuggestions,
     generateSuggestions,
     approveSuggestion,
     rejectSuggestion,
     approveAllSuggestions,
     downloadRevisedSpecification,
-    fileContent: currentContent,
     setFileContent
   } = useSpecificationReview();
 
   // Initialize suggestions when component mounts
   useEffect(() => {
-    const generatedSuggestions = generateSuggestions(fileName, fileContent);
-    // Set the file content in the hook
-    setFileContent(fileContent);
-  }, [fileName, fileContent, generateSuggestions, setFileContent]);
+    console.log('SpecificationReviewWindow mounting for file:', fileName);
+    console.log('File content length:', fileContent.length);
+    
+    if (fileContent && fileContent.trim().length > 0) {
+      setFileContent(fileContent);
+      const generatedSuggestions = generateSuggestions(fileName, fileContent);
+      setSuggestions(generatedSuggestions);
+      console.log('Generated suggestions:', generatedSuggestions);
+    } else {
+      console.warn('No file content provided to SpecificationReviewWindow');
+    }
+  }, [fileName, fileContent, generateSuggestions, setSuggestions, setFileContent]);
 
   const pendingSuggestions = suggestions.filter(s => s.status === 'pending');
   const approvedSuggestions = suggestions.filter(s => s.status === 'approved');
@@ -81,30 +89,52 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
   };
 
   const renderContentWithHighlights = () => {
-    // Use the file content passed as prop
-    const content = fileContent || currentContent || "No content available. Please upload a specification file.";
-    const lines = content.split('\n');
+    if (!fileContent || fileContent.trim().length === 0) {
+      return (
+        <div className="text-center py-8">
+          <FileText className="h-8 w-8 mx-auto mb-2" style={{ color: '#D9D6D0' }} />
+          <p className="text-sm" style={{ color: '#7C9C95' }}>No content available. Please upload a specification file.</p>
+        </div>
+      );
+    }
+
+    const lines = fileContent.split('\n');
     
     return lines.map((line, index) => {
       const lineNumber = index + 1;
       const isHighlighted = highlightedLines.has(lineNumber);
       const suggestion = suggestions.find(s => s.lineNumber === lineNumber && s.id === selectedSuggestion);
       
-      let displayLine = line;
-      let hasChange = false;
-      
       // Check if this line has any suggestions
       const lineSuggestions = suggestions.filter(s => s.lineNumber === lineNumber);
       
+      let displayContent = line;
+      let hasChange = false;
+      
       if (lineSuggestions.length > 0) {
-        // Show changes based on suggestion status
         lineSuggestions.forEach(sug => {
           if (sug.originalText && line.includes(sug.originalText)) {
             hasChange = true;
-            if (sug.status === 'approved') {
-              // Show the approved change
-              displayLine = line.replace(sug.originalText, sug.suggestedText);
-            }
+            const parts = line.split(sug.originalText);
+            displayContent = (
+              <>
+                {parts[0]}
+                {sug.status === 'approved' ? (
+                  <span className="bg-green-200 text-green-800 px-1 rounded">
+                    {sug.suggestedText}
+                  </span>
+                ) : sug.status === 'rejected' ? (
+                  <span className="bg-red-200 text-red-800 px-1 rounded line-through">
+                    {sug.originalText}
+                  </span>
+                ) : (
+                  <span className="bg-yellow-200 text-yellow-800 px-1 rounded">
+                    {sug.originalText}
+                  </span>
+                )}
+                {parts.slice(1).join(sug.originalText)}
+              </>
+            );
           }
         });
       }
@@ -118,31 +148,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
             {lineNumber}
           </div>
           <div className="flex-1 font-mono text-sm leading-relaxed whitespace-pre-wrap">
-            {hasChange && suggestion ? (
-              <span>
-                {displayLine.split(suggestion.originalText || suggestion.suggestedText).map((part, partIndex) => (
-                  <React.Fragment key={partIndex}>
-                    {part}
-                    {partIndex < displayLine.split(suggestion.originalText || suggestion.suggestedText).length - 1 && (
-                      <>
-                        {suggestion.status === 'pending' && suggestion.originalText && (
-                          <span className="bg-red-200 text-red-800 px-1 rounded">
-                            {suggestion.originalText}
-                          </span>
-                        )}
-                        {suggestion.status === 'approved' && (
-                          <span className="bg-green-200 text-green-800 px-1 rounded">
-                            {suggestion.suggestedText}
-                          </span>
-                        )}
-                      </>
-                    )}
-                  </React.Fragment>
-                ))}
-              </span>
-            ) : (
-              displayLine
-            )}
+            {hasChange ? displayContent : line}
           </div>
         </div>
       );
