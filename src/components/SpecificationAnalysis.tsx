@@ -92,20 +92,20 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       case 'pass':
       case 'exceeds':
       case 'meets':
-        return <CheckCircle className="h-4 w-4 text-green-400" />;
+        return <CheckCircle className="h-4 w-4" style={{ color: '#7C9C95' }} />;
       case 'requires-update':
       case 'outdated':
       case 'marginal':
       case 'below':
-        return <AlertTriangle className="h-4 w-4 text-yellow-400" />;
+        return <AlertTriangle className="h-4 w-4" style={{ color: '#E98B2A' }} />;
       case 'non-compliant':
       case 'discontinued':
       case 'fail':
       case 'missing':
       case 'not-specified':
-        return <XCircle className="h-4 w-4 text-red-400" />;
+        return <XCircle className="h-4 w-4" style={{ color: '#E98B2A' }} />;
       default:
-        return <AlertTriangle className="h-4 w-4 text-gray-400" />;
+        return <AlertTriangle className="h-4 w-4" style={{ color: '#7C9C95' }} />;
     }
   };
 
@@ -116,36 +116,37 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       case 'pass':
       case 'exceeds':
       case 'meets':
-        return 'bg-green-600';
+        return '#7C9C95';
       case 'requires-update':
       case 'outdated':
       case 'marginal':
       case 'below':
-        return 'bg-yellow-600';
+        return '#E98B2A';
       case 'non-compliant':
       case 'discontinued':
       case 'fail':
       case 'missing':
       case 'not-specified':
-        return 'bg-red-600';
+        return '#E98B2A';
       default:
-        return 'bg-gray-600';
+        return '#7C9C95';
     }
   };
 
   return (
     <div className="space-y-6 mt-6">
       {/* Overview */}
-      <Card className="bg-gray-800/50 border-gray-700">
+      <Card className="bg-white border" style={{ borderColor: '#D9D6D0' }}>
         <CardHeader>
-          <CardTitle className="text-white flex items-center justify-between">
+          <CardTitle className="flex items-center justify-between" style={{ color: '#1A2B49' }}>
             <div className="flex items-center space-x-3">
-              <FileText className="h-5 w-5 text-blue-400" />
+              <FileText className="h-5 w-5" style={{ color: '#E98B2A' }} />
               <span>Analysis Overview - {fileName}</span>
             </div>
             <Button 
               size="sm"
-              className="bg-purple-600 hover:bg-purple-700"
+              className="text-white"
+              style={{ backgroundColor: '#E98B2A' }}
             >
               <TrendingUp className="h-4 w-4 mr-2" />
               Review Changes
@@ -155,20 +156,20 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
             <div className="text-center">
-              <div className="text-2xl font-bold text-blue-400">{analysis.overview.overallCompliance}%</div>
-              <div className="text-sm text-gray-400">Overall Compliance</div>
+              <div className="text-2xl font-bold" style={{ color: '#E98B2A' }}>{analysis.overview.overallCompliance}%</div>
+              <div className="text-sm" style={{ color: '#7C9C95' }}>Overall Compliance</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-red-400">{analysis.overview.criticalIssues}</div>
-              <div className="text-sm text-gray-400">Critical Issues</div>
+              <div className="text-2xl font-bold" style={{ color: '#E98B2A' }}>{analysis.overview.criticalIssues}</div>
+              <div className="text-sm" style={{ color: '#7C9C95' }}>Critical Issues</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-yellow-400">{analysis.overview.warningsCount}</div>
-              <div className="text-sm text-gray-400">Warnings</div>
+              <div className="text-2xl font-bold" style={{ color: '#E98B2A' }}>{analysis.overview.warningsCount}</div>
+              <div className="text-sm" style={{ color: '#7C9C95' }}>Warnings</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-400">{analysis.overview.upToDatePercentage}%</div>
-              <div className="text-sm text-gray-400">Up-to-Date</div>
+              <div className="text-2xl font-bold" style={{ color: '#7C9C95' }}>{analysis.overview.upToDatePercentage}%</div>
+              <div className="text-sm" style={{ color: '#7C9C95' }}>Up-to-Date</div>
             </div>
           </div>
           <Progress value={analysis.overview.overallCompliance} className="w-full" />
@@ -176,33 +177,33 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       </Card>
 
       {/* Manufacturer Compliance */}
-      <Card className="bg-gray-800/50 border-gray-700">
+      <Card className="bg-white border" style={{ borderColor: '#D9D6D0' }}>
         <CardHeader>
-          <CardTitle className="text-white flex items-center space-x-3">
-            <Factory className="h-5 w-5 text-purple-400" />
+          <CardTitle className="flex items-center space-x-3" style={{ color: '#1A2B49' }}>
+            <Factory className="h-5 w-5" style={{ color: '#E98B2A' }} />
             <span>Manufacturer Compliance</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             {analysis.manufacturerCompliance.map((item, index) => (
-              <div key={index} className="flex items-start justify-between p-4 bg-gray-900/50 rounded-lg">
+              <div key={index} className="flex items-start justify-between p-4 rounded-lg" style={{ backgroundColor: '#F7F3ED' }}>
                 <div className="flex-1">
                   <div className="flex items-center space-x-3 mb-2">
                     {getStatusIcon(item.status)}
-                    <h4 className="font-semibold text-white">{item.manufacturer}</h4>
-                    <Badge className={getStatusColor(item.status)}>
+                    <h4 className="font-semibold" style={{ color: '#1A2B49' }}>{item.manufacturer}</h4>
+                    <Badge className="text-white" style={{ backgroundColor: getStatusColor(item.status) }}>
                       {item.status}
                     </Badge>
                   </div>
-                  <div className="text-sm text-gray-300 mb-2">
+                  <div className="text-sm mb-2" style={{ color: '#1A2B49' }}>
                     Products: {item.products.join(', ')}
                   </div>
-                  <div className="text-xs text-gray-400">
+                  <div className="text-xs" style={{ color: '#7C9C95' }}>
                     Last Updated: {new Date(item.lastUpdated).toLocaleDateString()}
                   </div>
                   {item.alternatives && (
-                    <div className="text-sm text-blue-400 mt-2">
+                    <div className="text-sm mt-2" style={{ color: '#E98B2A' }}>
                       Alternatives: {item.alternatives.join(', ')}
                     </div>
                   )}
@@ -214,33 +215,33 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       </Card>
 
       {/* Code Compliance */}
-      <Card className="bg-gray-800/50 border-gray-700">
+      <Card className="bg-white border" style={{ borderColor: '#D9D6D0' }}>
         <CardHeader>
-          <CardTitle className="text-white flex items-center space-x-3">
-            <Building className="h-5 w-5 text-orange-400" />
+          <CardTitle className="flex items-center space-x-3" style={{ color: '#1A2B49' }}>
+            <Building className="h-5 w-5" style={{ color: '#E98B2A' }} />
             <span>Building Code Compliance</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             {analysis.codeCompliance.map((item, index) => (
-              <div key={index} className="p-4 bg-gray-900/50 rounded-lg">
+              <div key={index} className="p-4 rounded-lg" style={{ backgroundColor: '#F7F3ED' }}>
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-3">
                     {getStatusIcon(item.status)}
-                    <h4 className="font-semibold text-white">{item.code}</h4>
-                    <Badge className={getStatusColor(item.status)}>
+                    <h4 className="font-semibold" style={{ color: '#1A2B49' }}>{item.code}</h4>
+                    <Badge className="text-white" style={{ backgroundColor: getStatusColor(item.status) }}>
                       {item.status}
                     </Badge>
                   </div>
-                  <div className="text-sm text-gray-400">
+                  <div className="text-sm" style={{ color: '#7C9C95' }}>
                     {item.specifiedVersion} → {item.currentVersion}
                   </div>
                 </div>
-                <div className="text-sm text-gray-300 mb-2">{item.section}</div>
-                <div className="text-sm text-gray-400 mb-2">{item.description}</div>
+                <div className="text-sm mb-2" style={{ color: '#1A2B49' }}>{item.section}</div>
+                <div className="text-sm mb-2" style={{ color: '#7C9C95' }}>{item.description}</div>
                 {item.recommendations && (
-                  <div className="text-sm text-blue-400">
+                  <div className="text-sm" style={{ color: '#E98B2A' }}>
                     Recommendation: {item.recommendations}
                   </div>
                 )}
@@ -251,31 +252,37 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       </Card>
 
       {/* Material Standards */}
-      <Card className="bg-gray-800/50 border-gray-700">
+      <Card className="bg-white border" style={{ borderColor: '#D9D6D0' }}>
         <CardHeader>
-          <CardTitle className="text-white flex items-center space-x-3">
-            <Shield className="h-5 w-5 text-cyan-400" />
+          <CardTitle className="flex items-center space-x-3" style={{ color: '#1A2B49' }}>
+            <Shield className="h-5 w-5" style={{ color: '#E98B2A' }} />
             <span>Material Standards (ASTM/ANSI)</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             {analysis.materialStandards.map((item, index) => (
-              <div key={index} className="p-4 bg-gray-900/50 rounded-lg">
+              <div key={index} className="p-4 rounded-lg" style={{ backgroundColor: '#F7F3ED' }}>
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-3">
                     {getStatusIcon(item.status)}
-                    <h4 className="font-semibold text-white">{item.standard}</h4>
-                    <Badge className={getStatusColor(item.status)}>
+                    <h4 className="font-semibold" style={{ color: '#1A2B49' }}>{item.standard}</h4>
+                    <Badge className="text-white" style={{ backgroundColor: getStatusColor(item.status) }}>
                       {item.status}
                     </Badge>
-                    <Badge variant="outline" className={`border-${item.criticalityLevel === 'high' ? 'red' : item.criticalityLevel === 'medium' ? 'yellow' : 'green'}-500`}>
+                    <Badge 
+                      className="text-white"
+                      style={{ 
+                        backgroundColor: item.criticalityLevel === 'high' ? '#E98B2A' : item.criticalityLevel === 'medium' ? '#E98B2A' : '#7C9C95',
+                        border: `1px solid ${item.criticalityLevel === 'high' ? '#E98B2A' : item.criticalityLevel === 'medium' ? '#E98B2A' : '#7C9C95'}`
+                      }}
+                    >
                       {item.criticalityLevel} priority
                     </Badge>
                   </div>
                 </div>
-                <div className="text-sm text-gray-300 mb-2">Material: {item.material}</div>
-                <div className="text-sm text-gray-400">
+                <div className="text-sm mb-2" style={{ color: '#1A2B49' }}>Material: {item.material}</div>
+                <div className="text-sm" style={{ color: '#7C9C95' }}>
                   Specified: {item.specifiedStandard} | Current: {item.currentStandard}
                 </div>
               </div>
@@ -285,32 +292,32 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       </Card>
 
       {/* Sustainability Metrics */}
-      <Card className="bg-gray-800/50 border-gray-700">
+      <Card className="bg-white border" style={{ borderColor: '#D9D6D0' }}>
         <CardHeader>
-          <CardTitle className="text-white flex items-center space-x-3">
-            <Leaf className="h-5 w-5 text-green-400" />
+          <CardTitle className="flex items-center space-x-3" style={{ color: '#1A2B49' }}>
+            <Leaf className="h-5 w-5" style={{ color: '#7C9C95' }} />
             <span>Sustainability & LEED Compliance</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             {analysis.sustainabilityMetrics.map((item, index) => (
-              <div key={index} className="p-4 bg-gray-900/50 rounded-lg">
+              <div key={index} className="p-4 rounded-lg" style={{ backgroundColor: '#F7F3ED' }}>
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-3">
                     {getStatusIcon(item.status)}
-                    <h4 className="font-semibold text-white">{item.metric}</h4>
-                    <Badge className={getStatusColor(item.status)}>
+                    <h4 className="font-semibold" style={{ color: '#1A2B49' }}>{item.metric}</h4>
+                    <Badge className="text-white" style={{ backgroundColor: getStatusColor(item.status) }}>
                       {item.status}
                     </Badge>
                   </div>
-                  <div className="text-sm text-gray-400">
+                  <div className="text-sm" style={{ color: '#7C9C95' }}>
                     {item.value} (Target: {item.benchmark})
                   </div>
                 </div>
-                <div className="text-sm text-gray-300 mb-2">Category: {item.category}</div>
+                <div className="text-sm mb-2" style={{ color: '#1A2B49' }}>Category: {item.category}</div>
                 {item.recommendations && (
-                  <div className="text-sm text-blue-400">
+                  <div className="text-sm" style={{ color: '#E98B2A' }}>
                     Recommendation: {item.recommendations}
                   </div>
                 )}
@@ -321,33 +328,33 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       </Card>
 
       {/* Performance Specifications */}
-      <Card className="bg-gray-800/50 border-gray-700">
+      <Card className="bg-white border" style={{ borderColor: '#D9D6D0' }}>
         <CardHeader>
-          <CardTitle className="text-white flex items-center space-x-3">
-            <Gauge className="h-5 w-5 text-indigo-400" />
+          <CardTitle className="flex items-center space-x-3" style={{ color: '#1A2B49' }}>
+            <Gauge className="h-5 w-5" style={{ color: '#E98B2A' }} />
             <span>Performance Specifications</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             {analysis.performanceSpecs.map((item, index) => (
-              <div key={index} className="p-4 bg-gray-900/50 rounded-lg">
+              <div key={index} className="p-4 rounded-lg" style={{ backgroundColor: '#F7F3ED' }}>
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-3">
                     {getStatusIcon(item.status)}
-                    <h4 className="font-semibold text-white">{item.component}</h4>
-                    <Badge className={getStatusColor(item.status)}>
+                    <h4 className="font-semibold" style={{ color: '#1A2B49' }}>{item.component}</h4>
+                    <Badge className="text-white" style={{ backgroundColor: getStatusColor(item.status) }}>
                       {item.status}
                     </Badge>
                   </div>
-                  <div className="text-sm text-gray-400">
+                  <div className="text-sm" style={{ color: '#7C9C95' }}>
                     {item.measuredValue} / {item.requiredValue}
                   </div>
                 </div>
-                <div className="text-sm text-gray-300 mb-1">
+                <div className="text-sm mb-1" style={{ color: '#1A2B49' }}>
                   Specification: {item.specification}
                 </div>
-                <div className="text-sm text-gray-400">
+                <div className="text-sm" style={{ color: '#7C9C95' }}>
                   Test Method: {item.testMethod}
                 </div>
               </div>
