@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -91,6 +90,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
 
   const renderContentWithHighlights = () => {
     console.log('Rendering content with highlights');
+    console.log('Raw file content:', JSON.stringify(fileContent?.substring(0, 100)));
     
     if (!fileContent || typeof fileContent !== 'string' || fileContent.trim().length === 0) {
       return (
@@ -103,11 +103,14 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
       );
     }
 
-    const lines = fileContent.split('\n');
+    // Clean the content - remove any unwanted characters or whitespace issues
+    const cleanContent = fileContent.trim();
+    const lines = cleanContent.split(/\r?\n/); // Handle both \n and \r\n line endings
     console.log('Rendering', lines.length, 'lines of content');
+    console.log('First few lines:', lines.slice(0, 5));
     
     return (
-      <div className="space-y-0 font-mono text-sm leading-relaxed">
+      <div className="space-y-0 leading-relaxed">
         {lines.map((line, index) => {
           const lineNumber = index + 1;
           const isHighlighted = highlightedLines.has(lineNumber);
@@ -115,7 +118,8 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
           // Check if this line has any suggestions
           const lineSuggestions = suggestions.filter(s => s.lineNumber === lineNumber);
           
-          let displayContent: React.ReactNode = line || '\u00A0'; // Use non-breaking space for empty lines
+          // Use the actual line content or a space for empty lines to maintain formatting
+          let displayContent: React.ReactNode = line.length > 0 ? line : '\u00A0'; // Non-breaking space for empty lines
           
           // Apply highlighting for suggestions
           if (lineSuggestions.length > 0) {
@@ -154,7 +158,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
               <div className="text-xs text-gray-400 mr-4 w-12 text-right select-none flex-shrink-0 pt-1">
                 {lineNumber}
               </div>
-              <div className="flex-1 whitespace-pre-wrap break-words" style={{ fontFamily: 'Georgia, serif' }}>
+              <div className="flex-1 whitespace-pre-wrap break-words text-sm" style={{ fontFamily: 'monospace' }}>
                 {displayContent}
               </div>
             </div>
@@ -163,7 +167,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
       </div>
     );
   };
-  
+
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case 'high': return '#B04A4A';
@@ -185,7 +189,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
     if (!fileContent || typeof fileContent !== 'string') {
       return { lines: 0, size: '0KB', words: 0 };
     }
-    const lines = fileContent.split('\n').length;
+    const lines = fileContent.split(/\r?\n/).length;
     const words = fileContent.split(/\s+/).filter(word => word.length > 0).length;
     const sizeKB = Math.max(1, Math.round(fileContent.length / 1024));
     return { lines, size: `${sizeKB}KB`, words };
