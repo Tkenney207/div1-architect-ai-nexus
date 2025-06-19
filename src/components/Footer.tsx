@@ -52,7 +52,6 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-6" style={{ color: '#F7F3ED' }}>Resources</h3>
             <div className="space-y-3">
-              <span className="block text-sm" style={{ color: '#F7F3ED' }}>Documentation</span>
               <Link 
                 to="/security" 
                 className="block text-sm transition-colors hover:opacity-80"
