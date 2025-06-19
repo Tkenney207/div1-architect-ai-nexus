@@ -83,18 +83,26 @@ const Master1 = () => {
   };
 
   const openReviewWindow = (fileId: string, fileName: string) => {
+    console.log('Opening review window for:', { fileId, fileName });
+    
     // Get actual file content instead of using mock data
     const actualContent = getFileContent(fileId);
+    console.log('Retrieved file content:', {
+      contentType: typeof actualContent,
+      contentLength: actualContent?.length || 0,
+      contentPreview: actualContent?.substring(0, 100) || 'No content'
+    });
     
-    if (actualContent) {
+    if (actualContent && actualContent.trim().length > 0) {
       setReviewWindow({ fileId, fileName, content: actualContent });
     } else {
       console.warn('No content available for file:', fileName);
-      // Fallback to a message indicating no content is available
+      // Show a more informative message
+      const fallbackContent = `File: ${fileName}\n\nNo content could be extracted from this file.\nThis may be due to:\n- File is still processing\n- Unsupported file format\n- File read error\n\nPlease try uploading the file again or check the file format.`;
       setReviewWindow({ 
         fileId, 
         fileName, 
-        content: `No content available for ${fileName}. The file may still be processing or there was an error reading the file content.` 
+        content: fallbackContent
       });
     }
   };
