@@ -2,13 +2,21 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Brain, Shield, CheckCircle, Upload } from "lucide-react";
+import { FileText, Brain, Shield, CheckCircle, Upload, Download } from "lucide-react";
 import Header from "@/components/Header";
 import { useState, useRef } from "react";
+import { useSpecificationProcessor } from "@/hooks/useSpecificationProcessor";
 
 const Master1 = () => {
   const [dragActive, setDragActive] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  const {
+    uploadSpecification,
+    uploadedFiles,
+    processingStatus,
+    isLoading
+  } = useSpecificationProcessor();
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
@@ -26,13 +34,17 @@ const Master1 = () => {
     setDragActive(false);
     const files = e.dataTransfer.files;
     if (files && files.length > 0) {
-      console.log('Files dropped:', Array.from(files).map(f => f.name));
+      Array.from(files).forEach(file => {
+        uploadSpecification(file);
+      });
     }
   };
 
   const handleFileUpload = (files: FileList | null) => {
     if (files && files.length > 0) {
-      console.log('Files selected:', Array.from(files).map(f => f.name));
+      Array.from(files).forEach(file => {
+        uploadSpecification(file);
+      });
     }
   };
 
@@ -105,13 +117,107 @@ const Master1 = () => {
                   onClick={() => fileInputRef.current?.click()}
                   className="text-white px-8 py-3 rounded-lg font-medium transition-all hover:opacity-90"
                   style={{ backgroundColor: '#E98B2A' }}
+                  disabled={isLoading}
                 >
-                  Select Files
+                  {isLoading ? 'Processing...' : 'Select Files'}
                 </Button>
               </div>
             </CardContent>
           </Card>
         </div>
+
+        {/* Processing Status */}
+        {processingStatus && (
+          <div className="mb-8">
+            <Card className="bg-white border" style={{ borderColor: '#E98B2A' }}>
+              <CardContent className="p-6">
+                <div className="flex items-center space-x-4">
+                  <div className="animate-spin h-6 w-6 border-2 border-t-transparent rounded-full" style={{ borderColor: '#E98B2A' }}></div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-medium" style={{ color: '#1A2B49' }}>{processingStatus.stage}</span>
+                      <span style={{ color: '#E98B2A' }}>{processingStatus.progress}%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div 
+                        className="h-2 rounded-full transition-all duration-300" 
+                        style={{ 
+                          width: `${processingStatus.progress}%`,
+                          backgroundColor: '#E98B2A'
+                        }}
+                      ></div>
+                    </div>
+                    <p className="text-sm mt-2" style={{ color: '#7C9C95' }}>{processingStatus.message}</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* Uploaded Files Results */}
+        {uploadedFiles.length > 0 && (
+          <div className="mb-20">
+            <h3 className="text-2xl font-medium mb-6" style={{ color: '#1A2B49' }}>Analysis Results</h3>
+            <div className="space-y-6">
+              {uploadedFiles.map((file) => (
+                <Card key={file.id} className="bg-white border" style={{ borderColor: '#D9D6D0' }}>
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center space-x-3">
+                        <FileText className="h-8 w-8" style={{ color: '#E98B2A' }} />
+                        <div>
+                          <p className="font-medium" style={{ color: '#1A2B49' }}>{file.name}</p>
+                          <p className="text-sm" style={{ color: '#7C9C95' }}>
+                            {file.size} • Uploaded {new Date(file.uploadDate).toLocaleDateString()}
+                          </p>
+                        </div>
+                      </div>
+                      <Badge 
+                        variant={file.status === 'processed' ? 'default' : 'outline'}
+                        className={file.status === 'processed' ? 'bg-green-600' : 
+                          file.status === 'processing' ? 'bg-blue-600' : 'border-yellow-500 text-yellow-600'}
+                      >
+                        {file.status === 'processing' ? 'Analyzing...' : file.status}
+                      </Badge>
+                    </div>
+                    
+                    {file.status === 'processed' && file.analysisResults && (
+                      <div className="space-y-6 mt-6 pt-6 border-t" style={{ borderColor: '#D9D6D0' }}>
+                        {/* Overall Score */}
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="text-center">
+                            <div className="text-3xl font-bold" style={{ color: '#E98B2A' }}>
+                              {file.analysisResults.overview.overallCompliance}%
+                            </div>
+                            <div style={{ color: '#7C9C95' }}>Overall Compliance</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-3xl font-bold" style={{ color: '#1A2B49' }}>
+                              {file.analysisResults.overview.criticalIssues}
+                            </div>
+                            <div style={{ color: '#7C9C95' }}>Critical Issues</div>
+                          </div>
+                        </div>
+
+                        {/* Actions */}
+                        <div className="flex space-x-4 justify-center pt-4">
+                          <Button className="text-white" style={{ backgroundColor: '#E98B2A' }}>
+                            <Download className="h-4 w-4 mr-2" />
+                            Download Enhanced Version
+                          </Button>
+                          <Button variant="outline" style={{ borderColor: '#7C9C95', color: '#7C9C95' }}>
+                            View Full Analysis
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Architecture Features */}
         <div className="grid lg:grid-cols-3 gap-8">
