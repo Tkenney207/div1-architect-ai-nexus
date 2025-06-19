@@ -276,16 +276,7 @@ export const DocumentProcessor = () => {
         <SpecificationReviewWindow
           fileName={uploadedFiles.find(f => f.id === showReviewWindow)?.name || ''}
           fileContent="[Original specification content would be loaded here...]"
-          suggestions={suggestions}
           onClose={() => setShowReviewWindow(null)}
-          onApproveSuggestion={approveSuggestion}
-          onRejectSuggestion={rejectSuggestion}
-          onApproveAll={approveAllSuggestions}
-          onDownloadRevised={() => {
-            const approvedSuggestions = suggestions.filter(s => s.status === 'approved');
-            const fileName = uploadedFiles.find(f => f.id === showReviewWindow)?.name || 'specification';
-            downloadRevisedSpecification(fileName, approvedSuggestions);
-          }}
         />
       )}
 

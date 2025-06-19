@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -441,12 +440,7 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
         <SpecificationReviewWindow
           fileName={fileName}
           fileContent="Sample specification content would be displayed here..."
-          suggestions={suggestions}
           onClose={handleCloseReview}
-          onApproveSuggestion={approveSuggestion}
-          onRejectSuggestion={rejectSuggestion}
-          onApproveAll={approveAllSuggestions}
-          onDownloadRevised={handleDownloadRevised}
         />
       )}
     </>

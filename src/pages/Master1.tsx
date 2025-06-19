@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import { useState, useRef, useEffect } from "react";
 import { useSpecificationProcessor } from "@/hooks/useSpecificationProcessor";
 import { SpecificationAnalysis } from "@/components/SpecificationAnalysis";
-import SpecificationReviewWindow from "@/components/SpecificationReviewWindow";
+import { SpecificationReviewWindow } from "@/components/SpecificationReviewWindow";
 
 const Master1 = () => {
   const [dragActive, setDragActive] = useState(false);
