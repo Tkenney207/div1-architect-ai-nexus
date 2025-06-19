@@ -18,7 +18,7 @@ export const useSpecificationReview = () => {
   const [suggestions, setSuggestions] = useState<SuggestionItem[]>([]);
 
   const generateSuggestions = (fileName: string): SuggestionItem[] => {
-    // Mock suggestions based on analysis - in real implementation, this would come from your backend
+    // Mock suggestions with realistic line numbers that match the document content
     return [
       {
         id: '1',
@@ -30,7 +30,7 @@ export const useSpecificationReview = () => {
         suggestedText: 'IBC 2021, Section 705.8',
         priority: 'high',
         status: 'pending',
-        lineNumber: 45
+        lineNumber: 21
       },
       {
         id: '2',
@@ -42,7 +42,7 @@ export const useSpecificationReview = () => {
         suggestedText: 'Armstrong Ultima Vector Ceiling Tiles, Model 5678 or USG Mars Climaplus',
         priority: 'medium',
         status: 'pending',
-        lineNumber: 78
+        lineNumber: 26
       },
       {
         id: '3',
@@ -53,7 +53,7 @@ export const useSpecificationReview = () => {
         suggestedText: 'Materials shall contain minimum 50% recycled content per LEED v4.1 MR Credit: Building Product Disclosure and Optimization.',
         priority: 'medium',
         status: 'pending',
-        lineNumber: 102
+        lineNumber: 32
       },
       {
         id: '4',
@@ -65,7 +65,7 @@ export const useSpecificationReview = () => {
         suggestedText: 'ASTM E84-23',
         priority: 'high',
         status: 'pending',
-        lineNumber: 156
+        lineNumber: 29
       },
       {
         id: '5',
@@ -77,7 +77,7 @@ export const useSpecificationReview = () => {
         suggestedText: 'R-38 minimum per current energy codes',
         priority: 'high',
         status: 'pending',
-        lineNumber: 189
+        lineNumber: 28
       }
     ];
   };
