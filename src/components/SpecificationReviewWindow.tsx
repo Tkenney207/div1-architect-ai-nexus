@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -57,6 +56,11 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
   const pendingSuggestions = suggestions.filter(s => s.status === 'pending');
   const approvedSuggestions = suggestions.filter(s => s.status === 'approved');
 
+  // Update current content when fileContent changes
+  useEffect(() => {
+    setCurrentContent(fileContent);
+  }, [fileContent]);
+
   // Update highlighted lines when a suggestion is selected
   useEffect(() => {
     if (selectedSuggestion) {
@@ -68,62 +72,6 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
       setHighlightedLines(new Set());
     }
   }, [selectedSuggestion, suggestions]);
-
-  // Generate mock file content with proper formatting
-  const getMockFileContent = () => {
-    return `SECTION 01 10 00 - SUMMARY
-
-PART 1 - GENERAL
-
-1.1 RELATED DOCUMENTS
-A. Drawings and general provisions of the Contract, including General and Supplementary 
-   Conditions and Division 01 Specification Sections, apply to this Section.
-
-1.2 SUMMARY
-A. Section includes administrative and procedural requirements for the following:
-   1. Project description.
-   2. Work covered by Contract Documents.
-   3. Phased construction.
-   4. Owner-furnished products.
-   5. Owner-performed work.
-   6. Coordination with existing construction.
-   7. Work restrictions.
-   8. Specification and Drawing conventions.
-
-1.3 PROJECT DESCRIPTION
-A. Project consists of construction of new 3-story office building with basement parking garage.
-B. Building area: Approximately 45,000 sq ft (4,181 sq m).
-C. Building height: 42 feet (12.8 m) above grade.
-D. Construction type: Type II, non-combustible construction per IBC 2018, Section 705.8.
-
-1.4 WORK COVERED BY CONTRACT DOCUMENTS
-A. Architectural, structural, mechanical, electrical, and plumbing work.
-B. Site work including grading, utilities, and landscaping.
-C. Armstrong Mineral Fiber Ceiling Tiles, Model 1234.
-
-1.5 MATERIALS AND EQUIPMENT
-A. Insulation shall have R-30 minimum thermal resistance.
-B. Materials shall comply with ASTM E84-20 flame spread requirements.
-C. All materials shall meet applicable building codes and standards.
-
-PART 2 - PRODUCTS
-
-2.1 PERFORMANCE REQUIREMENTS
-A. Comply with applicable codes and standards.
-B. Provide materials meeting specified performance criteria.
-
-2.2 MATERIALS
-A. All materials shall be new and in accordance with Contract Documents.
-B. Materials shall contain recycled content where specified.
-
-PART 3 - EXECUTION
-
-3.1 GENERAL
-A. Perform work in accordance with manufacturer's instructions.
-B. Coordinate work with other trades.
-
-END OF SECTION`;
-  };
 
   const handleApproveSuggestion = (suggestionId: string) => {
     const suggestion = suggestions.find(s => s.id === suggestionId);
@@ -145,7 +93,9 @@ END OF SECTION`;
   };
 
   const renderContentWithHighlights = () => {
-    const lines = (currentContent || getMockFileContent()).split('\n');
+    // Use current content if available, otherwise fall back to a default message
+    const content = currentContent || "No content available. Please upload a specification file.";
+    const lines = content.split('\n');
     
     return lines.map((line, index) => {
       const lineNumber = index + 1;
@@ -396,4 +346,20 @@ END OF SECTION`;
       </div>
     </div>
   );
+};
+
+const getPriorityColor = (priority: string) => {
+  switch (priority) {
+    case 'high': return '#B04A4A';
+    case 'medium': return '#E98B2A';
+    case 'low': return '#7C9C95';
+    default: return '#7C9C95';
+  }
+};
+
+const getTypeIcon = (type: string) => {
+  switch (type) {
+    case 'compliance': return <AlertTriangle className="h-4 w-4" />;
+    default: return <FileText className="h-4 w-4" />;
+  }
 };

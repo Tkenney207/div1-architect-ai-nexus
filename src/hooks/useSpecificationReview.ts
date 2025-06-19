@@ -16,8 +16,14 @@ interface SuggestionItem {
 
 export const useSpecificationReview = () => {
   const [suggestions, setSuggestions] = useState<SuggestionItem[]>([]);
+  const [fileContent, setFileContent] = useState<string>('');
 
-  const generateSuggestions = (fileName: string): SuggestionItem[] => {
+  const generateSuggestions = (fileName: string, content?: string): SuggestionItem[] => {
+    // Store the file content if provided
+    if (content) {
+      setFileContent(content);
+    }
+
     // Mock suggestions with realistic line numbers that match the document content
     return [
       {
@@ -149,6 +155,8 @@ Date: ${new Date().toLocaleDateString()}
     approveSuggestion,
     rejectSuggestion,
     approveAllSuggestions,
-    downloadRevisedSpecification
+    downloadRevisedSpecification,
+    fileContent,
+    setFileContent
   };
 };
