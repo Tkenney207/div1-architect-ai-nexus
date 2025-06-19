@@ -83,21 +83,12 @@ const Master1 = () => {
   };
 
   const openReviewWindow = (fileId: string, fileName: string) => {
-    console.log('=== OPENING REVIEW WINDOW ===');
+    console.log('=== OPENING REVIEW WINDOW DEBUG ===');
     console.log('Opening review window for:', { fileId, fileName });
     
-    // Get actual file content with enhanced debugging
-    const actualContent = getFileContent(fileId);
-    console.log('Retrieved file content:', {
-      contentType: typeof actualContent,
-      contentLength: actualContent?.length || 0,
-      contentPreview: actualContent ? actualContent.substring(0, 500) : 'No content',
-      fileId: fileId
-    });
-    
-    // Find the file to check its status and content
+    // Find the file in uploadedFiles to get the actual content
     const file = uploadedFiles.find(f => f.id === fileId);
-    console.log('File details:', {
+    console.log('Found file object:', {
       id: file?.id,
       name: file?.name,
       status: file?.status,
@@ -107,46 +98,67 @@ const Master1 = () => {
       extractedContentLength: typeof file?.extractedContent === 'string' ? file?.extractedContent?.length : 0
     });
     
-    // Try to get content from multiple sources
-    let contentToUse = actualContent;
-    
-    if (!contentToUse && file) {
-      // Try extractedContent first, then content
-      contentToUse = file.extractedContent || file.content;
-      console.log('Fallback content from file object:', {
-        source: file.extractedContent ? 'extractedContent' : 'content',
-        type: typeof contentToUse,
-        length: typeof contentToUse === 'string' ? contentToUse.length : 0
-      });
-    }
-    
-    if (contentToUse && typeof contentToUse === 'string' && contentToUse.trim().length > 0) {
-      console.log('=== SETTING REVIEW WINDOW WITH ACTUAL CONTENT ===');
-      console.log('Final content preview:', contentToUse.substring(0, 300) + '...');
-      setReviewWindow({ fileId, fileName, content: contentToUse });
-    } else {
-      console.warn('=== NO VALID CONTENT AVAILABLE ===');
-      console.warn('File status:', file?.status);
-      
-      // Provide helpful error message based on file status
-      let errorMessage = `File: ${fileName}\n\n`;
-      
-      if (file && file.status === 'processing') {
-        errorMessage += `This file is still being processed. Please wait for processing to complete before reviewing.\n\nStatus: ${file.status}`;
-      } else if (file && file.status === 'error') {
-        errorMessage += `There was an error processing this file.\n\nError: ${file.content || 'Unknown error'}`;
-      } else if (!file) {
-        errorMessage += `File not found in uploaded files list.`;
-      } else {
-        errorMessage += `No content could be extracted from this file.\nThis may be due to:\n- Unsupported file format\n- File corruption\n- Extraction error\n\nFile Status: ${file.status}\nPlease try uploading the file again.`;
-      }
-      
+    if (!file) {
+      console.error('File not found:', fileId);
       setReviewWindow({ 
         fileId, 
         fileName, 
-        content: errorMessage
+        content: `Error: File not found with ID ${fileId}` 
       });
+      return;
     }
+
+    // Get the actual extracted content - prioritize extractedContent over content
+    let actualContent = file.extractedContent || file.content;
+    
+    console.log('Retrieved content details:', {
+      source: file.extractedContent ? 'extractedContent' : 'content',
+      type: typeof actualContent,
+      length: typeof actualContent === 'string' ? actualContent.length : 0,
+      preview: typeof actualContent === 'string' ? actualContent.substring(0, 200) + '...' : 'Not a string'
+    });
+
+    // Validate the content
+    if (!actualContent || typeof actualContent !== 'string') {
+      console.error('No valid content found:', {
+        fileId,
+        fileName,
+        fileStatus: file.status,
+        contentType: typeof actualContent
+      });
+      
+      let errorMessage = `File: ${fileName}\n\n`;
+      if (file.status === 'processing') {
+        errorMessage += 'This file is still being processed. Please wait for processing to complete.';
+      } else if (file.status === 'error') {
+        errorMessage += `Processing error: ${file.content || 'Unknown error'}`;
+      } else {
+        errorMessage += 'No content could be extracted from this file. Please try uploading again.';
+      }
+      
+      setReviewWindow({ fileId, fileName, content: errorMessage });
+      return;
+    }
+
+    const trimmedContent = actualContent.trim();
+    if (trimmedContent.length === 0) {
+      console.error('Content is empty after trimming');
+      setReviewWindow({ 
+        fileId, 
+        fileName, 
+        content: `File: ${fileName}\n\nThe file appears to be empty or contains no extractable text.` 
+      });
+      return;
+    }
+
+    console.log('=== SETTING REVIEW WINDOW WITH ACTUAL CONTENT ===');
+    console.log('Final content being passed:', {
+      length: trimmedContent.length,
+      firstLine: trimmedContent.split('\n')[0],
+      preview: trimmedContent.substring(0, 300) + '...'
+    });
+    
+    setReviewWindow({ fileId, fileName, content: trimmedContent });
   };
 
   const closeReviewWindow = () => {
