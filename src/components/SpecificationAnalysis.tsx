@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -103,7 +102,7 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       case 'fail':
       case 'missing':
       case 'not-specified':
-        return <XCircle className="h-4 w-4" style={{ color: '#E98B2A' }} />;
+        return <XCircle className="h-4 w-4" style={{ color: '#B04A4A' }} />;
       default:
         return <AlertTriangle className="h-4 w-4" style={{ color: '#7C9C95' }} />;
     }
@@ -127,7 +126,7 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       case 'fail':
       case 'missing':
       case 'not-specified':
-        return '#E98B2A';
+        return '#B04A4A';
       default:
         return '#7C9C95';
     }
