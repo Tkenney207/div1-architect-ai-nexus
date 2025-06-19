@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -193,107 +192,113 @@ const Master1 = () => {
             <h3 className="text-2xl font-medium mb-6" style={{ color: '#1A2B49' }}>Analysis Results</h3>
             <div className="space-y-6">
               {uploadedFiles.map((file) => (
-                <Card key={file.id} className="bg-white border" style={{ borderColor: '#D9D6D0' }}>
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center space-x-3">
-                        <FileText className="h-8 w-8" style={{ color: '#E98B2A' }} />
-                        <div>
-                          <p className="font-medium" style={{ color: '#1A2B49' }}>{file.name}</p>
-                          <p className="text-sm" style={{ color: '#7C9C95' }}>
-                            {file.size} • Uploaded {new Date(file.uploadDate).toLocaleDateString()}
-                          </p>
+                <div 
+                  key={file.id} 
+                  className="border-4 rounded-xl p-2" 
+                  style={{ borderColor: '#1A2B49' }}
+                >
+                  <Card className="bg-white border" style={{ borderColor: '#D9D6D0' }}>
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center space-x-3">
+                          <FileText className="h-8 w-8" style={{ color: '#E98B2A' }} />
+                          <div>
+                            <p className="font-medium" style={{ color: '#1A2B49' }}>{file.name}</p>
+                            <p className="text-sm" style={{ color: '#7C9C95' }}>
+                              {file.size} • Uploaded {new Date(file.uploadDate).toLocaleDateString()}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                      <Badge 
-                        className={
-                          file.status === 'processed' 
-                            ? 'text-white' 
-                            : file.status === 'processing' 
-                            ? 'text-white' 
-                            : 'text-white'
-                        }
-                        style={{
-                          backgroundColor: 
+                        <Badge 
+                          className={
                             file.status === 'processed' 
-                              ? '#7C9C95' 
+                              ? 'text-white' 
                               : file.status === 'processing' 
-                              ? '#E98B2A' 
-                              : '#D9D6D0',
-                          color: '#FFFFFF'
-                        }}
-                      >
-                        {file.status === 'processing' ? 'Analyzing...' : file.status}
-                      </Badge>
-                    </div>
-                    
-                    {file.status === 'processed' && file.analysisResults && (
-                      <div className="space-y-6 mt-6 pt-6 border-t" style={{ borderColor: '#D9D6D0' }}>
-                        {/* Overall Score */}
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="text-center p-4 border-2 rounded-lg" style={{ borderColor: '#E98B2A' }}>
-                            <div className="text-3xl font-bold" style={{ color: '#E98B2A' }}>
-                              {file.analysisResults.overview.overallCompliance}%
-                            </div>
-                            <div className="font-medium" style={{ color: '#E98B2A' }}>Overall Compliance</div>
-                          </div>
-                          <div className="text-center p-4 border-2 rounded-lg" style={{ borderColor: '#B04A4A' }}>
-                            <div className="text-3xl font-bold" style={{ color: '#B04A4A' }}>
-                              {file.analysisResults.overview.criticalIssues}
-                            </div>
-                            <div className="font-medium" style={{ color: '#B04A4A' }}>Critical Issues</div>
-                          </div>
-                        </div>
-
-                        {/* Actions */}
-                        <div className="flex space-x-4 justify-center pt-4">
-                          <Button 
-                            className="text-white font-medium px-6 py-2 rounded-lg transition-all hover:opacity-90"
-                            style={{ backgroundColor: '#E98B2A' }}
-                          >
-                            <Download className="h-4 w-4 mr-2" />
-                            Download Enhanced Version
-                          </Button>
-                          <Button 
-                            onClick={() => toggleAnalysisExpansion(file.id)}
-                            className="font-medium px-6 py-2 rounded-lg transition-all hover:opacity-90 bg-white flex items-center"
-                            style={{ 
-                              borderColor: '#7C9C95', 
-                              color: '#7C9C95',
-                              border: '1px solid #7C9C95'
-                            }}
-                          >
-                            {expandedAnalysis === file.id ? (
-                              <>
-                                <ChevronUp className="h-4 w-4 mr-2" />
-                                Hide Full Analysis
-                              </>
-                            ) : (
-                              <>
-                                <ChevronDown className="h-4 w-4 mr-2" />
-                                View Full Analysis
-                              </>
-                            )}
-                          </Button>
-                        </div>
-
-                        {/* Analysis Dropdown */}
-                        {expandedAnalysis === file.id && (
-                          <div 
-                            ref={(el) => analysisRefs.current[file.id] = el}
-                            className="mt-6 border-t pt-6" 
-                            style={{ borderColor: '#D9D6D0' }}
-                          >
-                            <SpecificationAnalysis 
-                              fileName={file.name}
-                              analysis={file.analysisResults}
-                            />
-                          </div>
-                        )}
+                              ? 'text-white' 
+                              : 'text-white'
+                          }
+                          style={{
+                            backgroundColor: 
+                              file.status === 'processed' 
+                                ? '#7C9C95' 
+                                : file.status === 'processing' 
+                                ? '#E98B2A' 
+                                : '#D9D6D0',
+                            color: '#FFFFFF'
+                          }}
+                        >
+                          {file.status === 'processing' ? 'Analyzing...' : file.status}
+                        </Badge>
                       </div>
-                    )}
-                  </CardContent>
-                </Card>
+                      
+                      {file.status === 'processed' && file.analysisResults && (
+                        <div className="space-y-6 mt-6 pt-6 border-t" style={{ borderColor: '#D9D6D0' }}>
+                          {/* Overall Score */}
+                          <div className="grid grid-cols-2 gap-4">
+                            <div className="text-center p-4 border-2 rounded-lg" style={{ borderColor: '#E98B2A' }}>
+                              <div className="text-3xl font-bold" style={{ color: '#E98B2A' }}>
+                                {file.analysisResults.overview.overallCompliance}%
+                              </div>
+                              <div className="font-medium" style={{ color: '#E98B2A' }}>Overall Compliance</div>
+                            </div>
+                            <div className="text-center p-4 border-2 rounded-lg" style={{ borderColor: '#B04A4A' }}>
+                              <div className="text-3xl font-bold" style={{ color: '#B04A4A' }}>
+                                {file.analysisResults.overview.criticalIssues}
+                              </div>
+                              <div className="font-medium" style={{ color: '#B04A4A' }}>Critical Issues</div>
+                            </div>
+                          </div>
+
+                          {/* Actions */}
+                          <div className="flex space-x-4 justify-center pt-4">
+                            <Button 
+                              className="text-white font-medium px-6 py-2 rounded-lg transition-all hover:opacity-90"
+                              style={{ backgroundColor: '#E98B2A' }}
+                            >
+                              <Download className="h-4 w-4 mr-2" />
+                              Download Enhanced Version
+                            </Button>
+                            <Button 
+                              onClick={() => toggleAnalysisExpansion(file.id)}
+                              className="font-medium px-6 py-2 rounded-lg transition-all hover:opacity-90 bg-white flex items-center"
+                              style={{ 
+                                borderColor: '#7C9C95', 
+                                color: '#7C9C95',
+                                border: '1px solid #7C9C95'
+                              }}
+                            >
+                              {expandedAnalysis === file.id ? (
+                                <>
+                                  <ChevronUp className="h-4 w-4 mr-2" />
+                                  Hide Full Analysis
+                                </>
+                              ) : (
+                                <>
+                                  <ChevronDown className="h-4 w-4 mr-2" />
+                                  View Full Analysis
+                                </>
+                              )}
+                            </Button>
+                          </div>
+
+                          {/* Analysis Dropdown */}
+                          {expandedAnalysis === file.id && (
+                            <div 
+                              ref={(el) => analysisRefs.current[file.id] = el}
+                              className="mt-6 border-t pt-6" 
+                              style={{ borderColor: '#D9D6D0' }}
+                            >
+                              <SpecificationAnalysis 
+                                fileName={file.name}
+                                analysis={file.analysisResults}
+                              />
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                </div>
               ))}
             </div>
           </div>
