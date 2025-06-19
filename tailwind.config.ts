@@ -20,8 +20,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['GT America', 'Helvetica Neue', 'Arial', 'sans-serif'],
-				serif: ['IBM Plex Serif', 'Georgia', 'serif'],
+				sans: ['Founders Grotesk', 'Helvetica Neue', 'Arial', 'sans-serif'],
 			},
 			colors: {
 				// Updated palette
