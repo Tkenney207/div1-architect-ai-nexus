@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -19,6 +18,7 @@ import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
 import { AuthProvider } from "./contexts/AuthContext";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +29,7 @@ const App = () => (
         <Toaster />
         <div className="min-h-screen flex flex-col">
           <BrowserRouter>
+            <ScrollToTop />
             <div className="flex-1">
               <Routes>
                 <Route path="/" element={<Index />} />
