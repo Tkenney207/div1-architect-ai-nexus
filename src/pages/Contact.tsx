@@ -38,24 +38,24 @@ const Contact = () => {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-2" style={{ color: '#1A2B49' }}>First Name</label>
-                    <Input placeholder="Your first name" className="border" style={{ borderColor: '#D9D6D0', backgroundColor: '#7C9C95', color: '#F7F3ED' }} />
+                    <Input placeholder="Your first name" className="border placeholder:text-black" style={{ borderColor: '#D9D6D0', backgroundColor: '#7C9C95', color: '#F7F3ED' }} />
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2" style={{ color: '#1A2B49' }}>Last Name</label>
-                    <Input placeholder="Your last name" className="border" style={{ borderColor: '#D9D6D0', backgroundColor: '#7C9C95', color: '#F7F3ED' }} />
+                    <Input placeholder="Your last name" className="border placeholder:text-black" style={{ borderColor: '#D9D6D0', backgroundColor: '#7C9C95', color: '#F7F3ED' }} />
                   </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: '#1A2B49' }}>Email</label>
-                  <Input type="email" placeholder="your@email.com" className="border" style={{ borderColor: '#D9D6D0', backgroundColor: '#7C9C95', color: '#F7F3ED' }} />
+                  <Input type="email" placeholder="your@email.com" className="border placeholder:text-black" style={{ borderColor: '#D9D6D0', backgroundColor: '#7C9C95', color: '#F7F3ED' }} />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: '#1A2B49' }}>Subject</label>
-                  <Input placeholder="What's this about?" className="border" style={{ borderColor: '#D9D6D0', backgroundColor: '#7C9C95', color: '#F7F3ED' }} />
+                  <Input placeholder="What's this about?" className="border placeholder:text-black" style={{ borderColor: '#D9D6D0', backgroundColor: '#7C9C95', color: '#F7F3ED' }} />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: '#1A2B49' }}>Message</label>
-                  <Textarea placeholder="Tell us more..." rows={5} className="border" style={{ borderColor: '#D9D6D0', backgroundColor: '#7C9C95', color: '#F7F3ED' }} />
+                  <Textarea placeholder="Tell us more..." rows={5} className="border placeholder:text-black" style={{ borderColor: '#D9D6D0', backgroundColor: '#7C9C95', color: '#F7F3ED' }} />
                 </div>
                 <Button className="w-full text-white hover:opacity-90" style={{ backgroundColor: '#E98B2A' }}>
                   Send Message
