@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -66,14 +65,14 @@ export const Division1Review: React.FC<Division1ReviewProps> = ({ onBack }) => {
     }
   };
 
-  const getComplianceStatus = (status: 'compliant' | 'non-compliant' | 'needs-review') => {
+  const getComplianceStatus = (status: 'compliant' | 'non-compliant' | 'requires-update') => {
     switch (status) {
       case 'compliant':
         return <Badge className="bg-green-600">Compliant</Badge>;
       case 'non-compliant':
         return <Badge className="bg-red-600">Non-Compliant</Badge>;
       default:
-        return <Badge className="bg-yellow-600">Needs Review</Badge>;
+        return <Badge className="bg-yellow-600">Requires Update</Badge>;
     }
   };
 
