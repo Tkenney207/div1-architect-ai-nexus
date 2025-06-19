@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -174,9 +173,22 @@ const Master1 = () => {
                         </div>
                       </div>
                       <Badge 
-                        variant={file.status === 'processed' ? 'default' : 'outline'}
-                        className={file.status === 'processed' ? 'bg-green-600' : 
-                          file.status === 'processing' ? 'bg-blue-600' : 'border-yellow-500 text-yellow-600'}
+                        className={
+                          file.status === 'processed' 
+                            ? 'text-white' 
+                            : file.status === 'processing' 
+                            ? 'text-white' 
+                            : 'text-white'
+                        }
+                        style={{
+                          backgroundColor: 
+                            file.status === 'processed' 
+                              ? '#7C9C95' 
+                              : file.status === 'processing' 
+                              ? '#E98B2A' 
+                              : '#D9D6D0',
+                          color: '#FFFFFF'
+                        }}
                       >
                         {file.status === 'processing' ? 'Analyzing...' : file.status}
                       </Badge>
@@ -202,11 +214,21 @@ const Master1 = () => {
 
                         {/* Actions */}
                         <div className="flex space-x-4 justify-center pt-4">
-                          <Button className="text-white" style={{ backgroundColor: '#E98B2A' }}>
+                          <Button 
+                            className="text-white font-medium px-6 py-2 rounded-lg transition-all hover:opacity-90"
+                            style={{ backgroundColor: '#E98B2A' }}
+                          >
                             <Download className="h-4 w-4 mr-2" />
                             Download Enhanced Version
                           </Button>
-                          <Button variant="outline" style={{ borderColor: '#7C9C95', color: '#7C9C95' }}>
+                          <Button 
+                            className="font-medium px-6 py-2 rounded-lg transition-all hover:opacity-90 bg-white"
+                            style={{ 
+                              borderColor: '#7C9C95', 
+                              color: '#7C9C95',
+                              border: '1px solid #7C9C95'
+                            }}
+                          >
                             View Full Analysis
                           </Button>
                         </div>
