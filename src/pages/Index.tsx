@@ -13,21 +13,27 @@ const Index = () => {
     <div className="min-h-screen" style={{ backgroundColor: '#D9D6D0' }}>
       <Header />
 
-      {/* Hero Section with Navy Banner */}
+      {/* Hero Section with Gradient Banner */}
       <section className="relative overflow-hidden">
-        {/* Heritage Navy Banner Background */}
-        <div className="py-20 border-t-4 border-solid" style={{ backgroundColor: '#1A2B49', borderTopColor: '#7C9C95' }}>
+        {/* Heritage Navy to Verdigris Gradient Banner Background */}
+        <div 
+          className="py-16 border-t-4 border-solid" 
+          style={{ 
+            background: 'linear-gradient(135deg, #1A2B49 0%, #7C9C95 100%)', 
+            borderTopColor: '#7C9C95' 
+          }}
+        >
           <div className="container mx-auto px-6 relative z-10">
-            <div className="text-center max-w-5xl mx-auto">
-              {/* Large Hero Logo on Navy Background */}
-              <div className="mb-12">
-                <Div1Logo size="5xl" className="mx-auto hover:scale-105 transition-transform duration-500 drop-shadow-2xl" />
+            <div className="text-center max-w-4xl mx-auto">
+              {/* Large Hero Logo on Gradient Background */}
+              <div className="mb-10">
+                <Div1Logo size="4xl" className="mx-auto hover:scale-105 transition-transform duration-500 drop-shadow-2xl" />
               </div>
               
-              <h1 className="text-6xl md:text-7xl font-light mb-6 leading-tight" style={{ color: '#F7F3ED' }}>
+              <h1 className="text-5xl md:text-6xl font-light mb-5 leading-tight" style={{ color: '#F7F3ED' }}>
                 <span style={{ color: '#E98B2A' }} className="font-medium">From input to output</span>
               </h1>
-              <h2 className="text-3xl md:text-4xl font-light mb-12" style={{ color: '#F7F3ED' }}>
+              <h2 className="text-2xl md:text-3xl font-light mb-10" style={{ color: '#F7F3ED' }}>
                 AI that understands what makes AEC work.
               </h2>
             </div>
@@ -35,24 +41,24 @@ const Index = () => {
         </div>
 
         {/* Tumbled Marble Content Section */}
-        <div style={{ backgroundColor: '#D9D6D0' }} className="py-12">
+        <div style={{ backgroundColor: '#D9D6D0' }} className="py-10">
           <div className="container mx-auto px-6">
-            <div className="text-center max-w-4xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto">
               {/* Hero Content Box */}
-              <div className="mb-12">
-                <p className="text-xl leading-relaxed" style={{ color: '#1A2B49' }}>
+              <div className="mb-10">
+                <p className="text-lg leading-relaxed" style={{ color: '#1A2B49' }}>
                   Streamline project planning and specification management with our comprehensive AI-driven ecosystem designed for AEC professionals.
                 </p>
               </div>
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                 <Link to="/signup">
-                  <Button size="lg" style={{ backgroundColor: '#E98B2A', color: '#F7F3ED' }} className="text-lg px-12 py-4 rounded-lg hover:opacity-90 font-medium transition-all">
+                  <Button size="lg" style={{ backgroundColor: '#E98B2A', color: '#F7F3ED' }} className="text-lg px-10 py-4 rounded-lg hover:opacity-90 font-medium transition-all">
                     Get Started Free
                     <ArrowRight className="ml-3 h-5 w-5" />
                   </Button>
                 </Link>
-                <Button variant="outline" size="lg" style={{ borderColor: '#1A2B49', color: '#1A2B49', backgroundColor: 'transparent' }} className="text-lg px-12 py-4 rounded-lg border-2 hover:bg-white hover:bg-opacity-50 transition-all font-medium">
+                <Button variant="outline" size="lg" style={{ borderColor: '#1A2B49', color: '#1A2B49', backgroundColor: 'transparent' }} className="text-lg px-10 py-4 rounded-lg border-2 hover:bg-white hover:bg-opacity-50 transition-all font-medium">
                   Watch Demo
                 </Button>
               </div>
