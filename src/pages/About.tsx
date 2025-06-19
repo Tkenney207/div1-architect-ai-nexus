@@ -23,84 +23,84 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-blue-900 text-white">
+    <div className="min-h-screen" style={{ backgroundColor: '#D9D6D0' }}>
       <Header />
 
       <section className="py-24">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h1 className="text-5xl font-bold text-white mb-6">About Us</h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <h1 className="text-5xl font-bold mb-6" style={{ color: '#1A2B49' }}>About Us</h1>
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: '#1A2B49' }}>
               We're dedicated to transforming the AEC industry with intelligent AI solutions
             </p>
           </div>
 
           {/* Contact Information */}
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
-            <Card className="bg-gradient-to-br from-black to-gray-900 border border-gray-700 hover:border-blue-500/50 transition-colors">
+            <Card className="bg-white border hover:shadow-lg transition-colors" style={{ borderColor: '#F7F3ED' }}>
               <CardHeader className="text-center">
-                <div className="bg-blue-600/20 rounded-xl p-3 w-fit mx-auto mb-4">
-                  <MapPin className="h-6 w-6 text-blue-400" />
+                <div className="rounded-xl p-3 w-fit mx-auto mb-4" style={{ backgroundColor: '#7C9C95' }}>
+                  <MapPin className="h-6 w-6" style={{ color: '#F7F3ED' }} />
                 </div>
-                <CardTitle className="text-white">Office Location</CardTitle>
+                <CardTitle style={{ color: '#1A2B49' }}>Office Location</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <p className="text-gray-300">Portland, ME</p>
+                <p style={{ color: '#1A2B49' }}>Portland, ME</p>
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-black to-gray-900 border border-gray-700 hover:border-green-500/50 transition-colors">
+            <Card className="bg-white border hover:shadow-lg transition-colors" style={{ borderColor: '#F7F3ED' }}>
               <CardHeader className="text-center">
-                <div className="bg-green-600/20 rounded-xl p-3 w-fit mx-auto mb-4">
-                  <Mail className="h-6 w-6 text-green-400" />
+                <div className="rounded-xl p-3 w-fit mx-auto mb-4" style={{ backgroundColor: '#E98B2A' }}>
+                  <Mail className="h-6 w-6" style={{ color: '#F7F3ED' }} />
                 </div>
-                <CardTitle className="text-white">Email</CardTitle>
+                <CardTitle style={{ color: '#1A2B49' }}>Email</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <p className="text-gray-300">Div1team@Div1.com</p>
+                <p style={{ color: '#1A2B49' }}>Div1team@Div1.com</p>
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-black to-gray-900 border border-gray-700 hover:border-orange-500/50 transition-colors">
+            <Card className="bg-white border hover:shadow-lg transition-colors" style={{ borderColor: '#F7F3ED' }}>
               <CardHeader className="text-center">
-                <div className="bg-orange-600/20 rounded-xl p-3 w-fit mx-auto mb-4">
-                  <Phone className="h-6 w-6 text-orange-400" />
+                <div className="rounded-xl p-3 w-fit mx-auto mb-4" style={{ backgroundColor: '#E98B2A' }}>
+                  <Phone className="h-6 w-6" style={{ color: '#F7F3ED' }} />
                 </div>
-                <CardTitle className="text-white">Phone</CardTitle>
+                <CardTitle style={{ color: '#1A2B49' }}>Phone</CardTitle>
               </CardHeader>
               <CardContent className="text-center">
-                <p className="text-gray-300">(802)-233-2529</p>
+                <p style={{ color: '#1A2B49' }}>(802)-233-2529</p>
               </CardContent>
             </Card>
           </div>
 
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-6">Platform Summary</h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold mb-6" style={{ color: '#1A2B49' }}>Platform Summary</h2>
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: '#1A2B49' }}>
               Three integrated modules delivering intelligent solutions for the AEC industry
             </p>
           </div>
 
-          <Card className="bg-gradient-to-br from-black to-gray-900 border border-gray-700 max-w-6xl mx-auto">
+          <Card className="bg-white border max-w-6xl mx-auto" style={{ borderColor: '#F7F3ED' }}>
             <CardHeader>
-              <CardTitle className="text-2xl text-white text-center">Div1 Platform Modules</CardTitle>
+              <CardTitle className="text-2xl text-center" style={{ color: '#1A2B49' }}>Div1 Platform Modules</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b border-gray-700">
-                      <th className="text-left py-4 px-6 text-blue-400 font-semibold">Module</th>
-                      <th className="text-left py-4 px-6 text-green-400 font-semibold">Outcome Delivered</th>
-                      <th className="text-left py-4 px-6 text-orange-400 font-semibold">Used By</th>
+                    <tr className="border-b" style={{ borderColor: '#D9D6D0' }}>
+                      <th className="text-left py-4 px-6 font-semibold" style={{ color: '#E98B2A' }}>Module</th>
+                      <th className="text-left py-4 px-6 font-semibold" style={{ color: '#7C9C95' }}>Outcome Delivered</th>
+                      <th className="text-left py-4 px-6 font-semibold" style={{ color: '#E98B2A' }}>Used By</th>
                     </tr>
                   </thead>
                   <tbody>
                     {platformData.map((row, index) => (
-                      <tr key={index} className="border-b border-gray-800 hover:bg-gray-800/30 transition-colors">
-                        <td className="py-6 px-6 font-medium text-blue-300">{row.module}</td>
-                        <td className="py-6 px-6 text-gray-300">{row.outcome}</td>
-                        <td className="py-6 px-6 text-gray-300">{row.usedBy}</td>
+                      <tr key={index} className="border-b hover:bg-opacity-30 transition-colors" style={{ borderColor: '#F7F3ED', backgroundColor: 'rgba(217, 214, 208, 0.1)' }}>
+                        <td className="py-6 px-6 font-medium" style={{ color: '#1A2B49' }}>{row.module}</td>
+                        <td className="py-6 px-6" style={{ color: '#1A2B49' }}>{row.outcome}</td>
+                        <td className="py-6 px-6" style={{ color: '#1A2B49' }}>{row.usedBy}</td>
                       </tr>
                     ))}
                   </tbody>

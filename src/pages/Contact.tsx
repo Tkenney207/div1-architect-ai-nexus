@@ -5,77 +5,59 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, MapPin, Mail, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
-import Div1Logo from "@/components/Div1Logo";
+import Header from "@/components/Header";
 
 const Contact = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-blue-900 text-white">
-      {/* Header */}
-      <header className="border-b border-gray-800 bg-black/50 backdrop-blur-xl">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-6">
-              <Link to="/" className="flex items-center space-x-3">
-                <Div1Logo size="sm" />
-                <span className="text-xl font-semibold">Platform</span>
-              </Link>
-            </div>
-            <Link to="/">
-              <Button variant="outline" size="sm" className="rounded-full border-orange-500/50 text-orange-300 hover:bg-orange-600 hover:text-white">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Home
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen" style={{ backgroundColor: '#D9D6D0' }}>
+      <Header />
 
       {/* Content */}
       <section className="py-24">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <div className="bg-orange-600/20 rounded-2xl p-4 w-fit mx-auto mb-8">
-              <Mail className="h-12 w-12 text-orange-400" />
+            <div className="rounded-2xl p-4 w-fit mx-auto mb-8" style={{ backgroundColor: '#E98B2A' }}>
+              <Mail className="h-12 w-12" style={{ color: '#F7F3ED' }} />
             </div>
-            <h1 className="text-5xl font-bold text-white mb-6">Contact Us</h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <h1 className="text-5xl font-bold mb-6" style={{ color: '#1A2B49' }}>Contact Us</h1>
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: '#1A2B49' }}>
               Get in touch with our team. We'd love to hear from you.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <Card className="bg-gradient-to-br from-black to-gray-900 border border-gray-700">
+            <Card className="bg-white border" style={{ borderColor: '#F7F3ED' }}>
               <CardHeader>
-                <CardTitle className="text-white text-2xl">Send us a message</CardTitle>
-                <CardDescription className="text-gray-300">
+                <CardTitle className="text-2xl" style={{ color: '#1A2B49' }}>Send us a message</CardTitle>
+                <CardDescription style={{ color: '#1A2B49' }}>
                   Fill out the form below and we'll get back to you as soon as possible.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">First Name</label>
-                    <Input placeholder="Your first name" className="bg-gray-800 border-gray-600 text-white" />
+                    <label className="block text-sm font-medium mb-2" style={{ color: '#1A2B49' }}>First Name</label>
+                    <Input placeholder="Your first name" className="border" style={{ borderColor: '#D9D6D0', color: '#1A2B49' }} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Last Name</label>
-                    <Input placeholder="Your last name" className="bg-gray-800 border-gray-600 text-white" />
+                    <label className="block text-sm font-medium mb-2" style={{ color: '#1A2B49' }}>Last Name</label>
+                    <Input placeholder="Your last name" className="border" style={{ borderColor: '#D9D6D0', color: '#1A2B49' }} />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                  <Input type="email" placeholder="your@email.com" className="bg-gray-800 border-gray-600 text-white" />
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1A2B49' }}>Email</label>
+                  <Input type="email" placeholder="your@email.com" className="border" style={{ borderColor: '#D9D6D0', color: '#1A2B49' }} />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Subject</label>
-                  <Input placeholder="What's this about?" className="bg-gray-800 border-gray-600 text-white" />
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1A2B49' }}>Subject</label>
+                  <Input placeholder="What's this about?" className="border" style={{ borderColor: '#D9D6D0', color: '#1A2B49' }} />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Message</label>
-                  <Textarea placeholder="Tell us more..." rows={5} className="bg-gray-800 border-gray-600 text-white" />
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1A2B49' }}>Message</label>
+                  <Textarea placeholder="Tell us more..." rows={5} className="border" style={{ borderColor: '#D9D6D0', color: '#1A2B49' }} />
                 </div>
-                <Button className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600">
+                <Button className="w-full text-white hover:opacity-90" style={{ backgroundColor: '#E98B2A' }}>
                   Send Message
                 </Button>
               </CardContent>
@@ -83,43 +65,43 @@ const Contact = () => {
 
             {/* Contact Info */}
             <div className="space-y-8">
-              <Card className="bg-gradient-to-br from-black to-gray-900 border border-gray-700">
+              <Card className="bg-white border" style={{ borderColor: '#F7F3ED' }}>
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-4">
-                    <div className="bg-orange-600/20 rounded-xl p-3">
-                      <MapPin className="h-6 w-6 text-orange-400" />
+                    <div className="rounded-xl p-3" style={{ backgroundColor: '#E98B2A' }}>
+                      <MapPin className="h-6 w-6" style={{ color: '#F7F3ED' }} />
                     </div>
                     <div>
-                      <h3 className="text-white font-semibold">Office</h3>
-                      <p className="text-gray-300">Coming Soon</p>
+                      <h3 className="font-semibold" style={{ color: '#1A2B49' }}>Office</h3>
+                      <p style={{ color: '#1A2B49' }}>Coming Soon</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-black to-gray-900 border border-gray-700">
+              <Card className="bg-white border" style={{ borderColor: '#F7F3ED' }}>
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-4">
-                    <div className="bg-orange-600/20 rounded-xl p-3">
-                      <Mail className="h-6 w-6 text-orange-400" />
+                    <div className="rounded-xl p-3" style={{ backgroundColor: '#E98B2A' }}>
+                      <Mail className="h-6 w-6" style={{ color: '#F7F3ED' }} />
                     </div>
                     <div>
-                      <h3 className="text-white font-semibold">Email</h3>
-                      <p className="text-gray-300">Coming Soon</p>
+                      <h3 className="font-semibold" style={{ color: '#1A2B49' }}>Email</h3>
+                      <p style={{ color: '#1A2B49' }}>Coming Soon</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-gradient-to-br from-black to-gray-900 border border-gray-700">
+              <Card className="bg-white border" style={{ borderColor: '#F7F3ED' }}>
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-4">
-                    <div className="bg-orange-600/20 rounded-xl p-3">
-                      <Phone className="h-6 w-6 text-orange-400" />
+                    <div className="rounded-xl p-3" style={{ backgroundColor: '#E98B2A' }}>
+                      <Phone className="h-6 w-6" style={{ color: '#F7F3ED' }} />
                     </div>
                     <div>
-                      <h3 className="text-white font-semibold">Phone</h3>
-                      <p className="text-gray-300">Coming Soon</p>
+                      <h3 className="font-semibold" style={{ color: '#1A2B49' }}>Phone</h3>
+                      <p style={{ color: '#1A2B49' }}>Coming Soon</p>
                     </div>
                   </div>
                 </CardContent>

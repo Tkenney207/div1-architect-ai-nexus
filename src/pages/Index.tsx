@@ -16,18 +16,18 @@ const Index = () => {
       {/* Hero Section with Navy Banner */}
       <section className="relative overflow-hidden">
         {/* Navy Banner Background */}
-        <div style={{ backgroundColor: '#1A2B49' }} className="py-24">
+        <div style={{ backgroundColor: '#1A2B49' }} className="py-32">
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center max-w-5xl mx-auto">
               {/* Large Hero Logo on Navy Background */}
-              <div className="mb-16">
+              <div className="mb-20">
                 <Div1Logo size="5xl" className="mx-auto hover:scale-105 transition-transform duration-500 drop-shadow-2xl" />
               </div>
               
-              <h1 className="text-6xl md:text-7xl font-light mb-6 leading-tight" style={{ color: '#F7F3ED' }}>
+              <h1 className="text-6xl md:text-7xl font-light mb-8 leading-tight" style={{ color: '#F7F3ED' }}>
                 <span style={{ color: '#E98B2A' }} className="font-medium">From input to output</span>
               </h1>
-              <h2 className="text-3xl md:text-4xl font-light mb-12" style={{ color: '#F7F3ED' }}>
+              <h2 className="text-3xl md:text-4xl font-light mb-16" style={{ color: '#F7F3ED' }}>
                 AI that understands what makes AEC work.
               </h2>
             </div>
@@ -35,11 +35,11 @@ const Index = () => {
         </div>
 
         {/* Soft Pebble Content Section */}
-        <div style={{ backgroundColor: '#D9D6D0' }} className="py-16">
+        <div style={{ backgroundColor: '#D9D6D0' }} className="py-20">
           <div className="container mx-auto px-6">
             <div className="text-center max-w-4xl mx-auto">
               {/* Hero Content Box */}
-              <div className="mb-16">
+              <div className="mb-20">
                 <p className="text-xl leading-relaxed" style={{ color: '#1A2B49' }}>
                   Streamline project planning and specification management with our comprehensive AI-driven ecosystem designed for AEC professionals.
                 </p>

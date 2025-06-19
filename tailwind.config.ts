@@ -20,7 +20,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Avenir Next', 'Avenir', 'Helvetica Neue', 'Arial', 'sans-serif'],
+				sans: ['Founders Grotesk', 'Helvetica Neue', 'Arial', 'sans-serif'],
 			},
 			colors: {
 				// Updated palette
