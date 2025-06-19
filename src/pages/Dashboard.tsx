@@ -65,14 +65,14 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white">
+    <div className="min-h-screen" style={{ backgroundColor: '#D9D6D0' }}>
       <Header />
       
       <div className="container mx-auto px-6 py-12">
         {/* Welcome Section */}
         <div className="mb-12">
-          <h1 className="text-4xl font-bold mb-4">Welcome back, John!</h1>
-          <p className="text-xl text-gray-300">
+          <h1 className="text-4xl font-bold mb-4" style={{ color: '#1A2B49' }}>Welcome back, John!</h1>
+          <p className="text-xl" style={{ color: '#1A2B49' }}>
             Manage your projects, charters, and specifications from your central dashboard.
           </p>
         </div>
@@ -80,20 +80,20 @@ const Dashboard = () => {
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {stats.map((stat) => (
-            <Card key={stat.title} className="bg-gray-800/50 border-gray-700">
+            <Card key={stat.title} className="bg-white border" style={{ borderColor: '#F7F3ED' }}>
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-sm font-medium text-gray-300">
+                  <CardTitle className="text-sm font-medium" style={{ color: '#1A2B49' }}>
                     {stat.title}
                   </CardTitle>
-                  <stat.icon className={`h-5 w-5 ${stat.color}`} />
+                  <stat.icon className="h-5 w-5" style={{ color: '#E98B2A' }} />
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold text-white mb-2">
+                <div className="text-3xl font-bold mb-2" style={{ color: '#1A2B49' }}>
                   {stat.value}
                 </div>
-                <p className="text-sm text-gray-400">{stat.change}</p>
+                <p className="text-sm" style={{ color: '#7C9C95' }}>{stat.change}</p>
               </CardContent>
             </Card>
           ))}
@@ -101,40 +101,40 @@ const Dashboard = () => {
 
         {/* Quick Actions */}
         <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Quick Actions</h2>
+          <h2 className="text-2xl font-bold mb-6" style={{ color: '#1A2B49' }}>Quick Actions</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link to="/projects/new">
-              <Card className="group hover:shadow-lg transition-all bg-gradient-to-br from-orange-600/20 to-orange-500/20 border-orange-500/30 hover:border-orange-500/50 cursor-pointer">
+              <Card className="group hover:shadow-lg transition-all bg-white border-2 hover:border-opacity-70 cursor-pointer" style={{ borderColor: '#E98B2A' }}>
                 <CardContent className="p-6 text-center">
-                  <div className="bg-orange-600 rounded-full p-4 w-fit mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <Plus className="h-8 w-8 text-white" />
+                  <div className="rounded-full p-4 w-fit mx-auto mb-4 group-hover:scale-110 transition-transform" style={{ backgroundColor: '#E98B2A' }}>
+                    <Plus className="h-8 w-8" style={{ color: '#F7F3ED' }} />
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">New Project</h3>
-                  <p className="text-gray-300">Start a new construction project</p>
+                  <h3 className="text-lg font-semibold mb-2" style={{ color: '#1A2B49' }}>New Project</h3>
+                  <p style={{ color: '#7C9C95' }}>Start a new construction project</p>
                 </CardContent>
               </Card>
             </Link>
 
             <Link to="/engage">
-              <Card className="group hover:shadow-lg transition-all bg-gradient-to-br from-green-600/20 to-green-500/20 border-green-500/30 hover:border-green-500/50 cursor-pointer">
+              <Card className="group hover:shadow-lg transition-all bg-white border-2 hover:border-opacity-70 cursor-pointer" style={{ borderColor: '#7C9C95' }}>
                 <CardContent className="p-6 text-center">
-                  <div className="bg-green-600 rounded-full p-4 w-fit mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <Users className="h-8 w-8 text-white" />
+                  <div className="rounded-full p-4 w-fit mx-auto mb-4 group-hover:scale-110 transition-transform" style={{ backgroundColor: '#7C9C95' }}>
+                    <Users className="h-8 w-8" style={{ color: '#F7F3ED' }} />
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Start Charter</h3>
-                  <p className="text-gray-300">Begin AI-guided charter creation</p>
+                  <h3 className="text-lg font-semibold mb-2" style={{ color: '#1A2B49' }}>Start Charter</h3>
+                  <p style={{ color: '#7C9C95' }}>Begin AI-guided charter creation</p>
                 </CardContent>
               </Card>
             </Link>
 
             <Link to="/division1">
-              <Card className="group hover:shadow-lg transition-all bg-gradient-to-br from-blue-600/20 to-blue-500/20 border-blue-500/30 hover:border-blue-500/50 cursor-pointer">
+              <Card className="group hover:shadow-lg transition-all bg-white border-2 hover:border-opacity-70 cursor-pointer" style={{ borderColor: '#1A2B49' }}>
                 <CardContent className="p-6 text-center">
-                  <div className="bg-blue-600 rounded-full p-4 w-fit mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <FileText className="h-8 w-8 text-white" />
+                  <div className="rounded-full p-4 w-fit mx-auto mb-4 group-hover:scale-110 transition-transform" style={{ backgroundColor: '#1A2B49' }}>
+                    <FileText className="h-8 w-8" style={{ color: '#F7F3ED' }} />
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Generate Specs</h3>
-                  <p className="text-gray-300">Create Division 1 specifications</p>
+                  <h3 className="text-lg font-semibold mb-2" style={{ color: '#1A2B49' }}>Generate Specs</h3>
+                  <p style={{ color: '#7C9C95' }}>Create Division 1 specifications</p>
                 </CardContent>
               </Card>
             </Link>
@@ -146,9 +146,9 @@ const Dashboard = () => {
           {/* Recent Projects */}
           <div>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold">Recent Projects</h2>
+              <h2 className="text-2xl font-bold" style={{ color: '#1A2B49' }}>Recent Projects</h2>
               <Link to="/projects">
-                <Button variant="outline" size="sm">View All</Button>
+                <Button variant="outline" size="sm" className="border-2 hover:opacity-70" style={{ borderColor: '#1A2B49', color: '#1A2B49' }}>View All</Button>
               </Link>
             </div>
             <div className="space-y-4">
@@ -167,33 +167,33 @@ const Dashboard = () => {
 
           {/* Activity Feed */}
           <div>
-            <h2 className="text-2xl font-bold mb-6">Recent Activity</h2>
+            <h2 className="text-2xl font-bold mb-6" style={{ color: '#1A2B49' }}>Recent Activity</h2>
             <div className="space-y-4">
-              <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/30">
-                <div className="bg-green-600 rounded-full p-2">
-                  <FileText className="h-4 w-4 text-white" />
+              <div className="flex items-center space-x-3 p-4 rounded-lg bg-white" style={{ borderLeft: '4px solid #7C9C95' }}>
+                <div className="rounded-full p-2" style={{ backgroundColor: '#7C9C95' }}>
+                  <FileText className="h-4 w-4" style={{ color: '#F7F3ED' }} />
                 </div>
                 <div className="flex-1">
-                  <p className="text-white">Charter completed for Downtown Office Complex</p>
-                  <p className="text-sm text-gray-400">2 hours ago</p>
+                  <p style={{ color: '#1A2B49' }}>Charter completed for Downtown Office Complex</p>
+                  <p className="text-sm" style={{ color: '#7C9C95' }}>2 hours ago</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/30">
-                <div className="bg-blue-600 rounded-full p-2">
-                  <Users className="h-4 w-4 text-white" />
+              <div className="flex items-center space-x-3 p-4 rounded-lg bg-white" style={{ borderLeft: '4px solid #1A2B49' }}>
+                <div className="rounded-full p-2" style={{ backgroundColor: '#1A2B49' }}>
+                  <Users className="h-4 w-4" style={{ color: '#F7F3ED' }} />
                 </div>
                 <div className="flex-1">
-                  <p className="text-white">New stakeholder added to Green Residential Tower</p>
-                  <p className="text-sm text-gray-400">1 day ago</p>
+                  <p style={{ color: '#1A2B49' }}>New stakeholder added to Green Residential Tower</p>
+                  <p className="text-sm" style={{ color: '#7C9C95' }}>1 day ago</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-800/30">
-                <div className="bg-orange-600 rounded-full p-2">
-                  <TrendingUp className="h-4 w-4 text-white" />
+              <div className="flex items-center space-x-3 p-4 rounded-lg bg-white" style={{ borderLeft: '4px solid #E98B2A' }}>
+                <div className="rounded-full p-2" style={{ backgroundColor: '#E98B2A' }}>
+                  <TrendingUp className="h-4 w-4" style={{ color: '#F7F3ED' }} />
                 </div>
                 <div className="flex-1">
-                  <p className="text-white">Division 1 specification generated</p>
-                  <p className="text-sm text-gray-400">2 days ago</p>
+                  <p style={{ color: '#1A2B49' }}>Division 1 specification generated</p>
+                  <p className="text-sm" style={{ color: '#7C9C95' }}>2 days ago</p>
                 </div>
               </div>
             </div>
