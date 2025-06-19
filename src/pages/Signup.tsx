@@ -122,7 +122,7 @@ const Signup = () => {
       <div className="container mx-auto px-6 py-12">
         <div className="max-w-md mx-auto">
           <div className="text-center mb-8">
-            <Div1Logo size="2xl" className="mx-auto mb-6" />
+            <Div1Logo size="5xl" className="mx-auto mb-6" />
             <h1 className="text-3xl font-bold mb-2" style={{ color: '#1A2B49' }}>Get Started Free</h1>
             <p style={{ color: '#1A2B49' }}>Join thousands of AEC professionals transforming their workflow</p>
           </div>
