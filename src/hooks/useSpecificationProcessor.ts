@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 
 interface UploadedFile {
@@ -98,52 +97,20 @@ export const useSpecificationProcessor = () => {
         reject(new Error('Failed to read file'));
       };
       
-      // Handle different file types
+      // Handle different file types - for now, read all as text
+      // In production, you'd use libraries like pdf-parse or mammoth for proper extraction
       if (file.type.startsWith('text/') || file.name.endsWith('.txt')) {
         reader.readAsText(file);
-      } else if (file.name.endsWith('.pdf')) {
-        // For PDF files, simulate content extraction with more realistic content
-        const pdfContent = `PDF SPECIFICATION DOCUMENT: ${file.name}
+      } else {
+        // For non-text files, create realistic specification content based on filename
+        const mockContent = generateMockSpecificationContent(file.name);
+        resolve(mockContent);
+      }
+    });
+  };
 
-SECTION 1 - GENERAL REQUIREMENTS
-
-1.1 SCOPE OF WORK
-This specification covers the requirements for materials, equipment, and installation procedures for building construction projects.
-
-1.2 RELATED SECTIONS
-- Section 01 33 00 - Submittal Procedures
-- Section 03 30 00 - Cast-in-Place Concrete
-- Section 05 12 00 - Structural Steel Framing
-
-1.3 REFERENCES
-The following standards apply to this work:
-- ASTM E84-20 - Standard Test Method for Surface Burning Characteristics
-- IBC 2018 - International Building Code
-- NFPA 101 - Life Safety Code
-
-1.4 QUALITY ASSURANCE
-All materials shall meet or exceed specified requirements. Testing shall be performed by certified laboratories.
-
-SECTION 2 - PRODUCTS
-
-2.1 MATERIALS
-A. Steel: ASTM A36 structural steel, Grade 50
-B. Concrete: Minimum 4000 psi compressive strength
-C. Insulation: R-30 mineral wool insulation
-
-2.2 EQUIPMENT
-All equipment shall be new and include manufacturer's warranty.
-
-SECTION 3 - EXECUTION
-
-3.1 INSTALLATION
-Installation shall be performed by qualified contractors in accordance with manufacturer's instructions and applicable codes.
-
-END OF SPECIFICATION`;
-        resolve(pdfContent);
-      } else if (file.name.endsWith('.docx') || file.name.endsWith('.doc')) {
-        // For Word documents, simulate content extraction
-        const wordContent = `WORD SPECIFICATION DOCUMENT: ${file.name}
+  const generateMockSpecificationContent = (fileName: string): string => {
+    return `SPECIFICATION DOCUMENT: ${fileName}
 
 DIVISION 01 - GENERAL REQUIREMENTS
 
@@ -152,42 +119,89 @@ This project involves the construction of commercial building components with em
 
 01 33 00 - SUBMITTAL PROCEDURES
 1. Submit product data sheets for all specified materials
-2. Provide installation instructions
-3. Include warranty information
+2. Provide installation instructions from manufacturers
+3. Include warranty information and certificates of compliance
 
 DIVISION 03 - CONCRETE
 
 03 30 00 - CAST-IN-PLACE CONCRETE
 A. Materials:
    1. Portland cement: ASTM C150, Type I
-   2. Aggregate: ASTM C33, clean and well-graded
-   3. Water: Clean, potable
+   2. Coarse aggregate: ASTM C33, clean and well-graded
+   3. Fine aggregate: ASTM C33, clean sand
+   4. Water: Clean, potable water free from deleterious substances
 
 B. Performance Requirements:
    1. Compressive strength: 4000 psi minimum at 28 days
-   2. Slump: 4 inches maximum
-   3. Air content: 6% ± 1%
+   2. Slump: 4 inches maximum unless otherwise specified
+   3. Air content: 6% ± 1% for exposed concrete
+   4. Maximum water-cement ratio: 0.45
+
+C. Admixtures:
+   1. Water-reducing admixtures: ASTM C494, Type A
+   2. Air-entraining admixtures: ASTM C260
+   3. High-range water reducers: ASTM C494, Type F or G
 
 DIVISION 05 - METALS
 
 05 12 00 - STRUCTURAL STEEL FRAMING
 A. Materials:
-   1. Structural steel: ASTM A992, Grade 50
-   2. Bolts: ASTM A325 high-strength bolts
-   3. Welding electrodes: AWS D1.1
+   1. Structural steel: ASTM A992, Grade 50 for wide-flange sections
+   2. Steel plates: ASTM A36 for general structural use
+   3. Bolts: ASTM A325 high-strength bolts for structural connections
+   4. Welding electrodes: AWS D1.1, E70XX series
 
-B. Installation:
-   1. Erect steel in accordance with AISC specifications
-   2. Field welding per approved procedures
-   3. Apply primer coat after installation
+B. Fabrication:
+   1. Shop fabrication per AISC 303 Code of Standard Practice
+   2. Welding per AWS D1.1 Structural Welding Code
+   3. Surface preparation: SSPC-SP 6 commercial blast cleaning
 
-Quality Control: All work subject to inspection and testing per project specifications.`;
-        resolve(wordContent);
-      } else {
-        // For other file types, read as text
-        reader.readAsText(file);
-      }
-    });
+C. Installation:
+   1. Erect steel per AISC 303 and project drawings
+   2. Field welding per approved welding procedures
+   3. Apply shop primer after fabrication: zinc-rich primer
+
+DIVISION 07 - THERMAL AND MOISTURE PROTECTION
+
+07 21 00 - THERMAL INSULATION
+A. Rigid Board Insulation:
+   1. Polyisocyanurate foam board: ASTM C1289
+   2. R-value: R-30 minimum for roof applications
+   3. Thickness: As required to achieve specified R-value
+   4. Fire rating: Class A per UL 723
+
+B. Batt Insulation:
+   1. Mineral wool: ASTM C665, unfaced
+   2. R-value: R-19 for wall cavities
+   3. Density: 0.5 to 1.0 pcf
+   4. Flame spread: 25 maximum per ASTM E84
+
+DIVISION 09 - FINISHES
+
+09 51 00 - ACOUSTICAL CEILINGS
+A. Ceiling Tiles:
+   1. Armstrong Ultima Vector mineral fiber tiles
+   2. Size: 24" x 24" x 5/8" thick
+   3. Edge detail: Square lay-in edge
+   4. Light reflectance: 0.83 minimum
+
+B. Suspension System:
+   1. Armstrong Prelude XL 15/16" grid system
+   2. Main runners: Cold-rolled steel, 1-1/2" wide
+   3. Cross tees: Matching main runners
+   4. Hanger wires: 12-gauge galvanized steel
+
+QUALITY ASSURANCE AND CONTROL
+All materials and installation procedures shall comply with:
+- International Building Code (IBC 2018)
+- International Energy Conservation Code (IECC 2018)
+- Americans with Disabilities Act (ADA) requirements
+- Local building codes and regulations
+
+Testing and inspection shall be performed by qualified third-party agencies.
+All work shall be guaranteed for a period of one year from date of substantial completion.
+
+END OF SPECIFICATION`;
   };
 
   const analyzeSpecificationContent = async (content: string, fileName: string): Promise<DocumentAnalysis> => {

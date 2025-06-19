@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -47,7 +46,6 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
   useEffect(() => {
     console.log('SpecificationReviewWindow mounting for file:', fileName);
     console.log('File content length:', fileContent?.length || 0);
-    console.log('File content type:', typeof fileContent);
     console.log('File content preview:', fileContent?.substring(0, 200) || 'No content');
     
     if (fileContent && typeof fileContent === 'string' && fileContent.trim().length > 0) {
@@ -57,7 +55,6 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
       console.log('Generated suggestions:', generatedSuggestions);
     } else {
       console.warn('No valid file content provided to SpecificationReviewWindow');
-      console.log('fileContent value:', fileContent);
     }
   }, [fileName, fileContent, generateSuggestions, setSuggestions, setFileContent]);
 
@@ -93,75 +90,78 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
   };
 
   const renderContentWithHighlights = () => {
-    console.log('Rendering content, fileContent:', fileContent?.substring(0, 100) || 'No content');
+    console.log('Rendering content with highlights');
     
-    // Check if we have actual content
     if (!fileContent || typeof fileContent !== 'string' || fileContent.trim().length === 0) {
-      console.log('No valid content to render');
       return (
         <div className="text-center py-8">
           <FileText className="h-8 w-8 mx-auto mb-2" style={{ color: '#D9D6D0' }} />
           <p className="text-sm" style={{ color: '#7C9C95' }}>
-            No content available. File content: {typeof fileContent} | Length: {fileContent?.length || 0}
+            No document content available
           </p>
         </div>
       );
     }
 
     const lines = fileContent.split('\n');
-    console.log('Number of lines:', lines.length);
-    console.log('First few lines:', lines.slice(0, 5));
+    console.log('Rendering', lines.length, 'lines of content');
     
-    return lines.map((line, index) => {
-      const lineNumber = index + 1;
-      const isHighlighted = highlightedLines.has(lineNumber);
-      
-      // Check if this line has any suggestions
-      const lineSuggestions = suggestions.filter(s => s.lineNumber === lineNumber);
-      
-      let displayContent: React.ReactNode = line || '\u00A0'; // Use non-breaking space for empty lines
-      
-      if (lineSuggestions.length > 0) {
-        lineSuggestions.forEach(sug => {
-          if (sug.originalText && line.includes(sug.originalText)) {
-            const parts = line.split(sug.originalText);
-            displayContent = (
-              <>
-                {parts[0]}
-                {sug.status === 'approved' ? (
-                  <span className="bg-green-200 text-green-800 px-1 rounded">
-                    {sug.suggestedText}
-                  </span>
-                ) : sug.status === 'rejected' ? (
-                  <span className="bg-red-200 text-red-800 px-1 rounded line-through">
-                    {sug.originalText}
-                  </span>
-                ) : (
-                  <span className="bg-yellow-200 text-yellow-800 px-1 rounded">
-                    {sug.originalText}
-                  </span>
-                )}
-                {parts.slice(1).join(sug.originalText)}
-              </>
-            );
+    return (
+      <div className="space-y-0 font-mono text-sm leading-relaxed">
+        {lines.map((line, index) => {
+          const lineNumber = index + 1;
+          const isHighlighted = highlightedLines.has(lineNumber);
+          
+          // Check if this line has any suggestions
+          const lineSuggestions = suggestions.filter(s => s.lineNumber === lineNumber);
+          
+          let displayContent: React.ReactNode = line || '\u00A0'; // Use non-breaking space for empty lines
+          
+          // Apply highlighting for suggestions
+          if (lineSuggestions.length > 0) {
+            lineSuggestions.forEach(sug => {
+              if (sug.originalText && line.includes(sug.originalText)) {
+                const parts = line.split(sug.originalText);
+                displayContent = (
+                  <>
+                    {parts[0]}
+                    {sug.status === 'approved' ? (
+                      <span className="bg-green-200 text-green-800 px-1 rounded font-medium">
+                        {sug.suggestedText}
+                      </span>
+                    ) : sug.status === 'rejected' ? (
+                      <span className="bg-red-200 text-red-800 px-1 rounded line-through">
+                        {sug.originalText}
+                      </span>
+                    ) : (
+                      <span className="bg-yellow-200 text-yellow-800 px-1 rounded cursor-pointer hover:bg-yellow-300" 
+                            onClick={() => setSelectedSuggestion(sug.id)}>
+                        {sug.originalText}
+                      </span>
+                    )}
+                    {parts.slice(1).join(sug.originalText)}
+                  </>
+                );
+              }
+            });
           }
-        });
-      }
-      
-      return (
-        <div 
-          key={index} 
-          className={`flex py-1 ${isHighlighted ? 'bg-yellow-100 border-l-4 border-yellow-500' : ''}`}
-        >
-          <div className="text-xs text-gray-400 mr-4 w-12 text-right select-none flex-shrink-0 pt-1">
-            {lineNumber}
-          </div>
-          <div className="flex-1 font-mono text-sm leading-relaxed whitespace-pre-wrap break-words">
-            {displayContent}
-          </div>
-        </div>
-      );
-    });
+          
+          return (
+            <div 
+              key={index} 
+              className={`flex py-1 px-2 ${isHighlighted ? 'bg-blue-50 border-l-4 border-blue-500' : ''} hover:bg-gray-50 transition-colors`}
+            >
+              <div className="text-xs text-gray-400 mr-4 w-12 text-right select-none flex-shrink-0 pt-1">
+                {lineNumber}
+              </div>
+              <div className="flex-1 whitespace-pre-wrap break-words" style={{ fontFamily: 'Georgia, serif' }}>
+                {displayContent}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    );
   };
   
   const getPriorityColor = (priority: string) => {
@@ -183,11 +183,12 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
   // Calculate actual file stats
   const getFileStats = () => {
     if (!fileContent || typeof fileContent !== 'string') {
-      return { lines: 0, size: '0KB' };
+      return { lines: 0, size: '0KB', words: 0 };
     }
     const lines = fileContent.split('\n').length;
+    const words = fileContent.split(/\s+/).filter(word => word.length > 0).length;
     const sizeKB = Math.max(1, Math.round(fileContent.length / 1024));
-    return { lines, size: `${sizeKB}KB` };
+    return { lines, size: `${sizeKB}KB`, words };
   };
 
   const fileStats = getFileStats();
@@ -209,7 +210,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
           <div className="flex items-center space-x-3">
             <Button
               size="sm"
-              onClick={handleApproveAll}
+              onClick={() => approveAllSuggestions()}
               disabled={pendingSuggestions.length === 0}
               className="text-white"
               style={{ backgroundColor: '#7C9C95' }}
@@ -219,7 +220,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
             </Button>
             <Button
               size="sm"
-              onClick={handleDownloadRevised}
+              onClick={() => downloadRevisedSpecification(fileName, approvedSuggestions)}
               disabled={approvedSuggestions.length === 0}
               className="text-white"
               style={{ backgroundColor: '#E98B2A' }}
@@ -246,11 +247,11 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
             <div className="p-4 border-b" style={{ borderColor: '#D9D6D0', backgroundColor: '#FFFFFF' }}>
               <h3 className="font-semibold" style={{ color: '#1A2B49' }}>Original Specification</h3>
               <p className="text-sm mt-1" style={{ color: '#7C9C95' }}>
-                {fileStats.lines} lines, {fileStats.size}
+                {fileStats.lines} lines, {fileStats.words} words, {fileStats.size}
               </p>
             </div>
-            <div className="flex-1 overflow-auto bg-white m-4 rounded shadow-sm border p-6" style={{ borderColor: '#D9D6D0' }}>
-              <div className="space-y-0">
+            <div className="flex-1 overflow-auto bg-white m-4 rounded shadow-sm border" style={{ borderColor: '#D9D6D0' }}>
+              <div className="p-4">
                 {renderContentWithHighlights()}
               </div>
             </div>
@@ -259,7 +260,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
           {/* Review Panel - 25% width for slimmer display */}
           <div className="flex flex-col" style={{ width: '25%' }}>
             <div className="p-3 border-b" style={{ borderColor: '#D9D6D0', backgroundColor: '#FFFFFF' }}>
-              <h3 className="font-semibold text-sm" style={{ color: '#1A2B49' }}>Review & Comments</h3>
+              <h3 className="font-semibold text-sm" style={{ color: '#1A2B49' }}>AI Suggestions</h3>
             </div>
             <div className="flex-1 overflow-auto p-2">
               <div className="space-y-2">
@@ -349,7 +350,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
                             size="sm"
                             onClick={(e) => {
                               e.stopPropagation();
-                              handleApproveSuggestion(suggestion.id);
+                              approveSuggestion(suggestion.id);
                             }}
                             className="text-white text-xs px-2 py-1 h-6"
                             style={{ backgroundColor: '#7C9C95' }}
@@ -362,7 +363,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
                             variant="outline"
                             onClick={(e) => {
                               e.stopPropagation();
-                              handleRejectSuggestion(suggestion.id);
+                              rejectSuggestion(suggestion.id);
                             }}
                             className="text-xs px-2 py-1 h-6"
                             style={{ 
@@ -394,4 +395,3 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
     </div>
   );
 };
-
