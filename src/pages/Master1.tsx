@@ -5,9 +5,11 @@ import { FileText, Brain, Shield, CheckCircle, Upload, Download } from "lucide-r
 import Header from "@/components/Header";
 import { useState, useRef } from "react";
 import { useSpecificationProcessor } from "@/hooks/useSpecificationProcessor";
+import { SpecificationAnalysis } from "@/components/SpecificationAnalysis";
 
 const Master1 = () => {
   const [dragActive, setDragActive] = useState(false);
+  const [selectedFileForAnalysis, setSelectedFileForAnalysis] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   
   const {
@@ -46,6 +48,12 @@ const Master1 = () => {
       });
     }
   };
+
+  const handleViewFullAnalysis = (fileId: string) => {
+    setSelectedFileForAnalysis(fileId);
+  };
+
+  const selectedFile = uploadedFiles.find(file => file.id === selectedFileForAnalysis);
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#F7F3ED' }}>
@@ -154,6 +162,34 @@ const Master1 = () => {
           </div>
         )}
 
+        {/* Full Analysis Modal */}
+        {selectedFile && selectedFile.analysisResults && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-lg max-w-6xl max-h-[90vh] overflow-y-auto w-full">
+              <div className="p-6 border-b" style={{ borderColor: '#D9D6D0' }}>
+                <div className="flex items-center justify-between">
+                  <h2 className="text-2xl font-medium" style={{ color: '#1A2B49' }}>
+                    Full Analysis Report
+                  </h2>
+                  <Button
+                    onClick={() => setSelectedFileForAnalysis(null)}
+                    className="text-white px-4 py-2 rounded-lg"
+                    style={{ backgroundColor: '#7C9C95' }}
+                  >
+                    Close
+                  </Button>
+                </div>
+              </div>
+              <div className="p-6">
+                <SpecificationAnalysis 
+                  fileName={selectedFile.name}
+                  analysis={selectedFile.analysisResults}
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Uploaded Files Results */}
         {uploadedFiles.length > 0 && (
           <div className="mb-20">
@@ -222,6 +258,7 @@ const Master1 = () => {
                             Download Enhanced Version
                           </Button>
                           <Button 
+                            onClick={() => handleViewFullAnalysis(file.id)}
                             className="font-medium px-6 py-2 rounded-lg transition-all hover:opacity-90 bg-white"
                             style={{ 
                               borderColor: '#7C9C95', 
