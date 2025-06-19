@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FileText, Brain, Shield, CheckCircle, Upload, Download, ChevronDown, ChevronUp } from "lucide-react";
 import Header from "@/components/Header";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSpecificationProcessor } from "@/hooks/useSpecificationProcessor";
 import { SpecificationAnalysis } from "@/components/SpecificationAnalysis";
 
@@ -18,6 +18,17 @@ const Master1 = () => {
     processingStatus,
     isLoading
   } = useSpecificationProcessor();
+
+  // Auto-expand analysis when a file is processed
+  useEffect(() => {
+    const processedFiles = uploadedFiles.filter(file => file.status === 'processed');
+    if (processedFiles.length > 0) {
+      const latestProcessedFile = processedFiles[processedFiles.length - 1];
+      if (expandedAnalysis !== latestProcessedFile.id) {
+        setExpandedAnalysis(latestProcessedFile.id);
+      }
+    }
+  }, [uploadedFiles, expandedAnalysis]);
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
@@ -250,7 +261,7 @@ const Master1 = () => {
                           </Button>
                         </div>
 
-                        {/* Inline Analysis Dropdown */}
+                        {/* Auto-expanded Analysis */}
                         {expandedAnalysis === file.id && (
                           <div className="mt-6 border-t pt-6" style={{ borderColor: '#D9D6D0' }}>
                             <SpecificationAnalysis 
