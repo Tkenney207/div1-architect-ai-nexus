@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,7 +19,8 @@ const Master1 = () => {
     uploadSpecification,
     uploadedFiles,
     processingStatus,
-    isLoading
+    isLoading,
+    getFileContent
   } = useSpecificationProcessor();
 
   // Auto-expand analysis when a single file is processed
@@ -83,61 +83,20 @@ const Master1 = () => {
   };
 
   const openReviewWindow = (fileId: string, fileName: string) => {
-    // Generate realistic stone wall facing specification content
-    const mockContent = `SECTION 04 43 00 - STONE WALL FACING
-
-PART 1 - GENERAL
-
-1.1 SUMMARY
-A. Section Includes:
-   1. Natural stone wall facing systems.
-   2. Anchoring and support systems.
-   3. Mortar and sealants.
-   4. Accessories and trim.
-
-1.2 SUBMITTALS
-A. Product Data: For each type of product indicated.
-B. Shop Drawings: Show fabrication and installation details.
-C. Samples: Submit 12-inch by 12-inch samples of each stone type.
-
-1.3 QUALITY ASSURANCE
-A. Source Limitations: Obtain stone from single quarry for each stone type.
-B. Testing: Submit stone samples for ASTM C97 absorption testing.
-
-1.4 DELIVERY, STORAGE, AND HANDLING
-A. Deliver stone in protective packaging.
-B. Store stone on pallets off ground, protect from weather.
-
-PART 2 - PRODUCTS
-
-2.1 STONE
-A. Natural Stone Type: Limestone, sandstone, or granite as specified.
-B. Finish: Natural split face, bush hammered, or sawn finish.
-C. Thickness: 2 inches minimum for adhered veneer.
-D. Dimensional Tolerance: Plus or minus 1/8 inch.
-
-2.2 ANCHORING SYSTEMS
-A. Mechanical Anchors: Stainless steel ties, minimum 3/16 inch diameter.
-B. Adhesive System: Two-component structural adhesive meeting ASTM C881.
-
-2.3 MORTAR
-A. Type N mortar per ASTM C270.
-B. Color: Match architect's approved sample.
-
-PART 3 - EXECUTION
-
-3.1 INSTALLATION
-A. Install stone facing per manufacturer's instructions.
-B. Maintain uniform joint widths of 3/8 inch.
-C. Tool joints to weatherproof profile.
-
-3.2 CLEANING
-A. Clean stone surfaces using methods recommended by stone supplier.
-B. Remove mortar stains and efflorescence.
-
-END OF SECTION`;
+    // Get actual file content instead of using mock data
+    const actualContent = getFileContent(fileId);
     
-    setReviewWindow({ fileId, fileName, content: mockContent });
+    if (actualContent) {
+      setReviewWindow({ fileId, fileName, content: actualContent });
+    } else {
+      console.warn('No content available for file:', fileName);
+      // Fallback to a message indicating no content is available
+      setReviewWindow({ 
+        fileId, 
+        fileName, 
+        content: `No content available for ${fileName}. The file may still be processing or there was an error reading the file content.` 
+      });
+    }
   };
 
   const closeReviewWindow = () => {
