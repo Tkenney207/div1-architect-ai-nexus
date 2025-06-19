@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -103,18 +102,15 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
     return lines.map((line, index) => {
       const lineNumber = index + 1;
       const isHighlighted = highlightedLines.has(lineNumber);
-      const suggestion = suggestions.find(s => s.lineNumber === lineNumber && s.id === selectedSuggestion);
       
       // Check if this line has any suggestions
       const lineSuggestions = suggestions.filter(s => s.lineNumber === lineNumber);
       
-      let displayContent = line;
-      let hasChange = false;
+      let displayContent: React.ReactNode = line;
       
       if (lineSuggestions.length > 0) {
         lineSuggestions.forEach(sug => {
           if (sug.originalText && line.includes(sug.originalText)) {
-            hasChange = true;
             const parts = line.split(sug.originalText);
             displayContent = (
               <>
@@ -148,7 +144,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
             {lineNumber}
           </div>
           <div className="flex-1 font-mono text-sm leading-relaxed whitespace-pre-wrap">
-            {hasChange ? displayContent : line}
+            {displayContent}
           </div>
         </div>
       );
