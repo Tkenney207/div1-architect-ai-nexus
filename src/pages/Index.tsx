@@ -16,18 +16,18 @@ const Index = () => {
       {/* Hero Section with Navy Banner */}
       <section className="relative overflow-hidden">
         {/* Navy Banner Background - Using Verdigris for more differentiation */}
-        <div className="py-32 border-t-4 border-solid" style={{ backgroundColor: '#7C9C95', borderTopColor: '#0F1B2E' }}>
+        <div className="py-20 border-t-4 border-solid" style={{ backgroundColor: '#7C9C95', borderTopColor: '#0F1B2E' }}>
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center max-w-5xl mx-auto">
               {/* Large Hero Logo on Navy Background */}
-              <div className="mb-20">
+              <div className="mb-12">
                 <Div1Logo size="5xl" className="mx-auto hover:scale-105 transition-transform duration-500 drop-shadow-2xl" />
               </div>
               
-              <h1 className="text-6xl md:text-7xl font-light mb-8 leading-tight" style={{ color: '#F7F3ED' }}>
+              <h1 className="text-6xl md:text-7xl font-light mb-6 leading-tight" style={{ color: '#F7F3ED' }}>
                 <span style={{ color: '#E98B2A' }} className="font-medium">From input to output</span>
               </h1>
-              <h2 className="text-3xl md:text-4xl font-light mb-16" style={{ color: '#F7F3ED' }}>
+              <h2 className="text-3xl md:text-4xl font-light mb-12" style={{ color: '#F7F3ED' }}>
                 AI that understands what makes AEC work.
               </h2>
             </div>
@@ -35,11 +35,11 @@ const Index = () => {
         </div>
 
         {/* Soft Pebble Content Section */}
-        <div style={{ backgroundColor: '#D9D6D0' }} className="py-20">
+        <div style={{ backgroundColor: '#D9D6D0' }} className="py-12">
           <div className="container mx-auto px-6">
             <div className="text-center max-w-4xl mx-auto">
               {/* Hero Content Box */}
-              <div className="mb-20">
+              <div className="mb-12">
                 <p className="text-xl leading-relaxed" style={{ color: '#1A2B49' }}>
                   Streamline project planning and specification management with our comprehensive AI-driven ecosystem designed for AEC professionals.
                 </p>
@@ -62,27 +62,27 @@ const Index = () => {
       </section>
 
       {/* Solutions Section */}
-      <section className="py-24" style={{ backgroundColor: '#D9D6D0' }}>
+      <section className="py-16" style={{ backgroundColor: '#D9D6D0' }}>
         <div className="container mx-auto px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-light mb-8" style={{ color: '#1A2B49' }}>Three powerful solutions</h2>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-light mb-6" style={{ color: '#1A2B49' }}>Three powerful solutions</h2>
             <p className="text-xl max-w-3xl mx-auto" style={{ color: '#1A2B49' }}>Interconnected tools designed to work seamlessly together for your complete AEC workflow</p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Engage Module */}
             <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#F7F3ED' }}>
-              <CardHeader className="p-8">
-                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#F7F3ED' }}>
+              <CardHeader className="p-6">
+                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-4" style={{ backgroundColor: '#F7F3ED' }}>
                   <EngageIcon className="text-orange" />
                 </div>
-                <CardTitle className="text-2xl font-medium mb-4" style={{ color: '#1A2B49' }}>Engage</CardTitle>
+                <CardTitle className="text-2xl font-medium mb-3" style={{ color: '#1A2B49' }}>Engage</CardTitle>
                 <CardDescription className="text-base leading-relaxed" style={{ color: '#1A2B49' }}>
                   AI-facilitated project charter with conversational intelligence and privacy protection
                 </CardDescription>
               </CardHeader>
-              <CardContent className="px-8 pb-8">
-                <ul className="space-y-4 mb-10 text-sm" style={{ color: '#1A2B49' }}>
+              <CardContent className="px-6 pb-6">
+                <ul className="space-y-3 mb-8 text-sm" style={{ color: '#1A2B49' }}>
                   <li className="flex items-center space-x-3">
                     <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
                       <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
@@ -113,17 +113,17 @@ const Index = () => {
 
             {/* Division1 Module */}
             <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#F7F3ED' }}>
-              <CardHeader className="p-8">
-                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#7C9C95' }}>
+              <CardHeader className="p-6">
+                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-4" style={{ backgroundColor: '#7C9C95' }}>
                   <FileText className="h-8 w-8" style={{ color: '#F7F3ED' }} />
                 </div>
-                <CardTitle className="text-2xl font-medium mb-4" style={{ color: '#1A2B49' }}>Division1</CardTitle>
+                <CardTitle className="text-2xl font-medium mb-3" style={{ color: '#1A2B49' }}>Division1</CardTitle>
                 <CardDescription className="text-base leading-relaxed" style={{ color: '#1A2B49' }}>
                   Generate complete CSI MasterFormat Division 01 specifications from project charter data with AI precision
                 </CardDescription>
               </CardHeader>
-              <CardContent className="px-8 pb-8">
-                <ul className="space-y-4 mb-10 text-sm" style={{ color: '#1A2B49' }}>
+              <CardContent className="px-6 pb-6">
+                <ul className="space-y-3 mb-8 text-sm" style={{ color: '#1A2B49' }}>
                   <li className="flex items-center space-x-3">
                     <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
                       <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
@@ -154,17 +154,17 @@ const Index = () => {
 
             {/* Master1 Module */}
             <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#F7F3ED' }}>
-              <CardHeader className="p-8">
-                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#E98B2A' }}>
+              <CardHeader className="p-6">
+                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-4" style={{ backgroundColor: '#E98B2A' }}>
                   <Master1Icon className="text-navy" />
                 </div>
-                <CardTitle className="text-2xl font-medium mb-4" style={{ color: '#1A2B49' }}>Master1</CardTitle>
+                <CardTitle className="text-2xl font-medium mb-3" style={{ color: '#1A2B49' }}>Master1</CardTitle>
                 <CardDescription className="text-base leading-relaxed" style={{ color: '#1A2B49' }}>
                   Intelligent specification synthesis with compliance validation and standards checking
                 </CardDescription>
               </CardHeader>
-              <CardContent className="px-8 pb-8">
-                <ul className="space-y-4 mb-10 text-sm" style={{ color: '#1A2B49' }}>
+              <CardContent className="px-6 pb-6">
+                <ul className="space-y-3 mb-8 text-sm" style={{ color: '#1A2B49' }}>
                   <li className="flex items-center space-x-3">
                     <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
                       <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
@@ -197,11 +197,11 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer style={{ backgroundColor: '#1A2B49' }} className="py-16">
+      <footer style={{ backgroundColor: '#1A2B49' }} className="py-12">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-12">
+          <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <div className="flex items-center space-x-3 mb-6">
+              <div className="flex items-center space-x-3 mb-4">
                 <Div1Logo size="sm" />
                 <span className="text-xl font-medium" style={{ color: '#F7F3ED' }}>Platform</span>
               </div>
@@ -211,8 +211,8 @@ const Index = () => {
             </div>
             
             <div>
-              <h5 className="font-medium mb-6 text-lg" style={{ color: '#F7F3ED' }}>Solutions</h5>
-              <ul className="space-y-3" style={{ color: '#F7F3ED' }}>
+              <h5 className="font-medium mb-4 text-lg" style={{ color: '#F7F3ED' }}>Solutions</h5>
+              <ul className="space-y-2" style={{ color: '#F7F3ED' }}>
                 <li><Link to="/engage" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Engage</Link></li>
                 <li><Link to="/division1" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Division1</Link></li>
                 <li><Link to="/master1" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Master1</Link></li>
@@ -220,8 +220,8 @@ const Index = () => {
             </div>
             
             <div>
-              <h5 className="font-medium mb-6 text-lg" style={{ color: '#F7F3ED' }}>Resources</h5>
-              <ul className="space-y-3" style={{ color: '#F7F3ED' }}>
+              <h5 className="font-medium mb-4 text-lg" style={{ color: '#F7F3ED' }}>Resources</h5>
+              <ul className="space-y-2" style={{ color: '#F7F3ED' }}>
                 <li><Link to="/documentation" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Documentation</Link></li>
                 <li><Link to="/security" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Security</Link></li>
                 <li><Link to="/support" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Support</Link></li>
@@ -229,8 +229,8 @@ const Index = () => {
             </div>
             
             <div>
-              <h5 className="font-medium mb-6 text-lg" style={{ color: '#F7F3ED' }}>Company</h5>
-              <ul className="space-y-3" style={{ color: '#F7F3ED' }}>
+              <h5 className="font-medium mb-4 text-lg" style={{ color: '#F7F3ED' }}>Company</h5>
+              <ul className="space-y-2" style={{ color: '#F7F3ED' }}>
                 <li><Link to="/about" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>About</Link></li>
                 <li><Link to="/contact" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Contact</Link></li>
                 <li><Link to="/privacy" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Privacy</Link></li>
@@ -238,7 +238,7 @@ const Index = () => {
             </div>
           </div>
           
-          <div className="border-t border-opacity-20 border-white mt-12 pt-8 text-center" style={{ color: '#F7F3ED' }}>
+          <div className="border-t border-opacity-20 border-white mt-8 pt-6 text-center" style={{ color: '#F7F3ED' }}>
             © 2024 Div1 Platform Suite. All rights reserved.
           </div>
         </div>
