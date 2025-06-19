@@ -15,8 +15,8 @@ const Index = () => {
 
       {/* Hero Section with Navy Banner */}
       <section className="relative overflow-hidden">
-        {/* Navy Banner Background - Using Verdigris for more differentiation */}
-        <div className="py-20 border-t-4 border-solid" style={{ backgroundColor: '#7C9C95', borderTopColor: '#0F1B2E' }}>
+        {/* Heritage Navy Banner Background */}
+        <div className="py-20 border-t-4 border-solid" style={{ backgroundColor: '#1A2B49', borderTopColor: '#7C9C95' }}>
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center max-w-5xl mx-auto">
               {/* Large Hero Logo on Navy Background */}
@@ -34,7 +34,7 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Soft Pebble Content Section */}
+        {/* Tumbled Marble Content Section */}
         <div style={{ backgroundColor: '#D9D6D0' }} className="py-12">
           <div className="container mx-auto px-6">
             <div className="text-center max-w-4xl mx-auto">
@@ -47,7 +47,7 @@ const Index = () => {
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                 <Link to="/signup">
-                  <Button size="lg" style={{ backgroundColor: '#E98B2A', color: '#1A2B49' }} className="text-lg px-12 py-4 rounded-lg hover:opacity-90 font-medium transition-all">
+                  <Button size="lg" style={{ backgroundColor: '#E98B2A', color: '#F7F3ED' }} className="text-lg px-12 py-4 rounded-lg hover:opacity-90 font-medium transition-all">
                     Get Started Free
                     <ArrowRight className="ml-3 h-5 w-5" />
                   </Button>
@@ -71,7 +71,7 @@ const Index = () => {
 
           <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Engage Module */}
-            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#F7F3ED' }}>
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#D9D6D0' }}>
               <CardHeader className="p-6">
                 <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-4" style={{ backgroundColor: '#F7F3ED' }}>
                   <EngageIcon className="text-orange" />
@@ -112,7 +112,7 @@ const Index = () => {
             </Card>
 
             {/* Division1 Module */}
-            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#F7F3ED' }}>
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#D9D6D0' }}>
               <CardHeader className="p-6">
                 <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-4" style={{ backgroundColor: '#7C9C95' }}>
                   <FileText className="h-8 w-8" style={{ color: '#F7F3ED' }} />
@@ -153,7 +153,7 @@ const Index = () => {
             </Card>
 
             {/* Master1 Module */}
-            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#F7F3ED' }}>
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#D9D6D0' }}>
               <CardHeader className="p-6">
                 <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-4" style={{ backgroundColor: '#E98B2A' }}>
                   <Master1Icon className="text-navy" />
