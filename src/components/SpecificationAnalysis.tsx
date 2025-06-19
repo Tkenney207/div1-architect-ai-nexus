@@ -180,7 +180,7 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       </Card>
 
       {/* Manufacturer Compliance */}
-      <Card className="bg-white border" style={{ borderColor: '#D9D6D0' }}>
+      <Card className="border" style={{ backgroundColor: '#C6A664', borderColor: '#D9D6D0' }}>
         <CardHeader>
           <CardTitle className="flex items-center space-x-3" style={{ color: '#1A2B49' }}>
             <Factory className="h-5 w-5" style={{ color: '#E98B2A' }} />
@@ -225,7 +225,7 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       </Card>
 
       {/* Code Compliance */}
-      <Card className="bg-white border" style={{ borderColor: '#D9D6D0' }}>
+      <Card className="border" style={{ backgroundColor: '#C6A664', borderColor: '#D9D6D0' }}>
         <CardHeader>
           <CardTitle className="flex items-center space-x-3" style={{ color: '#1A2B49' }}>
             <Building className="h-5 w-5" style={{ color: '#E98B2A' }} />
@@ -269,7 +269,7 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       </Card>
 
       {/* Material Standards */}
-      <Card className="bg-white border" style={{ borderColor: '#D9D6D0' }}>
+      <Card className="border" style={{ backgroundColor: '#C6A664', borderColor: '#D9D6D0' }}>
         <CardHeader>
           <CardTitle className="flex items-center space-x-3" style={{ color: '#1A2B49' }}>
             <Shield className="h-5 w-5" style={{ color: '#E98B2A' }} />
@@ -316,7 +316,7 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       </Card>
 
       {/* Sustainability Metrics */}
-      <Card className="bg-white border" style={{ borderColor: '#D9D6D0' }}>
+      <Card className="border" style={{ backgroundColor: '#C6A664', borderColor: '#D9D6D0' }}>
         <CardHeader>
           <CardTitle className="flex items-center space-x-3" style={{ color: '#1A2B49' }}>
             <Leaf className="h-5 w-5" style={{ color: '#7C9C95' }} />
@@ -359,7 +359,7 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       </Card>
 
       {/* Performance Specifications */}
-      <Card className="bg-white border" style={{ borderColor: '#D9D6D0' }}>
+      <Card className="border" style={{ backgroundColor: '#C6A664', borderColor: '#D9D6D0' }}>
         <CardHeader>
           <CardTitle className="flex items-center space-x-3" style={{ color: '#1A2B49' }}>
             <Gauge className="h-5 w-5" style={{ color: '#E98B2A' }} />
