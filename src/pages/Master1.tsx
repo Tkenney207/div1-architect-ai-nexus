@@ -83,44 +83,69 @@ const Master1 = () => {
   };
 
   const openReviewWindow = (fileId: string, fileName: string) => {
+    console.log('=== OPENING REVIEW WINDOW ===');
     console.log('Opening review window for:', { fileId, fileName });
     
-    // Get actual file content
+    // Get actual file content with enhanced debugging
     const actualContent = getFileContent(fileId);
     console.log('Retrieved file content:', {
       contentType: typeof actualContent,
       contentLength: actualContent?.length || 0,
-      contentPreview: actualContent?.substring(0, 200) || 'No content',
+      contentPreview: actualContent ? actualContent.substring(0, 500) : 'No content',
       fileId: fileId
     });
     
-    // Find the file to check its status
+    // Find the file to check its status and content
     const file = uploadedFiles.find(f => f.id === fileId);
-    console.log('File status:', file?.status);
+    console.log('File details:', {
+      id: file?.id,
+      name: file?.name,
+      status: file?.status,
+      hasContent: !!file?.content,
+      hasExtractedContent: !!file?.extractedContent,
+      contentLength: typeof file?.content === 'string' ? file?.content?.length : 0,
+      extractedContentLength: typeof file?.extractedContent === 'string' ? file?.extractedContent?.length : 0
+    });
     
-    if (actualContent && actualContent.trim().length > 0) {
-      console.log('Setting review window with actual content');
-      setReviewWindow({ fileId, fileName, content: actualContent });
+    // Try to get content from multiple sources
+    let contentToUse = actualContent;
+    
+    if (!contentToUse && file) {
+      // Try extractedContent first, then content
+      contentToUse = file.extractedContent || file.content;
+      console.log('Fallback content from file object:', {
+        source: file.extractedContent ? 'extractedContent' : 'content',
+        type: typeof contentToUse,
+        length: typeof contentToUse === 'string' ? contentToUse.length : 0
+      });
+    }
+    
+    if (contentToUse && typeof contentToUse === 'string' && contentToUse.trim().length > 0) {
+      console.log('=== SETTING REVIEW WINDOW WITH ACTUAL CONTENT ===');
+      console.log('Final content preview:', contentToUse.substring(0, 300) + '...');
+      setReviewWindow({ fileId, fileName, content: contentToUse });
     } else {
-      console.warn('No content available for file:', fileName);
+      console.warn('=== NO VALID CONTENT AVAILABLE ===');
+      console.warn('File status:', file?.status);
       
-      // Check if file is still processing
+      // Provide helpful error message based on file status
+      let errorMessage = `File: ${fileName}\n\n`;
+      
       if (file && file.status === 'processing') {
-        const processingMessage = `File: ${fileName}\n\nThis file is still being processed. Please wait for processing to complete before reviewing.\n\nStatus: ${file.status}`;
-        setReviewWindow({ 
-          fileId, 
-          fileName, 
-          content: processingMessage
-        });
+        errorMessage += `This file is still being processed. Please wait for processing to complete before reviewing.\n\nStatus: ${file.status}`;
+      } else if (file && file.status === 'error') {
+        errorMessage += `There was an error processing this file.\n\nError: ${file.content || 'Unknown error'}`;
+      } else if (!file) {
+        errorMessage += `File not found in uploaded files list.`;
       } else {
-        // Show a more informative message for other cases
-        const fallbackContent = `File: ${fileName}\n\nNo content could be extracted from this file.\nThis may be due to:\n- File is still processing\n- Unsupported file format\n- File read error\n\nPlease try uploading the file again or check the file format.\n\nFile Status: ${file?.status || 'Unknown'}`;
-        setReviewWindow({ 
-          fileId, 
-          fileName, 
-          content: fallbackContent
-        });
+        errorMessage += `No content could be extracted from this file.\nThis may be due to:\n- Unsupported file format\n- File corruption\n- Extraction error\n\nFile Status: ${file.status}\nPlease try uploading the file again.`;
       }
+      
+      setReviewWindow({ 
+        fileId, 
+        fileName, 
+        content: errorMessage
+      });
     }
   };
 

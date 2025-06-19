@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -29,6 +29,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
 }) => {
   const [selectedSuggestion, setSelectedSuggestion] = useState<string | null>(null);
   const [highlightedLines, setHighlightedLines] = useState<Set<number>>(new Set());
+  const [initialized, setInitialized] = useState(false);
 
   const {
     suggestions,
@@ -41,25 +42,34 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
     setFileContent
   } = useSpecificationReview();
 
-  // Initialize suggestions when component mounts
-  useEffect(() => {
-    console.log('SpecificationReviewWindow mounting for file:', fileName);
+  // Memoize the initialization logic to prevent infinite loops
+  const initializeSuggestions = useCallback(() => {
+    console.log('=== INITIALIZING SUGGESTIONS ===');
+    console.log('SpecificationReviewWindow initializing for file:', fileName);
     console.log('File content received:', {
       type: typeof fileContent,
       length: fileContent?.length || 0,
       isString: typeof fileContent === 'string',
-      content: fileContent
+      preview: fileContent?.substring(0, 100) || 'No content'
     });
     
-    if (fileContent && typeof fileContent === 'string' && fileContent.trim().length > 0) {
+    if (fileContent && typeof fileContent === 'string' && fileContent.trim().length > 0 && !initialized) {
       setFileContent(fileContent);
       const generatedSuggestions = generateSuggestions(fileName, fileContent);
       setSuggestions(generatedSuggestions);
+      setInitialized(true);
       console.log('Generated suggestions:', generatedSuggestions);
-    } else {
+    } else if (!fileContent || typeof fileContent !== 'string' || fileContent.trim().length === 0) {
       console.warn('No valid file content provided to SpecificationReviewWindow');
     }
-  }, [fileName, fileContent, generateSuggestions, setSuggestions, setFileContent]);
+  }, [fileName, fileContent, generateSuggestions, setSuggestions, setFileContent, initialized]);
+
+  // Initialize suggestions only once when component mounts with valid content
+  useEffect(() => {
+    if (!initialized) {
+      initializeSuggestions();
+    }
+  }, [initializeSuggestions, initialized]);
 
   const pendingSuggestions = suggestions.filter(s => s.status === 'pending');
   const approvedSuggestions = suggestions.filter(s => s.status === 'approved');
