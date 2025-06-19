@@ -4,17 +4,17 @@ import { MessageCircle, Shield } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="border-t mt-auto" style={{ borderColor: '#D30609', backgroundColor: '#122B49' }}>
+    <footer className="border-t mt-auto" style={{ borderColor: '#D9D6D0', backgroundColor: '#1A2B49' }}>
       <div className="container mx-auto px-6 py-8">
         <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-          <div className="text-sm" style={{ color: '#D30609' }}>
+          <div className="text-sm" style={{ color: '#D9D6D0' }}>
             © 2024 Div1. All rights reserved.
           </div>
           <div className="flex items-center space-x-6">
             <Link 
               to="/support" 
               className="flex items-center space-x-2 transition-colors font-medium hover:opacity-80"
-              style={{ color: '#D30609' }}
+              style={{ color: '#D9D6D0' }}
             >
               <MessageCircle className="h-4 w-4" />
               <span>Support</span>
@@ -22,7 +22,7 @@ const Footer = () => {
             <Link 
               to="/security" 
               className="flex items-center space-x-2 transition-colors font-medium hover:opacity-80"
-              style={{ color: '#D30609' }}
+              style={{ color: '#D9D6D0' }}
             >
               <Shield className="h-4 w-4" />
               <span>Security</span>

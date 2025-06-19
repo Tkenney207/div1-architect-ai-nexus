@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -39,7 +40,7 @@ const Header = () => {
   };
 
   return (
-    <header style={{ backgroundColor: '#122B49' }} className="border-b border-opacity-20 border-white">
+    <header style={{ backgroundColor: '#1A2B49' }} className="border-b border-opacity-20 border-white">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-6">
@@ -48,13 +49,13 @@ const Header = () => {
             </Link>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/engage" style={{ color: '#F798ED' }} className="hover:text-white transition-colors font-medium">
+            <Link to="/engage" style={{ color: '#F7F3ED' }} className="hover:text-white transition-colors font-medium">
               Engage
             </Link>
-            <Link to="/division1" style={{ color: '#F798ED' }} className="hover:text-white transition-colors font-medium">
+            <Link to="/division1" style={{ color: '#F7F3ED' }} className="hover:text-white transition-colors font-medium">
               Division 1
             </Link>
-            <Link to="/master1" style={{ color: '#F798ED' }} className="hover:text-white transition-colors font-medium">
+            <Link to="/master1" style={{ color: '#F7F3ED' }} className="hover:text-white transition-colors font-medium">
               Master1
             </Link>
             <div className="flex items-center space-x-3">
@@ -62,20 +63,20 @@ const Header = () => {
                 <>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button size="sm" style={{ backgroundColor: '#D30609', color: '#122B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
+                      <Button size="sm" style={{ backgroundColor: '#D9D6D0', color: '#1A2B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
                         <User className="h-4 w-4 mr-2" />
                         {getUserDisplayName()}
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent style={{ backgroundColor: '#122B49' }} className="border-white border-opacity-20">
-                      <DropdownMenuItem onClick={handleSignOut} style={{ color: '#F798ED' }} className="hover:text-white hover:bg-white hover:bg-opacity-10 transition-colors cursor-pointer">
+                    <DropdownMenuContent style={{ backgroundColor: '#1A2B49' }} className="border-white border-opacity-20">
+                      <DropdownMenuItem onClick={handleSignOut} style={{ color: '#F7F3ED' }} className="hover:text-white hover:bg-white hover:bg-opacity-10 transition-colors cursor-pointer">
                         <LogOut className="h-4 w-4 mr-2" />
                         Sign Out
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                   <Link to="/dashboard">
-                    <Button size="sm" style={{ backgroundColor: '#C205DF', color: '#122B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
+                    <Button size="sm" style={{ backgroundColor: '#C6A664', color: '#1A2B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
                       <Home className="h-4 w-4 mr-2" />
                       Home
                     </Button>
@@ -84,13 +85,13 @@ const Header = () => {
               ) : (
                 <>
                   <Link to="/signup">
-                    <Button size="sm" style={{ backgroundColor: '#C205DF', color: '#122B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
+                    <Button size="sm" style={{ backgroundColor: '#C6A664', color: '#1A2B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
                       <UserPlus className="h-4 w-4 mr-2" />
                       Sign Up
                     </Button>
                   </Link>
                   <Link to="/signin">
-                    <Button size="sm" style={{ backgroundColor: '#F798ED', color: '#122B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
+                    <Button size="sm" style={{ backgroundColor: '#F7F3ED', color: '#1A2B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
                       <Users className="h-4 w-4 mr-2" />
                       Login
                     </Button>
