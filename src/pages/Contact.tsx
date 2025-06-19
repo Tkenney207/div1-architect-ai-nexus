@@ -73,7 +73,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold" style={{ color: '#1A2B49' }}>Office</h3>
-                      <p style={{ color: '#1A2B49' }}>Coming Soon</p>
+                      <p style={{ color: '#1A2B49' }}>Portland, ME</p>
                     </div>
                   </div>
                 </CardContent>
@@ -87,7 +87,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold" style={{ color: '#1A2B49' }}>Email</h3>
-                      <p style={{ color: '#1A2B49' }}>Coming Soon</p>
+                      <p style={{ color: '#1A2B49' }}>Div1team@Div1.com</p>
                     </div>
                   </div>
                 </CardContent>
@@ -101,7 +101,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold" style={{ color: '#1A2B49' }}>Phone</h3>
-                      <p style={{ color: '#1A2B49' }}>Coming Soon</p>
+                      <p style={{ color: '#1A2B49' }}>(802)-233-2529</p>
                     </div>
                   </div>
                 </CardContent>
