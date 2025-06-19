@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -16,13 +17,10 @@ export const DocumentProcessor = () => {
   const [showReviewWindow, setShowReviewWindow] = useState<string | null>(null);
   const { 
     uploadSpecification, 
-    processDocument, 
-    downloadMasterSpec, 
-    validateCompliance,
     uploadedFiles,
     processingStatus,
-    complianceResults,
-    isLoading 
+    isLoading,
+    getFileContent
   } = useSpecificationProcessor();
   const { 
     suggestions,
@@ -70,9 +68,33 @@ export const DocumentProcessor = () => {
   };
 
   const handleShowReview = (fileId: string, fileName: string) => {
-    const mockSuggestions = generateSuggestions(fileName);
-    setSuggestions(mockSuggestions);
-    setShowReviewWindow(fileId);
+    const fileContent = getFileContent(fileId);
+    if (fileContent) {
+      const generatedSuggestions = generateSuggestions(fileName, fileContent);
+      setSuggestions(generatedSuggestions);
+      setShowReviewWindow(fileId);
+    }
+  };
+
+  const downloadMasterSpec = () => {
+    // Mock download functionality for demo
+    const masterSpecContent = `# AI-Generated Master Specification Guide
+
+## CSI MasterFormat Divisions 1-49
+Complete specification templates with latest standards and code compliance.
+
+Generated on: ${new Date().toLocaleDateString()}
+    `;
+    
+    const blob = new Blob([masterSpecContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'AI_Master_Specification_Guide.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -275,7 +297,7 @@ export const DocumentProcessor = () => {
       {showReviewWindow && (
         <SpecificationReviewWindow
           fileName={uploadedFiles.find(f => f.id === showReviewWindow)?.name || ''}
-          fileContent="[Original specification content would be loaded here...]"
+          fileContent={getFileContent(showReviewWindow) || ''}
           onClose={() => setShowReviewWindow(null)}
         />
       )}
