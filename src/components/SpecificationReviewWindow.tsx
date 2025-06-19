@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -45,6 +46,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
   useEffect(() => {
     console.log('SpecificationReviewWindow mounting for file:', fileName);
     console.log('File content length:', fileContent.length);
+    console.log('File content preview:', fileContent.substring(0, 200));
     
     if (fileContent && fileContent.trim().length > 0) {
       setFileContent(fileContent);
@@ -88,6 +90,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
   };
 
   const renderContentWithHighlights = () => {
+    // Check if we have actual content
     if (!fileContent || fileContent.trim().length === 0) {
       return (
         <div className="text-center py-8">
@@ -106,7 +109,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
       // Check if this line has any suggestions
       const lineSuggestions = suggestions.filter(s => s.lineNumber === lineNumber);
       
-      let displayContent: React.ReactNode = line;
+      let displayContent: React.ReactNode = line || '\u00A0'; // Use non-breaking space for empty lines
       
       if (lineSuggestions.length > 0) {
         lineSuggestions.forEach(sug => {
@@ -143,7 +146,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
           <div className="text-xs text-gray-400 mr-4 w-12 text-right select-none flex-shrink-0 pt-1">
             {lineNumber}
           </div>
-          <div className="flex-1 font-mono text-sm leading-relaxed whitespace-pre-wrap">
+          <div className="flex-1 font-mono text-sm leading-relaxed whitespace-pre-wrap break-words">
             {displayContent}
           </div>
         </div>
@@ -220,6 +223,9 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
           <div className="flex-1 border-r-2 flex flex-col" style={{ borderColor: '#D9D6D0', width: '75%' }}>
             <div className="p-4 border-b" style={{ borderColor: '#D9D6D0', backgroundColor: '#FFFFFF' }}>
               <h3 className="font-semibold" style={{ color: '#1A2B49' }}>Original Specification</h3>
+              <p className="text-sm mt-1" style={{ color: '#7C9C95' }}>
+                {fileContent ? `${fileContent.split('\n').length} lines, ${Math.round(fileContent.length / 1024)}KB` : 'No content'}
+              </p>
             </div>
             <div className="flex-1 overflow-auto bg-white m-4 rounded shadow-sm border p-6" style={{ borderColor: '#D9D6D0' }}>
               <div className="space-y-0">
