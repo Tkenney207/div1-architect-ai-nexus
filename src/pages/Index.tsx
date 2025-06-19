@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -46,7 +47,7 @@ const Index = () => {
               {/* Hero Content Box */}
               <div className="mb-10">
                 <p className="text-lg leading-relaxed" style={{ color: '#1A2B49' }}>
-                  Streamline project planning and specification management with our comprehensive AI-driven ecosystem designed for AEC professionals.
+                  Streamline project planning and specification management with our comprehensive AI-driven ecosystem designed for Owners & AEC professionals.
                 </p>
               </div>
               
