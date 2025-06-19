@@ -44,8 +44,12 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
   // Initialize suggestions when component mounts
   useEffect(() => {
     console.log('SpecificationReviewWindow mounting for file:', fileName);
-    console.log('File content length:', fileContent?.length || 0);
-    console.log('File content preview:', fileContent?.substring(0, 200) || 'No content');
+    console.log('File content received:', {
+      type: typeof fileContent,
+      length: fileContent?.length || 0,
+      isString: typeof fileContent === 'string',
+      content: fileContent
+    });
     
     if (fileContent && typeof fileContent === 'string' && fileContent.trim().length > 0) {
       setFileContent(fileContent);
@@ -89,25 +93,54 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
   };
 
   const renderContentWithHighlights = () => {
-    console.log('Rendering content with highlights');
-    console.log('Raw file content:', JSON.stringify(fileContent?.substring(0, 100)));
+    console.log('=== RENDERING CONTENT DEBUG ===');
+    console.log('fileContent type:', typeof fileContent);
+    console.log('fileContent value:', fileContent);
+    console.log('fileContent length:', fileContent?.length);
+    console.log('fileContent first 200 chars:', fileContent?.substring(0, 200));
     
-    if (!fileContent || typeof fileContent !== 'string' || fileContent.trim().length === 0) {
+    // Check if content exists and is valid
+    if (!fileContent) {
+      console.log('No fileContent provided');
       return (
         <div className="text-center py-8">
           <FileText className="h-8 w-8 mx-auto mb-2" style={{ color: '#D9D6D0' }} />
           <p className="text-sm" style={{ color: '#7C9C95' }}>
-            No document content available
+            No document content available - fileContent is null/undefined
           </p>
         </div>
       );
     }
 
-    // Clean the content - remove any unwanted characters or whitespace issues
-    const cleanContent = fileContent.trim();
-    const lines = cleanContent.split(/\r?\n/); // Handle both \n and \r\n line endings
-    console.log('Rendering', lines.length, 'lines of content');
-    console.log('First few lines:', lines.slice(0, 5));
+    if (typeof fileContent !== 'string') {
+      console.log('fileContent is not a string, it is:', typeof fileContent);
+      return (
+        <div className="text-center py-8">
+          <FileText className="h-8 w-8 mx-auto mb-2" style={{ color: '#D9D6D0' }} />
+          <p className="text-sm" style={{ color: '#7C9C95' }}>
+            Invalid content type: {typeof fileContent}
+          </p>
+        </div>
+      );
+    }
+
+    const trimmedContent = fileContent.trim();
+    if (trimmedContent.length === 0) {
+      console.log('fileContent is empty after trimming');
+      return (
+        <div className="text-center py-8">
+          <FileText className="h-8 w-8 mx-auto mb-2" style={{ color: '#D9D6D0' }} />
+          <p className="text-sm" style={{ color: '#7C9C95' }}>
+            Document appears to be empty
+          </p>
+        </div>
+      );
+    }
+
+    // Split content into lines
+    const lines = trimmedContent.split(/\r?\n/);
+    console.log('Content split into', lines.length, 'lines');
+    console.log('First 5 lines:', lines.slice(0, 5));
     
     return (
       <div className="space-y-0 leading-relaxed">

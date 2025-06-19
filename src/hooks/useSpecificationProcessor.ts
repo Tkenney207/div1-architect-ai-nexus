@@ -1,91 +1,12 @@
-
 import { useState } from 'react';
 import mammoth from 'mammoth';
 
-interface UploadedFile {
-  id: string;
-  name: string;
-  size: string;
-  uploadDate: string;
-  status: 'uploading' | 'processing' | 'processed' | 'error';
-  content?: string;
-  analysisResults?: DocumentAnalysis;
-}
-
-interface ProcessingStatus {
-  stage: string;
-  progress: number;
-  message: string;
-}
-
-interface DocumentAnalysis {
-  manufacturerCompliance: ManufacturerAnalysis[];
-  codeCompliance: CodeCompliance[];
-  materialStandards: MaterialStandard[];
-  sustainabilityMetrics: SustainabilityMetric[];
-  performanceSpecs: PerformanceSpec[];
-  overview: AnalysisOverview;
-}
-
-interface ManufacturerAnalysis {
-  manufacturer: string;
-  products: string[];
-  status: 'current' | 'outdated' | 'discontinued';
-  alternatives?: string[];
-  lastUpdated: string;
-}
-
-interface CodeCompliance {
-  code: string;
-  section: string;
-  status: 'compliant' | 'non-compliant' | 'requires-update';
-  currentVersion: string;
-  specifiedVersion: string;
-  description: string;
-  recommendations?: string;
-}
-
-interface MaterialStandard {
-  standard: string;
-  material: string;
-  status: 'compliant' | 'outdated' | 'missing';
-  currentStandard: string;
-  specifiedStandard: string;
-  criticalityLevel: 'high' | 'medium' | 'low';
-}
-
-interface SustainabilityMetric {
-  category: string;
-  metric: string;
-  value: string;
-  benchmark: string;
-  status: 'exceeds' | 'meets' | 'below' | 'not-specified';
-  recommendations?: string;
-}
-
-interface PerformanceSpec {
-  component: string;
-  specification: string;
-  measuredValue: string;
-  requiredValue: string;
-  status: 'pass' | 'fail' | 'marginal';
-  testMethod: string;
-}
-
-interface AnalysisOverview {
-  overallCompliance: number;
-  criticalIssues: number;
-  warningsCount: number;
-  upToDatePercentage: number;
-  lastReviewDate: string;
-}
-
 export const useSpecificationProcessor = () => {
-  const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
-  const [processingStatus, setProcessingStatus] = useState<ProcessingStatus | null>(null);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [processingStatus, setProcessingStatus] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const extractTextFromFile = async (file: File): Promise<string> => {
+  const extractTextFromFile = async (file) => {
     console.log('Starting file extraction:', {
       fileName: file.name,
       fileType: file.type,
@@ -98,7 +19,7 @@ export const useSpecificationProcessor = () => {
         return await extractTextFile(file);
       }
       
-      // Handle PDF files
+      // Handle PDF files  
       if (file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')) {
         return await extractPdfFile(file);
       }
@@ -125,12 +46,12 @@ export const useSpecificationProcessor = () => {
     }
   };
 
-  const extractTextFile = async (file: File): Promise<string> => {
+  const extractTextFile = async (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       
       reader.onload = (e) => {
-        const content = e.target?.result as string;
+        const content = e.target?.result;
         if (!content || content.trim().length === 0) {
           reject(new Error('File appears to be empty'));
           return;
@@ -152,89 +73,44 @@ export const useSpecificationProcessor = () => {
     });
   };
 
-  const extractPdfFile = async (file: File): Promise<string> => {
+  const extractPdfFile = async (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       
       reader.onload = async (e) => {
         try {
-          const arrayBuffer = e.target?.result as ArrayBuffer;
+          const arrayBuffer = e.target?.result;
           if (!arrayBuffer) {
             reject(new Error('Failed to read PDF file'));
             return;
           }
 
-          // Dynamic import with proper error handling
-          const pdfParse = await import('pdf-parse').catch(() => {
-            console.warn('pdf-parse not available, generating sample content');
-            return null;
-          });
-          
-          if (pdfParse) {
+          try {
+            // Use pdf-parse to extract text
+            const pdfParse = await import('pdf-parse');
             const pdfData = await pdfParse.default(arrayBuffer);
             
             if (!pdfData.text || pdfData.text.trim().length === 0) {
               reject(new Error('PDF appears to be empty or contains no extractable text'));
               return;
             }
-            
+
             console.log('PDF extracted successfully:', {
               fileName: file.name,
               pages: pdfData.numpages,
               contentLength: pdfData.text.length,
               contentPreview: pdfData.text.substring(0, 200) + '...'
             });
-            
             resolve(pdfData.text);
-          } else {
-            // Fallback: generate sample content based on file name
-            const sampleContent = `PDF Document: ${file.name}
-
-SECTION 09 91 13 - EXTERIOR PAINTING
-
-PART 1 - GENERAL
-
-1.1 SECTION INCLUDES
-A. Surface preparation of exterior substrates.
-B. Application of primer and finish coats.
-C. Warranty requirements.
-
-1.2 RELATED DOCUMENTS
-A. Drawings and general provisions of the Contract, including General and Supplementary Conditions and Division 01 Specification Sections, apply to this Section.
-
-1.3 SUBMITTALS
-A. Product Data: For each type of product.
-B. Samples: For each type of coating system and in each color and texture specified.
-
-PART 2 - PRODUCTS
-
-2.1 MANUFACTURERS
-A. Sherwin Williams Company
-B. Benjamin Moore & Co.
-C. PPG Industries
-
-2.2 PAINT MATERIALS
-A. Primer: Alkyd or latex primer sealer, compatible with finish coat.
-B. Finish Coat: 100 percent acrylic latex paint.
-
-PART 3 - EXECUTION
-
-3.1 SURFACE PREPARATION
-A. Clean surfaces of dirt, dust, and other foreign matter that might impair bond of coatings.
-B. Remove loose and peeling paint by scraping and sanding.
-
-3.2 APPLICATION
-A. Apply coatings according to manufacturer's written instructions.
-B. Environmental Conditions: Apply coatings only when ambient and surface temperatures are between 50 and 90 degrees F.
-
-END OF SECTION`;
-            
-            console.log('PDF fallback content generated:', {
-              fileName: file.name,
-              contentLength: sampleContent.length
-            });
-            
-            resolve(sampleContent);
+          } catch (pdfError) {
+            console.warn('PDF extraction failed, falling back to basic text extraction:', pdfError);
+            // Fallback: try to extract as plain text
+            const text = new TextDecoder().decode(arrayBuffer);
+            if (text && text.trim().length > 0) {
+              resolve(text);
+            } else {
+              reject(new Error('Failed to extract text from PDF'));
+            }
           }
         } catch (error) {
           console.error('PDF extraction failed:', error);
@@ -250,30 +126,39 @@ END OF SECTION`;
     });
   };
 
-  const extractWordFile = async (file: File): Promise<string> => {
+  const extractWordFile = async (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       
       reader.onload = async (e) => {
         try {
-          const arrayBuffer = e.target?.result as ArrayBuffer;
+          const arrayBuffer = e.target?.result;
           if (!arrayBuffer) {
             reject(new Error('Failed to read Word file'));
             return;
           }
 
+          console.log('Processing Word file with mammoth...');
           const result = await mammoth.extractRawText({ arrayBuffer });
           
+          console.log('Mammoth extraction result:', {
+            hasValue: !!result.value,
+            valueType: typeof result.value,
+            valueLength: result.value?.length || 0,
+            value: result.value,
+            messages: result.messages
+          });
+
           if (!result.value || result.value.trim().length === 0) {
             reject(new Error('Word document appears to be empty'));
             return;
           }
-          
+
           // Log any conversion messages
           if (result.messages.length > 0) {
             console.warn('Word extraction messages:', result.messages);
           }
-          
+
           console.log('Word document extracted successfully:', {
             fileName: file.name,
             contentLength: result.value.length,
@@ -296,35 +181,34 @@ END OF SECTION`;
     });
   };
 
-  const validateContent = (content: string, fileName: string): boolean => {
+  const validateContent = (content, fileName) => {
     if (!content || typeof content !== 'string') {
       console.error('Content validation failed: content is not a valid string', { fileName });
       return false;
     }
-    
+
     const trimmedContent = content.trim();
     if (trimmedContent.length === 0) {
       console.error('Content validation failed: content is empty', { fileName });
       return false;
     }
-    
+
     if (trimmedContent.length < 10) {
       console.warn('Content validation warning: content is very short', { 
         fileName, 
         length: trimmedContent.length 
       });
     }
-    
+
     console.log('Content validation passed:', {
       fileName,
       contentLength: trimmedContent.length,
       isValid: true
     });
-    
     return true;
   };
 
-  const analyzeSpecificationContent = async (content: string, fileName: string): Promise<DocumentAnalysis> => {
+  const analyzeSpecificationContent = async (content, fileName) => {
     // Simulate AI analysis based on actual content
     // In a real implementation, this would call an AI service like OpenAI
     
@@ -339,7 +223,7 @@ END OF SECTION`;
     const criticalIssues = Math.floor(Math.random() * 3) + (hasASTM ? 0 : 1) + (hasIBC ? 0 : 1);
     const warningsCount = Math.floor(Math.random() * 5) + Math.floor(wordCount / 100);
     const overallCompliance = Math.max(60, 100 - (criticalIssues * 10) - (warningsCount * 2));
-    
+
     return {
       overview: {
         overallCompliance,
@@ -438,9 +322,9 @@ END OF SECTION`;
     };
   };
 
-  const uploadSpecification = async (file: File) => {
+  const uploadSpecification = async (file) => {
     const fileId = `file-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    const newFile: UploadedFile = {
+    const newFile = {
       id: fileId,
       name: file.name,
       size: `${(file.size / 1024 / 1024).toFixed(2)} MB`,
@@ -462,6 +346,14 @@ END OF SECTION`;
 
       const extractedContent = await extractTextFromFile(file);
       
+      console.log('UPLOAD: Content extracted:', {
+        fileId,
+        fileName: file.name,
+        contentType: typeof extractedContent,
+        contentLength: extractedContent?.length || 0,
+        contentPreview: extractedContent?.substring(0, 100) || 'No content'
+      });
+
       // Step 2: Validate extracted content
       if (!validateContent(extractedContent, file.name)) {
         throw new Error('File content validation failed');
@@ -475,13 +367,11 @@ END OF SECTION`;
       });
 
       // Step 3: Update file with extracted content and set to processing
-      setUploadedFiles(prev => 
-        prev.map(f => 
-          f.id === fileId 
-            ? { ...f, status: 'processing', content: extractedContent }
-            : f
-        )
-      );
+      setUploadedFiles(prev => prev.map(f => 
+        f.id === fileId 
+          ? { ...f, status: 'processing', content: extractedContent }
+          : f
+      ));
 
       // Step 4: Perform AI analysis
       setProcessingStatus({
@@ -507,18 +397,16 @@ END OF SECTION`;
         message: 'Analysis complete'
       });
 
-      setUploadedFiles(prev => 
-        prev.map(f => 
-          f.id === fileId 
-            ? { 
-                ...f, 
-                status: 'processed', 
-                analysisResults,
-                content: extractedContent // Ensure content is preserved
-              }
-            : f
-        )
-      );
+      setUploadedFiles(prev => prev.map(f => 
+        f.id === fileId 
+          ? { 
+              ...f, 
+              status: 'processed', 
+              analysisResults,
+              content: extractedContent // Ensure content is preserved
+            }
+          : f
+      ));
 
       console.log('File processing completed successfully:', {
         fileId,
@@ -538,31 +426,42 @@ END OF SECTION`;
       console.error('Error processing file:', error);
       
       // Update file status to error with error message
-      setUploadedFiles(prev => 
-        prev.map(f => 
-          f.id === fileId 
-            ? { 
-                ...f, 
-                status: 'error',
-                content: `Error: ${error instanceof Error ? error.message : 'Unknown error occurred'}`
-              }
-            : f
-        )
-      );
+      setUploadedFiles(prev => prev.map(f => 
+        f.id === fileId 
+          ? { 
+              ...f, 
+              status: 'error',
+              content: `Error: ${error instanceof Error ? error.message : 'Unknown error occurred'}`
+            }
+          : f
+      ));
       
       setProcessingStatus(null);
       setIsLoading(false);
     }
   };
 
-  const getFileContent = (fileId: string): string | undefined => {
-    const file = uploadedFiles.find(f => f.id === fileId);
+  const getFileContent = (fileId) => {
+    console.log('=== GET FILE CONTENT DEBUG ===');
+    console.log('Requested fileId:', fileId);
+    console.log('Available files:', uploadedFiles.map(f => ({ id: f.id, name: f.name, hasContent: !!f.content, contentLength: f.content?.length })));
     
+    const file = uploadedFiles.find(f => f.id === fileId);
     if (!file) {
       console.warn('File not found:', fileId);
       return undefined;
     }
-    
+
+    console.log('Found file:', {
+      id: file.id,
+      name: file.name,
+      status: file.status,
+      hasContent: !!file.content,
+      contentType: typeof file.content,
+      contentLength: file.content?.length || 0,
+      contentPreview: file.content?.substring(0, 100) || 'No content'
+    });
+
     if (!file.content) {
       console.warn('File content is empty:', {
         fileId,
@@ -571,8 +470,8 @@ END OF SECTION`;
       });
       return undefined;
     }
-    
-    console.log('Retrieved file content:', {
+
+    console.log('Retrieved file content successfully:', {
       fileId,
       fileName: file.name,
       contentLength: file.content.length,
