@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -14,52 +15,42 @@ import {
   Eye,
   EyeOff
 } from "lucide-react";
-
-interface SuggestionItem {
-  id: string;
-  type: 'update' | 'addition' | 'removal' | 'compliance';
-  category: string;
-  title: string;
-  description: string;
-  originalText?: string;
-  suggestedText: string;
-  priority: 'high' | 'medium' | 'low';
-  status: 'pending' | 'approved' | 'rejected';
-  lineNumber?: number;
-}
+import { useSpecificationReview } from "@/hooks/useSpecificationReview";
 
 interface SpecificationReviewWindowProps {
   fileName: string;
   fileContent: string;
-  suggestions: SuggestionItem[];
   onClose: () => void;
-  onApproveSuggestion: (suggestionId: string) => void;
-  onRejectSuggestion: (suggestionId: string) => void;
-  onApproveAll: () => void;
-  onDownloadRevised: () => void;
 }
 
 export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps> = ({
   fileName,
   fileContent,
-  suggestions,
-  onClose,
-  onApproveSuggestion,
-  onRejectSuggestion,
-  onApproveAll,
-  onDownloadRevised
+  onClose
 }) => {
   const [selectedSuggestion, setSelectedSuggestion] = useState<string | null>(null);
-  const [currentContent, setCurrentContent] = useState<string>(fileContent);
   const [highlightedLines, setHighlightedLines] = useState<Set<number>>(new Set());
+
+  const {
+    suggestions,
+    generateSuggestions,
+    approveSuggestion,
+    rejectSuggestion,
+    approveAllSuggestions,
+    downloadRevisedSpecification,
+    fileContent: currentContent,
+    setFileContent
+  } = useSpecificationReview();
+
+  // Initialize suggestions when component mounts
+  useEffect(() => {
+    const generatedSuggestions = generateSuggestions(fileName, fileContent);
+    // Set the file content in the hook
+    setFileContent(fileContent);
+  }, [fileName, fileContent, generateSuggestions, setFileContent]);
 
   const pendingSuggestions = suggestions.filter(s => s.status === 'pending');
   const approvedSuggestions = suggestions.filter(s => s.status === 'approved');
-
-  // Update current content when fileContent changes
-  useEffect(() => {
-    setCurrentContent(fileContent);
-  }, [fileContent]);
 
   // Update highlighted lines when a suggestion is selected
   useEffect(() => {
@@ -74,27 +65,24 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
   }, [selectedSuggestion, suggestions]);
 
   const handleApproveSuggestion = (suggestionId: string) => {
-    const suggestion = suggestions.find(s => s.id === suggestionId);
-    if (suggestion && suggestion.originalText && suggestion.lineNumber) {
-      // Apply the change to the current content
-      const lines = currentContent.split('\n');
-      const lineIndex = suggestion.lineNumber - 1;
-      
-      if (lineIndex >= 0 && lineIndex < lines.length) {
-        lines[lineIndex] = lines[lineIndex].replace(suggestion.originalText, suggestion.suggestedText);
-        setCurrentContent(lines.join('\n'));
-      }
-    }
-    onApproveSuggestion(suggestionId);
+    approveSuggestion(suggestionId);
   };
 
   const handleRejectSuggestion = (suggestionId: string) => {
-    onRejectSuggestion(suggestionId);
+    rejectSuggestion(suggestionId);
+  };
+
+  const handleApproveAll = () => {
+    approveAllSuggestions();
+  };
+
+  const handleDownloadRevised = () => {
+    downloadRevisedSpecification(fileName, approvedSuggestions);
   };
 
   const renderContentWithHighlights = () => {
-    // Use current content if available, otherwise fall back to a default message
-    const content = currentContent || "No content available. Please upload a specification file.";
+    // Use the file content passed as prop
+    const content = fileContent || currentContent || "No content available. Please upload a specification file.";
     const lines = content.split('\n');
     
     return lines.map((line, index) => {
@@ -102,29 +90,58 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
       const isHighlighted = highlightedLines.has(lineNumber);
       const suggestion = suggestions.find(s => s.lineNumber === lineNumber && s.id === selectedSuggestion);
       
+      let displayLine = line;
+      let hasChange = false;
+      
+      // Check if this line has any suggestions
+      const lineSuggestions = suggestions.filter(s => s.lineNumber === lineNumber);
+      
+      if (lineSuggestions.length > 0) {
+        // Show changes based on suggestion status
+        lineSuggestions.forEach(sug => {
+          if (sug.originalText && line.includes(sug.originalText)) {
+            hasChange = true;
+            if (sug.status === 'approved') {
+              // Show the approved change
+              displayLine = line.replace(sug.originalText, sug.suggestedText);
+            }
+          }
+        });
+      }
+      
       return (
         <div 
           key={index} 
-          className={`flex ${isHighlighted ? 'bg-yellow-100 border-l-4 border-yellow-500' : ''}`}
+          className={`flex py-1 ${isHighlighted ? 'bg-yellow-100 border-l-4 border-yellow-500' : ''}`}
         >
-          <div className="text-xs text-gray-400 mr-4 w-8 text-right select-none">
+          <div className="text-xs text-gray-400 mr-4 w-12 text-right select-none flex-shrink-0 pt-1">
             {lineNumber}
           </div>
           <div className="flex-1 font-mono text-sm leading-relaxed whitespace-pre-wrap">
-            {suggestion && suggestion.originalText ? (
+            {hasChange && suggestion ? (
               <span>
-                {line.replace(suggestion.originalText, '')}
-                <span className="bg-red-200 text-red-800 px-1 rounded">
-                  {suggestion.originalText}
-                </span>
-                {suggestion.status === 'approved' && (
-                  <span className="bg-green-200 text-green-800 px-1 rounded ml-1">
-                    {suggestion.suggestedText}
-                  </span>
-                )}
+                {displayLine.split(suggestion.originalText || suggestion.suggestedText).map((part, partIndex) => (
+                  <React.Fragment key={partIndex}>
+                    {part}
+                    {partIndex < displayLine.split(suggestion.originalText || suggestion.suggestedText).length - 1 && (
+                      <>
+                        {suggestion.status === 'pending' && suggestion.originalText && (
+                          <span className="bg-red-200 text-red-800 px-1 rounded">
+                            {suggestion.originalText}
+                          </span>
+                        )}
+                        {suggestion.status === 'approved' && (
+                          <span className="bg-green-200 text-green-800 px-1 rounded">
+                            {suggestion.suggestedText}
+                          </span>
+                        )}
+                      </>
+                    )}
+                  </React.Fragment>
+                ))}
               </span>
             ) : (
-              line
+              displayLine
             )}
           </div>
         </div>
@@ -165,7 +182,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
           <div className="flex items-center space-x-3">
             <Button
               size="sm"
-              onClick={onApproveAll}
+              onClick={handleApproveAll}
               disabled={pendingSuggestions.length === 0}
               className="text-white"
               style={{ backgroundColor: '#7C9C95' }}
@@ -175,7 +192,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
             </Button>
             <Button
               size="sm"
-              onClick={onDownloadRevised}
+              onClick={handleDownloadRevised}
               disabled={approvedSuggestions.length === 0}
               className="text-white"
               style={{ backgroundColor: '#E98B2A' }}
@@ -197,24 +214,24 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
 
         {/* Content */}
         <div className="flex-1 flex overflow-hidden">
-          {/* Document Viewer - 70% width */}
-          <div className="flex-1 border-r-2 flex flex-col" style={{ borderColor: '#D9D6D0', width: '70%' }}>
+          {/* Document Viewer - 75% width for larger display */}
+          <div className="flex-1 border-r-2 flex flex-col" style={{ borderColor: '#D9D6D0', width: '75%' }}>
             <div className="p-4 border-b" style={{ borderColor: '#D9D6D0', backgroundColor: '#FFFFFF' }}>
               <h3 className="font-semibold" style={{ color: '#1A2B49' }}>Original Specification</h3>
             </div>
             <div className="flex-1 overflow-auto bg-white m-4 rounded shadow-sm border p-6" style={{ borderColor: '#D9D6D0' }}>
-              <div className="space-y-1">
+              <div className="space-y-0">
                 {renderContentWithHighlights()}
               </div>
             </div>
           </div>
 
-          {/* Review Panel - 30% width */}
-          <div className="flex flex-col" style={{ width: '30%' }}>
+          {/* Review Panel - 25% width for slimmer display */}
+          <div className="flex flex-col" style={{ width: '25%' }}>
             <div className="p-3 border-b" style={{ borderColor: '#D9D6D0', backgroundColor: '#FFFFFF' }}>
               <h3 className="font-semibold text-sm" style={{ color: '#1A2B49' }}>Review & Comments</h3>
             </div>
-            <div className="flex-1 overflow-auto p-3">
+            <div className="flex-1 overflow-auto p-2">
               <div className="space-y-2">
                 {suggestions.map((suggestion) => (
                   <Card 
@@ -230,7 +247,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
                     }}
                     onClick={() => setSelectedSuggestion(suggestion.id === selectedSuggestion ? null : suggestion.id)}
                   >
-                    <CardHeader className="pb-2 p-3">
+                    <CardHeader className="pb-2 p-2">
                       <div className="flex items-start justify-between">
                         <div className="flex items-start space-x-2">
                           <div className="mt-1">
@@ -271,40 +288,40 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
                         </div>
                       </div>
                     </CardHeader>
-                    <CardContent className="p-3 pt-0">
-                      <p className="text-xs mb-3 leading-relaxed" style={{ color: '#1A2B49' }}>
+                    <CardContent className="p-2 pt-0">
+                      <p className="text-xs mb-2 leading-relaxed" style={{ color: '#1A2B49' }}>
                         {suggestion.description}
                       </p>
                       
                       {suggestion.originalText && (
-                        <div className="mb-3">
+                        <div className="mb-2">
                           <p className="text-xs font-medium mb-1" style={{ color: '#7C9C95' }}>Original:</p>
-                          <div className="p-2 rounded text-xs bg-red-50 border-l-2 border-red-300">
-                            <code className="text-red-700">
+                          <div className="p-1 rounded text-xs bg-red-50 border-l-2 border-red-300">
+                            <code className="text-red-700 text-xs">
                               {suggestion.originalText}
                             </code>
                           </div>
                         </div>
                       )}
                       
-                      <div className="mb-3">
+                      <div className="mb-2">
                         <p className="text-xs font-medium mb-1" style={{ color: '#7C9C95' }}>Suggested:</p>
-                        <div className="p-2 rounded text-xs bg-green-50 border-l-2 border-green-300">
-                          <code className="text-green-700">
+                        <div className="p-1 rounded text-xs bg-green-50 border-l-2 border-green-300">
+                          <code className="text-green-700 text-xs">
                             {suggestion.suggestedText}
                           </code>
                         </div>
                       </div>
 
                       {suggestion.status === 'pending' && (
-                        <div className="flex space-x-2 pt-2">
+                        <div className="flex space-x-1 pt-1">
                           <Button
                             size="sm"
                             onClick={(e) => {
                               e.stopPropagation();
                               handleApproveSuggestion(suggestion.id);
                             }}
-                            className="text-white text-xs px-3 py-1 h-6"
+                            className="text-white text-xs px-2 py-1 h-6"
                             style={{ backgroundColor: '#7C9C95' }}
                           >
                             <Check className="h-3 w-3 mr-1" />
@@ -317,7 +334,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
                               e.stopPropagation();
                               handleRejectSuggestion(suggestion.id);
                             }}
-                            className="text-xs px-3 py-1 h-6"
+                            className="text-xs px-2 py-1 h-6"
                             style={{ 
                               borderColor: '#B04A4A', 
                               color: '#B04A4A',
@@ -346,20 +363,4 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
       </div>
     </div>
   );
-};
-
-const getPriorityColor = (priority: string) => {
-  switch (priority) {
-    case 'high': return '#B04A4A';
-    case 'medium': return '#E98B2A';
-    case 'low': return '#7C9C95';
-    default: return '#7C9C95';
-  }
-};
-
-const getTypeIcon = (type: string) => {
-  switch (type) {
-    case 'compliance': return <AlertTriangle className="h-4 w-4" />;
-    default: return <FileText className="h-4 w-4" />;
-  }
 };

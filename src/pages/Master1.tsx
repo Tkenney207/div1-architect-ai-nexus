@@ -6,10 +6,12 @@ import Header from "@/components/Header";
 import { useState, useRef, useEffect } from "react";
 import { useSpecificationProcessor } from "@/hooks/useSpecificationProcessor";
 import { SpecificationAnalysis } from "@/components/SpecificationAnalysis";
+import SpecificationReviewWindow from "@/components/SpecificationReviewWindow";
 
 const Master1 = () => {
   const [dragActive, setDragActive] = useState(false);
   const [expandedAnalysis, setExpandedAnalysis] = useState<string | null>(null);
+  const [reviewWindow, setReviewWindow] = useState<{ fileId: string; fileName: string; content: string } | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const analysisRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   
@@ -77,6 +79,55 @@ const Master1 = () => {
         }
       }, 100);
     }
+  };
+
+  const openReviewWindow = (fileId: string, fileName: string) => {
+    // For now, we'll use mock content. In a real implementation, 
+    // this would come from the uploaded file content
+    const mockContent = `SECTION 08 33 23 - OVERHEAD COILING DOORS
+
+PART 1 - GENERAL
+
+1.1 SUMMARY
+A. Section Includes:
+   1. Overhead coiling doors.
+   2. Electric door operators.
+   3. Accessories.
+
+1.2 SUBMITTALS
+A. Product Data: For each type of product indicated.
+B. Shop Drawings: For overhead coiling doors.
+
+1.3 QUALITY ASSURANCE
+A. Source Limitations: Obtain overhead coiling doors from single source from single manufacturer.
+B. Fire-Rated Overhead Coiling Doors: Doors shall be identical to doors tested for fire resistance per IBC 2018, Section 705.8 and labeled by a qualified testing agency.
+
+PART 2 - PRODUCTS
+
+2.1 MANUFACTURERS
+A. Manufacturers: Subject to compliance with requirements, provide products by one of the following:
+   1. Armstrong Mineral Fiber Ceiling Tiles, Model 1234
+   2. Clopay Building Products Company, Inc.
+   3. Cornell Iron Works, Inc.
+
+2.2 OVERHEAD COILING DOORS
+A. Basis-of-Design Product: Subject to compliance with requirements, provide product indicated or comparable product by one of the following:
+   1. Clopay Building Products Company, Inc.; Model B Series.
+   2. Cornell Iron Works, Inc.; Model 650.
+
+PART 3 - EXECUTION
+
+3.1 INSTALLATION
+A. Install overhead coiling doors according to manufacturer's written instructions.
+B. Test Operation: Test doors for proper operation and adjust as necessary.
+
+END OF SECTION`;
+    
+    setReviewWindow({ fileId, fileName, content: mockContent });
+  };
+
+  const closeReviewWindow = () => {
+    setReviewWindow(null);
   };
 
   return (
@@ -254,9 +305,10 @@ const Master1 = () => {
                             <Button 
                               className="text-white font-medium px-6 py-2 rounded-lg transition-all hover:opacity-90"
                               style={{ backgroundColor: '#E98B2A' }}
+                              onClick={() => openReviewWindow(file.id, file.name)}
                             >
                               <Download className="h-4 w-4 mr-2" />
-                              Download Enhanced Version
+                              Open Review Window
                             </Button>
                             <Button 
                               onClick={() => toggleAnalysisExpansion(file.id)}
@@ -409,6 +461,15 @@ const Master1 = () => {
           </Card>
         </div>
       </div>
+
+      {/* Review Window */}
+      {reviewWindow && (
+        <SpecificationReviewWindow
+          fileName={reviewWindow.fileName}
+          fileContent={reviewWindow.content}
+          onClose={closeReviewWindow}
+        />
+      )}
     </div>
   );
 };
