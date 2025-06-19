@@ -76,7 +76,7 @@ const Header = () => {
                     </DropdownMenuContent>
                   </DropdownMenu>
                   <Link to="/dashboard">
-                    <Button size="sm" style={{ backgroundColor: '#C6A664', color: '#1A2B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
+                    <Button size="sm" style={{ backgroundColor: '#E98B2A', color: '#1A2B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
                       <Home className="h-4 w-4 mr-2" />
                       Home
                     </Button>
@@ -85,7 +85,7 @@ const Header = () => {
               ) : (
                 <>
                   <Link to="/signup">
-                    <Button size="sm" style={{ backgroundColor: '#C6A664', color: '#1A2B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
+                    <Button size="sm" style={{ backgroundColor: '#E98B2A', color: '#1A2B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
                       <UserPlus className="h-4 w-4 mr-2" />
                       Sign Up
                     </Button>

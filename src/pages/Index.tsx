@@ -25,7 +25,7 @@ const Index = () => {
               </div>
               
               <h1 className="text-6xl md:text-7xl font-light mb-6 leading-tight" style={{ color: '#F7F3ED' }}>
-                <span style={{ color: '#C6A664' }} className="font-medium">From input to output</span>
+                <span style={{ color: '#E98B2A' }} className="font-medium">From input to output</span>
               </h1>
               <h2 className="text-3xl md:text-4xl font-light mb-12" style={{ color: '#F7F3ED' }}>
                 AI that understands what makes AEC work.
@@ -47,7 +47,7 @@ const Index = () => {
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                 <Link to="/signup">
-                  <Button size="lg" style={{ backgroundColor: '#C6A664', color: '#1A2B49' }} className="text-lg px-12 py-4 rounded-lg hover:opacity-90 font-medium transition-all">
+                  <Button size="lg" style={{ backgroundColor: '#E98B2A', color: '#1A2B49' }} className="text-lg px-12 py-4 rounded-lg hover:opacity-90 font-medium transition-all">
                     Get Started Free
                     <ArrowRight className="ml-3 h-5 w-5" />
                   </Button>
@@ -66,44 +66,44 @@ const Index = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-light mb-8" style={{ color: '#1A2B49' }}>Three powerful solutions</h2>
-            <p className="text-xl max-w-3xl mx-auto" style={{ color: '#426A8C' }}>Interconnected tools designed to work seamlessly together for your complete AEC workflow</p>
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: '#1A2B49' }}>Interconnected tools designed to work seamlessly together for your complete AEC workflow</p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Engage Module */}
             <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#F7F3ED' }}>
               <CardHeader className="p-8">
-                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#D6F0E5' }}>
-                  <EngageIcon className="text-brass" />
+                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#F7F3ED' }}>
+                  <EngageIcon className="text-orange" />
                 </div>
                 <CardTitle className="text-2xl font-medium mb-4" style={{ color: '#1A2B49' }}>Engage</CardTitle>
-                <CardDescription className="text-base leading-relaxed" style={{ color: '#426A8C' }}>
+                <CardDescription className="text-base leading-relaxed" style={{ color: '#1A2B49' }}>
                   AI-facilitated project charter with conversational intelligence and privacy protection
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-8 pb-8">
-                <ul className="space-y-4 mb-10 text-sm" style={{ color: '#426A8C' }}>
+                <ul className="space-y-4 mb-10 text-sm" style={{ color: '#1A2B49' }}>
                   <li className="flex items-center space-x-3">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#D6F0E5' }}>
-                      <CheckCircle className="h-3 w-3" style={{ color: '#C6A664' }} />
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
+                      <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
                     </div>
                     <span>Multi-agent conversation system</span>
                   </li>
                   <li className="flex items-center space-x-3">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#D6F0E5' }}>
-                      <CheckCircle className="h-3 w-3" style={{ color: '#C6A664' }} />
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
+                      <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
                     </div>
                     <span>Privacy-preserving architecture</span>
                   </li>
                   <li className="flex items-center space-x-3">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#D6F0E5' }}>
-                      <CheckCircle className="h-3 w-3" style={{ color: '#C6A664' }} />
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
+                      <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
                     </div>
                     <span>Real-time sentiment analysis</span>
                   </li>
                 </ul>
                 <Link to="/engage">
-                  <Button className="w-full rounded-lg text-white font-medium py-3 transition-all hover:opacity-90" style={{ backgroundColor: '#C6A664' }}>
+                  <Button className="w-full rounded-lg text-white font-medium py-3 transition-all hover:opacity-90" style={{ backgroundColor: '#E98B2A' }}>
                     Start Charter
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -114,31 +114,31 @@ const Index = () => {
             {/* Division1 Module */}
             <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#F7F3ED' }}>
               <CardHeader className="p-8">
-                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#C2D3DF' }}>
-                  <FileText className="h-8 w-8" style={{ color: '#1A2B49' }} />
+                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#7C9C95' }}>
+                  <FileText className="h-8 w-8" style={{ color: '#F7F3ED' }} />
                 </div>
                 <CardTitle className="text-2xl font-medium mb-4" style={{ color: '#1A2B49' }}>Division1</CardTitle>
-                <CardDescription className="text-base leading-relaxed" style={{ color: '#426A8C' }}>
+                <CardDescription className="text-base leading-relaxed" style={{ color: '#1A2B49' }}>
                   Generate complete CSI MasterFormat Division 01 specifications from project charter data with AI precision
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-8 pb-8">
-                <ul className="space-y-4 mb-10 text-sm" style={{ color: '#426A8C' }}>
+                <ul className="space-y-4 mb-10 text-sm" style={{ color: '#1A2B49' }}>
                   <li className="flex items-center space-x-3">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#D6F0E5' }}>
-                      <CheckCircle className="h-3 w-3" style={{ color: '#C6A664' }} />
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
+                      <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
                     </div>
                     <span>Automated charter-to-spec mapping</span>
                   </li>
                   <li className="flex items-center space-x-3">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#D6F0E5' }}>
-                      <CheckCircle className="h-3 w-3" style={{ color: '#C6A664' }} />
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
+                      <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
                     </div>
                     <span>3-part CSI format Division 01 generation</span>
                   </li>
                   <li className="flex items-center space-x-3">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#D6F0E5' }}>
-                      <CheckCircle className="h-3 w-3" style={{ color: '#C6A664' }} />
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
+                      <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
                     </div>
                     <span>Side-by-side editing interface</span>
                   </li>
@@ -155,37 +155,37 @@ const Index = () => {
             {/* Master1 Module */}
             <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#F7F3ED' }}>
               <CardHeader className="p-8">
-                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#E6B7B3' }}>
+                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#E98B2A' }}>
                   <Master1Icon className="text-navy" />
                 </div>
                 <CardTitle className="text-2xl font-medium mb-4" style={{ color: '#1A2B49' }}>Master1</CardTitle>
-                <CardDescription className="text-base leading-relaxed" style={{ color: '#426A8C' }}>
+                <CardDescription className="text-base leading-relaxed" style={{ color: '#1A2B49' }}>
                   Intelligent specification synthesis with compliance validation and standards checking
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-8 pb-8">
-                <ul className="space-y-4 mb-10 text-sm" style={{ color: '#426A8C' }}>
+                <ul className="space-y-4 mb-10 text-sm" style={{ color: '#1A2B49' }}>
                   <li className="flex items-center space-x-3">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#D6F0E5' }}>
-                      <CheckCircle className="h-3 w-3" style={{ color: '#C6A664' }} />
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
+                      <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
                     </div>
                     <span>Multi-modal document processing</span>
                   </li>
                   <li className="flex items-center space-x-3">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#D6F0E5' }}>
-                      <CheckCircle className="h-3 w-3" style={{ color: '#C6A664' }} />
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
+                      <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
                     </div>
                     <span>Real-time standards validation</span>
                   </li>
                   <li className="flex items-center space-x-3">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#D6F0E5' }}>
-                      <CheckCircle className="h-3 w-3" style={{ color: '#C6A664' }} />
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
+                      <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
                     </div>
                     <span>Automated compliance checking</span>
                   </li>
                 </ul>
                 <Link to="/master1">
-                  <Button className="w-full rounded-lg text-white font-medium py-3 transition-all hover:opacity-90" style={{ backgroundColor: '#426A8C' }}>
+                  <Button className="w-full rounded-lg text-white font-medium py-3 transition-all hover:opacity-90" style={{ backgroundColor: '#7C9C95' }}>
                     Process Specs
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -213,27 +213,27 @@ const Index = () => {
             <div>
               <h5 className="font-medium mb-6 text-lg" style={{ color: '#F7F3ED' }}>Solutions</h5>
               <ul className="space-y-3" style={{ color: '#F7F3ED' }}>
-                <li><Link to="/engage" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>Engage</Link></li>
-                <li><Link to="/division1" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>Division1</Link></li>
-                <li><Link to="/master1" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>Master1</Link></li>
+                <li><Link to="/engage" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Engage</Link></li>
+                <li><Link to="/division1" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Division1</Link></li>
+                <li><Link to="/master1" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Master1</Link></li>
               </ul>
             </div>
             
             <div>
               <h5 className="font-medium mb-6 text-lg" style={{ color: '#F7F3ED' }}>Resources</h5>
               <ul className="space-y-3" style={{ color: '#F7F3ED' }}>
-                <li><Link to="/documentation" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>Documentation</Link></li>
-                <li><Link to="/security" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>Security</Link></li>
-                <li><Link to="/support" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>Support</Link></li>
+                <li><Link to="/documentation" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Documentation</Link></li>
+                <li><Link to="/security" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Security</Link></li>
+                <li><Link to="/support" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Support</Link></li>
               </ul>
             </div>
             
             <div>
               <h5 className="font-medium mb-6 text-lg" style={{ color: '#F7F3ED' }}>Company</h5>
               <ul className="space-y-3" style={{ color: '#F7F3ED' }}>
-                <li><Link to="/about" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>About</Link></li>
-                <li><Link to="/contact" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>Contact</Link></li>
-                <li><Link to="/privacy" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>Privacy</Link></li>
+                <li><Link to="/about" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>About</Link></li>
+                <li><Link to="/contact" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Contact</Link></li>
+                <li><Link to="/privacy" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Privacy</Link></li>
               </ul>
             </div>
           </div>

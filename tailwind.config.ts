@@ -23,29 +23,34 @@ export default {
 				sans: ['Avenir Next', 'Avenir', 'Helvetica Neue', 'Arial', 'sans-serif'],
 			},
 			colors: {
-				// Custom palette for relaxed affluence
-				navy: {
-					DEFAULT: '#1A2B49', // Classic Navy - Primary
+				// Updated palette
+				ivory: '#F7F3ED', // Ivory White
+				marble: '#D9D6D0', // Tumbled Marble
+				navy: '#1A2B49', // Heritage Navy
+				verdigris: '#7C9C95', // Verdigris Accent
+				orange: '#E98B2A', // Modern Orange Detail
+				// Legacy color names for backwards compatibility
+				'navy-legacy': {
+					DEFAULT: '#1A2B49',
 					50: '#f0f4ff',
 					100: '#e0e9ff',
 					200: '#c7d8ff',
 					300: '#a5c0ff',
 					400: '#8197ff',
-					500: '#426A8C', // Oxford Blue
-					600: '#1A2B49', // Classic Navy
+					500: '#7C9C95',
+					600: '#1A2B49',
 					700: '#152238',
 					800: '#101929',
 					900: '#0c141f',
 					950: '#1A2B49',
 				},
-				ivory: '#F7F3ED', // Warm Ivory
-				pebble: '#D9D6D0', // Soft Pebble Gray
-				rose: '#E6B7B3', // Dusty Rose
-				oxford: '#426A8C', // Oxford Blue
-				mint: '#D6F0E5', // Mint Cream
-				maize: '#F2D8A7', // Faded Maize
-				sky: '#C2D3DF', // Pale Sky
-				brass: '#C6A664', // Brass Gold - Highlight/CTA
+				pebble: '#D9D6D0',
+				rose: '#7C9C95',
+				oxford: '#1A2B49',
+				mint: '#F7F3ED',
+				maize: '#E98B2A',
+				sky: '#7C9C95',
+				brass: '#E98B2A',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
