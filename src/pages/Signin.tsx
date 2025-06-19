@@ -64,42 +64,43 @@ const Signin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white">
+    <div className="min-h-screen" style={{ backgroundColor: '#D9D6D0' }}>
       <Header />
       
       <div className="container mx-auto px-6 py-12">
         <div className="max-w-md mx-auto">
           <div className="text-center mb-8">
             <Div1Logo size="lg" className="mx-auto mb-6" />
-            <h1 className="text-3xl font-bold mb-2">Welcome Back</h1>
-            <p className="text-gray-300">Login to continue your construction intelligence journey</p>
+            <h1 className="text-3xl font-bold mb-2" style={{ color: '#1A2B49' }}>Welcome Back</h1>
+            <p style={{ color: '#1A2B49' }}>Login to continue your construction intelligence journey</p>
           </div>
 
-          <Card className="bg-slate-800/50 border-slate-700">
+          <Card className="bg-white border" style={{ borderColor: '#F7F3ED' }}>
             <CardHeader>
-              <CardTitle className="text-white">Login to your account</CardTitle>
-              <CardDescription className="text-gray-300">
+              <CardTitle style={{ color: '#1A2B49' }}>Login to your account</CardTitle>
+              <CardDescription style={{ color: '#1A2B49' }}>
                 Access your AI-driven construction intelligence platform
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <Label htmlFor="email" className="text-white">Email</Label>
+                  <Label htmlFor="email" style={{ color: '#1A2B49' }}>Email</Label>
                   <Input
                     id="email"
                     name="email"
                     type="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="bg-slate-700 border-slate-600 text-white"
+                    className="border placeholder:text-slate-600"
+                    style={{ borderColor: '#D9D6D0', backgroundColor: '#F7F3ED', color: '#1A2B49' }}
                     required
                     disabled={loading}
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="password" className="text-white">Password</Label>
+                  <Label htmlFor="password" style={{ color: '#1A2B49' }}>Password</Label>
                   <div className="relative">
                     <Input
                       id="password"
@@ -107,14 +108,16 @@ const Signin = () => {
                       type={showPassword ? "text" : "password"}
                       value={formData.password}
                       onChange={handleInputChange}
-                      className="bg-slate-700 border-slate-600 text-white pr-10"
+                      className="border placeholder:text-slate-600 pr-10"
+                      style={{ borderColor: '#D9D6D0', backgroundColor: '#F7F3ED', color: '#1A2B49' }}
                       required
                       disabled={loading}
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 hover:opacity-70"
+                      style={{ color: '#7C9C95' }}
                       disabled={loading}
                     >
                       {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -123,14 +126,15 @@ const Signin = () => {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Link to="/forgot-password" className="text-sm text-orange-400 hover:text-orange-300">
+                  <Link to="/forgot-password" className="text-sm hover:opacity-70" style={{ color: '#E98B2A' }}>
                     Forgot your password?
                   </Link>
                 </div>
 
                 <Button 
                   type="submit" 
-                  className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-semibold py-3 rounded-full"
+                  className="w-full text-white font-semibold py-3 rounded-full hover:opacity-90"
+                  style={{ backgroundColor: '#E98B2A' }}
                   disabled={loading}
                 >
                   {loading ? "Signing In..." : "Login"}
@@ -139,9 +143,9 @@ const Signin = () => {
               </form>
 
               <div className="mt-6 text-center">
-                <p className="text-gray-300">
+                <p style={{ color: '#1A2B49' }}>
                   Don't have an account?{" "}
-                  <Link to="/signup" className="text-orange-400 hover:text-orange-300 font-medium">
+                  <Link to="/signup" className="font-medium hover:opacity-70" style={{ color: '#E98B2A' }}>
                     Sign up for free
                   </Link>
                 </p>

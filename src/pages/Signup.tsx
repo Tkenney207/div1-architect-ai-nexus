@@ -116,21 +116,21 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white">
+    <div className="min-h-screen" style={{ backgroundColor: '#D9D6D0' }}>
       <Header />
       
       <div className="container mx-auto px-6 py-12">
         <div className="max-w-md mx-auto">
           <div className="text-center mb-8">
             <Div1Logo size="lg" className="mx-auto mb-6" />
-            <h1 className="text-3xl font-bold mb-2">Get Started Free</h1>
-            <p className="text-gray-300">Join thousands of AEC professionals transforming their workflow</p>
+            <h1 className="text-3xl font-bold mb-2" style={{ color: '#1A2B49' }}>Get Started Free</h1>
+            <p style={{ color: '#1A2B49' }}>Join thousands of AEC professionals transforming their workflow</p>
           </div>
 
-          <Card className="bg-slate-800/50 border-slate-700">
+          <Card className="bg-white border" style={{ borderColor: '#F7F3ED' }}>
             <CardHeader>
-              <CardTitle className="text-white">Create your account</CardTitle>
-              <CardDescription className="text-gray-300">
+              <CardTitle style={{ color: '#1A2B49' }}>Create your account</CardTitle>
+              <CardDescription style={{ color: '#1A2B49' }}>
                 Start your journey with our AI-driven construction intelligence platform
               </CardDescription>
             </CardHeader>
@@ -138,27 +138,29 @@ const Signup = () => {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="firstName" className="text-white">First Name</Label>
+                    <Label htmlFor="firstName" style={{ color: '#1A2B49' }}>First Name</Label>
                     <Input
                       id="firstName"
                       name="firstName"
                       type="text"
                       value={formData.firstName}
                       onChange={handleInputChange}
-                      className="bg-slate-700 border-slate-600 text-white"
+                      className="border placeholder:text-slate-600"
+                      style={{ borderColor: '#D9D6D0', backgroundColor: '#F7F3ED', color: '#1A2B49' }}
                       required
                       disabled={loading}
                     />
                   </div>
                   <div>
-                    <Label htmlFor="lastName" className="text-white">Last Name</Label>
+                    <Label htmlFor="lastName" style={{ color: '#1A2B49' }}>Last Name</Label>
                     <Input
                       id="lastName"
                       name="lastName"
                       type="text"
                       value={formData.lastName}
                       onChange={handleInputChange}
-                      className="bg-slate-700 border-slate-600 text-white"
+                      className="border placeholder:text-slate-600"
+                      style={{ borderColor: '#D9D6D0', backgroundColor: '#F7F3ED', color: '#1A2B49' }}
                       required
                       disabled={loading}
                     />
@@ -166,52 +168,55 @@ const Signup = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="email" className="text-white">Work Email</Label>
+                  <Label htmlFor="email" style={{ color: '#1A2B49' }}>Work Email</Label>
                   <Input
                     id="email"
                     name="email"
                     type="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="bg-slate-700 border-slate-600 text-white"
+                    className="border placeholder:text-slate-600"
+                    style={{ borderColor: '#D9D6D0', backgroundColor: '#F7F3ED', color: '#1A2B49' }}
                     required
                     disabled={loading}
                   />
                   {emailError && (
-                    <p className="text-red-400 text-sm mt-1">{emailError}</p>
+                    <p className="text-red-500 text-sm mt-1">{emailError}</p>
                   )}
                 </div>
 
                 <div>
-                  <Label htmlFor="title" className="text-white">Job Title</Label>
+                  <Label htmlFor="title" style={{ color: '#1A2B49' }}>Job Title</Label>
                   <Input
                     id="title"
                     name="title"
                     type="text"
                     value={formData.title}
                     onChange={handleInputChange}
-                    className="bg-slate-700 border-slate-600 text-white"
+                    className="border placeholder:text-slate-600"
+                    style={{ borderColor: '#D9D6D0', backgroundColor: '#F7F3ED', color: '#1A2B49' }}
                     required
                     disabled={loading}
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="company" className="text-white">Company</Label>
+                  <Label htmlFor="company" style={{ color: '#1A2B49' }}>Company</Label>
                   <Input
                     id="company"
                     name="company"
                     type="text"
                     value={formData.company}
                     onChange={handleInputChange}
-                    className="bg-slate-700 border-slate-600 text-white"
+                    className="border placeholder:text-slate-600"
+                    style={{ borderColor: '#D9D6D0', backgroundColor: '#F7F3ED', color: '#1A2B49' }}
                     required
                     disabled={loading}
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="password" className="text-white">Password</Label>
+                  <Label htmlFor="password" style={{ color: '#1A2B49' }}>Password</Label>
                   <div className="relative">
                     <Input
                       id="password"
@@ -219,7 +224,8 @@ const Signup = () => {
                       type={showPassword ? "text" : "password"}
                       value={formData.password}
                       onChange={handleInputChange}
-                      className="bg-slate-700 border-slate-600 text-white pr-10"
+                      className="border placeholder:text-slate-600 pr-10"
+                      style={{ borderColor: '#D9D6D0', backgroundColor: '#F7F3ED', color: '#1A2B49' }}
                       required
                       disabled={loading}
                       minLength={6}
@@ -227,7 +233,8 @@ const Signup = () => {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 hover:opacity-70"
+                      style={{ color: '#7C9C95' }}
                       disabled={loading}
                     >
                       {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -236,25 +243,27 @@ const Signup = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="confirmPassword" className="text-white">Confirm Password</Label>
+                  <Label htmlFor="confirmPassword" style={{ color: '#1A2B49' }}>Confirm Password</Label>
                   <Input
                     id="confirmPassword"
                     name="confirmPassword"
                     type="password"
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
-                    className="bg-slate-700 border-slate-600 text-white"
+                    className="border placeholder:text-slate-600"
+                    style={{ borderColor: '#D9D6D0', backgroundColor: '#F7F3ED', color: '#1A2B49' }}
                     required
                     disabled={loading}
                   />
                   {passwordError && (
-                    <p className="text-red-400 text-sm mt-1">{passwordError}</p>
+                    <p className="text-red-500 text-sm mt-1">{passwordError}</p>
                   )}
                 </div>
 
                 <Button 
                   type="submit" 
-                  className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-semibold py-3 rounded-full"
+                  className="w-full text-white font-semibold py-3 rounded-full hover:opacity-90"
+                  style={{ backgroundColor: '#E98B2A' }}
                   disabled={loading}
                 >
                   {loading ? "Creating Account..." : "Create Account"}
@@ -263,9 +272,9 @@ const Signup = () => {
               </form>
 
               <div className="mt-6 text-center">
-                <p className="text-gray-300">
+                <p style={{ color: '#1A2B49' }}>
                   Already have an account?{" "}
-                  <Link to="/signin" className="text-orange-400 hover:text-orange-300 font-medium">
+                  <Link to="/signin" className="font-medium hover:opacity-70" style={{ color: '#E98B2A' }}>
                     Sign in
                   </Link>
                 </p>
