@@ -201,54 +201,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer style={{ backgroundColor: '#1A2B49' }} className="py-12">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-3 mb-4">
-                <Div1Logo size="sm" />
-                <span className="text-xl font-medium" style={{ color: '#F7F3ED' }}>Platform</span>
-              </div>
-              <p className="leading-relaxed" style={{ color: '#F7F3ED' }}>
-                AI-driven ecosystem for the Architecture, Engineering, and Construction industry.
-              </p>
-            </div>
-            
-            <div>
-              <h5 className="font-medium mb-4 text-lg" style={{ color: '#F7F3ED' }}>Solutions</h5>
-              <ul className="space-y-2" style={{ color: '#F7F3ED' }}>
-                <li><Link to="/engage" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Engage</Link></li>
-                <li><Link to="/division1" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Division1</Link></li>
-                <li><Link to="/master1" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Master1</Link></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h5 className="font-medium mb-4 text-lg" style={{ color: '#F7F3ED' }}>Resources</h5>
-              <ul className="space-y-2" style={{ color: '#F7F3ED' }}>
-                <li><Link to="/documentation" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Documentation</Link></li>
-                <li><Link to="/security" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Security</Link></li>
-                <li><Link to="/support" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Support</Link></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h5 className="font-medium mb-4 text-lg" style={{ color: '#F7F3ED' }}>Company</h5>
-              <ul className="space-y-2" style={{ color: '#F7F3ED' }}>
-                <li><Link to="/about" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>About</Link></li>
-                <li><Link to="/contact" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Contact</Link></li>
-                <li><Link to="/privacy" className="transition-colors hover:opacity-80" style={{ color: '#F7F3ED' }}>Privacy</Link></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="border-t border-opacity-20 border-white mt-8 pt-6 text-center" style={{ color: '#F7F3ED' }}>
-            © 2024 Div1 Platform Suite. All rights reserved.
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };
