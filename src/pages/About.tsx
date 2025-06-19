@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle, MapPin, Mail, Phone } from "lucide-react";
 import Header from "@/components/Header";
@@ -12,7 +11,7 @@ const About = () => {
     },
     {
       module: "Division1",
-      outcome: "AI-generated CSI MasterFormat specifications from charter data",
+      outcome: "AI-guided CSI MasterFormat Division 01 generation",
       usedBy: "Spec Writers, Engineers, Architects"
     },
     {
