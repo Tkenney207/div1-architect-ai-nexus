@@ -44,9 +44,9 @@ const Master1 = () => {
         {/* Hero Section */}
         <div className="text-center mb-20">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold mb-8 leading-tight" style={{ color: '#1A2B49' }}>
+            <h1 className="text-5xl md:text-6xl font-light mb-8 leading-tight" style={{ color: '#1A2B49' }}>
               Process specifications with 
-              <span className="font-bold" style={{ color: '#E98B2A' }}> AI precision </span>
+              <span className="font-light" style={{ color: '#E98B2A' }}> AI precision </span>
             </h1>
             <div className="bg-white rounded-2xl shadow-sm border p-12 mb-12" style={{ borderColor: '#D9D6D0' }}>
               <h2 className="text-2xl font-medium mb-6" style={{ color: '#E98B2A' }}>Upload. Validate. Publish.</h2>

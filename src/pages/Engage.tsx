@@ -14,9 +14,9 @@ const Engage = () => {
       <div className="container mx-auto px-6 py-12">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <h2 className="text-6xl font-bold mb-8 leading-tight" style={{ color: '#1A2B49' }}>
+          <h2 className="text-6xl font-light mb-8 leading-tight" style={{ color: '#1A2B49' }}>
             Create project charters with 
-            <span className="font-bold" style={{ color: '#E98B2A' }}> AI guidance </span>
+            <span className="font-light" style={{ color: '#E98B2A' }}> AI guidance </span>
           </h2>
           <div className="max-w-4xl mx-auto mb-12">
             <div className="bg-white rounded-2xl shadow-sm border p-12 mb-12" style={{ borderColor: '#F7F3ED' }}>

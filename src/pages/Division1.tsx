@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -30,7 +29,7 @@ const Division1 = () => {
     <>
       {/* Hero Section */}
       <div className="text-center mb-16">
-        <h2 className="text-6xl font-bold mb-8" style={{ color: '#1A2B49' }}>
+        <h2 className="text-6xl font-light mb-8" style={{ color: '#1A2B49' }}>
           Generate Division 1 with 
           <span className="ml-3" style={{ color: '#E98B2A' }}> AI precision </span>
         </h2>
