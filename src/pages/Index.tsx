@@ -124,7 +124,7 @@ const Index = () => {
                 </div>
                 <CardTitle className="text-2xl font-medium mb-3" style={{ color: '#1A2B49' }}>Division1</CardTitle>
                 <CardDescription className="text-base leading-relaxed" style={{ color: '#1A2B49' }}>
-                  Generate complete CSI MasterFormat Division 01 specifications from project charter data with AI precision
+                  Generate complete CSI MasterFormat Division 01 specifications for your project with AI precision
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-6 pb-6">
