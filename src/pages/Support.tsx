@@ -42,7 +42,7 @@ const Support = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <div className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-8" style={{ backgroundColor: '#D6F0E5' }}>
-              <MessageCircle className="h-10 w-10" style={{ color: '#C6A664' }} />
+              <MessageCircle className="h-10 w-10" style={{ color: '#E98B2A' }} />
             </div>
             <h1 className="text-4xl md:text-5xl font-light mb-6" style={{ color: '#1A2B49' }}>Support</h1>
             <p className="text-xl max-w-3xl mx-auto" style={{ color: '#426A8C' }}>
@@ -71,7 +71,7 @@ const Support = () => {
                           <FormControl>
                             <Input 
                               placeholder="Your full name" 
-                              className="bg-white border-2 focus:border-brass focus:ring-brass"
+                              className="bg-white border-2"
                               style={{ borderColor: '#F7F3ED', color: '#1A2B49' }}
                               {...field} 
                             />
@@ -91,7 +91,7 @@ const Support = () => {
                             <Input 
                               type="email" 
                               placeholder="your@email.com" 
-                              className="bg-white border-2 focus:border-brass focus:ring-brass"
+                              className="bg-white border-2"
                               style={{ borderColor: '#F7F3ED', color: '#1A2B49' }}
                               {...field} 
                             />
@@ -110,7 +110,7 @@ const Support = () => {
                           <FormControl>
                             <Input 
                               placeholder="What's this about?" 
-                              className="bg-white border-2 focus:border-brass focus:ring-brass"
+                              className="bg-white border-2"
                               style={{ borderColor: '#F7F3ED', color: '#1A2B49' }}
                               {...field} 
                             />
@@ -130,7 +130,7 @@ const Support = () => {
                             <Textarea 
                               placeholder="Please describe your issue or question in detail..." 
                               rows={5} 
-                              className="bg-white border-2 focus:border-brass focus:ring-brass"
+                              className="bg-white border-2"
                               style={{ borderColor: '#F7F3ED', color: '#1A2B49' }}
                               {...field} 
                             />
@@ -143,7 +143,7 @@ const Support = () => {
                     <Button 
                       type="submit" 
                       className="w-full text-white py-3 rounded-lg font-medium transition-all hover:opacity-90"
-                      style={{ backgroundColor: '#C6A664' }}
+                      style={{ backgroundColor: '#E98B2A' }}
                     >
                       <Send className="h-4 w-4 mr-2" />
                       Submit Support Request
@@ -159,7 +159,7 @@ const Support = () => {
                 <CardContent className="p-8">
                   <div className="flex items-center space-x-4">
                     <div className="w-14 h-14 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#D6F0E5' }}>
-                      <Mail className="h-6 w-6" style={{ color: '#C6A664' }} />
+                      <Mail className="h-6 w-6" style={{ color: '#E98B2A' }} />
                     </div>
                     <div>
                       <h3 className="font-medium text-lg" style={{ color: '#1A2B49' }}>Email Support</h3>
@@ -174,7 +174,7 @@ const Support = () => {
                 <CardContent className="p-8">
                   <div className="flex items-center space-x-4">
                     <div className="w-14 h-14 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#D6F0E5' }}>
-                      <MessageCircle className="h-6 w-6" style={{ color: '#426A8C' }} />
+                      <MessageCircle className="h-6 w-6" style={{ color: '#E98B2A' }} />
                     </div>
                     <div>
                       <h3 className="font-medium text-lg" style={{ color: '#1A2B49' }}>Live Chat</h3>
