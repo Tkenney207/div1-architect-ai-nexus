@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import mammoth from 'mammoth';
 
@@ -51,7 +52,15 @@ export const useSpecificationProcessor = () => {
       const reader = new FileReader();
       
       reader.onload = (e) => {
-        const content = e.target?.result;
+        const result = e.target?.result;
+        if (!result) {
+          reject(new Error('Failed to read text file'));
+          return;
+        }
+        
+        // Ensure we have a string
+        const content = typeof result === 'string' ? result : new TextDecoder().decode(result);
+        
         if (!content || content.trim().length === 0) {
           reject(new Error('File appears to be empty'));
           return;
@@ -79,16 +88,19 @@ export const useSpecificationProcessor = () => {
       
       reader.onload = async (e) => {
         try {
-          const arrayBuffer = e.target?.result;
-          if (!arrayBuffer) {
+          const result = e.target?.result;
+          if (!result) {
             reject(new Error('Failed to read PDF file'));
             return;
           }
 
+          // Ensure we have an ArrayBuffer
+          const arrayBuffer = result instanceof ArrayBuffer ? result : new ArrayBuffer(0);
+
           try {
             // Use pdf-parse to extract text
             const pdfParse = await import('pdf-parse');
-            const pdfData = await pdfParse.default(arrayBuffer);
+            const pdfData = await pdfParse.default(Buffer.from(arrayBuffer));
             
             if (!pdfData.text || pdfData.text.trim().length === 0) {
               reject(new Error('PDF appears to be empty or contains no extractable text'));
@@ -132,41 +144,44 @@ export const useSpecificationProcessor = () => {
       
       reader.onload = async (e) => {
         try {
-          const arrayBuffer = e.target?.result;
-          if (!arrayBuffer) {
+          const result = e.target?.result;
+          if (!result) {
             reject(new Error('Failed to read Word file'));
             return;
           }
 
+          // Ensure we have an ArrayBuffer
+          const arrayBuffer = result instanceof ArrayBuffer ? result : new ArrayBuffer(0);
+
           console.log('Processing Word file with mammoth...');
-          const result = await mammoth.extractRawText({ arrayBuffer });
+          const mammothResult = await mammoth.extractRawText({ arrayBuffer });
           
           console.log('Mammoth extraction result:', {
-            hasValue: !!result.value,
-            valueType: typeof result.value,
-            valueLength: result.value?.length || 0,
-            value: result.value,
-            messages: result.messages
+            hasValue: !!mammothResult.value,
+            valueType: typeof mammothResult.value,
+            valueLength: mammothResult.value?.length || 0,
+            value: mammothResult.value,
+            messages: mammothResult.messages
           });
 
-          if (!result.value || result.value.trim().length === 0) {
+          if (!mammothResult.value || mammothResult.value.trim().length === 0) {
             reject(new Error('Word document appears to be empty'));
             return;
           }
 
           // Log any conversion messages
-          if (result.messages.length > 0) {
-            console.warn('Word extraction messages:', result.messages);
+          if (mammothResult.messages.length > 0) {
+            console.warn('Word extraction messages:', mammothResult.messages);
           }
 
           console.log('Word document extracted successfully:', {
             fileName: file.name,
-            contentLength: result.value.length,
-            contentPreview: result.value.substring(0, 200) + '...',
-            warnings: result.messages.length
+            contentLength: mammothResult.value.length,
+            contentPreview: mammothResult.value.substring(0, 200) + '...',
+            warnings: mammothResult.messages.length
           });
           
-          resolve(result.value);
+          resolve(mammothResult.value);
         } catch (error) {
           console.error('Word extraction failed:', error);
           reject(new Error('Failed to extract text from Word document'));
@@ -350,8 +365,8 @@ export const useSpecificationProcessor = () => {
         fileId,
         fileName: file.name,
         contentType: typeof extractedContent,
-        contentLength: extractedContent?.length || 0,
-        contentPreview: extractedContent?.substring(0, 100) || 'No content'
+        contentLength: typeof extractedContent === 'string' ? extractedContent.length : 0,
+        contentPreview: typeof extractedContent === 'string' ? extractedContent.substring(0, 100) : 'No content'
       });
 
       // Step 2: Validate extracted content
@@ -362,8 +377,8 @@ export const useSpecificationProcessor = () => {
       console.log('Content extraction and validation successful:', {
         fileId,
         fileName: file.name,
-        contentLength: extractedContent.length,
-        contentPreview: extractedContent.substring(0, 150) + '...'
+        contentLength: typeof extractedContent === 'string' ? extractedContent.length : 0,
+        contentPreview: typeof extractedContent === 'string' ? extractedContent.substring(0, 150) + '...' : 'No preview'
       });
 
       // Step 3: Update file with extracted content and set to processing
@@ -412,7 +427,7 @@ export const useSpecificationProcessor = () => {
         fileId,
         fileName: file.name,
         hasContent: !!extractedContent,
-        contentLength: extractedContent.length,
+        contentLength: typeof extractedContent === 'string' ? extractedContent.length : 0,
         hasAnalysis: !!analysisResults
       });
 
@@ -444,7 +459,7 @@ export const useSpecificationProcessor = () => {
   const getFileContent = (fileId) => {
     console.log('=== GET FILE CONTENT DEBUG ===');
     console.log('Requested fileId:', fileId);
-    console.log('Available files:', uploadedFiles.map(f => ({ id: f.id, name: f.name, hasContent: !!f.content, contentLength: f.content?.length })));
+    console.log('Available files:', uploadedFiles.map(f => ({ id: f.id, name: f.name, hasContent: !!f.content, contentLength: typeof f.content === 'string' ? f.content.length : 0 })));
     
     const file = uploadedFiles.find(f => f.id === fileId);
     if (!file) {
@@ -458,8 +473,8 @@ export const useSpecificationProcessor = () => {
       status: file.status,
       hasContent: !!file.content,
       contentType: typeof file.content,
-      contentLength: file.content?.length || 0,
-      contentPreview: file.content?.substring(0, 100) || 'No content'
+      contentLength: typeof file.content === 'string' ? file.content.length : 0,
+      contentPreview: typeof file.content === 'string' ? file.content.substring(0, 100) : 'No content'
     });
 
     if (!file.content) {
@@ -474,7 +489,7 @@ export const useSpecificationProcessor = () => {
     console.log('Retrieved file content successfully:', {
       fileId,
       fileName: file.name,
-      contentLength: file.content.length,
+      contentLength: typeof file.content === 'string' ? file.content.length : 0,
       status: file.status
     });
     
