@@ -96,7 +96,7 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       case 'outdated':
       case 'marginal':
       case 'below':
-        return <AlertTriangle className="h-4 w-4" style={{ color: '#E98B2A' }} />;
+        return <AlertTriangle className="h-4 w-4" style={{ color: '#B04A4A' }} />;
       case 'non-compliant':
       case 'discontinued':
       case 'fail':
@@ -120,7 +120,7 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       case 'outdated':
       case 'marginal':
       case 'below':
-        return '#E98B2A';
+        return '#B04A4A';
       case 'non-compliant':
       case 'discontinued':
       case 'fail':
@@ -130,6 +130,10 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
       default:
         return '#7C9C95';
     }
+  };
+
+  const hasIssue = (status: string) => {
+    return ['requires-update', 'outdated', 'marginal', 'below', 'non-compliant', 'discontinued', 'fail', 'missing', 'not-specified'].includes(status);
   };
 
   return (
@@ -159,11 +163,11 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
               <div className="text-sm" style={{ color: '#7C9C95' }}>Overall Compliance</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold" style={{ color: '#E98B2A' }}>{analysis.overview.criticalIssues}</div>
+              <div className="text-2xl font-bold" style={{ color: '#B04A4A' }}>{analysis.overview.criticalIssues}</div>
               <div className="text-sm" style={{ color: '#7C9C95' }}>Critical Issues</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold" style={{ color: '#E98B2A' }}>{analysis.overview.warningsCount}</div>
+              <div className="text-2xl font-bold" style={{ color: '#B04A4A' }}>{analysis.overview.warningsCount}</div>
               <div className="text-sm" style={{ color: '#7C9C95' }}>Warnings</div>
             </div>
             <div className="text-center">
@@ -186,7 +190,14 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
         <CardContent>
           <div className="space-y-4">
             {analysis.manufacturerCompliance.map((item, index) => (
-              <div key={index} className="flex items-start justify-between p-4 rounded-lg" style={{ backgroundColor: '#F7F3ED' }}>
+              <div 
+                key={index} 
+                className="flex items-start justify-between p-4 rounded-lg" 
+                style={{ 
+                  backgroundColor: '#F7F3ED',
+                  border: hasIssue(item.status) ? '2px solid #B04A4A' : 'none'
+                }}
+              >
                 <div className="flex-1">
                   <div className="flex items-center space-x-3 mb-2">
                     {getStatusIcon(item.status)}
@@ -224,7 +235,14 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
         <CardContent>
           <div className="space-y-4">
             {analysis.codeCompliance.map((item, index) => (
-              <div key={index} className="p-4 rounded-lg" style={{ backgroundColor: '#F7F3ED' }}>
+              <div 
+                key={index} 
+                className="p-4 rounded-lg" 
+                style={{ 
+                  backgroundColor: '#F7F3ED',
+                  border: hasIssue(item.status) ? '2px solid #B04A4A' : 'none'
+                }}
+              >
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-3">
                     {getStatusIcon(item.status)}
@@ -261,7 +279,14 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
         <CardContent>
           <div className="space-y-4">
             {analysis.materialStandards.map((item, index) => (
-              <div key={index} className="p-4 rounded-lg" style={{ backgroundColor: '#F7F3ED' }}>
+              <div 
+                key={index} 
+                className="p-4 rounded-lg" 
+                style={{ 
+                  backgroundColor: '#F7F3ED',
+                  border: hasIssue(item.status) ? '2px solid #B04A4A' : 'none'
+                }}
+              >
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-3">
                     {getStatusIcon(item.status)}
@@ -301,7 +326,14 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
         <CardContent>
           <div className="space-y-4">
             {analysis.sustainabilityMetrics.map((item, index) => (
-              <div key={index} className="p-4 rounded-lg" style={{ backgroundColor: '#F7F3ED' }}>
+              <div 
+                key={index} 
+                className="p-4 rounded-lg" 
+                style={{ 
+                  backgroundColor: '#F7F3ED',
+                  border: hasIssue(item.status) ? '2px solid #B04A4A' : 'none'
+                }}
+              >
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-3">
                     {getStatusIcon(item.status)}
@@ -337,7 +369,14 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
         <CardContent>
           <div className="space-y-4">
             {analysis.performanceSpecs.map((item, index) => (
-              <div key={index} className="p-4 rounded-lg" style={{ backgroundColor: '#F7F3ED' }}>
+              <div 
+                key={index} 
+                className="p-4 rounded-lg" 
+                style={{ 
+                  backgroundColor: '#F7F3ED',
+                  border: hasIssue(item.status) ? '2px solid #B04A4A' : 'none'
+                }}
+              >
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-3">
                     {getStatusIcon(item.status)}
