@@ -85,25 +85,42 @@ const Master1 = () => {
   const openReviewWindow = (fileId: string, fileName: string) => {
     console.log('Opening review window for:', { fileId, fileName });
     
-    // Get actual file content instead of using mock data
+    // Get actual file content
     const actualContent = getFileContent(fileId);
     console.log('Retrieved file content:', {
       contentType: typeof actualContent,
       contentLength: actualContent?.length || 0,
-      contentPreview: actualContent?.substring(0, 100) || 'No content'
+      contentPreview: actualContent?.substring(0, 200) || 'No content',
+      fileId: fileId
     });
     
+    // Find the file to check its status
+    const file = uploadedFiles.find(f => f.id === fileId);
+    console.log('File status:', file?.status);
+    
     if (actualContent && actualContent.trim().length > 0) {
+      console.log('Setting review window with actual content');
       setReviewWindow({ fileId, fileName, content: actualContent });
     } else {
       console.warn('No content available for file:', fileName);
-      // Show a more informative message
-      const fallbackContent = `File: ${fileName}\n\nNo content could be extracted from this file.\nThis may be due to:\n- File is still processing\n- Unsupported file format\n- File read error\n\nPlease try uploading the file again or check the file format.`;
-      setReviewWindow({ 
-        fileId, 
-        fileName, 
-        content: fallbackContent
-      });
+      
+      // Check if file is still processing
+      if (file && file.status === 'processing') {
+        const processingMessage = `File: ${fileName}\n\nThis file is still being processed. Please wait for processing to complete before reviewing.\n\nStatus: ${file.status}`;
+        setReviewWindow({ 
+          fileId, 
+          fileName, 
+          content: processingMessage
+        });
+      } else {
+        // Show a more informative message for other cases
+        const fallbackContent = `File: ${fileName}\n\nNo content could be extracted from this file.\nThis may be due to:\n- File is still processing\n- Unsupported file format\n- File read error\n\nPlease try uploading the file again or check the file format.\n\nFile Status: ${file?.status || 'Unknown'}`;
+        setReviewWindow({ 
+          fileId, 
+          fileName, 
+          content: fallbackContent
+        });
+      }
     }
   };
 
