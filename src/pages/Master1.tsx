@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +12,7 @@ const Master1 = () => {
   const [dragActive, setDragActive] = useState(false);
   const [expandedAnalysis, setExpandedAnalysis] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const analysisRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   
   const {
     uploadSpecification,
@@ -62,7 +64,20 @@ const Master1 = () => {
   };
 
   const toggleAnalysisExpansion = (fileId: string) => {
-    setExpandedAnalysis(expandedAnalysis === fileId ? null : fileId);
+    if (expandedAnalysis === fileId) {
+      setExpandedAnalysis(null);
+    } else {
+      setExpandedAnalysis(fileId);
+      // Scroll to the top of the analysis section after a brief delay to allow expansion
+      setTimeout(() => {
+        if (analysisRefs.current[fileId]) {
+          analysisRefs.current[fileId]?.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+      }, 100);
+    }
   };
 
   return (
@@ -264,7 +279,11 @@ const Master1 = () => {
 
                         {/* Analysis Dropdown */}
                         {expandedAnalysis === file.id && (
-                          <div className="mt-6 border-t pt-6" style={{ borderColor: '#D9D6D0' }}>
+                          <div 
+                            ref={(el) => analysisRefs.current[file.id] = el}
+                            className="mt-6 border-t pt-6" 
+                            style={{ borderColor: '#D9D6D0' }}
+                          >
                             <SpecificationAnalysis 
                               fileName={file.name}
                               analysis={file.analysisResults}
