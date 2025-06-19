@@ -15,8 +15,9 @@ const Index = () => {
 
       {/* Hero Section with Navy Banner */}
       <section className="relative overflow-hidden">
-        {/* Navy Banner Background */}
-        <div style={{ backgroundColor: '#1A2B49' }} className="py-32">
+        {/* Navy Banner Background - Darker shade for contrast */}
+        <div style={{ backgroundColor: '#162239' }} className="py-32 border-t-4 border-solid" 
+             style={{ backgroundColor: '#162239', borderTopColor: '#0F1B2E' }}>
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center max-w-5xl mx-auto">
               {/* Large Hero Logo on Navy Background */}
