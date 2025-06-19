@@ -19,11 +19,12 @@ const Master1 = () => {
     isLoading
   } = useSpecificationProcessor();
 
-  // Auto-expand analysis when a file is processed
+  // Auto-expand analysis when a single file is processed
   useEffect(() => {
     const processedFiles = uploadedFiles.filter(file => file.status === 'processed');
-    if (processedFiles.length > 0) {
-      const latestProcessedFile = processedFiles[processedFiles.length - 1];
+    if (processedFiles.length === 1 && uploadedFiles.length === 1) {
+      // Only auto-expand if there's exactly one file total and it's processed
+      const latestProcessedFile = processedFiles[0];
       if (expandedAnalysis !== latestProcessedFile.id) {
         setExpandedAnalysis(latestProcessedFile.id);
       }
@@ -215,17 +216,17 @@ const Master1 = () => {
                       <div className="space-y-6 mt-6 pt-6 border-t" style={{ borderColor: '#D9D6D0' }}>
                         {/* Overall Score */}
                         <div className="grid grid-cols-2 gap-4">
-                          <div className="text-center">
+                          <div className="text-center p-4 border-2 rounded-lg" style={{ borderColor: '#E98B2A' }}>
                             <div className="text-3xl font-bold" style={{ color: '#E98B2A' }}>
                               {file.analysisResults.overview.overallCompliance}%
                             </div>
-                            <div style={{ color: '#7C9C95' }}>Overall Compliance</div>
+                            <div className="font-medium" style={{ color: '#E98B2A' }}>Overall Compliance</div>
                           </div>
-                          <div className="text-center">
+                          <div className="text-center p-4 border-2 rounded-lg" style={{ borderColor: '#B04A4A' }}>
                             <div className="text-3xl font-bold" style={{ color: '#B04A4A' }}>
                               {file.analysisResults.overview.criticalIssues}
                             </div>
-                            <div style={{ color: '#7C9C95' }}>Critical Issues</div>
+                            <div className="font-medium" style={{ color: '#B04A4A' }}>Critical Issues</div>
                           </div>
                         </div>
 
@@ -261,7 +262,7 @@ const Master1 = () => {
                           </Button>
                         </div>
 
-                        {/* Auto-expanded Analysis */}
+                        {/* Analysis Dropdown */}
                         {expandedAnalysis === file.id && (
                           <div className="mt-6 border-t pt-6" style={{ borderColor: '#D9D6D0' }}>
                             <SpecificationAnalysis 
