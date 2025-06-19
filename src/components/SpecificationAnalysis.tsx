@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -197,11 +198,11 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold" style={{ color: '#B04A4A' }}>{analysis.overview.criticalIssues}</div>
-                <div className="text-sm" style={{ color: '#7C9C95' }}>Critical Issues</div>
+                <div className="text-sm" style={{ color: '#B04A4A' }}>Critical Issues</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold" style={{ color: '#B04A4A' }}>{analysis.overview.warningsCount}</div>
-                <div className="text-sm" style={{ color: '#7C9C95' }}>Warnings</div>
+                <div className="text-sm" style={{ color: '#B04A4A' }}>Warnings</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold" style={{ color: '#7C9C95' }}>{analysis.overview.upToDatePercentage}%</div>
