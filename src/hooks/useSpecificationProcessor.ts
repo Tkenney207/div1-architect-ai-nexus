@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import * as pdfjsLib from 'pdfjs-dist';
+import mammoth from 'mammoth';
 
 interface UploadedFile {
   id: string;
@@ -84,181 +86,187 @@ export const useSpecificationProcessor = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const extractTextFromFile = async (file: File): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      // For text files, use FileReader
+    console.log('Starting file extraction:', {
+      fileName: file.name,
+      fileType: file.type,
+      fileSize: file.size
+    });
+
+    try {
+      // Handle text files
       if (file.type.startsWith('text/') || file.name.endsWith('.txt')) {
-        const reader = new FileReader();
+        return await extractTextFile(file);
+      }
+      
+      // Handle PDF files
+      if (file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')) {
+        return await extractPdfFile(file);
+      }
+      
+      // Handle Word documents
+      if (file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || 
+          file.name.toLowerCase().endsWith('.docx')) {
+        return await extractWordFile(file);
+      }
+      
+      // Handle legacy Word documents
+      if (file.type === 'application/msword' || file.name.toLowerCase().endsWith('.doc')) {
+        console.warn('Legacy .doc files are not supported. Please convert to .docx format.');
+        throw new Error('Legacy .doc files are not supported. Please convert to .docx format.');
+      }
+      
+      // Fallback for unknown file types
+      console.warn('Unsupported file type:', file.type);
+      throw new Error(`Unsupported file type: ${file.type}`);
+      
+    } catch (error) {
+      console.error('File extraction failed:', error);
+      throw error;
+    }
+  };
+
+  const extractTextFile = async (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      
+      reader.onload = (e) => {
+        const content = e.target?.result as string;
+        if (!content || content.trim().length === 0) {
+          reject(new Error('File appears to be empty'));
+          return;
+        }
         
-        reader.onload = (e) => {
-          const content = e.target?.result as string;
-          console.log('Successfully extracted text file content:', {
-            fileName: file.name,
-            fileType: file.type,
-            contentLength: content.length,
-            contentPreview: content.substring(0, 200) + '...'
-          });
-          resolve(content);
-        };
-        
-        reader.onerror = () => {
-          console.error('Failed to read text file:', file.name);
-          reject(new Error('Failed to read file'));
-        };
-        
-        reader.readAsText(file);
-      } else {
-        // For binary files (PDF, Word), generate realistic specification content
-        // In a real implementation, you'd use libraries like pdf-parse or mammoth
-        console.log('Generating mock content for binary file:', file.name);
-        const content = generateMockSpecificationContent(file.name);
-        
-        console.log('Successfully generated mock content:', {
+        console.log('Text file extracted successfully:', {
           fileName: file.name,
-          fileType: file.type,
           contentLength: content.length,
           contentPreview: content.substring(0, 200) + '...'
         });
-        
         resolve(content);
-      }
+      };
+      
+      reader.onerror = () => {
+        reject(new Error('Failed to read text file'));
+      };
+      
+      reader.readAsText(file);
     });
   };
 
-  const generateMockSpecificationContent = (fileName: string): string => {
-    return `SPECIFICATION DOCUMENT: ${fileName}
+  const extractPdfFile = async (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      
+      reader.onload = async (e) => {
+        try {
+          const arrayBuffer = e.target?.result as ArrayBuffer;
+          if (!arrayBuffer) {
+            reject(new Error('Failed to read PDF file'));
+            return;
+          }
 
-DIVISION 01 - GENERAL REQUIREMENTS
+          // Use pdf-parse to extract text
+          const pdfParse = await import('pdf-parse');
+          const pdfData = await pdfParse.default(arrayBuffer);
+          
+          if (!pdfData.text || pdfData.text.trim().length === 0) {
+            reject(new Error('PDF appears to be empty or contains no extractable text'));
+            return;
+          }
+          
+          console.log('PDF extracted successfully:', {
+            fileName: file.name,
+            pages: pdfData.numpages,
+            contentLength: pdfData.text.length,
+            contentPreview: pdfData.text.substring(0, 200) + '...'
+          });
+          
+          resolve(pdfData.text);
+        } catch (error) {
+          console.error('PDF extraction failed:', error);
+          reject(new Error('Failed to extract text from PDF'));
+        }
+      };
+      
+      reader.onerror = () => {
+        reject(new Error('Failed to read PDF file'));
+      };
+      
+      reader.readAsArrayBuffer(file);
+    });
+  };
 
-01 10 00 - SUMMARY
-This project involves the construction of commercial building components with emphasis on compliance with current building codes and standards.
+  const extractWordFile = async (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      
+      reader.onload = async (e) => {
+        try {
+          const arrayBuffer = e.target?.result as ArrayBuffer;
+          if (!arrayBuffer) {
+            reject(new Error('Failed to read Word file'));
+            return;
+          }
 
-01 33 00 - SUBMITTAL PROCEDURES
-1. Submit product data sheets for all specified materials
-2. Provide installation instructions from manufacturers
-3. Include warranty information and certificates of compliance
+          const result = await mammoth.extractRawText({ arrayBuffer });
+          
+          if (!result.value || result.value.trim().length === 0) {
+            reject(new Error('Word document appears to be empty'));
+            return;
+          }
+          
+          // Log any conversion messages
+          if (result.messages.length > 0) {
+            console.warn('Word extraction messages:', result.messages);
+          }
+          
+          console.log('Word document extracted successfully:', {
+            fileName: file.name,
+            contentLength: result.value.length,
+            contentPreview: result.value.substring(0, 200) + '...',
+            warnings: result.messages.length
+          });
+          
+          resolve(result.value);
+        } catch (error) {
+          console.error('Word extraction failed:', error);
+          reject(new Error('Failed to extract text from Word document'));
+        }
+      };
+      
+      reader.onerror = () => {
+        reject(new Error('Failed to read Word file'));
+      };
+      
+      reader.readAsArrayBuffer(file);
+    });
+  };
 
-DIVISION 03 - CONCRETE
-
-03 30 00 - CAST-IN-PLACE CONCRETE
-A. Materials:
-   1. Portland cement: ASTM C150, Type I
-   2. Coarse aggregate: ASTM C33, clean and well-graded
-   3. Fine aggregate: ASTM C33, clean sand
-   4. Water: Clean, potable water free from deleterious substances
-
-B. Performance Requirements:
-   1. Compressive strength: 4000 psi minimum at 28 days
-   2. Slump: 4 inches maximum unless otherwise specified
-   3. Air content: 6% ± 1% for exposed concrete
-   4. Maximum water-cement ratio: 0.45
-
-C. Admixtures:
-   1. Water-reducing admixtures: ASTM C494, Type A
-   2. Air-entraining admixtures: ASTM C260
-   3. High-range water reducers: ASTM C494, Type F or G
-
-DIVISION 05 - METALS
-
-05 12 00 - STRUCTURAL STEEL FRAMING
-A. Materials:
-   1. Structural steel: ASTM A992, Grade 50 for wide-flange sections
-   2. Steel plates: ASTM A36 for general structural use
-   3. Bolts: ASTM A325 high-strength bolts for structural connections
-   4. Welding electrodes: AWS D1.1, E70XX series
-
-B. Fabrication:
-   1. Shop fabrication per AISC 303 Code of Standard Practice
-   2. Welding per AWS D1.1 Structural Welding Code
-   3. Surface preparation: SSPC-SP 6 commercial blast cleaning
-
-C. Installation:
-   1. Erect steel per AISC 303 and project drawings
-   2. Field welding per approved welding procedures
-   3. Apply shop primer after fabrication: zinc-rich primer
-
-DIVISION 07 - THERMAL AND MOISTURE PROTECTION
-
-07 21 00 - THERMAL INSULATION
-A. Rigid Board Insulation:
-   1. Polyisocyanurate foam board: ASTM C1289
-   2. R-value: R-30 minimum for roof applications
-   3. Thickness: As required to achieve specified R-value
-   4. Fire rating: Class A per UL 723
-
-B. Batt Insulation:
-   1. Mineral wool: ASTM C665, unfaced
-   2. R-value: R-19 for wall cavities
-   3. Density: 0.5 to 1.0 pcf
-   4. Flame spread: 25 maximum per ASTM E84
-
-DIVISION 08 - OPENINGS
-
-08 11 00 - METAL DOORS AND FRAMES
-A. Steel Doors:
-   1. Hollow metal doors: 18-gauge steel face sheets
-   2. Core: Honeycomb or foam core as specified
-   3. Hardware prep: Factory prepared for specified hardware
-   4. Finish: Factory primer, ready for field painting
-
-B. Door Frames:
-   1. Hollow metal frames: 16-gauge steel minimum
-   2. Welded construction with ground smooth joints
-   3. Anchor system: Masonry anchors or structural attachment
-   4. Weatherstripping: Continuous around frame perimeter
-
-DIVISION 09 - FINISHES
-
-09 51 00 - ACOUSTICAL CEILINGS
-A. Ceiling Tiles:
-   1. Armstrong Ultima Vector mineral fiber tiles
-   2. Size: 24" x 24" x 5/8" thick
-   3. Edge detail: Square lay-in edge
-   4. Light reflectance: 0.83 minimum
-   5. Fire rating: Class A per UL 723
-
-B. Suspension System:
-   1. Armstrong Prelude XL 15/16" grid system
-   2. Main runners: Cold-rolled steel, 1-1/2" wide
-   3. Cross tees: Matching main runners
-   4. Hanger wires: 12-gauge galvanized steel
-   5. Seismic bracing: Per local building codes
-
-09 91 00 - PAINTING
-A. Interior Paint:
-   1. Primer: High-quality latex primer sealer
-   2. Finish: Two coats premium latex paint
-   3. Sheen: Eggshell for walls, semi-gloss for trim
-   4. Color: As selected by architect
-
-B. Surface Preparation:
-   1. Clean all surfaces of dirt, grease, and loose material
-   2. Sand smooth all rough areas
-   3. Fill nail holes and imperfections
-   4. Prime all bare surfaces before finish coating
-
-QUALITY ASSURANCE AND CONTROL
-All materials and installation procedures shall comply with:
-- International Building Code (IBC 2018)
-- International Energy Conservation Code (IECC 2018)
-- Americans with Disabilities Act (ADA) requirements
-- Local building codes and regulations
-- Manufacturer's installation instructions
-- Industry standard practices
-
-Testing and inspection shall be performed by qualified third-party agencies.
-All work shall be guaranteed for a period of one year from date of substantial completion.
-
-SUSTAINABILITY REQUIREMENTS
-This project shall incorporate sustainable building practices including:
-- Use of recycled content materials where possible
-- Low-emitting materials for indoor air quality
-- Energy-efficient systems and components
-- Water conservation measures
-- Waste reduction during construction
-
-END OF SPECIFICATION
-
-This document represents a comprehensive specification covering multiple construction divisions with detailed requirements for materials, installation, and quality control measures.`;
+  const validateContent = (content: string, fileName: string): boolean => {
+    if (!content || typeof content !== 'string') {
+      console.error('Content validation failed: content is not a valid string', { fileName });
+      return false;
+    }
+    
+    const trimmedContent = content.trim();
+    if (trimmedContent.length === 0) {
+      console.error('Content validation failed: content is empty', { fileName });
+      return false;
+    }
+    
+    if (trimmedContent.length < 10) {
+      console.warn('Content validation warning: content is very short', { 
+        fileName, 
+        length: trimmedContent.length 
+      });
+    }
+    
+    console.log('Content validation passed:', {
+      fileName,
+      contentLength: trimmedContent.length,
+      isValid: true
+    });
+    
+    return true;
   };
 
   const analyzeSpecificationContent = async (content: string, fileName: string): Promise<DocumentAnalysis> => {
@@ -385,34 +393,42 @@ This document represents a comprehensive specification covering multiple constru
       status: 'uploading'
     };
 
+    // Add file to list immediately
     setUploadedFiles(prev => [...prev, newFile]);
     setIsLoading(true);
 
     try {
-      // Extract file content
+      // Step 1: Extract file content
       setProcessingStatus({
         stage: 'Extracting content...',
         progress: 20,
         message: `Reading ${file.name}`
       });
 
-      const content = await extractTextFromFile(file);
-      console.log('File content extracted successfully for upload:', {
+      const extractedContent = await extractTextFromFile(file);
+      
+      // Step 2: Validate extracted content
+      if (!validateContent(extractedContent, file.name)) {
+        throw new Error('File content validation failed');
+      }
+
+      console.log('Content extraction and validation successful:', {
+        fileId,
         fileName: file.name,
-        contentLength: content.length,
-        contentPreview: content.substring(0, 150) + '...'
+        contentLength: extractedContent.length,
+        contentPreview: extractedContent.substring(0, 150) + '...'
       });
 
-      // Update file with content immediately after extraction
+      // Step 3: Update file with extracted content and set to processing
       setUploadedFiles(prev => 
         prev.map(f => 
           f.id === fileId 
-            ? { ...f, status: 'processing', content: content }
+            ? { ...f, status: 'processing', content: extractedContent }
             : f
         )
       );
 
-      // Simulate processing time
+      // Step 4: Perform AI analysis
       setProcessingStatus({
         stage: 'Analyzing specification...',
         progress: 50,
@@ -421,16 +437,15 @@ This document represents a comprehensive specification covering multiple constru
 
       await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // Perform AI analysis
       setProcessingStatus({
         stage: 'Generating compliance report...',
         progress: 80,
         message: 'Checking standards and codes'
       });
 
-      const analysisResults = await analyzeSpecificationContent(content, file.name);
+      const analysisResults = await analyzeSpecificationContent(extractedContent, file.name);
 
-      // Complete processing
+      // Step 5: Complete processing - ensure content is preserved
       setProcessingStatus({
         stage: 'Complete',
         progress: 100,
@@ -440,16 +455,21 @@ This document represents a comprehensive specification covering multiple constru
       setUploadedFiles(prev => 
         prev.map(f => 
           f.id === fileId 
-            ? { ...f, status: 'processed', analysisResults, content: content }
+            ? { 
+                ...f, 
+                status: 'processed', 
+                analysisResults,
+                content: extractedContent // Ensure content is preserved
+              }
             : f
         )
       );
 
-      console.log('File processing completed:', {
+      console.log('File processing completed successfully:', {
         fileId,
         fileName: file.name,
-        hasContent: !!content,
-        contentLength: content.length,
+        hasContent: !!extractedContent,
+        contentLength: extractedContent.length,
         hasAnalysis: !!analysisResults
       });
 
@@ -462,10 +482,15 @@ This document represents a comprehensive specification covering multiple constru
     } catch (error) {
       console.error('Error processing file:', error);
       
+      // Update file status to error with error message
       setUploadedFiles(prev => 
         prev.map(f => 
           f.id === fileId 
-            ? { ...f, status: 'error' }
+            ? { 
+                ...f, 
+                status: 'error',
+                content: `Error: ${error instanceof Error ? error.message : 'Unknown error occurred'}`
+              }
             : f
         )
       );
@@ -477,13 +502,29 @@ This document represents a comprehensive specification covering multiple constru
 
   const getFileContent = (fileId: string): string | undefined => {
     const file = uploadedFiles.find(f => f.id === fileId);
-    console.log('Getting file content for viewer:', fileId, {
-      found: !!file,
-      hasContent: !!file?.content,
-      contentLength: file?.content?.length || 0,
-      status: file?.status
+    
+    if (!file) {
+      console.warn('File not found:', fileId);
+      return undefined;
+    }
+    
+    if (!file.content) {
+      console.warn('File content is empty:', {
+        fileId,
+        fileName: file.name,
+        status: file.status
+      });
+      return undefined;
+    }
+    
+    console.log('Retrieved file content:', {
+      fileId,
+      fileName: file.name,
+      contentLength: file.content.length,
+      status: file.status
     });
-    return file?.content;
+    
+    return file.content;
   };
 
   return {
