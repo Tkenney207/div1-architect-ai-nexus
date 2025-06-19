@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 
 interface UploadedFile {
@@ -86,82 +85,34 @@ export const useSpecificationProcessor = () => {
 
   const extractTextFromFile = async (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      
-      reader.onload = (e) => {
-        let content = '';
+      // For text files, use FileReader
+      if (file.type.startsWith('text/') || file.name.endsWith('.txt')) {
+        const reader = new FileReader();
         
-        // For text files, read directly
-        if (file.type.startsWith('text/') || file.name.endsWith('.txt')) {
-          content = e.target?.result as string;
-        } else {
-          // For binary files (PDF, Word), we'll simulate realistic content extraction
-          // In a real implementation, you'd use libraries like pdf-parse or mammoth
-          content = `SPECIFICATION DOCUMENT: ${file.name}
-
-SECTION 1 - GENERAL REQUIREMENTS
-
-1.1 SUMMARY
-A. This section includes general requirements for ${file.name.includes('Door') ? 'door and hardware' : file.name.includes('Window') ? 'window' : 'construction'} systems.
-B. Work under this section includes coordination with other trades and compliance with applicable codes.
-
-1.2 REFERENCES
-A. American National Standards Institute (ANSI)
-B. ASTM International (ASTM)
-C. International Building Code (IBC 2018)
-D. National Fire Protection Association (NFPA)
-
-1.3 SUBMITTALS
-A. Product Data: Submit manufacturer's product data sheets for each product specified.
-B. Shop Drawings: Submit detailed shop drawings showing fabrication and installation details.
-C. Samples: Submit samples as required for approval of materials and finishes.
-
-SECTION 2 - PRODUCTS
-
-2.1 MATERIALS
-A. Primary Materials:
-   1. Steel: ASTM A36 for structural applications
-   2. Aluminum: ASTM B221 alloy and temper as required
-   3. Hardware: Commercial grade, meeting or exceeding specified requirements
-   4. Finishes: Factory applied, meeting performance requirements
-
-2.2 PERFORMANCE REQUIREMENTS
-A. Structural Performance: Design for wind loads per IBC 2018
-B. Thermal Performance: Meet energy code requirements
-C. Water Resistance: No water penetration under test conditions
-D. Air Infiltration: Maximum 0.3 cfm/ft² at 25 mph wind speed
-
-2.3 MANUFACTURERS
-A. Acceptable Manufacturers:
-   1. Primary: [Manufacturer Name]
-   2. Secondary: [Alternative Manufacturer]
-   3. Or approved equal meeting all specified requirements
-
-SECTION 3 - EXECUTION
-
-3.1 INSTALLATION
-A. General: Install in accordance with manufacturer's instructions and approved shop drawings.
-B. Coordination: Coordinate installation with related work and building systems.
-C. Protection: Protect installed work from damage during construction.
-
-3.2 QUALITY ASSURANCE
-A. Testing: Perform field testing as required by applicable codes.
-B. Inspection: Provide access for inspection during installation.
-C. Warranty: Provide manufacturer's standard warranty for materials and installation.
-
-3.3 COMPLETION
-A. Clean all surfaces and remove construction debris.
-B. Adjust all operating components for proper function.
-C. Provide operation and maintenance instructions to owner.
-
-END OF SECTION
-
----
-
-This document contains ${Math.floor(Math.random() * 50) + 20} pages of detailed specifications covering materials, installation procedures, quality requirements, and compliance standards. Each section includes specific requirements for products, performance criteria, and installation methods to ensure project success and code compliance.`;
-        }
+        reader.onload = (e) => {
+          const content = e.target?.result as string;
+          console.log('Successfully extracted text file content:', {
+            fileName: file.name,
+            fileType: file.type,
+            contentLength: content.length,
+            contentPreview: content.substring(0, 200) + '...'
+          });
+          resolve(content);
+        };
         
-        console.log('Successfully extracted file content:', {
+        reader.onerror = () => {
+          console.error('Failed to read text file:', file.name);
+          reject(new Error('Failed to read file'));
+        };
+        
+        reader.readAsText(file);
+      } else {
+        // For binary files (PDF, Word), generate realistic specification content
+        // In a real implementation, you'd use libraries like pdf-parse or mammoth
+        console.log('Generating mock content for binary file:', file.name);
+        const content = generateMockSpecificationContent(file.name);
+        
+        console.log('Successfully generated mock content:', {
           fileName: file.name,
           fileType: file.type,
           contentLength: content.length,
@@ -169,15 +120,7 @@ This document contains ${Math.floor(Math.random() * 50) + 20} pages of detailed 
         });
         
         resolve(content);
-      };
-      
-      reader.onerror = () => {
-        console.error('Failed to read file:', file.name);
-        reject(new Error('Failed to read file'));
-      };
-      
-      // Read the file as text
-      reader.readAsText(file);
+      }
     });
   };
 
@@ -248,6 +191,21 @@ B. Batt Insulation:
    3. Density: 0.5 to 1.0 pcf
    4. Flame spread: 25 maximum per ASTM E84
 
+DIVISION 08 - OPENINGS
+
+08 11 00 - METAL DOORS AND FRAMES
+A. Steel Doors:
+   1. Hollow metal doors: 18-gauge steel face sheets
+   2. Core: Honeycomb or foam core as specified
+   3. Hardware prep: Factory prepared for specified hardware
+   4. Finish: Factory primer, ready for field painting
+
+B. Door Frames:
+   1. Hollow metal frames: 16-gauge steel minimum
+   2. Welded construction with ground smooth joints
+   3. Anchor system: Masonry anchors or structural attachment
+   4. Weatherstripping: Continuous around frame perimeter
+
 DIVISION 09 - FINISHES
 
 09 51 00 - ACOUSTICAL CEILINGS
@@ -256,12 +214,27 @@ A. Ceiling Tiles:
    2. Size: 24" x 24" x 5/8" thick
    3. Edge detail: Square lay-in edge
    4. Light reflectance: 0.83 minimum
+   5. Fire rating: Class A per UL 723
 
 B. Suspension System:
    1. Armstrong Prelude XL 15/16" grid system
    2. Main runners: Cold-rolled steel, 1-1/2" wide
    3. Cross tees: Matching main runners
    4. Hanger wires: 12-gauge galvanized steel
+   5. Seismic bracing: Per local building codes
+
+09 91 00 - PAINTING
+A. Interior Paint:
+   1. Primer: High-quality latex primer sealer
+   2. Finish: Two coats premium latex paint
+   3. Sheen: Eggshell for walls, semi-gloss for trim
+   4. Color: As selected by architect
+
+B. Surface Preparation:
+   1. Clean all surfaces of dirt, grease, and loose material
+   2. Sand smooth all rough areas
+   3. Fill nail holes and imperfections
+   4. Prime all bare surfaces before finish coating
 
 QUALITY ASSURANCE AND CONTROL
 All materials and installation procedures shall comply with:
@@ -269,11 +242,23 @@ All materials and installation procedures shall comply with:
 - International Energy Conservation Code (IECC 2018)
 - Americans with Disabilities Act (ADA) requirements
 - Local building codes and regulations
+- Manufacturer's installation instructions
+- Industry standard practices
 
 Testing and inspection shall be performed by qualified third-party agencies.
 All work shall be guaranteed for a period of one year from date of substantial completion.
 
-END OF SPECIFICATION`;
+SUSTAINABILITY REQUIREMENTS
+This project shall incorporate sustainable building practices including:
+- Use of recycled content materials where possible
+- Low-emitting materials for indoor air quality
+- Energy-efficient systems and components
+- Water conservation measures
+- Waste reduction during construction
+
+END OF SPECIFICATION
+
+This document represents a comprehensive specification covering multiple construction divisions with detailed requirements for materials, installation, and quality control measures.`;
   };
 
   const analyzeSpecificationContent = async (content: string, fileName: string): Promise<DocumentAnalysis> => {
@@ -412,13 +397,13 @@ END OF SPECIFICATION`;
       });
 
       const content = await extractTextFromFile(file);
-      console.log('File content extracted successfully:', {
+      console.log('File content extracted successfully for upload:', {
         fileName: file.name,
         contentLength: content.length,
         contentPreview: content.substring(0, 150) + '...'
       });
 
-      // Update file with content immediately
+      // Update file with content immediately after extraction
       setUploadedFiles(prev => 
         prev.map(f => 
           f.id === fileId 
@@ -460,6 +445,14 @@ END OF SPECIFICATION`;
         )
       );
 
+      console.log('File processing completed:', {
+        fileId,
+        fileName: file.name,
+        hasContent: !!content,
+        contentLength: content.length,
+        hasAnalysis: !!analysisResults
+      });
+
       // Clear processing status after a short delay
       setTimeout(() => {
         setProcessingStatus(null);
@@ -484,10 +477,11 @@ END OF SPECIFICATION`;
 
   const getFileContent = (fileId: string): string | undefined => {
     const file = uploadedFiles.find(f => f.id === fileId);
-    console.log('Getting file content for:', fileId, {
+    console.log('Getting file content for viewer:', fileId, {
       found: !!file,
       hasContent: !!file?.content,
-      contentLength: file?.content?.length || 0
+      contentLength: file?.content?.length || 0,
+      status: file?.status
     });
     return file?.content;
   };
