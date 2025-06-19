@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -27,7 +26,7 @@ const Index = () => {
             <div className="text-center max-w-4xl mx-auto">
               {/* Large Hero Logo on Gradient Background */}
               <div className="mb-10">
-                <Div1Logo size="4xl" className="mx-auto hover:scale-105 transition-transform duration-500 drop-shadow-2xl" />
+                <Div1Logo size="2xl" className="mx-auto hover:scale-105 transition-transform duration-500 drop-shadow-2xl" />
               </div>
               
               <h1 className="text-5xl md:text-6xl font-light mb-5 leading-tight" style={{ color: '#F7F3ED' }}>
