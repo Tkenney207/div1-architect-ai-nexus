@@ -63,7 +63,7 @@ const Header = () => {
                 <>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button size="sm" style={{ backgroundColor: '#D9D6D0', color: '#1A2B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
+                      <Button size="sm" style={{ backgroundColor: '#F7F3ED', color: '#1A2B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
                         <User className="h-4 w-4 mr-2" />
                         {getUserDisplayName()}
                       </Button>

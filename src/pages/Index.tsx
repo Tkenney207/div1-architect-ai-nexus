@@ -10,7 +10,7 @@ import { EngageIcon, Master1Icon } from "@/components/ModuleIcons";
 
 const Index = () => {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F7F3ED' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#D9D6D0' }}>
       <Header />
 
       {/* Hero Section with Navy Banner */}
@@ -27,15 +27,15 @@ const Index = () => {
               <h1 className="text-6xl md:text-7xl font-light mb-6 leading-tight" style={{ color: '#F7F3ED' }}>
                 <span style={{ color: '#C6A664' }} className="font-medium">From input to output</span>
               </h1>
-              <h2 className="text-3xl md:text-4xl font-light mb-12" style={{ color: '#D9D6D0' }}>
+              <h2 className="text-3xl md:text-4xl font-light mb-12" style={{ color: '#F7F3ED' }}>
                 AI that understands what makes AEC work.
               </h2>
             </div>
           </div>
         </div>
 
-        {/* Warm Ivory Content Section */}
-        <div style={{ backgroundColor: '#F7F3ED' }} className="py-16">
+        {/* Soft Pebble Content Section */}
+        <div style={{ backgroundColor: '#D9D6D0' }} className="py-16">
           <div className="container mx-auto px-6">
             <div className="text-center max-w-4xl mx-auto">
               {/* Hero Content Box */}
@@ -52,7 +52,7 @@ const Index = () => {
                     <ArrowRight className="ml-3 h-5 w-5" />
                   </Button>
                 </Link>
-                <Button variant="outline" size="lg" style={{ borderColor: '#D9D6D0', color: '#1A2B49', backgroundColor: 'transparent' }} className="text-lg px-12 py-4 rounded-lg border-2 hover:bg-white hover:bg-opacity-50 transition-all font-medium">
+                <Button variant="outline" size="lg" style={{ borderColor: '#1A2B49', color: '#1A2B49', backgroundColor: 'transparent' }} className="text-lg px-12 py-4 rounded-lg border-2 hover:bg-white hover:bg-opacity-50 transition-all font-medium">
                   Watch Demo
                 </Button>
               </div>
@@ -62,7 +62,7 @@ const Index = () => {
       </section>
 
       {/* Solutions Section */}
-      <section className="py-24" style={{ backgroundColor: '#F7F3ED' }}>
+      <section className="py-24" style={{ backgroundColor: '#D9D6D0' }}>
         <div className="container mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-light mb-8" style={{ color: '#1A2B49' }}>Three powerful solutions</h2>
@@ -71,7 +71,7 @@ const Index = () => {
 
           <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Engage Module */}
-            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#D9D6D0' }}>
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#F7F3ED' }}>
               <CardHeader className="p-8">
                 <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#D6F0E5' }}>
                   <EngageIcon className="text-brass" />
@@ -112,7 +112,7 @@ const Index = () => {
             </Card>
 
             {/* Division1 Module */}
-            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#D9D6D0' }}>
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#F7F3ED' }}>
               <CardHeader className="p-8">
                 <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#C2D3DF' }}>
                   <FileText className="h-8 w-8" style={{ color: '#1A2B49' }} />
@@ -153,7 +153,7 @@ const Index = () => {
             </Card>
 
             {/* Master1 Module */}
-            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#D9D6D0' }}>
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#F7F3ED' }}>
               <CardHeader className="p-8">
                 <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#E6B7B3' }}>
                   <Master1Icon className="text-navy" />
@@ -205,40 +205,40 @@ const Index = () => {
                 <Div1Logo size="sm" />
                 <span className="text-xl font-medium" style={{ color: '#F7F3ED' }}>Platform</span>
               </div>
-              <p className="leading-relaxed" style={{ color: '#D9D6D0' }}>
+              <p className="leading-relaxed" style={{ color: '#F7F3ED' }}>
                 AI-driven ecosystem for the Architecture, Engineering, and Construction industry.
               </p>
             </div>
             
             <div>
               <h5 className="font-medium mb-6 text-lg" style={{ color: '#F7F3ED' }}>Solutions</h5>
-              <ul className="space-y-3" style={{ color: '#D9D6D0' }}>
-                <li><Link to="/engage" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>Engage</Link></li>
-                <li><Link to="/division1" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>Division1</Link></li>
-                <li><Link to="/master1" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>Master1</Link></li>
+              <ul className="space-y-3" style={{ color: '#F7F3ED' }}>
+                <li><Link to="/engage" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>Engage</Link></li>
+                <li><Link to="/division1" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>Division1</Link></li>
+                <li><Link to="/master1" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>Master1</Link></li>
               </ul>
             </div>
             
             <div>
               <h5 className="font-medium mb-6 text-lg" style={{ color: '#F7F3ED' }}>Resources</h5>
-              <ul className="space-y-3" style={{ color: '#D9D6D0' }}>
-                <li><Link to="/documentation" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>Documentation</Link></li>
-                <li><Link to="/security" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>Security</Link></li>
-                <li><Link to="/support" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>Support</Link></li>
+              <ul className="space-y-3" style={{ color: '#F7F3ED' }}>
+                <li><Link to="/documentation" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>Documentation</Link></li>
+                <li><Link to="/security" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>Security</Link></li>
+                <li><Link to="/support" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>Support</Link></li>
               </ul>
             </div>
             
             <div>
               <h5 className="font-medium mb-6 text-lg" style={{ color: '#F7F3ED' }}>Company</h5>
-              <ul className="space-y-3" style={{ color: '#D9D6D0' }}>
-                <li><Link to="/about" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>About</Link></li>
-                <li><Link to="/contact" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>Contact</Link></li>
-                <li><Link to="/privacy" className="transition-colors hover:text-brass" style={{ color: '#D9D6D0' }}>Privacy</Link></li>
+              <ul className="space-y-3" style={{ color: '#F7F3ED' }}>
+                <li><Link to="/about" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>About</Link></li>
+                <li><Link to="/contact" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>Contact</Link></li>
+                <li><Link to="/privacy" className="transition-colors hover:text-brass" style={{ color: '#F7F3ED' }}>Privacy</Link></li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t border-opacity-20 border-white mt-12 pt-8 text-center" style={{ color: '#D9D6D0' }}>
+          <div className="border-t border-opacity-20 border-white mt-12 pt-8 text-center" style={{ color: '#F7F3ED' }}>
             © 2024 Div1 Platform Suite. All rights reserved.
           </div>
         </div>

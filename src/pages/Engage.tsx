@@ -8,7 +8,7 @@ import { ConversationalInterface } from "@/components/ConversationalInterface";
 
 const Engage = () => {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F7F3ED' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#D9D6D0' }}>
       <Header />
 
       <div className="container mx-auto px-6 py-12">
@@ -19,7 +19,7 @@ const Engage = () => {
             <span className="font-medium" style={{ color: '#C6A664' }}> AI guidance </span>
           </h2>
           <div className="max-w-4xl mx-auto mb-12">
-            <div className="bg-white rounded-2xl shadow-sm border p-12 mb-12" style={{ borderColor: '#D9D6D0' }}>
+            <div className="bg-white rounded-2xl shadow-sm border p-12 mb-12" style={{ borderColor: '#F7F3ED' }}>
               <h3 className="text-2xl font-medium mb-6" style={{ color: '#C6A664' }}>Capture intent. Structure requirements.</h3>
               <p className="text-xl leading-relaxed" style={{ color: '#426A8C' }}>
                 AI-powered project charter generation - extract stakeholder goals and technical needs through Agentic guided & structured interviews.
@@ -33,7 +33,7 @@ const Engage = () => {
 
         {/* Architecture Features */}
         <div className="grid lg:grid-cols-3 gap-8 mt-16">
-          <Card className="group bg-white border shadow-sm hover:shadow-md transition-all duration-300" style={{ borderColor: '#D9D6D0' }}>
+          <Card className="group bg-white border shadow-sm hover:shadow-md transition-all duration-300" style={{ borderColor: '#F7F3ED' }}>
             <CardHeader className="p-8">
               <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:opacity-80 transition-colors" style={{ backgroundColor: '#D6F0E5' }}>
                 <Brain className="h-7 w-7" style={{ color: '#C6A664' }} />
@@ -73,7 +73,7 @@ const Engage = () => {
             </CardContent>
           </Card>
 
-          <Card className="group bg-white border shadow-sm hover:shadow-md transition-all duration-300" style={{ borderColor: '#D9D6D0' }}>
+          <Card className="group bg-white border shadow-sm hover:shadow-md transition-all duration-300" style={{ borderColor: '#F7F3ED' }}>
             <CardHeader className="p-8">
               <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:opacity-80 transition-colors" style={{ backgroundColor: '#C2D3DF' }}>
                 <Shield className="h-7 w-7" style={{ color: '#426A8C' }} />
@@ -113,7 +113,7 @@ const Engage = () => {
             </CardContent>
           </Card>
 
-          <Card className="group bg-white border shadow-sm hover:shadow-md transition-all duration-300" style={{ borderColor: '#D9D6D0' }}>
+          <Card className="group bg-white border shadow-sm hover:shadow-md transition-all duration-300" style={{ borderColor: '#F7F3ED' }}>
             <CardHeader className="p-8">
               <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:opacity-80 transition-colors" style={{ backgroundColor: '#F2D8A7' }}>
                 <Zap className="h-7 w-7" style={{ color: '#426A8C' }} />

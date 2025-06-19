@@ -34,7 +34,7 @@ const Support = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#F7F3ED' }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#D9D6D0' }}>
       <Header />
 
       {/* Content */}
@@ -52,8 +52,8 @@ const Support = () => {
 
           <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <Card className="bg-white border shadow-sm" style={{ borderColor: '#D9D6D0' }}>
-              <CardHeader className="border-b p-8" style={{ borderColor: '#D9D6D0' }}>
+            <Card className="bg-white border shadow-sm" style={{ borderColor: '#F7F3ED' }}>
+              <CardHeader className="border-b p-8" style={{ borderColor: '#F7F3ED' }}>
                 <CardTitle className="text-2xl font-medium" style={{ color: '#1A2B49' }}>Submit a Support Request</CardTitle>
                 <CardDescription style={{ color: '#426A8C' }}>
                   Fill out the form below and we'll get back to you as soon as possible.
@@ -72,7 +72,7 @@ const Support = () => {
                             <Input 
                               placeholder="Your full name" 
                               className="bg-white border-2 focus:border-brass focus:ring-brass"
-                              style={{ borderColor: '#D9D6D0', color: '#1A2B49' }}
+                              style={{ borderColor: '#F7F3ED', color: '#1A2B49' }}
                               {...field} 
                             />
                           </FormControl>
@@ -92,7 +92,7 @@ const Support = () => {
                               type="email" 
                               placeholder="your@email.com" 
                               className="bg-white border-2 focus:border-brass focus:ring-brass"
-                              style={{ borderColor: '#D9D6D0', color: '#1A2B49' }}
+                              style={{ borderColor: '#F7F3ED', color: '#1A2B49' }}
                               {...field} 
                             />
                           </FormControl>
@@ -111,7 +111,7 @@ const Support = () => {
                             <Input 
                               placeholder="What's this about?" 
                               className="bg-white border-2 focus:border-brass focus:ring-brass"
-                              style={{ borderColor: '#D9D6D0', color: '#1A2B49' }}
+                              style={{ borderColor: '#F7F3ED', color: '#1A2B49' }}
                               {...field} 
                             />
                           </FormControl>
@@ -131,7 +131,7 @@ const Support = () => {
                               placeholder="Please describe your issue or question in detail..." 
                               rows={5} 
                               className="bg-white border-2 focus:border-brass focus:ring-brass"
-                              style={{ borderColor: '#D9D6D0', color: '#1A2B49' }}
+                              style={{ borderColor: '#F7F3ED', color: '#1A2B49' }}
                               {...field} 
                             />
                           </FormControl>
@@ -155,7 +155,7 @@ const Support = () => {
 
             {/* Contact Info */}
             <div className="space-y-6">
-              <Card className="bg-white border shadow-sm hover:shadow-md transition-shadow" style={{ borderColor: '#D9D6D0' }}>
+              <Card className="bg-white border shadow-sm hover:shadow-md transition-shadow" style={{ borderColor: '#F7F3ED' }}>
                 <CardContent className="p-8">
                   <div className="flex items-center space-x-4">
                     <div className="w-14 h-14 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#D6F0E5' }}>
@@ -170,7 +170,7 @@ const Support = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border shadow-sm hover:shadow-md transition-shadow" style={{ borderColor: '#D9D6D0' }}>
+              <Card className="bg-white border shadow-sm hover:shadow-md transition-shadow" style={{ borderColor: '#F7F3ED' }}>
                 <CardContent className="p-8">
                   <div className="flex items-center space-x-4">
                     <div className="w-14 h-14 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#D6F0E5' }}>
@@ -185,7 +185,7 @@ const Support = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border shadow-sm hover:shadow-md transition-shadow" style={{ borderColor: '#D9D6D0' }}>
+              <Card className="bg-white border shadow-sm hover:shadow-md transition-shadow" style={{ borderColor: '#F7F3ED' }}>
                 <CardContent className="p-8">
                   <div className="flex items-center space-x-4">
                     <div className="w-14 h-14 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#C2D3DF' }}>
