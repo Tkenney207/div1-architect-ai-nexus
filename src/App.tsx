@@ -13,6 +13,9 @@ import Dashboard from "./pages/Dashboard";
 import Projects from "./pages/Projects";
 import Support from "./pages/Support";
 import Security from "./pages/Security";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -38,6 +41,9 @@ const App = () => (
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/support" element={<Support />} />
                 <Route path="/security" element={<Security />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/privacy" element={<Privacy />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </div>
