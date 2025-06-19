@@ -7,6 +7,7 @@ export const useSpecificationProcessor = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const extractTextFromFile = async (file) => {
+    console.log('=== EXTRACT TEXT FROM FILE START ===');
     console.log('Starting file extraction:', {
       fileName: file.name,
       fileType: file.type,
@@ -16,17 +17,20 @@ export const useSpecificationProcessor = () => {
     try {
       // Handle text files
       if (file.type.startsWith('text/') || file.name.endsWith('.txt')) {
+        console.log('Processing as text file...');
         return await extractTextFile(file);
       }
       
       // Handle PDF files  
       if (file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')) {
+        console.log('Processing as PDF file...');
         return await extractPdfFile(file);
       }
       
       // Handle Word documents
       if (file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || 
           file.name.toLowerCase().endsWith('.docx')) {
+        console.log('Processing as DOCX file...');
         return await extractWordFile(file);
       }
       
@@ -88,18 +92,15 @@ export const useSpecificationProcessor = () => {
       reader.onload = async (e) => {
         try {
           const result = e.target?.result;
-          if (!result) {
+          if (!result || !(result instanceof ArrayBuffer)) {
             reject(new Error('Failed to read PDF file'));
             return;
           }
 
-          // Ensure we have an ArrayBuffer
-          const arrayBuffer = result instanceof ArrayBuffer ? result : new ArrayBuffer(0);
-
           try {
             // Use pdf-parse to extract text
             const pdfParse = await import('pdf-parse');
-            const pdfData = await pdfParse.default(Buffer.from(arrayBuffer));
+            const pdfData = await pdfParse.default(Buffer.from(result));
             
             if (!pdfData.text || pdfData.text.trim().length === 0) {
               reject(new Error('PDF appears to be empty or contains no extractable text'));
@@ -116,7 +117,7 @@ export const useSpecificationProcessor = () => {
           } catch (pdfError) {
             console.warn('PDF extraction failed, falling back to basic text extraction:', pdfError);
             // Fallback: try to extract as plain text
-            const text = new TextDecoder().decode(arrayBuffer);
+            const text = new TextDecoder().decode(result);
             if (text && text.trim().length > 0) {
               resolve(text);
             } else {
@@ -151,72 +152,66 @@ export const useSpecificationProcessor = () => {
       reader.onload = async (e) => {
         try {
           const result = e.target?.result;
-          console.log('FileReader result type:', typeof result);
-          console.log('FileReader result instanceof ArrayBuffer:', result instanceof ArrayBuffer);
+          console.log('FileReader result received:', {
+            resultType: typeof result,
+            isArrayBuffer: result instanceof ArrayBuffer,
+            byteLength: result instanceof ArrayBuffer ? result.byteLength : 'N/A'
+          });
           
-          if (!result) {
-            console.error('No result from FileReader');
-            reject(new Error('Failed to read Word file - no result'));
+          if (!result || !(result instanceof ArrayBuffer)) {
+            console.error('Invalid FileReader result for Word file');
+            reject(new Error('Failed to read Word file - invalid result'));
             return;
           }
 
-          // Ensure we have an ArrayBuffer
-          if (!(result instanceof ArrayBuffer)) {
-            console.error('Result is not ArrayBuffer, got:', typeof result);
-            reject(new Error('Failed to read Word file - invalid result type'));
-            return;
-          }
-
-          console.log('ArrayBuffer size:', result.byteLength);
-          
           if (result.byteLength === 0) {
-            console.error('ArrayBuffer is empty');
+            console.error('Word file is empty');
             reject(new Error('Word file appears to be empty'));
             return;
           }
 
-          console.log('Processing Word file with mammoth...');
+          console.log('Processing Word file with mammoth, ArrayBuffer size:', result.byteLength);
           
           try {
-            const mammothResult = await mammoth.extractRawText({ arrayBuffer: result });
+            // Extract raw text using mammoth
+            const extractionResult = await mammoth.extractRawText({ arrayBuffer: result });
             
-            console.log('=== MAMMOTH EXTRACTION RESULT ===');
-            console.log('Raw mammoth result:', mammothResult);
-            console.log('Has value:', !!mammothResult.value);
-            console.log('Value type:', typeof mammothResult.value);
-            console.log('Value length:', mammothResult.value?.length || 0);
-            console.log('Messages count:', mammothResult.messages?.length || 0);
-            console.log('Messages:', mammothResult.messages);
+            console.log('=== MAMMOTH EXTRACTION COMPLETE ===');
+            console.log('Mammoth result details:', {
+              hasValue: !!extractionResult.value,
+              valueType: typeof extractionResult.value,
+              valueLength: extractionResult.value?.length || 0,
+              messagesCount: extractionResult.messages?.length || 0,
+              hasMessages: !!extractionResult.messages
+            });
 
-            if (!mammothResult.value) {
-              console.error('Mammoth returned no value');
-              reject(new Error('Word document extraction failed - no content returned'));
+            if (extractionResult.messages && extractionResult.messages.length > 0) {
+              console.log('Mammoth messages:', extractionResult.messages);
+            }
+
+            if (!extractionResult.value) {
+              console.error('Mammoth returned empty value');
+              reject(new Error('Word document extraction failed - no content returned by mammoth'));
               return;
             }
 
-            const extractedText = mammothResult.value.trim();
+            const extractedText = extractionResult.value.trim();
+            console.log('=== FINAL EXTRACTION RESULT ===');
             console.log('Extracted text length:', extractedText.length);
-            console.log('Extracted text preview (first 500 chars):', extractedText.substring(0, 500));
+            console.log('First 500 characters:', extractedText.substring(0, 500));
+            console.log('Last 200 characters:', extractedText.substring(Math.max(0, extractedText.length - 200)));
 
             if (extractedText.length === 0) {
-              console.error('Extracted text is empty');
-              reject(new Error('Word document appears to contain no text content'));
+              console.error('Extracted text is empty after trim');
+              reject(new Error('Word document appears to contain no extractable text'));
               return;
-            }
-
-            // Log any conversion messages/warnings
-            if (mammothResult.messages && mammothResult.messages.length > 0) {
-              console.warn('Mammoth conversion messages:', mammothResult.messages);
             }
 
             console.log('=== WORD EXTRACTION SUCCESS ===');
-            console.log('Final content length:', extractedText.length);
-            console.log('Final content preview:', extractedText.substring(0, 200) + '...');
-            
             resolve(extractedText);
             
           } catch (mammothError) {
-            console.error('Mammoth extraction failed:', mammothError);
+            console.error('Mammoth extraction error:', mammothError);
             reject(new Error(`Word document processing failed: ${mammothError.message}`));
           }
           
@@ -227,40 +222,50 @@ export const useSpecificationProcessor = () => {
       };
       
       reader.onerror = (error) => {
-        console.error('FileReader error:', error);
+        console.error('FileReader error for Word file:', error);
         reject(new Error('Failed to read Word file - FileReader error'));
       };
       
-      console.log('Starting FileReader.readAsArrayBuffer...');
+      console.log('Starting FileReader.readAsArrayBuffer for Word file...');
       reader.readAsArrayBuffer(file);
     });
   };
 
   const validateContent = (content, fileName) => {
-    console.log('=== CONTENT VALIDATION ===');
-    console.log('Content type:', typeof content);
-    console.log('Content length:', content?.length || 0);
-    console.log('Content preview:', typeof content === 'string' ? content.substring(0, 100) : 'Not a string');
+    console.log('=== CONTENT VALIDATION START ===');
+    console.log('Validating content for file:', fileName);
+    console.log('Content details:', {
+      type: typeof content,
+      length: content?.length || 0,
+      isString: typeof content === 'string',
+      preview: typeof content === 'string' ? content.substring(0, 100) : 'Not a string'
+    });
 
     if (!content || typeof content !== 'string') {
-      console.error('Content validation failed: content is not a valid string', { fileName, contentType: typeof content });
+      console.error('Content validation failed: content is not a valid string', { 
+        fileName, 
+        contentType: typeof content,
+        contentValue: content
+      });
       return false;
     }
 
     const trimmedContent = content.trim();
     if (trimmedContent.length === 0) {
-      console.error('Content validation failed: content is empty', { fileName });
+      console.error('Content validation failed: content is empty after trim', { fileName });
       return false;
     }
 
     if (trimmedContent.length < 10) {
       console.warn('Content validation warning: content is very short', { 
         fileName, 
-        length: trimmedContent.length 
+        length: trimmedContent.length,
+        content: trimmedContent
       });
     }
 
-    console.log('Content validation passed:', {
+    console.log('=== CONTENT VALIDATION SUCCESS ===');
+    console.log('Content is valid:', {
       fileName,
       contentLength: trimmedContent.length,
       isValid: true
@@ -385,7 +390,7 @@ export const useSpecificationProcessor = () => {
   const uploadSpecification = async (file) => {
     const fileId = `file-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     console.log('=== UPLOAD SPECIFICATION START ===');
-    console.log('File ID:', fileId);
+    console.log('Generated file ID:', fileId);
     console.log('File details:', {
       name: file.name,
       type: file.type,
@@ -398,11 +403,15 @@ export const useSpecificationProcessor = () => {
       size: `${(file.size / 1024 / 1024).toFixed(2)} MB`,
       uploadDate: new Date().toISOString(),
       status: 'uploading',
-      content: null // Initialize with null
+      content: null,
+      extractedContent: null // Add separate field for extracted content
     };
 
     // Add file to list immediately
-    setUploadedFiles(prev => [...prev, newFile]);
+    setUploadedFiles(prev => {
+      console.log('Adding new file to list:', fileId);
+      return [...prev, newFile];
+    });
     setIsLoading(true);
 
     try {
@@ -413,28 +422,40 @@ export const useSpecificationProcessor = () => {
         message: `Reading ${file.name}`
       });
 
-      console.log('Starting content extraction...');
+      console.log('=== STARTING CONTENT EXTRACTION ===');
       const extractedContent = await extractTextFromFile(file);
       
-      console.log('=== CONTENT EXTRACTION COMPLETE ===');
-      console.log('Content type:', typeof extractedContent);
-      console.log('Content length:', typeof extractedContent === 'string' ? extractedContent.length : 'Not a string');
-      console.log('Content preview:', typeof extractedContent === 'string' ? extractedContent.substring(0, 300) : 'Not available');
+      console.log('=== CONTENT EXTRACTION RESULT ===');
+      console.log('Extraction completed for:', file.name);
+      console.log('Content details:', {
+        type: typeof extractedContent,
+        length: typeof extractedContent === 'string' ? extractedContent.length : 'Not a string',
+        preview: typeof extractedContent === 'string' ? extractedContent.substring(0, 300) + '...' : 'Not available'
+      });
 
       // Step 2: Validate extracted content
       if (!validateContent(extractedContent, file.name)) {
-        throw new Error('File content validation failed');
+        throw new Error('File content validation failed - extracted content is invalid');
       }
 
-      console.log('Content validation passed');
-
-      // Step 3: Update file with extracted content and set to processing
-      console.log('Updating file with extracted content...');
-      setUploadedFiles(prev => prev.map(f => 
-        f.id === fileId 
-          ? { ...f, status: 'processing', content: extractedContent }
-          : f
-      ));
+      console.log('=== UPDATING FILE WITH EXTRACTED CONTENT ===');
+      // Step 3: Update file with extracted content immediately
+      setUploadedFiles(prev => prev.map(f => {
+        if (f.id === fileId) {
+          console.log('Updating file with extracted content:', {
+            fileId,
+            fileName: f.name,
+            contentLength: typeof extractedContent === 'string' ? extractedContent.length : 0
+          });
+          return { 
+            ...f, 
+            status: 'processing', 
+            content: extractedContent,
+            extractedContent: extractedContent // Store in both fields for safety
+          };
+        }
+        return f;
+      }));
 
       // Step 4: Perform AI analysis
       setProcessingStatus({
@@ -451,10 +472,10 @@ export const useSpecificationProcessor = () => {
         message: 'Checking standards and codes'
       });
 
-      console.log('Starting AI analysis...');
+      console.log('=== STARTING AI ANALYSIS ===');
       const analysisResults = await analyzeSpecificationContent(extractedContent, file.name);
 
-      // Step 5: Complete processing - ensure content is preserved
+      // Step 5: Complete processing - preserve content
       setProcessingStatus({
         stage: 'Complete',
         progress: 100,
@@ -462,28 +483,34 @@ export const useSpecificationProcessor = () => {
       });
 
       console.log('=== FINAL FILE UPDATE ===');
-      console.log('Preserving content in final update...');
-      setUploadedFiles(prev => prev.map(f => 
-        f.id === fileId 
-          ? { 
-              ...f, 
-              status: 'processed', 
-              analysisResults,
-              content: extractedContent // Ensure content is preserved
-            }
-          : f
-      ));
+      setUploadedFiles(prev => prev.map(f => {
+        if (f.id === fileId) {
+          console.log('Final update for file:', {
+            fileId,
+            fileName: f.name,
+            hasContent: !!extractedContent,
+            contentLength: typeof extractedContent === 'string' ? extractedContent.length : 0,
+            hasAnalysis: !!analysisResults
+          });
+          return { 
+            ...f, 
+            status: 'processed', 
+            analysisResults,
+            content: extractedContent, // Ensure content is preserved
+            extractedContent: extractedContent // Store in both fields
+          };
+        }
+        return f;
+      }));
 
       console.log('=== UPLOAD SPECIFICATION COMPLETE ===');
-      console.log('File processing completed successfully:', {
+      console.log('Processing completed successfully for:', {
         fileId,
         fileName: file.name,
-        hasContent: !!extractedContent,
-        contentLength: typeof extractedContent === 'string' ? extractedContent.length : 0,
-        hasAnalysis: !!analysisResults
+        finalContentLength: typeof extractedContent === 'string' ? extractedContent.length : 0
       });
 
-      // Clear processing status after a short delay
+      // Clear processing status after delay
       setTimeout(() => {
         setProcessingStatus(null);
         setIsLoading(false);
@@ -493,7 +520,7 @@ export const useSpecificationProcessor = () => {
       console.error('=== UPLOAD SPECIFICATION ERROR ===');
       console.error('Error processing file:', error);
       
-      // Update file status to error with error message
+      // Update file status to error
       setUploadedFiles(prev => prev.map(f => 
         f.id === fileId 
           ? { 
@@ -512,18 +539,12 @@ export const useSpecificationProcessor = () => {
   const getFileContent = (fileId) => {
     console.log('=== GET FILE CONTENT DEBUG ===');
     console.log('Requested fileId:', fileId);
-    console.log('Available files:', uploadedFiles.map(f => ({ 
-      id: f.id, 
-      name: f.name, 
-      status: f.status,
-      hasContent: !!f.content, 
-      contentType: typeof f.content,
-      contentLength: typeof f.content === 'string' ? f.content.length : 0 
-    })));
+    console.log('Available files count:', uploadedFiles.length);
     
     const file = uploadedFiles.find(f => f.id === fileId);
     if (!file) {
-      console.warn('File not found:', fileId);
+      console.error('File not found with ID:', fileId);
+      console.log('Available file IDs:', uploadedFiles.map(f => f.id));
       return undefined;
     }
 
@@ -532,13 +553,16 @@ export const useSpecificationProcessor = () => {
       name: file.name,
       status: file.status,
       hasContent: !!file.content,
+      hasExtractedContent: !!file.extractedContent,
       contentType: typeof file.content,
-      contentLength: typeof file.content === 'string' ? file.content.length : 0,
-      contentPreview: typeof file.content === 'string' ? file.content.substring(0, 200) : 'No preview available'
+      contentLength: typeof file.content === 'string' ? file.content.length : 0
     });
 
-    if (!file.content) {
-      console.warn('File content is empty or null:', {
+    // Try extractedContent first, then fall back to content
+    const content = file.extractedContent || file.content;
+    
+    if (!content) {
+      console.warn('No content available for file:', {
         fileId,
         fileName: file.name,
         status: file.status
@@ -546,14 +570,24 @@ export const useSpecificationProcessor = () => {
       return undefined;
     }
 
-    console.log('Retrieved file content successfully:', {
+    if (typeof content !== 'string') {
+      console.warn('Content is not a string:', {
+        fileId,
+        fileName: file.name,
+        contentType: typeof content
+      });
+      return String(content);
+    }
+
+    console.log('=== RETURNING FILE CONTENT ===');
+    console.log('Content details:', {
       fileId,
       fileName: file.name,
-      contentLength: typeof file.content === 'string' ? file.content.length : 0,
-      status: file.status
+      contentLength: content.length,
+      preview: content.substring(0, 200) + '...'
     });
     
-    return file.content;
+    return content;
   };
 
   return {
