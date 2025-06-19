@@ -58,12 +58,6 @@ const Privacy = () => {
                   our support channels.
                 </p>
               </div>
-              
-              <div className="text-center pt-8">
-                <p className="text-sm" style={{ color: '#7C9C95' }}>
-                  Last updated: Coming Soon
-                </p>
-              </div>
             </CardContent>
           </Card>
         </div>
