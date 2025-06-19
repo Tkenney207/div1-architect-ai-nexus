@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -14,8 +15,8 @@ const Index = () => {
 
       {/* Hero Section with Navy Banner */}
       <section className="relative overflow-hidden">
-        {/* Navy Banner Background - Darker shade for contrast */}
-        <div className="py-32 border-t-4 border-solid" style={{ backgroundColor: '#162239', borderTopColor: '#0F1B2E' }}>
+        {/* Navy Banner Background - Using Verdigris for more differentiation */}
+        <div className="py-32 border-t-4 border-solid" style={{ backgroundColor: '#7C9C95', borderTopColor: '#0F1B2E' }}>
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center max-w-5xl mx-auto">
               {/* Large Hero Logo on Navy Background */}
