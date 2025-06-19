@@ -9,11 +9,10 @@ const Footer = () => {
       <div className="container mx-auto px-6 py-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-          {/* Platform Column */}
+          {/* Company Column */}
           <div>
             <div className="flex items-center space-x-2 mb-6">
               <Div1Logo />
-              <h3 className="text-lg font-semibold" style={{ color: '#F7F3ED' }}>Platform</h3>
             </div>
             <p className="text-sm leading-relaxed" style={{ color: '#F7F3ED' }}>
               AI-driven ecosystem for the Architecture, Engineering, and Construction industry.
