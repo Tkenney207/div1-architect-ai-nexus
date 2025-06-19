@@ -124,7 +124,7 @@ export const Division1Generator: React.FC<Division1GeneratorProps> = ({ charterD
           <div className="flex items-center justify-between">
             <div className="space-y-2">
               <p className="text-gray-300">
-                Generate comprehensive CSI MasterFormat Division 1 specifications from project charter data
+                Generate complete CSI MasterFormat Division 01 specifications for your project with AI precision
               </p>
               {charterData && (
                 <p className="text-sm text-blue-400">
