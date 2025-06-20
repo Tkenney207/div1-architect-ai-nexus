@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -100,7 +101,9 @@ export const SpecificationAnalysis: React.FC<SpecificationAnalysisProps> = ({ fi
   const handleReviewChanges = () => {
     // Generate suggestions for this file if not already generated
     if (suggestions.length === 0) {
-      const newSuggestions = generateSuggestions(fileName);
+      // For demo purposes, using placeholder content
+      const fileContent = `Sample specification content for ${fileName}`;
+      const newSuggestions = generateSuggestions(fileName, fileContent);
       setSuggestions(newSuggestions);
     }
     setShowReviewWindow(true);
