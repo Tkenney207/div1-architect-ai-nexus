@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -54,6 +55,7 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
     });
     
     if (fileContent && typeof fileContent === 'string' && fileContent.trim().length > 0 && !initialized) {
+      console.log('Setting file content and generating suggestions...');
       setFileContent(fileContent);
       const generatedSuggestions = generateSuggestions(fileName, fileContent);
       setSuggestions(generatedSuggestions);
@@ -105,7 +107,6 @@ export const SpecificationReviewWindow: React.FC<SpecificationReviewWindowProps>
   const renderContentWithHighlights = () => {
     console.log('=== RENDERING CONTENT DEBUG ===');
     console.log('fileContent type:', typeof fileContent);
-    console.log('fileContent value:', fileContent);
     console.log('fileContent length:', fileContent?.length);
     console.log('fileContent first 200 chars:', fileContent?.substring(0, 200));
     
