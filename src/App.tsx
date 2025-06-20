@@ -1,9 +1,11 @@
+
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Engage from "./pages/Engage";
+import Interview from "./pages/Interview";
 import Division1 from "./pages/Division1";
 import Master1 from "./pages/Master1";
 import Signin from "./pages/Signin";
@@ -34,6 +36,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/engage" element={<Engage />} />
+                <Route path="/interview/:interviewId" element={<Interview />} />
                 <Route path="/division1" element={<Division1 />} />
                 <Route path="/master1" element={<Master1 />} />
                 <Route path="/signin" element={<Signin />} />
