@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -39,7 +38,9 @@ export const DocumentProcessor = () => {
     
     // Generate suggestions for the first file (in real implementation, this would process all files)
     const fileName = uploadedFiles[0].name;
-    const newSuggestions = generateSuggestions(fileName);
+    // For demo purposes, using placeholder content
+    const fileContent = `Sample specification content for ${fileName}`;
+    const newSuggestions = generateSuggestions(fileName, fileContent);
     setSuggestions(newSuggestions);
     
     setIsProcessing(false);
