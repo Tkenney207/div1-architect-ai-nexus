@@ -46,31 +46,102 @@ export const useSpecificationProcessor = () => {
         await new Promise(resolve => setTimeout(resolve, 1500));
       }
 
-      // Generate mock analysis results
+      // Generate comprehensive mock analysis results matching DocumentAnalysis interface
       const analysisResults = {
         overview: {
           overallCompliance: Math.floor(Math.random() * 20) + 80,
           criticalIssues: Math.floor(Math.random() * 5),
-          suggestions: Math.floor(Math.random() * 10) + 5
+          warningsCount: Math.floor(Math.random() * 8) + 2,
+          upToDatePercentage: Math.floor(Math.random() * 15) + 85,
+          lastReviewDate: new Date().toISOString()
         },
+        manufacturerCompliance: [
+          {
+            manufacturer: 'ABC Corporation',
+            products: ['Product A', 'Product B'],
+            status: 'current' as const,
+            lastUpdated: '2024-01-15'
+          },
+          {
+            manufacturer: 'XYZ Industries',
+            products: ['Product C'],
+            status: 'outdated' as const,
+            alternatives: ['Alternative Product D'],
+            lastUpdated: '2022-08-20'
+          }
+        ],
         codeCompliance: [
           {
             code: 'IBC 2021',
-            description: 'International Building Code compliance',
+            section: 'Chapter 7 - Fire Resistance',
             status: 'compliant' as const,
-            priority: 'high' as const
+            currentVersion: '2021',
+            specifiedVersion: '2021',
+            description: 'International Building Code compliance',
+            recommendations: 'No action required'
           },
           {
             code: 'ADA Guidelines',
-            description: 'Accessibility requirements',
+            section: 'Section 4.13 - Doors',
             status: 'requires-update' as const,
-            priority: 'medium' as const
+            currentVersion: '2010 ADA Standards',
+            specifiedVersion: '1991 ADA Standards',
+            description: 'Accessibility requirements',
+            recommendations: 'Update to current ADA standards'
+          }
+        ],
+        materialStandards: [
+          {
+            standard: 'ASTM C150',
+            material: 'Portland Cement',
+            status: 'compliant' as const,
+            currentStandard: 'ASTM C150-22',
+            specifiedStandard: 'ASTM C150-22',
+            criticalityLevel: 'high' as const
           },
           {
-            code: 'LEED v4.1',
-            description: 'Sustainability requirements',
-            status: 'compliant' as const,
-            priority: 'low' as const
+            standard: 'ANSI A208.1',
+            material: 'Particleboard',
+            status: 'outdated' as const,
+            currentStandard: 'ANSI A208.1-2009',
+            specifiedStandard: 'ANSI A208.1-1999',
+            criticalityLevel: 'medium' as const
+          }
+        ],
+        sustainabilityMetrics: [
+          {
+            category: 'Energy Performance',
+            metric: 'U-Value',
+            value: '0.25 BTU/hr-ft²-°F',
+            benchmark: '0.30 BTU/hr-ft²-°F',
+            status: 'exceeds' as const,
+            recommendations: 'Excellent thermal performance'
+          },
+          {
+            category: 'Indoor Air Quality',
+            metric: 'VOC Emissions',
+            value: 'Not specified',
+            benchmark: '< 0.5 mg/m³',
+            status: 'not-specified' as const,
+            recommendations: 'Specify low-VOC materials'
+          }
+        ],
+        performanceSpecs: [
+          {
+            component: 'Insulation',
+            specification: 'R-Value',
+            measuredValue: 'R-30',
+            requiredValue: 'R-25',
+            status: 'pass' as const,
+            testMethod: 'ASTM C518'
+          },
+          {
+            component: 'Window Glazing',
+            specification: 'SHGC',
+            measuredValue: '0.45',
+            requiredValue: '0.40',
+            status: 'marginal' as const,
+            testMethod: 'NFRC 200'
           }
         ],
         suggestions: [
