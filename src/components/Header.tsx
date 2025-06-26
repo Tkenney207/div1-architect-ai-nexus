@@ -14,7 +14,7 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full border-b border-gray-200" style={{ backgroundColor: '#F7F3ED' }}>
+    <header className="w-full border-b border-gray-200 bg-navy">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -26,24 +26,24 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-8">
             <Link 
               to="/engage" 
-              className="text-base font-medium hover:text-orange-600 transition-colors"
-              style={{ color: isActive('/engage') ? '#E98B2A' : '#1A2B49' }}
+              className="text-base font-medium hover:text-orange-500 transition-colors text-white"
+              style={{ color: isActive('/engage') ? '#E98B2A' : '#FFFFFF' }}
             >
               Engage
             </Link>
             
             <Link 
               to="/projects" 
-              className="text-base font-medium hover:text-orange-600 transition-colors"
-              style={{ color: isActive('/projects') ? '#E98B2A' : '#1A2B49' }}
+              className="text-base font-medium hover:text-orange-500 transition-colors text-white"
+              style={{ color: isActive('/projects') ? '#E98B2A' : '#FFFFFF' }}
             >
               Projects
             </Link>
             
             <Link 
               to="/support" 
-              className="text-base font-medium hover:text-orange-600 transition-colors"
-              style={{ color: isActive('/support') ? '#E98B2A' : '#1A2B49' }}
+              className="text-base font-medium hover:text-orange-500 transition-colors text-white"
+              style={{ color: isActive('/support') ? '#E98B2A' : '#FFFFFF' }}
             >
               Support
             </Link>
@@ -54,16 +54,15 @@ const Header = () => {
             <Link to="/signin">
               <Button 
                 variant="ghost" 
-                className="text-base font-medium hover:text-orange-600 transition-colors"
-                style={{ color: '#1A2B49' }}
+                className="text-base font-medium hover:text-orange-500 transition-colors text-white hover:bg-white/10"
               >
                 Sign In
               </Button>
             </Link>
             <Link to="/signup">
               <Button 
-                className="text-base font-medium px-6 py-2 rounded-lg transition-all hover:opacity-90"
-                style={{ backgroundColor: '#E98B2A', color: '#F7F3ED' }}
+                className="text-base font-medium px-6 py-2 rounded-lg transition-all hover:opacity-90 bg-orange text-white"
+                style={{ backgroundColor: '#E98B2A' }}
               >
                 Get Started
               </Button>
@@ -72,60 +71,59 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
             {isMenuOpen ? (
-              <X className="h-6 w-6" style={{ color: '#1A2B49' }} />
+              <X className="h-6 w-6 text-white" />
             ) : (
-              <Menu className="h-6 w-6" style={{ color: '#1A2B49' }} />
+              <Menu className="h-6 w-6 text-white" />
             )}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-gray-200">
+          <div className="md:hidden mt-4 pb-4 border-t border-white/20">
             <nav className="flex flex-col space-y-4 pt-4">
               <Link 
                 to="/engage" 
-                className="text-base font-medium hover:text-orange-600 transition-colors px-2 py-1"
-                style={{ color: isActive('/engage') ? '#E98B2A' : '#1A2B49' }}
+                className="text-base font-medium hover:text-orange-500 transition-colors px-2 py-1 text-white"
+                style={{ color: isActive('/engage') ? '#E98B2A' : '#FFFFFF' }}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Engage
               </Link>
               <Link 
                 to="/projects" 
-                className="text-base font-medium hover:text-orange-600 transition-colors px-2 py-1"
-                style={{ color: isActive('/projects') ? '#E98B2A' : '#1A2B49' }}
+                className="text-base font-medium hover:text-orange-500 transition-colors px-2 py-1 text-white"
+                style={{ color: isActive('/projects') ? '#E98B2A' : '#FFFFFF' }}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Projects
               </Link>
               <Link 
                 to="/support" 
-                className="text-base font-medium hover:text-orange-600 transition-colors px-2 py-1"
-                style={{ color: isActive('/support') ? '#E98B2A' : '#1A2B49' }}
+                className="text-base font-medium hover:text-orange-500 transition-colors px-2 py-1 text-white"
+                style={{ color: isActive('/support') ? '#E98B2A' : '#FFFFFF' }}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Support
               </Link>
-              <div className="flex flex-col space-y-2 pt-4 border-t border-gray-200">
+              <div className="flex flex-col space-y-2 pt-4 border-t border-white/20">
                 <Link to="/signin" onClick={() => setIsMenuOpen(false)}>
                   <Button 
                     variant="ghost" 
-                    className="w-full justify-start text-base font-medium hover:text-orange-600 transition-colors"
-                    style={{ color: '#1A2B49' }}
+                    className="w-full justify-start text-base font-medium hover:text-orange-500 transition-colors text-white hover:bg-white/10"
                   >
                     Sign In
                   </Button>
                 </Link>
                 <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
                   <Button 
-                    className="w-full text-base font-medium py-2 rounded-lg transition-all hover:opacity-90"
-                    style={{ backgroundColor: '#E98B2A', color: '#F7F3ED' }}
+                    className="w-full text-base font-medium py-2 rounded-lg transition-all hover:opacity-90 bg-orange text-white"
+                    style={{ backgroundColor: '#E98B2A' }}
                   >
                     Get Started
                   </Button>
