@@ -1,252 +1,230 @@
 
-// ARCHIVED: Master1 Page - Complete functionality preserved for future restoration
-// Original file: src/pages/Master1.tsx
-
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Zap, Shield, CheckCircle, ArrowRight, Upload, Download } from "lucide-react";
+import { ArrowRight, CheckCircle, FileText, Zap, Shield, Target } from "lucide-react";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
-import { Master1Logo } from "@/components/ModuleIcons";
+// Import from archived ModuleIcons instead of main ModuleIcons
+import { Master1Logo } from "./ModuleIcons-archived";
 
 const Master1 = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-purple-900 text-white">
+    <div className="min-h-screen" style={{ backgroundColor: '#D9D6D0' }}>
       <Header />
 
-      <div className="container mx-auto px-6 py-12">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-8">
-            <Master1Logo size="lg" className="drop-shadow-2xl" />
+      {/* Hero Section with Gradient Banner */}
+      <section className="relative overflow-hidden">
+        {/* Heritage Navy to Verdigris Gradient Banner Background */}
+        <div 
+          className="py-16 border-t-4 border-solid" 
+          style={{ 
+            background: 'linear-gradient(135deg, #1A2B49 0%, #7C9C95 100%)', 
+            borderTopColor: '#7C9C95' 
+          }}
+        >
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="text-center max-w-4xl mx-auto">
+              {/* Large Hero Logo on Gradient Background */}
+              <div className="mb-10">
+                <Master1Logo size="lg" className="mx-auto hover:scale-105 transition-transform duration-500 drop-shadow-2xl" />
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl font-light mb-5 leading-tight" style={{ color: '#F7F3ED' }}>
+                <span style={{ color: '#E98B2A' }} className="font-medium">Intelligent Specification Synthesis</span>
+              </h1>
+              <h2 className="text-xl md:text-2xl font-light mb-10" style={{ color: '#F7F3ED' }}>
+                AI-powered specification analysis and compliance verification
+              </h2>
+            </div>
           </div>
-          <h2 className="text-6xl font-bold text-white mb-8">
-            Master the art of 
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"> specification synthesis </span>
+        </div>
+
+        {/* Tumbled Marble Content Section */}
+        <div style={{ backgroundColor: '#D9D6D0' }} className="py-10">
+          <div className="container mx-auto px-6">
+            <div className="text-center max-w-3xl mx-auto">
+              {/* Hero Content Box */}
+              <div className="mb-10">
+                <p className="text-lg leading-relaxed" style={{ color: '#1A2B49' }}>
+                  Transform your specification documents into intelligent, compliant, and actionable project deliverables with our advanced AI synthesis engine.
+                </p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <Button size="lg" style={{ backgroundColor: '#E98B2A', color: '#F7F3ED' }} className="text-lg px-10 py-4 rounded-lg hover:opacity-90 font-medium transition-all">
+                  Start Synthesis
+                  <ArrowRight className="ml-3 h-5 w-5" />
+                </Button>
+                <Button variant="outline" size="lg" style={{ borderColor: '#1A2B49', color: '#1A2B49', backgroundColor: 'transparent' }} className="text-lg px-10 py-4 rounded-lg border-2 hover:bg-white hover:bg-opacity-50 transition-all font-medium">
+                  View Examples
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Key Features Section */}
+      <section className="py-16" style={{ backgroundColor: '#D9D6D0' }}>
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-light mb-6" style={{ color: '#1A2B49' }}>Specification Intelligence</h2>
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: '#1A2B49' }}>Advanced AI capabilities for comprehensive specification analysis and synthesis</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Feature 1 */}
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#D9D6D0' }}>
+              <CardHeader className="p-8">
+                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#F7F3ED' }}>
+                  <FileText className="h-8 w-8" style={{ color: '#E98B2A' }} />
+                </div>
+                <CardTitle className="text-2xl font-medium mb-4" style={{ color: '#1A2B49' }}>Document Analysis</CardTitle>
+                <CardDescription className="text-base leading-relaxed" style={{ color: '#1A2B49' }}>
+                  Advanced parsing and understanding of specification documents, drawings, and project requirements
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            {/* Feature 2 */}
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#D9D6D0' }}>
+              <CardHeader className="p-8">
+                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#F7F3ED' }}>
+                  <Shield className="h-8 w-8" style={{ color: '#1A2B49' }} />
+                </div>
+                <CardTitle className="text-2xl font-medium mb-4" style={{ color: '#1A2B49' }}>Compliance Verification</CardTitle>
+                <CardDescription className="text-base leading-relaxed" style={{ color: '#1A2B49' }}>
+                  Automated checking against building codes, industry standards, and regulatory requirements
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            {/* Feature 3 */}
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#D9D6D0' }}>
+              <CardHeader className="p-8">
+                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#F7F3ED' }}>
+                  <Zap className="h-8 w-8" style={{ color: '#7C9C95' }} />
+                </div>
+                <CardTitle className="text-2xl font-medium mb-4" style={{ color: '#1A2B49' }}>Intelligent Synthesis</CardTitle>
+                <CardDescription className="text-base leading-relaxed" style={{ color: '#1A2B49' }}>
+                  AI-powered generation of comprehensive specifications from project requirements and constraints
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            {/* Feature 4 */}
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#D9D6D0' }}>
+              <CardHeader className="p-8">
+                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#F7F3ED' }}>
+                  <Target className="h-8 w-8" style={{ color: '#E98B2A' }} />
+                </div>
+                <CardTitle className="text-2xl font-medium mb-4" style={{ color: '#1A2B49' }}>Quality Assurance</CardTitle>
+                <CardDescription className="text-base leading-relaxed" style={{ color: '#1A2B49' }}>
+                  Continuous monitoring and validation of specification quality and completeness
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            {/* Feature 5 */}
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#D9D6D0' }}>
+              <CardHeader className="p-8">
+                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#F7F3ED' }}>
+                  <CheckCircle className="h-8 w-8" style={{ color: '#7C9C95' }} />
+                </div>
+                <CardTitle className="text-2xl font-medium mb-4" style={{ color: '#1A2B49' }}>Version Control</CardTitle>
+                <CardDescription className="text-base leading-relaxed" style={{ color: '#1A2B49' }}>
+                  Track changes, manage revisions, and maintain specification history throughout the project lifecycle
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            {/* Feature 6 */}
+            <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#D9D6D0' }}>
+              <CardHeader className="p-8">
+                <div className="w-16 h-16 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6" style={{ backgroundColor: '#F7F3ED' }}>
+                  <ArrowRight className="h-8 w-8" style={{ color: '#1A2B49' }} />
+                </div>
+                <CardTitle className="text-2xl font-medium mb-4" style={{ color: '#1A2B49' }}>Export & Integration</CardTitle>
+                <CardDescription className="text-base leading-relaxed" style={{ color: '#1A2B49' }}>
+                  Seamless export to industry-standard formats and integration with existing project management tools
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="py-16" style={{ backgroundColor: '#F7F3ED' }}>
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-light mb-6" style={{ color: '#1A2B49' }}>How Master1 Works</h2>
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: '#1A2B49' }}>Four simple steps to intelligent specification synthesis</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Step 1 */}
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center font-bold text-2xl" style={{ backgroundColor: '#E98B2A', color: '#F7F3ED' }}>
+                1
+              </div>
+              <h3 className="text-xl font-semibold mb-4" style={{ color: '#1A2B49' }}>Upload Documents</h3>
+              <p className="text-base" style={{ color: '#1A2B49' }}>Upload your project specifications, drawings, and requirements</p>
+            </div>
+
+            {/* Step 2 */}
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center font-bold text-2xl" style={{ backgroundColor: '#1A2B49', color: '#F7F3ED' }}>
+                2
+              </div>
+              <h3 className="text-xl font-semibold mb-4" style={{ color: '#1A2B49' }}>AI Analysis</h3>
+              <p className="text-base" style={{ color: '#1A2B49' }}>Our AI analyzes and understands your project requirements</p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center font-bold text-2xl" style={{ backgroundColor: '#7C9C95', color: '#F7F3ED' }}>
+                3
+              </div>
+              <h3 className="text-xl font-semibold mb-4" style={{ color: '#1A2B49' }}>Synthesis</h3>
+              <p className="text-base" style={{ color: '#1A2B49' }}>Generate comprehensive, compliant specifications automatically</p>
+            </div>
+
+            {/* Step 4 */}
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full mx-auto mb-6 flex items-center justify-center font-bold text-2xl" style={{ backgroundColor: '#E98B2A', color: '#F7F3ED' }}>
+                4
+              </div>
+              <h3 className="text-xl font-semibold mb-4" style={{ color: '#1A2B49' }}>Review & Export</h3>
+              <p className="text-base" style={{ color: '#1A2B49' }}>Review, refine, and export your specifications</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16" style={{ backgroundColor: '#1A2B49' }}>
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl md:text-5xl font-light mb-6" style={{ color: '#F7F3ED' }}>
+            Ready to Transform Your Specifications?
           </h2>
-          <div className="max-w-4xl mx-auto mb-12">
-            <h3 className="text-2xl font-semibold text-purple-300 mb-6">Master1™<br />Unify. Standardize. Optimize.</h3>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              AI-driven specification synthesis that transforms disparate project documents into unified, compliant, and optimized construction specifications. From multiple sources to master specification in minutes.
-            </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
-              <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
-                <p className="text-gray-200 text-sm">Ingests specifications from multiple formats and sources</p>
-              </div>
-              <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
-                <p className="text-gray-200 text-sm">Identifies conflicts and inconsistencies across documents</p>
-              </div>
-              <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
-                <p className="text-gray-200 text-sm">Synthesizes into unified CSI MasterFormat structure</p>
-              </div>
-              <div className="bg-gray-800/30 rounded-lg p-4 border border-gray-700">
-                <p className="text-gray-200 text-sm">Ensures code compliance and industry best practices</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Upload Interface */}
-        <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-purple-500/50 mb-16">
-          <CardHeader>
-            <CardTitle className="text-2xl text-white flex items-center space-x-3">
-              <Upload className="h-8 w-8 text-purple-400" />
-              <span>Upload Project Specifications</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="border-2 border-dashed border-gray-600 rounded-lg p-12 text-center hover:border-purple-500/50 transition-colors cursor-pointer">
-              <div className="space-y-4">
-                <div className="bg-purple-600/20 rounded-full p-6 w-fit mx-auto">
-                  <FileText className="h-12 w-12 text-purple-400" />
-                </div>
-                <div>
-                  <p className="text-xl text-white mb-2">Drag and drop your specification files here</p>
-                  <p className="text-gray-400 mb-4">
-                    Supports PDF, DOCX, TXT, and other common formats
-                  </p>
-                  <Button className="bg-purple-600 hover:bg-purple-700">
-                    Select Files
-                  </Button>
-                </div>
-              </div>
-            </div>
-            
-            <div className="grid md:grid-cols-3 gap-4 mt-8">
-              <div className="text-center p-4 bg-gray-700/30 rounded-lg">
-                <h4 className="font-semibold text-white mb-2">Multi-Source Ingestion</h4>
-                <p className="text-sm text-gray-300">Upload from architectural drawings, engineering specs, contractor documents</p>
-              </div>
-              <div className="text-center p-4 bg-gray-700/30 rounded-lg">
-                <h4 className="font-semibold text-white mb-2">Conflict Detection</h4>
-                <p className="text-sm text-gray-300">AI identifies inconsistencies and conflicts between documents</p>
-              </div>
-              <div className="text-center p-4 bg-gray-700/30 rounded-lg">
-                <h4 className="font-semibold text-white mb-2">Unified Output</h4>
-                <p className="text-sm text-gray-300">Generate single master specification with resolved conflicts</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Process Flow */}
-        <div className="mb-16">
-          <h3 className="text-4xl font-bold text-center text-white mb-12">Intelligent Synthesis Process</h3>
-          <div className="grid lg:grid-cols-4 gap-8">
-            <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-purple-500/50">
-              <CardHeader>
-                <div className="bg-purple-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-purple-500/30 transition-colors">
-                  <Upload className="h-8 w-8 text-purple-400" />
-                </div>
-                <CardTitle className="text-xl text-white">1. Ingest</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300 mb-4">
-                  Upload multiple specification documents from different sources and formats.
-                </p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• Architectural specifications</li>
-                  <li>• Engineering documents</li>
-                  <li>• Contractor submissions</li>
-                  <li>• Legacy project specs</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-blue-500/50">
-              <CardHeader>
-                <div className="bg-blue-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-blue-500/30 transition-colors">
-                  <Zap className="h-8 w-8 text-blue-400" />
-                </div>
-                <CardTitle className="text-xl text-white">2. Analyze</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300 mb-4">
-                  AI analyzes content, identifies conflicts, and maps to CSI standards.
-                </p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• Content extraction</li>
-                  <li>• Conflict identification</li>
-                  <li>• Standards mapping</li>
-                  <li>• Quality assessment</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-green-500/50">
-              <CardHeader>
-                <div className="bg-green-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-green-500/30 transition-colors">
-                  <Shield className="h-8 w-8 text-green-400" />
-                </div>
-                <CardTitle className="text-xl text-white">3. Synthesize</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300 mb-4">
-                  Intelligent synthesis creates unified specification with conflict resolution.
-                </p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• Conflict resolution</li>
-                  <li>• Content harmonization</li>
-                  <li>• Standards compliance</li>
-                  <li>• Quality optimization</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-orange-500/50">
-              <CardHeader>
-                <div className="bg-orange-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-orange-500/30 transition-colors">
-                  <Download className="h-8 w-8 text-orange-400" />
-                </div>
-                <CardTitle className="text-xl text-white">4. Export</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300 mb-4">
-                  Generate master specification in your preferred format and structure.
-                </p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• CSI MasterFormat</li>
-                  <li>• Custom templates</li>
-                  <li>• Multiple formats</li>
-                  <li>• Integration ready</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        {/* Key Features */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-16">
-          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-purple-500/50">
-            <CardHeader>
-              <div className="bg-purple-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-purple-500/30 transition-colors">
-                <Zap className="h-8 w-8 text-purple-400" />
-              </div>
-              <CardTitle className="text-xl text-white">Advanced Conflict Resolution</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-300 mb-6">
-                Sophisticated AI algorithms identify and resolve conflicts between multiple specification sources, ensuring consistency and compliance.
-              </p>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400">Conflicts Detected:</span>
-                  <Badge variant="default" className="bg-red-600">247</Badge>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400">Auto-Resolved:</span>
-                  <Badge variant="secondary" className="bg-green-600">198</Badge>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400">Requires Review:</span>
-                  <Badge variant="outline" className="border-yellow-500 text-yellow-400">49</Badge>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-gray-800/50 border border-gray-700 hover:border-blue-500/50">
-            <CardHeader>
-              <div className="bg-blue-600/20 rounded-2xl p-3 w-fit mb-4 group-hover:bg-blue-500/30 transition-colors">
-                <Shield className="h-8 w-8 text-blue-400" />
-              </div>
-              <CardTitle className="text-xl text-white">Compliance Validation</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-300 mb-6">
-                Automated validation against building codes, industry standards, and CSI MasterFormat requirements ensures professional-grade output.
-              </p>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400">Code Compliance:</span>
-                  <Badge variant="default" className="bg-green-600">98.5%</Badge>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400">CSI Format:</span>
-                  <Badge variant="secondary" className="bg-blue-600">Valid</Badge>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-400">Quality Score:</span>
-                  <Badge variant="outline" className="border-green-500 text-green-400">A+</Badge>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="text-center">
-          <div className="space-x-4">
-            <Button size="lg" className="bg-purple-600 hover:bg-purple-700 px-8 py-4 text-lg">
-              Start Synthesis
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button size="lg" variant="outline" className="border-purple-500 text-purple-300 hover:bg-purple-500/10 px-8 py-4 text-lg">
-              View Examples
+          <p className="text-xl mb-10 max-w-2xl mx-auto" style={{ color: '#F7F3ED' }}>
+            Join thousands of AEC professionals who are already using Master1 to create better specifications faster.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <Link to="/signup">
+              <Button size="lg" style={{ backgroundColor: '#E98B2A', color: '#F7F3ED' }} className="text-lg px-10 py-4 rounded-lg hover:opacity-90 font-medium transition-all">
+                Start Free Trial
+                <ArrowRight className="ml-3 h-5 w-5" />
+              </Button>
+            </Link>
+            <Button variant="outline" size="lg" style={{ borderColor: '#F7F3ED', color: '#F7F3ED', backgroundColor: 'transparent' }} className="text-lg px-10 py-4 rounded-lg border-2 hover:bg-white hover:bg-opacity-10 transition-all font-medium">
+              Schedule Demo
             </Button>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

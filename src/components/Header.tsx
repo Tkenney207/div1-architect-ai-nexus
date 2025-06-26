@@ -1,106 +1,179 @@
 
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
+import { Menu, X, User } from "lucide-react";
+import Div1Logo from './Div1Logo';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Users, ChevronDown, Home, UserPlus, LogOut, User } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
-import Div1Logo from "@/components/Div1Logo";
-import { useAuth } from "@/contexts/AuthContext";
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 const Header = () => {
-  const { user, signOut } = useAuth();
-  const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
-  const handleSignOut = async () => {
-    await signOut();
-    navigate('/');
-  };
-
-  // Extract user's name from metadata or use email as fallback
-  const getUserDisplayName = () => {
-    if (!user) return '';
-    
-    const firstName = user.user_metadata?.first_name || '';
-    const lastName = user.user_metadata?.last_name || '';
-    
-    if (firstName && lastName) {
-      return `${firstName} ${lastName}`;
-    } else if (firstName) {
-      return firstName;
-    } else if (lastName) {
-      return lastName;
-    }
-    
-    // Fallback to email if no name is available
-    return user.email;
+  const isActive = (path: string) => {
+    return location.pathname === path;
   };
 
   return (
-    <header className="border-b-2" style={{ backgroundColor: '#0F1B2E', borderBottomColor: '#162239' }}>
+    <header className="w-full border-b border-gray-200" style={{ backgroundColor: '#F7F3ED' }}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-6">
-            <Link to="/" className="hover:scale-105 transition-transform duration-300">
-              <Div1Logo size="xl" className="drop-shadow-lg" />
+          {/* Logo */}
+          <Link to="/" className="flex items-center hover:opacity-90 transition-opacity">
+            <Div1Logo size="md" />
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger 
+                    className="text-base font-medium hover:text-orange-600 transition-colors"
+                    style={{ color: isActive('/') ? '#E98B2A' : '#1A2B49' }}
+                  >
+                    Solutions
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <div className="grid gap-3 p-6 w-[400px] bg-white shadow-lg rounded-lg">
+                      <div className="row-span-3">
+                        <NavigationMenuLink asChild>
+                          <Link
+                            to="/engage"
+                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-orange-500/20 to-orange-600/20 p-6 no-underline outline-none focus:shadow-md hover:bg-gradient-to-b hover:from-orange-500/30 hover:to-orange-600/30 transition-all"
+                          >
+                            <div className="mb-2 mt-4 text-lg font-medium" style={{ color: '#1A2B49' }}>
+                              Engage
+                            </div>
+                            <p className="text-sm leading-tight text-gray-600">
+                              AI-facilitated project charter with conversational intelligence
+                            </p>
+                          </Link>
+                        </NavigationMenuLink>
+                      </div>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild>
+                    <Link 
+                      to="/projects" 
+                      className="text-base font-medium hover:text-orange-600 transition-colors"
+                      style={{ color: isActive('/projects') ? '#E98B2A' : '#1A2B49' }}
+                    >
+                      Projects
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild>
+                    <Link 
+                      to="/support" 
+                      className="text-base font-medium hover:text-orange-600 transition-colors"
+                      style={{ color: isActive('/support') ? '#E98B2A' : '#1A2B49' }}
+                    >
+                      Support
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+          </nav>
+
+          {/* Desktop Auth Buttons */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Link to="/signin">
+              <Button 
+                variant="ghost" 
+                className="text-base font-medium hover:text-orange-600 transition-colors"
+                style={{ color: '#1A2B49' }}
+              >
+                Sign In
+              </Button>
+            </Link>
+            <Link to="/signup">
+              <Button 
+                className="text-base font-medium px-6 py-2 rounded-lg transition-all hover:opacity-90"
+                style={{ backgroundColor: '#E98B2A', color: '#F7F3ED' }}
+              >
+                Get Started
+              </Button>
             </Link>
           </div>
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/engage" style={{ color: '#F7F3ED' }} className="hover:text-white transition-colors font-medium">
-              Engage
-            </Link>
-            <Link to="/division1" style={{ color: '#F7F3ED' }} className="hover:text-white transition-colors font-medium">
-              Division 1
-            </Link>
-            <Link to="/master1" style={{ color: '#F7F3ED' }} className="hover:text-white transition-colors font-medium">
-              Master1
-            </Link>
-            <div className="flex items-center space-x-3">
-              {user ? (
-                <>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button size="sm" style={{ backgroundColor: '#F7F3ED', color: '#1A2B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
-                        <User className="h-4 w-4 mr-2" />
-                        {getUserDisplayName()}
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent style={{ backgroundColor: '#1A2B49' }} className="border-white border-opacity-20">
-                      <DropdownMenuItem onClick={handleSignOut} style={{ color: '#F7F3ED' }} className="hover:text-white hover:bg-white hover:bg-opacity-10 transition-colors cursor-pointer">
-                        <LogOut className="h-4 w-4 mr-2" />
-                        Sign Out
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                  <Link to="/dashboard">
-                    <Button size="sm" style={{ backgroundColor: '#E98B2A', color: '#1A2B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
-                      <Home className="h-4 w-4 mr-2" />
-                      Home
-                    </Button>
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <Link to="/signup">
-                    <Button size="sm" style={{ backgroundColor: '#E98B2A', color: '#1A2B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
-                      <UserPlus className="h-4 w-4 mr-2" />
-                      Sign Up
-                    </Button>
-                  </Link>
-                  <Link to="/signin">
-                    <Button size="sm" style={{ backgroundColor: '#F7F3ED', color: '#1A2B49' }} className="rounded-lg px-4 hover:opacity-90 border-0 font-medium">
-                      <Users className="h-4 w-4 mr-2" />
-                      Login
-                    </Button>
-                  </Link>
-                </>
-              )}
-            </div>
-          </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? (
+              <X className="h-6 w-6" style={{ color: '#1A2B49' }} />
+            ) : (
+              <Menu className="h-6 w-6" style={{ color: '#1A2B49' }} />
+            )}
+          </button>
         </div>
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden mt-4 pb-4 border-t border-gray-200">
+            <nav className="flex flex-col space-y-4 pt-4">
+              <Link 
+                to="/engage" 
+                className="text-base font-medium hover:text-orange-600 transition-colors px-2 py-1"
+                style={{ color: isActive('/engage') ? '#E98B2A' : '#1A2B49' }}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Engage
+              </Link>
+              <Link 
+                to="/projects" 
+                className="text-base font-medium hover:text-orange-600 transition-colors px-2 py-1"
+                style={{ color: isActive('/projects') ? '#E98B2A' : '#1A2B49' }}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Projects
+              </Link>
+              <Link 
+                to="/support" 
+                className="text-base font-medium hover:text-orange-600 transition-colors px-2 py-1"
+                style={{ color: isActive('/support') ? '#E98B2A' : '#1A2B49' }}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Support
+              </Link>
+              <div className="flex flex-col space-y-2 pt-4 border-t border-gray-200">
+                <Link to="/signin" onClick={() => setIsMenuOpen(false)}>
+                  <Button 
+                    variant="ghost" 
+                    className="w-full justify-start text-base font-medium hover:text-orange-600 transition-colors"
+                    style={{ color: '#1A2B49' }}
+                  >
+                    Sign In
+                  </Button>
+                </Link>
+                <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
+                  <Button 
+                    className="w-full text-base font-medium py-2 rounded-lg transition-all hover:opacity-90"
+                    style={{ backgroundColor: '#E98B2A', color: '#F7F3ED' }}
+                  >
+                    Get Started
+                  </Button>
+                </Link>
+              </div>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );
