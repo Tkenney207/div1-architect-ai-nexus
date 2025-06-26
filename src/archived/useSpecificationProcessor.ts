@@ -1,3 +1,7 @@
+
+// ARCHIVED: useSpecificationProcessor Hook - Complete functionality preserved for future restoration
+// Original file: src/hooks/useSpecificationProcessor.ts
+
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { SpecificationFile, ProcessingStatus } from '@/types/csi';

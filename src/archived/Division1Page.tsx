@@ -1,3 +1,7 @@
+
+// ARCHIVED: Division1 Page - Complete functionality preserved for future restoration
+// Original file: src/pages/Division1.tsx
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -245,7 +249,13 @@ const Division1 = () => {
                   <div className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
                     <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
                   </div>
-                  <span>017000 - Execution & Closeout</span>
+                  <span>017000 - Execution Requirements</span>
+                </li>
+                <li className="flex items-center space-x-3">
+                  <div className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
+                    <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
+                  </div>
+                  <span>017419 - Waste Management</span>
                 </li>
               </ul>
             </CardContent>
@@ -254,21 +264,15 @@ const Division1 = () => {
           <Card className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-xl bg-white" style={{ borderColor: '#F7F3ED' }}>
             <CardHeader>
               <div className="rounded-2xl p-3 w-fit mb-4 group-hover:opacity-80 transition-colors" style={{ backgroundColor: '#7C9C95' }}>
-                <CheckCircle className="h-8 w-8" style={{ color: '#F7F3ED' }} />
+                <Upload className="h-8 w-8" style={{ color: '#F7F3ED' }} />
               </div>
               <CardTitle className="text-xl" style={{ color: '#1A2B49' }}>Sustainability & Compliance</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="mb-6" style={{ color: '#1A2B49' }}>
-                Environmental and regulatory compliance specifications.
+                Environmental and compliance specifications.
               </p>
               <ul className="space-y-3 text-sm" style={{ color: '#1A2B49' }}>
-                <li className="flex items-center space-x-3">
-                  <div className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
-                    <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
-                  </div>
-                  <span>017419 - Waste Management</span>
-                </li>
                 <li className="flex items-center space-x-3">
                   <div className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
                     <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
@@ -279,7 +283,19 @@ const Division1 = () => {
                   <div className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
                     <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
                   </div>
-                  <span>LEED Integration</span>
+                  <span>LEED Compliance Integration</span>
+                </li>
+                <li className="flex items-center space-x-3">
+                  <div className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
+                    <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
+                  </div>
+                  <span>Code Compliance Tracking</span>
+                </li>
+                <li className="flex items-center space-x-3">
+                  <div className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
+                    <CheckCircle className="h-3 w-3" style={{ color: '#F7F3ED' }} />
+                  </div>
+                  <span>Performance Documentation</span>
                 </li>
               </ul>
             </CardContent>
