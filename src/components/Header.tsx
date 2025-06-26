@@ -22,51 +22,53 @@ const Header = () => {
             <Div1Logo size="md" />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link 
-              to="/engage" 
-              className="text-base font-medium hover:text-orange-500 transition-colors text-white"
-              style={{ color: isActive('/engage') ? '#E98B2A' : '#FFFFFF' }}
-            >
-              Engage
-            </Link>
-            
-            <Link 
-              to="/projects" 
-              className="text-base font-medium hover:text-orange-500 transition-colors text-white"
-              style={{ color: isActive('/projects') ? '#E98B2A' : '#FFFFFF' }}
-            >
-              Projects
-            </Link>
-            
-            <Link 
-              to="/support" 
-              className="text-base font-medium hover:text-orange-500 transition-colors text-white"
-              style={{ color: isActive('/support') ? '#E98B2A' : '#FFFFFF' }}
-            >
-              Support
-            </Link>
-          </nav>
+          {/* Desktop Navigation - Moved to right side */}
+          <div className="hidden md:flex items-center space-x-8">
+            <nav className="flex items-center space-x-8">
+              <Link 
+                to="/engage" 
+                className="text-base font-medium hover:text-orange-500 transition-colors text-white"
+                style={{ color: isActive('/engage') ? '#E98B2A' : '#FFFFFF' }}
+              >
+                Engage
+              </Link>
+              
+              <Link 
+                to="/projects" 
+                className="text-base font-medium hover:text-orange-500 transition-colors text-white"
+                style={{ color: isActive('/projects') ? '#E98B2A' : '#FFFFFF' }}
+              >
+                Projects
+              </Link>
+              
+              <Link 
+                to="/support" 
+                className="text-base font-medium hover:text-orange-500 transition-colors text-white"
+                style={{ color: isActive('/support') ? '#E98B2A' : '#FFFFFF' }}
+              >
+                Support
+              </Link>
+            </nav>
 
-          {/* Desktop Auth Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Link to="/signin">
-              <Button 
-                variant="ghost" 
-                className="text-base font-medium hover:text-orange-500 transition-colors text-white hover:bg-white/10"
-              >
-                Sign In
-              </Button>
-            </Link>
-            <Link to="/signup">
-              <Button 
-                className="text-base font-medium px-6 py-2 rounded-lg transition-all hover:opacity-90 bg-orange text-white"
-                style={{ backgroundColor: '#E98B2A' }}
-              >
-                Get Started
-              </Button>
-            </Link>
+            {/* Auth Buttons */}
+            <div className="flex items-center space-x-4">
+              <Link to="/signin">
+                <Button 
+                  variant="ghost" 
+                  className="text-base font-medium hover:text-orange-500 transition-colors text-white hover:bg-white/10"
+                >
+                  Sign In
+                </Button>
+              </Link>
+              <Link to="/signup">
+                <Button 
+                  className="text-base font-medium px-6 py-2 rounded-lg transition-all hover:opacity-90 bg-orange text-white"
+                  style={{ backgroundColor: '#E98B2A' }}
+                >
+                  Get Started
+                </Button>
+              </Link>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
