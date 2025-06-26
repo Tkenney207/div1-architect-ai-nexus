@@ -67,7 +67,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Solutions Section - Focus on Engage */}
+      {/* Solutions Section - Focus on Charter */}
       <section className="py-16" style={{ backgroundColor: '#D9D6D0' }}>
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
@@ -76,13 +76,13 @@ const Index = () => {
           </div>
 
           <div className="max-w-2xl mx-auto">
-            {/* Engage Module - Featured */}
+            {/* Charter Module - Featured */}
             <Card className="group hover:shadow-xl transition-all duration-300 bg-white border rounded-xl" style={{ borderColor: '#D9D6D0' }}>
               <CardHeader className="p-8">
                 <div className="w-20 h-20 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6 mx-auto" style={{ backgroundColor: '#F7F3ED' }}>
                   <EngageIcon size="lg" className="text-orange" />
                 </div>
-                <CardTitle className="text-3xl font-medium mb-4 text-center" style={{ color: '#1A2B49' }}>Engage</CardTitle>
+                <CardTitle className="text-3xl font-medium mb-4 text-center" style={{ color: '#1A2B49' }}>Charter</CardTitle>
                 <CardDescription className="text-lg leading-relaxed text-center" style={{ color: '#1A2B49' }}>
                   AI-facilitated project charter creation with guided stakeholder interviews and intelligent documentation
                 </CardDescription>

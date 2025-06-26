@@ -30,15 +30,7 @@ const Header = () => {
                 className="text-base font-medium hover:text-orange-500 transition-colors text-white"
                 style={{ color: isActive('/engage') ? '#E98B2A' : '#FFFFFF' }}
               >
-                Engage
-              </Link>
-              
-              <Link 
-                to="/projects" 
-                className="text-base font-medium hover:text-orange-500 transition-colors text-white"
-                style={{ color: isActive('/projects') ? '#E98B2A' : '#FFFFFF' }}
-              >
-                Projects
+                Charter
               </Link>
               
               <Link 
@@ -95,15 +87,7 @@ const Header = () => {
                 style={{ color: isActive('/engage') ? '#E98B2A' : '#FFFFFF' }}
                 onClick={() => setIsMenuOpen(false)}
               >
-                Engage
-              </Link>
-              <Link 
-                to="/projects" 
-                className="text-base font-medium hover:text-orange-500 transition-colors px-2 py-1 text-white"
-                style={{ color: isActive('/projects') ? '#E98B2A' : '#FFFFFF' }}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Projects
+                Charter
               </Link>
               <Link 
                 to="/support" 
