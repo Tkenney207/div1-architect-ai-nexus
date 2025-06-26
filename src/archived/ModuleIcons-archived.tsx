@@ -108,3 +108,6 @@ export const Master1Icon = ({ size = 'md', className = '' }: ModuleIconProps) =>
     </svg>
   );
 };
+
+// Division1 Icon and Logo components would be added here when they are created and then archived
+// Currently, Division1 functionality references were removed but no actual Division1 icons existed in the main codebase
