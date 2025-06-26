@@ -19,7 +19,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center hover:opacity-90 transition-opacity">
-            <Div1Logo size="md" />
+            <Div1Logo size="xl" />
           </Link>
 
           {/* Desktop Navigation - Moved to right side */}
