@@ -4,14 +4,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Menu, X, User } from "lucide-react";
 import Div1Logo from './Div1Logo';
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,61 +24,29 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger 
-                    className="text-base font-medium hover:text-orange-600 transition-colors"
-                    style={{ color: isActive('/') ? '#E98B2A' : '#1A2B49' }}
-                  >
-                    Solutions
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid gap-3 p-6 w-[400px] bg-white shadow-lg rounded-lg">
-                      <div className="row-span-3">
-                        <NavigationMenuLink asChild>
-                          <Link
-                            to="/engage"
-                            className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-orange-500/20 to-orange-600/20 p-6 no-underline outline-none focus:shadow-md hover:bg-gradient-to-b hover:from-orange-500/30 hover:to-orange-600/30 transition-all"
-                          >
-                            <div className="mb-2 mt-4 text-lg font-medium" style={{ color: '#1A2B49' }}>
-                              Engage
-                            </div>
-                            <p className="text-sm leading-tight text-gray-600">
-                              AI-facilitated project charter with conversational intelligence
-                            </p>
-                          </Link>
-                        </NavigationMenuLink>
-                      </div>
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild>
-                    <Link 
-                      to="/projects" 
-                      className="text-base font-medium hover:text-orange-600 transition-colors"
-                      style={{ color: isActive('/projects') ? '#E98B2A' : '#1A2B49' }}
-                    >
-                      Projects
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-                
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild>
-                    <Link 
-                      to="/support" 
-                      className="text-base font-medium hover:text-orange-600 transition-colors"
-                      style={{ color: isActive('/support') ? '#E98B2A' : '#1A2B49' }}
-                    >
-                      Support
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
+            <Link 
+              to="/engage" 
+              className="text-base font-medium hover:text-orange-600 transition-colors"
+              style={{ color: isActive('/engage') ? '#E98B2A' : '#1A2B49' }}
+            >
+              Engage
+            </Link>
+            
+            <Link 
+              to="/projects" 
+              className="text-base font-medium hover:text-orange-600 transition-colors"
+              style={{ color: isActive('/projects') ? '#E98B2A' : '#1A2B49' }}
+            >
+              Projects
+            </Link>
+            
+            <Link 
+              to="/support" 
+              className="text-base font-medium hover:text-orange-600 transition-colors"
+              style={{ color: isActive('/support') ? '#E98B2A' : '#1A2B49' }}
+            >
+              Support
+            </Link>
           </nav>
 
           {/* Desktop Auth Buttons */}
