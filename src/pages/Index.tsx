@@ -31,10 +31,10 @@ const Index = () => {
               </div>
               
               <h1 className="text-5xl md:text-6xl font-light mb-5 leading-tight" style={{ color: '#F7F3ED' }}>
-                <span style={{ color: '#E98B2A' }} className="font-medium">From input to output</span>
+                <span style={{ color: '#E98B2A' }} className="font-medium">AI-Powered Project Charters</span>
               </h1>
               <h2 className="text-2xl md:text-3xl font-light mb-10" style={{ color: '#F7F3ED' }}>
-                AI that understands what makes AEC work.
+                Transform stakeholder conversations into structured AEC project foundations.
               </h2>
             </div>
           </div>
@@ -47,14 +47,14 @@ const Index = () => {
               {/* Hero Content Box */}
               <div className="mb-10">
                 <p className="text-lg leading-relaxed" style={{ color: '#1A2B49' }}>
-                  Streamline project planning and specification management with our comprehensive AI-driven ecosystem designed for Owners & AEC professionals.
+                  Create comprehensive project charters that align diverse AEC professionals under a unified vision. Our AI guides stakeholder interviews to capture objectives, scope, responsibilities, and success criteria for complex multidisciplinary projects.
                 </p>
               </div>
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <Link to="/signup">
+                <Link to="/engage">
                   <Button size="lg" style={{ backgroundColor: '#E98B2A', color: '#F7F3ED' }} className="text-lg px-10 py-4 rounded-lg hover:opacity-90 font-medium transition-all">
-                    Get Started Free
+                    Start Your Project Charter
                     <ArrowRight className="ml-3 h-5 w-5" />
                   </Button>
                 </Link>
@@ -71,8 +71,8 @@ const Index = () => {
       <section className="py-16" style={{ backgroundColor: '#D9D6D0' }}>
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-light mb-6" style={{ color: '#1A2B49' }}>AI-powered project planning</h2>
-            <p className="text-xl max-w-3xl mx-auto" style={{ color: '#1A2B49' }}>Intelligent tools designed to streamline your AEC workflow from concept to completion</p>
+            <h2 className="text-4xl md:text-5xl font-light mb-6" style={{ color: '#1A2B49' }}>Structured Project Foundation</h2>
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: '#1A2B49' }}>Capture project objectives, stakeholder roles, scope boundaries, and success criteria through AI-guided conversations</p>
           </div>
 
           <div className="max-w-2xl mx-auto">
@@ -84,7 +84,7 @@ const Index = () => {
                 </div>
                 <CardTitle className="text-3xl font-medium mb-4 text-center" style={{ color: '#1A2B49' }}>Engage</CardTitle>
                 <CardDescription className="text-lg leading-relaxed text-center" style={{ color: '#1A2B49' }}>
-                  AI-facilitated project charter with conversational intelligence and privacy protection
+                  AI-facilitated project charter creation with guided stakeholder interviews and intelligent documentation
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-8 pb-8">
@@ -93,30 +93,30 @@ const Index = () => {
                     <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
                       <CheckCircle className="h-4 w-4" style={{ color: '#F7F3ED' }} />
                     </div>
-                    <span>Multi-agent conversation system</span>
+                    <span>Structured stakeholder interviews</span>
                   </li>
                   <li className="flex items-center space-x-4">
                     <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
                       <CheckCircle className="h-4 w-4" style={{ color: '#F7F3ED' }} />
                     </div>
-                    <span>Privacy-preserving architecture</span>
+                    <span>Automated scope and objective capture</span>
                   </li>
                   <li className="flex items-center space-x-4">
                     <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
                       <CheckCircle className="h-4 w-4" style={{ color: '#F7F3ED' }} />
                     </div>
-                    <span>Real-time sentiment analysis</span>
+                    <span>Role and responsibility mapping</span>
                   </li>
                   <li className="flex items-center space-x-4">
                     <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#7C9C95' }}>
                       <CheckCircle className="h-4 w-4" style={{ color: '#F7F3ED' }} />
                     </div>
-                    <span>Intelligent project documentation</span>
+                    <span>Risk identification and documentation</span>
                   </li>
                 </ul>
                 <Link to="/engage">
                   <Button className="w-full rounded-lg text-white font-medium py-4 text-lg transition-all hover:opacity-90" style={{ backgroundColor: '#E98B2A' }}>
-                    Start Your Project Charter
+                    Create Project Charter
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
@@ -124,28 +124,28 @@ const Index = () => {
             </Card>
           </div>
 
-          {/* Additional Features Section */}
+          {/* Project Charter Benefits */}
           <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="text-center p-6 bg-white rounded-xl shadow-lg">
               <div className="w-12 h-12 rounded-lg mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#E98B2A' }}>
                 <CheckCircle className="h-6 w-6" style={{ color: '#F7F3ED' }} />
               </div>
-              <h3 className="text-lg font-semibold mb-2" style={{ color: '#1A2B49' }}>Intelligent Analysis</h3>
-              <p className="text-sm" style={{ color: '#1A2B49' }}>AI-powered insights and recommendations for your projects</p>
+              <h3 className="text-lg font-semibold mb-2" style={{ color: '#1A2B49' }}>Stakeholder Alignment</h3>
+              <p className="text-sm" style={{ color: '#1A2B49' }}>Ensure all parties share a unified understanding from project initiation</p>
             </div>
             <div className="text-center p-6 bg-white rounded-xl shadow-lg">
               <div className="w-12 h-12 rounded-lg mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#1A2B49' }}>
                 <CheckCircle className="h-6 w-6" style={{ color: '#F7F3ED' }} />
               </div>
-              <h3 className="text-lg font-semibold mb-2" style={{ color: '#1A2B49' }}>Seamless Integration</h3>
-              <p className="text-sm" style={{ color: '#1A2B49' }}>Connect with your existing AEC tools and workflows</p>
+              <h3 className="text-lg font-semibold mb-2" style={{ color: '#1A2B49' }}>Clear Scope Definition</h3>
+              <p className="text-sm" style={{ color: '#1A2B49' }}>Define project boundaries, deliverables, and success criteria</p>
             </div>
             <div className="text-center p-6 bg-white rounded-xl shadow-lg">
               <div className="w-12 h-12 rounded-lg mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#7C9C95' }}>
                 <CheckCircle className="h-6 w-6" style={{ color: '#F7F3ED' }} />
               </div>
-              <h3 className="text-lg font-semibold mb-2" style={{ color: '#1A2B49' }}>Data Security</h3>
-              <p className="text-sm" style={{ color: '#1A2B49' }}>Enterprise-grade security for your sensitive project data</p>
+              <h3 className="text-lg font-semibold mb-2" style={{ color: '#1A2B49' }}>Risk Mitigation</h3>
+              <p className="text-sm" style={{ color: '#1A2B49' }}>Identify potential challenges and assumptions early in the process</p>
             </div>
           </div>
         </div>
