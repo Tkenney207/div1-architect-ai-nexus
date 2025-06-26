@@ -1,4 +1,3 @@
-
 // ARCHIVED: Division1 Page - Complete functionality preserved for future restoration
 // Original file: src/pages/Division1.tsx
 
@@ -7,9 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Brain, Upload, ArrowRight, CheckCircle } from "lucide-react";
 import Header from "@/components/Header";
-import { CharterToDivision1 } from "@/components/division1/CharterToDivision1";
-import { GuidedDivision1 } from "@/components/division1/GuidedDivision1";
-import { Division1Review } from "@/components/division1/Division1Review";
+// ARCHIVED: Division1 component imports - components were moved to archived folder
+// import { CharterToDivision1 } from "@/components/division1/CharterToDivision1";
+// import { GuidedDivision1 } from "@/components/division1/GuidedDivision1";
+// import { Division1Review } from "@/components/division1/Division1Review";
 
 type Division1Module = 'charter' | 'guided' | 'review' | null;
 
@@ -19,11 +19,14 @@ const Division1 = () => {
   const renderModuleContent = () => {
     switch (selectedModule) {
       case 'charter':
-        return <CharterToDivision1 onBack={() => setSelectedModule(null)} />;
+        // ARCHIVED: CharterToDivision1 component functionality
+        return <div>Charter to Division1 functionality archived</div>;
       case 'guided':
-        return <GuidedDivision1 onBack={() => setSelectedModule(null)} />;
+        // ARCHIVED: GuidedDivision1 component functionality
+        return <div>Guided Division1 functionality archived</div>;
       case 'review':
-        return <Division1Review onBack={() => setSelectedModule(null)} />;
+        // ARCHIVED: Division1Review component functionality
+        return <div>Division1 Review functionality archived</div>;
       default:
         return renderModuleSelection();
     }

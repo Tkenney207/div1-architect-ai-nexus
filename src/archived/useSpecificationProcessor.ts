@@ -1,10 +1,42 @@
-
 // ARCHIVED: useSpecificationProcessor Hook - Complete functionality preserved for future restoration
 // Original file: src/hooks/useSpecificationProcessor.ts
 
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { SpecificationFile, ProcessingStatus } from '@/types/csi';
+
+// ARCHIVED: Using local type definitions since types were moved to archived
+interface SpecificationFile {
+  id: string;
+  name: string;
+  size: string;
+  uploadDate: string;
+  status: 'uploading' | 'processing' | 'processed' | 'error';
+  analysisResults?: {
+    overview: {
+      overallCompliance: number;
+      criticalIssues: number;
+      suggestions: number;
+    };
+    codeCompliance: {
+      code: string;
+      description: string;
+      status: 'compliant' | 'non-compliant' | 'requires-update';
+      priority: 'high' | 'medium' | 'low';
+    }[];
+    suggestions: {
+      section: string;
+      type: 'warning' | 'improvement' | 'suggestion';
+      message: string;
+      priority: 'high' | 'medium' | 'low';
+    }[];
+  };
+}
+
+interface ProcessingStatus {
+  stage: string;
+  progress: number;
+  message: string;
+}
 
 export const useSpecificationProcessor = () => {
   const [uploadedFiles, setUploadedFiles] = useState<SpecificationFile[]>([]);

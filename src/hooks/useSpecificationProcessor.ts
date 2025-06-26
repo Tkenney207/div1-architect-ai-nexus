@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { SpecificationFile, ProcessingStatus } from '@/types/csi';
@@ -5,6 +6,7 @@ import { SpecificationFile, ProcessingStatus } from '@/types/csi';
 export const useSpecificationProcessor = () => {
   const [uploadedFiles, setUploadedFiles] = useState<SpecificationFile[]>([]);
   const [processingStatus, setProcessingStatus] = useState<ProcessingStatus | null>(null);
+  const [fileContents, setFileContents] = useState<Record<string, string>>({});
 
   const uploadMutation = useMutation({
     mutationFn: async (file: File) => {
@@ -17,6 +19,10 @@ export const useSpecificationProcessor = () => {
       };
 
       setUploadedFiles(prev => [...prev, newFile]);
+
+      // Store file content for later use
+      const content = await file.text();
+      setFileContents(prev => ({ ...prev, [newFile.id]: content }));
 
       // Simulate upload
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -101,10 +107,15 @@ export const useSpecificationProcessor = () => {
     uploadMutation.mutate(file);
   };
 
+  const getFileContent = (fileId: string): string | null => {
+    return fileContents[fileId] || null;
+  };
+
   return {
     uploadSpecification,
     uploadedFiles,
     processingStatus,
-    isLoading: uploadMutation.isPending
+    isLoading: uploadMutation.isPending,
+    getFileContent
   };
 };
