@@ -192,13 +192,13 @@ const Dashboard = () => {
             </div>
             <div className="space-y-4">
               {recentProjects.map((project) => (
-                <Card key={project.id} className="group hover:shadow-lg transition-all duration-200">
+                <Card key={project.id} className="group hover:shadow-lg transition-all duration-200" style={{ backgroundColor: '#1A2B49' }}>
                   <CardHeader className="pb-3">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center space-x-3">
                         <span className="text-2xl">🏗️</span>
                         <div>
-                          <CardTitle className="text-lg font-semibold">
+                          <CardTitle className="text-lg font-semibold text-white">
                             {project.name}
                           </CardTitle>
                           <div className="flex items-center gap-2 mt-1">
@@ -206,7 +206,7 @@ const Dashboard = () => {
                               {project.status.replace('-', ' ')}
                             </Badge>
                             {project.type && (
-                              <Badge variant="outline" className="text-xs">
+                              <Badge variant="outline" className="text-xs border-gray-300 text-gray-300">
                                 {project.type}
                               </Badge>
                             )}
@@ -220,7 +220,7 @@ const Dashboard = () => {
                               variant="outline"
                               size="sm"
                               onClick={() => handleObjectAction('view-charter', project)}
-                              className="opacity-0 group-hover:opacity-100 transition-opacity"
+                              className="border-white text-white hover:bg-white hover:text-gray-900"
                             >
                               <Eye className="h-4 w-4 mr-1" />
                               View
@@ -229,7 +229,7 @@ const Dashboard = () => {
                               variant="outline"
                               size="sm"
                               onClick={() => handleObjectAction('edit-charter', project)}
-                              className="opacity-0 group-hover:opacity-100 transition-opacity"
+                              className="border-white text-white hover:bg-white hover:text-gray-900"
                             >
                               <Edit className="h-4 w-4 mr-1" />
                               Edit
@@ -240,7 +240,7 @@ const Dashboard = () => {
                             variant="outline"
                             size="sm"
                             onClick={() => handleObjectAction('edit-charter', project)}
-                            className="opacity-0 group-hover:opacity-100 transition-opacity"
+                            className="border-white text-white hover:bg-white hover:text-gray-900"
                           >
                             <Plus className="h-4 w-4 mr-1" />
                             Create Charter
@@ -250,7 +250,7 @@ const Dashboard = () => {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex justify-between text-xs text-gray-500">
+                    <div className="flex justify-between text-xs text-gray-300">
                       <span>Updated {new Date(project.updatedAt).toLocaleDateString()}</span>
                       <span>By {project.owner}</span>
                     </div>
