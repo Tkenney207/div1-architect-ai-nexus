@@ -1,14 +1,18 @@
 
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Menu, X, User, ChevronDown } from "lucide-react";
 import Div1Logo from './Div1Logo';
+import { useAuth } from '@/contexts/AuthContext';
+import { toast } from 'sonner';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, signOut } = useAuth();
 
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -16,6 +20,16 @@ const Header = () => {
 
   const handleSolutionsItemClick = () => {
     setIsSolutionsOpen(false);
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      toast.success('Signed out successfully');
+      navigate('/');
+    } catch (error) {
+      toast.error('Failed to sign out');
+    }
   };
 
   return (
@@ -66,14 +80,24 @@ const Header = () => {
 
             {/* Auth Buttons */}
             <div className="flex items-center space-x-4">
-              <Link to="/signin">
+              {user ? (
                 <Button 
+                  onClick={handleSignOut}
                   variant="ghost" 
                   className="text-base font-medium hover:text-orange-500 transition-colors text-white hover:bg-white/10"
                 >
-                  Sign In
+                  Sign Out
                 </Button>
-              </Link>
+              ) : (
+                <Link to="/signin">
+                  <Button 
+                    variant="ghost" 
+                    className="text-base font-medium hover:text-orange-500 transition-colors text-white hover:bg-white/10"
+                  >
+                    Sign In
+                  </Button>
+                </Link>
+              )}
               <Link to="/signup">
                 <Button 
                   className="text-base font-medium px-6 py-2 rounded-lg transition-all hover:opacity-90 bg-orange text-white"
@@ -123,14 +147,27 @@ const Header = () => {
                 </Link>
               </div>
               <div className="flex flex-col space-y-2 pt-4 border-t border-white/20">
-                <Link to="/signin" onClick={() => setIsMenuOpen(false)}>
+                {user ? (
                   <Button 
+                    onClick={() => {
+                      handleSignOut();
+                      setIsMenuOpen(false);
+                    }}
                     variant="ghost" 
                     className="w-full justify-start text-base font-medium hover:text-orange-500 transition-colors text-white hover:bg-white/10"
                   >
-                    Sign In
+                    Sign Out
                   </Button>
-                </Link>
+                ) : (
+                  <Link to="/signin" onClick={() => setIsMenuOpen(false)}>
+                    <Button 
+                      variant="ghost" 
+                      className="w-full justify-start text-base font-medium hover:text-orange-500 transition-colors text-white hover:bg-white/10"
+                    >
+                      Sign In
+                    </Button>
+                  </Link>
+                )}
                 <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
                   <Button 
                     className="w-full text-base font-medium py-2 rounded-lg transition-all hover:opacity-90 bg-orange text-white"
@@ -138,7 +175,7 @@ const Header = () => {
                   >
                     Get Started
                   </Button>
-                  </Link>
+                </Link>
               </div>
             </nav>
           </div>
