@@ -2,11 +2,12 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { Menu, X, User } from "lucide-react";
+import { Menu, X, User, ChevronDown } from "lucide-react";
 import Div1Logo from './Div1Logo';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const location = useLocation();
 
   const isActive = (path: string) => {
@@ -30,8 +31,33 @@ const Header = () => {
                 className="text-base font-medium hover:text-orange-500 transition-colors text-white"
                 style={{ color: isActive('/engage') ? '#E98B2A' : '#FFFFFF' }}
               >
-                Charter
+                What is a Project Charter?
               </Link>
+              
+              {/* Solutions Dropdown */}
+              <div className="relative">
+                <button
+                  className="flex items-center space-x-1 text-base font-medium hover:text-orange-500 transition-colors text-white"
+                  onClick={() => setIsSolutionsOpen(!isSolutionsOpen)}
+                  onBlur={() => setTimeout(() => setIsSolutionsOpen(false), 150)}
+                >
+                  <span>Solutions</span>
+                  <ChevronDown className="h-4 w-4" />
+                </button>
+                
+                {isSolutionsOpen && (
+                  <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                    <Link
+                      to="/engage"
+                      className="block px-4 py-2 text-base font-medium hover:bg-gray-50 transition-colors"
+                      style={{ color: '#1A2B49' }}
+                      onClick={() => setIsSolutionsOpen(false)}
+                    >
+                      Engage
+                    </Link>
+                  </div>
+                )}
+              </div>
               
               <Link 
                 to="/support" 
@@ -87,8 +113,18 @@ const Header = () => {
                 style={{ color: isActive('/engage') ? '#E98B2A' : '#FFFFFF' }}
                 onClick={() => setIsMenuOpen(false)}
               >
-                Charter
+                What is a Project Charter?
               </Link>
+              <div className="px-2 py-1">
+                <div className="text-base font-medium text-white mb-2">Solutions</div>
+                <Link
+                  to="/engage"
+                  className="block pl-4 py-1 text-base font-medium hover:text-orange-500 transition-colors text-white"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Engage
+                </Link>
+              </div>
               <Link 
                 to="/support" 
                 className="text-base font-medium hover:text-orange-500 transition-colors px-2 py-1 text-white"
@@ -113,7 +149,7 @@ const Header = () => {
                   >
                     Get Started
                   </Button>
-                </Link>
+                  </Link>
               </div>
             </nav>
           </div>
