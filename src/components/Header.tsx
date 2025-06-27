@@ -28,8 +28,8 @@ const Header = () => {
             <nav className="flex items-center space-x-8">
               <Link 
                 to="/project-charter" 
-                className="text-base font-medium hover:text-orange-500 transition-colors text-white"
-                style={{ color: isActive('/project-charter') ? '#E98B2A' : '#FFFFFF' }}
+                className="text-base font-medium hover:opacity-90 transition-colors"
+                style={{ color: '#E98B2A' }}
               >
                 What is a Project Charter?
               </Link>
@@ -101,8 +101,8 @@ const Header = () => {
             <nav className="flex flex-col space-y-4 pt-4">
               <Link 
                 to="/project-charter" 
-                className="text-base font-medium hover:text-orange-500 transition-colors px-2 py-1 text-white"
-                style={{ color: isActive('/project-charter') ? '#E98B2A' : '#FFFFFF' }}
+                className="text-base font-medium hover:opacity-90 transition-colors px-2 py-1"
+                style={{ color: '#E98B2A' }}
                 onClick={() => setIsMenuOpen(false)}
               >
                 What is a Project Charter?
