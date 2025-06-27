@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -206,10 +207,9 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
               Save Charter
             </Button>
             <Button 
-              variant="outline" 
               onClick={onClose}
-              className="border-2 hover:opacity-70"
-              style={{ borderColor: '#1A2B49', color: '#1A2B49' }}
+              className="text-white hover:opacity-90"
+              style={{ backgroundColor: '#1A2B49' }}
             >
               Close
             </Button>
