@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -15,8 +16,9 @@ const Engage = () => {
         <div className="text-center mb-16">
           {/* CharterAI Text */}
           <div className="mb-8">
-            <h1 className="text-8xl font-light" style={{ color: '#1A2B49' }}>
-              CharterAI
+            <h1 className="text-8xl font-light">
+              <span style={{ color: '#1A2B49' }}>Charter</span>
+              <span style={{ color: '#E98B2A' }}>AI</span>
             </h1>
           </div>
           
