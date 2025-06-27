@@ -15,13 +15,11 @@ const Engage = () => {
         <div className="text-center mb-16">
           {/* CharterAI Logo */}
           <div className="mb-8">
-            <div className="inline-block p-8 rounded-2xl shadow-lg" style={{ backgroundColor: '#1A2B49' }}>
-              <img
-                src="/lovable-uploads/edc62dac-b8ed-4efa-a2b3-49c2b6688e77.png"
-                alt="CharterAI Logo"
-                className="mx-auto h-48 w-auto"
-              />
-            </div>
+            <img
+              src="/lovable-uploads/edc62dac-b8ed-4efa-a2b3-49c2b6688e77.png"
+              alt="CharterAI Logo"
+              className="mx-auto h-32 w-auto"
+            />
           </div>
           
           <h2 className="text-6xl font-light mb-8 leading-tight" style={{ color: '#1A2B49' }}>
