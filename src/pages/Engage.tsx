@@ -15,7 +15,7 @@ const Engage = () => {
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h2 className="text-6xl font-light mb-8 leading-tight" style={{ color: '#1A2B49' }}>
-            Create Project Charters with 
+            CharterAI - Create Project Charters with 
             <span className="font-light" style={{ color: '#E98B2A' }}> AI guidance </span>
           </h2>
           <div className="max-w-4xl mx-auto mb-12">

@@ -53,7 +53,7 @@ const Header = () => {
                       style={{ color: '#1A2B49' }}
                       onClick={() => setIsSolutionsOpen(false)}
                     >
-                      Engage
+                      CharterAI
                     </Link>
                   </div>
                 )}
@@ -114,7 +114,7 @@ const Header = () => {
                   className="block pl-4 py-1 text-base font-medium hover:text-orange-500 transition-colors text-white"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Engage
+                  CharterAI
                 </Link>
               </div>
               <div className="flex flex-col space-y-2 pt-4 border-t border-white/20">

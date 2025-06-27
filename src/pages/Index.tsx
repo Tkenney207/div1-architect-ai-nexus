@@ -82,7 +82,7 @@ const Index = () => {
                 <div className="w-20 h-20 rounded-xl flex items-center justify-center group-hover:opacity-80 transition-colors mb-6 mx-auto" style={{ backgroundColor: '#F7F3ED' }}>
                   <EngageIcon size="lg" className="text-orange" />
                 </div>
-                <CardTitle className="text-3xl font-medium mb-4 text-center" style={{ color: '#1A2B49' }}>Charter</CardTitle>
+                <CardTitle className="text-3xl font-medium mb-4 text-center" style={{ color: '#1A2B49' }}>CharterAI</CardTitle>
                 <CardDescription className="text-lg leading-relaxed text-center" style={{ color: '#1A2B49' }}>
                   AI-facilitated Project Charter creation with guided stakeholder interviews and intelligent documentation
                 </CardDescription>
