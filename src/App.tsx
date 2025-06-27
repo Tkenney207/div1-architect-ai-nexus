@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Engage from "./pages/Engage";
 import Interview from "./pages/Interview";
+import ProjectCharter from "./pages/ProjectCharter";
 // ARCHIVED: Division1 and Master1 imports removed - functionality preserved in /archived folder
 // import Division1 from "./pages/Division1";
 // import Master1 from "./pages/Master1";
@@ -38,6 +39,7 @@ const App = () => (
                 <Route path="/" element={<Index />} />
                 <Route path="/engage" element={<Engage />} />
                 <Route path="/interview/:interviewId" element={<Interview />} />
+                <Route path="/project-charter" element={<ProjectCharter />} />
                 {/* ARCHIVED: Division1 and Master1 routes removed - functionality preserved in /archived folder */}
                 {/* <Route path="/division1" element={<Division1 />} /> */}
                 {/* <Route path="/master1" element={<Master1 />} /> */}
