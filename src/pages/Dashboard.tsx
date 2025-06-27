@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -214,59 +213,38 @@ const Dashboard = () => {
                         </div>
                       </div>
                       <div className="flex gap-2">
-                        {project.hasCharter ? (
-                          <>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => handleObjectAction('view-charter', project)}
-                              className="border-2 text-white hover:text-gray-900"
-                              style={{ borderColor: '#7C9C95', backgroundColor: 'transparent', '--tw-bg-opacity': '0' }}
-                              onMouseEnter={(e) => {
-                                e.currentTarget.style.backgroundColor = '#7C9C95';
-                              }}
-                              onMouseLeave={(e) => {
-                                e.currentTarget.style.backgroundColor = 'transparent';
-                              }}
-                            >
-                              <Eye className="h-4 w-4 mr-1" />
-                              View
-                            </Button>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => handleObjectAction('edit-charter', project)}
-                              className="border-2 text-white hover:text-gray-900"
-                              style={{ borderColor: '#E98B2A', backgroundColor: 'transparent' }}
-                              onMouseEnter={(e) => {
-                                e.currentTarget.style.backgroundColor = '#E98B2A';
-                              }}
-                              onMouseLeave={(e) => {
-                                e.currentTarget.style.backgroundColor = 'transparent';
-                              }}
-                            >
-                              <Edit className="h-4 w-4 mr-1" />
-                              Edit
-                            </Button>
-                          </>
-                        ) : (
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleObjectAction('edit-charter', project)}
-                            className="border-2 text-white hover:text-gray-900"
-                            style={{ borderColor: '#E98B2A', backgroundColor: 'transparent' }}
-                            onMouseEnter={(e) => {
-                              e.currentTarget.style.backgroundColor = '#E98B2A';
-                            }}
-                            onMouseLeave={(e) => {
-                              e.currentTarget.style.backgroundColor = 'transparent';
-                            }}
-                          >
-                            <Plus className="h-4 w-4 mr-1" />
-                            Create Charter
-                          </Button>
-                        )}
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleObjectAction('view-charter', project)}
+                          className="border-2 text-white hover:text-gray-900"
+                          style={{ borderColor: '#7C9C95', backgroundColor: 'transparent' }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = '#7C9C95';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = 'transparent';
+                          }}
+                        >
+                          <Eye className="h-4 w-4 mr-1" />
+                          View
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleObjectAction('edit-charter', project)}
+                          className="border-2 text-white hover:text-gray-900"
+                          style={{ borderColor: '#E98B2A', backgroundColor: 'transparent' }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = '#E98B2A';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = 'transparent';
+                          }}
+                        >
+                          <Edit className="h-4 w-4 mr-1" />
+                          {project.hasCharter ? 'Edit' : 'Create Charter'}
+                        </Button>
                       </div>
                     </div>
                   </CardHeader>
