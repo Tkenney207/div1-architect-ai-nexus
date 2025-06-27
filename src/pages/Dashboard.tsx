@@ -49,10 +49,10 @@ const Dashboard = () => {
       color: 'text-green-400'
     },
     {
-      title: 'Division 1 Specs',
-      value: '15',
+      title: 'Charter Sessions',
+      value: '24',
       icon: TrendingUp,
-      change: '+5 generated',
+      change: '+8 completed',
       color: 'text-orange-400'
     },
     {
@@ -73,7 +73,7 @@ const Dashboard = () => {
         <div className="mb-12">
           <h1 className="text-4xl font-bold mb-4" style={{ color: '#1A2B49' }}>Welcome back, John!</h1>
           <p className="text-xl" style={{ color: '#1A2B49' }}>
-            Manage your projects, charters, and specifications from your central dashboard.
+            Manage your projects and charters from your central dashboard.
           </p>
         </div>
 
@@ -102,7 +102,7 @@ const Dashboard = () => {
         {/* Quick Actions */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold mb-6" style={{ color: '#1A2B49' }}>Quick Actions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Link to="/projects/new">
               <Card className="group hover:shadow-lg transition-all bg-white border-2 hover:border-opacity-70 cursor-pointer" style={{ borderColor: '#E98B2A' }}>
                 <CardContent className="p-6 text-center">
@@ -123,18 +123,6 @@ const Dashboard = () => {
                   </div>
                   <h3 className="text-lg font-semibold mb-2" style={{ color: '#1A2B49' }}>Start Charter</h3>
                   <p style={{ color: '#7C9C95' }}>Begin AI-guided charter creation</p>
-                </CardContent>
-              </Card>
-            </Link>
-
-            <Link to="/division1">
-              <Card className="group hover:shadow-lg transition-all bg-white border-2 hover:border-opacity-70 cursor-pointer" style={{ borderColor: '#1A2B49' }}>
-                <CardContent className="p-6 text-center">
-                  <div className="rounded-full p-4 w-fit mx-auto mb-4 group-hover:scale-110 transition-transform" style={{ backgroundColor: '#1A2B49' }}>
-                    <FileText className="h-8 w-8" style={{ color: '#F7F3ED' }} />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2" style={{ color: '#1A2B49' }}>Generate Specs</h3>
-                  <p style={{ color: '#7C9C95' }}>Create Division 1 specifications</p>
                 </CardContent>
               </Card>
             </Link>
@@ -192,7 +180,7 @@ const Dashboard = () => {
                   <TrendingUp className="h-4 w-4" style={{ color: '#F7F3ED' }} />
                 </div>
                 <div className="flex-1">
-                  <p style={{ color: '#1A2B49' }}>Division 1 specification generated</p>
+                  <p style={{ color: '#1A2B49' }}>Charter session completed successfully</p>
                   <p className="text-sm" style={{ color: '#7C9C95' }}>2 days ago</p>
                 </div>
               </div>
