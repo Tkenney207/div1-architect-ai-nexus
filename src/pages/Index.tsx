@@ -47,7 +47,7 @@ const Index = () => {
               {/* Hero Content Box */}
               <div className="mb-10">
                 <p className="text-lg leading-relaxed" style={{ color: '#1A2B49' }}>
-                  Create comprehensive project charters that align diverse AEC professionals under a unified vision. Our AI guides stakeholder interviews to capture objectives, scope, responsibilities, and success criteria for complex multidisciplinary projects.
+                  Create comprehensive Project Charters that align diverse AEC professionals under a unified vision. Our AI guides stakeholder interviews to capture objectives, scope, responsibilities, and success criteria for complex multidisciplinary projects.
                 </p>
               </div>
               
@@ -84,7 +84,7 @@ const Index = () => {
                 </div>
                 <CardTitle className="text-3xl font-medium mb-4 text-center" style={{ color: '#1A2B49' }}>Charter</CardTitle>
                 <CardDescription className="text-lg leading-relaxed text-center" style={{ color: '#1A2B49' }}>
-                  AI-facilitated project charter creation with guided stakeholder interviews and intelligent documentation
+                  AI-facilitated Project Charter creation with guided stakeholder interviews and intelligent documentation
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-8 pb-8">

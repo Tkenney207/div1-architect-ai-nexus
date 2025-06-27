@@ -15,14 +15,14 @@ const Engage = () => {
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h2 className="text-6xl font-light mb-8 leading-tight" style={{ color: '#1A2B49' }}>
-            Create project charters with 
+            Create Project Charters with 
             <span className="font-light" style={{ color: '#E98B2A' }}> AI guidance </span>
           </h2>
           <div className="max-w-4xl mx-auto mb-12">
             <div className="bg-white rounded-2xl shadow-sm border p-12 mb-12" style={{ borderColor: '#F7F3ED' }}>
               <h3 className="text-2xl font-medium mb-6" style={{ color: '#E98B2A' }}>Capture intent. Structure requirements.</h3>
               <p className="text-xl leading-relaxed" style={{ color: '#1A2B49' }}>
-                AI-powered project charter generation - extract stakeholder goals and technical needs through Agentic guided & structured interviews.
+                AI-powered Project Charter generation - extract stakeholder goals and technical needs through Agentic guided & structured interviews.
               </p>
             </div>
           </div>
