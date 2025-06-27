@@ -14,6 +14,10 @@ const Header = () => {
     return location.pathname === path;
   };
 
+  const handleSolutionsItemClick = () => {
+    setIsSolutionsOpen(false);
+  };
+
   return (
     <header className="w-full border-b border-gray-200 bg-navy">
       <div className="container mx-auto px-6 py-4">
@@ -39,7 +43,7 @@ const Header = () => {
                 <button
                   className="flex items-center space-x-1 text-base font-medium hover:text-orange-500 transition-colors text-white"
                   onClick={() => setIsSolutionsOpen(!isSolutionsOpen)}
-                  onBlur={() => setTimeout(() => setIsSolutionsOpen(false), 150)}
+                  onBlur={() => setTimeout(() => setIsSolutionsOpen(false), 200)}
                 >
                   <span>Solutions</span>
                   <ChevronDown className="h-4 w-4" />
@@ -50,7 +54,7 @@ const Header = () => {
                     <Link
                       to="/engage"
                       className="block px-4 py-2 text-base font-medium hover:bg-gray-50 transition-colors"
-                      onClick={() => setIsSolutionsOpen(false)}
+                      onClick={handleSolutionsItemClick}
                     >
                       <span style={{ color: '#1A2B49' }}>Charter</span>
                       <span style={{ color: '#E98B2A' }}>AI</span>
