@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -274,22 +273,20 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
                         }}
                       />
                       <Button
-                        variant="outline"
                         size="sm"
                         onClick={() => removeArrayItem('objectives', index)}
-                        className="border-2 hover:opacity-70"
-                        style={{ borderColor: '#E98B2A', color: '#E98B2A' }}
+                        className="text-white hover:opacity-90"
+                        style={{ backgroundColor: '#E98B2A' }}
                       >
                         Remove
                       </Button>
                     </div>
                   ))}
                   <Button
-                    variant="outline"
                     size="sm"
                     onClick={() => addArrayItem('objectives')}
-                    className="border-2 hover:opacity-70"
-                    style={{ borderColor: '#7C9C95', color: '#7C9C95' }}
+                    className="text-white hover:opacity-90"
+                    style={{ backgroundColor: '#7C9C95' }}
                   >
                     Add Objective
                   </Button>
@@ -311,22 +308,20 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
                         }}
                       />
                       <Button
-                        variant="outline"
                         size="sm"
                         onClick={() => removeArrayItem('stakeholders', index)}
-                        className="border-2 hover:opacity-70"
-                        style={{ borderColor: '#E98B2A', color: '#E98B2A' }}
+                        className="text-white hover:opacity-90"
+                        style={{ backgroundColor: '#E98B2A' }}
                       >
                         Remove
                       </Button>
                     </div>
                   ))}
                   <Button
-                    variant="outline"
                     size="sm"
                     onClick={() => addArrayItem('stakeholders')}
-                    className="border-2 hover:opacity-70"
-                    style={{ borderColor: '#7C9C95', color: '#7C9C95' }}
+                    className="text-white hover:opacity-90"
+                    style={{ backgroundColor: '#7C9C95' }}
                   >
                     Add Stakeholder
                   </Button>
