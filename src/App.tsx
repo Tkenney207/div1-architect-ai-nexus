@@ -14,6 +14,7 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Projects from "./pages/Projects";
+import NewProject from "./pages/NewProject";
 import Support from "./pages/Support";
 import Security from "./pages/Security";
 import About from "./pages/About";
@@ -47,6 +48,7 @@ const App = () => (
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/projects" element={<Projects />} />
+                <Route path="/projects/new" element={<NewProject />} />
                 <Route path="/support" element={<Support />} />
                 <Route path="/security" element={<Security />} />
                 <Route path="/about" element={<About />} />
