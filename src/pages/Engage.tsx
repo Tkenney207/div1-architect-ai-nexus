@@ -14,9 +14,17 @@ const Engage = () => {
       <div className="container mx-auto px-6 py-12">
         {/* Hero Section */}
         <div className="text-center mb-16">
+          {/* CharterAI Logo */}
+          <div className="mb-8">
+            <img
+              src="/lovable-uploads/176bc4d2-b0df-42e8-a6f1-d2da97e8d255.png"
+              alt="CharterAI Logo"
+              className="mx-auto h-32 w-auto"
+            />
+          </div>
+          
           <h2 className="text-6xl font-light mb-8 leading-tight" style={{ color: '#1A2B49' }}>
-            CharterAI - Create Project Charters with 
-            <span className="font-light" style={{ color: '#E98B2A' }}> AI guidance </span>
+            Create Project Charters with AI guidance
           </h2>
           <div className="max-w-4xl mx-auto mb-12">
             <div className="bg-white rounded-2xl shadow-sm border p-12 mb-12" style={{ borderColor: '#F7F3ED' }}>
