@@ -23,7 +23,7 @@ const Engage = () => {
           </div>
           
           <h2 className="text-6xl font-light mb-8 leading-tight" style={{ color: '#1A2B49' }}>
-            Create Project Charters with AI guidance
+            Create Project Charters with <span style={{ color: '#E98B2A' }}>AI guidance</span>
           </h2>
           <div className="max-w-4xl mx-auto mb-12">
             <div className="bg-white rounded-2xl shadow-sm border p-12 mb-12" style={{ borderColor: '#F7F3ED' }}>
