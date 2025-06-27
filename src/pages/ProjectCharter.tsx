@@ -1,4 +1,5 @@
 
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, CheckCircle, FileText, Users, Target, Shield } from "lucide-react";
@@ -152,10 +153,11 @@ const ProjectCharter = () => {
               </Button>
             </Link>
           </div>
-        </</div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default ProjectCharter;
+
