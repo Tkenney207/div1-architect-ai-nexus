@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -116,7 +115,6 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
     setCurrentMessage('');
 
     try {
-      // Simulate AI response - in real implementation, this would call your AI service
       setTimeout(() => {
         const aiResponse = generateAIResponse(userMessage, charter);
         setChatMessages(prev => [...prev, { type: 'ai', content: aiResponse }]);
@@ -127,7 +125,6 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
   };
 
   const generateAIResponse = (message: string, currentCharter: any) => {
-    // Simulated AI responses - replace with actual AI integration
     const responses = [
       "I notice your project objectives could be more specific. Consider using SMART criteria (Specific, Measurable, Achievable, Relevant, Time-bound).",
       "Your stakeholder list looks good. Have you considered including end users or regulatory bodies?",
@@ -165,19 +162,28 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen p-6" style={{ backgroundColor: '#D9D6D0' }}>
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Charter Editor</h1>
-            <p className="text-gray-600">AI-assisted project charter creation and editing</p>
+            <h1 className="text-3xl font-bold" style={{ color: '#1A2B49' }}>Charter Editor</h1>
+            <p style={{ color: '#1A2B49' }}>AI-assisted project charter creation and editing</p>
           </div>
           <div className="flex gap-3">
-            <Button onClick={handleSave} className="flex items-center gap-2">
+            <Button 
+              onClick={handleSave} 
+              className="flex items-center gap-2 text-white hover:opacity-90"
+              style={{ backgroundColor: '#7C9C95' }}
+            >
               <Save className="h-4 w-4" />
               Save Charter
             </Button>
-            <Button variant="outline" onClick={onClose}>
+            <Button 
+              variant="outline" 
+              onClick={onClose}
+              className="border-2 hover:opacity-70"
+              style={{ borderColor: '#1A2B49', color: '#1A2B49' }}
+            >
               Close
             </Button>
           </div>
@@ -186,46 +192,54 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Charter Form */}
           <div className="lg:col-span-2 space-y-6">
-            <Card>
+            <Card className="bg-white" style={{ borderColor: '#F7F3ED' }}>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <FileText className="h-5 w-5" />
+                <CardTitle className="flex items-center gap-2" style={{ color: '#1A2B49' }}>
+                  <FileText className="h-5 w-5" style={{ color: '#E98B2A' }} />
                   Project Charter
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Project Name</label>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1A2B49' }}>Project Name</label>
                   <Input
                     value={charter.projectName}
                     onChange={(e) => setCharter(prev => ({ ...prev, projectName: e.target.value }))}
                     placeholder="Enter project name"
+                    className="border-2 focus:ring-2"
+                    style={{ borderColor: '#7C9C95' }}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Project Description</label>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1A2B49' }}>Project Description</label>
                   <Textarea
                     value={charter.projectDescription}
                     onChange={(e) => setCharter(prev => ({ ...prev, projectDescription: e.target.value }))}
                     placeholder="Describe the project scope and purpose"
                     rows={4}
+                    className="border-2 focus:ring-2"
+                    style={{ borderColor: '#7C9C95' }}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Objectives</label>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1A2B49' }}>Objectives</label>
                   {charter.objectives.map((objective: string, index: number) => (
                     <div key={index} className="flex gap-2 mb-2">
                       <Input
                         value={objective}
                         onChange={(e) => updateArrayField('objectives', index, e.target.value)}
                         placeholder="Enter project objective"
+                        className="border-2 focus:ring-2"
+                        style={{ borderColor: '#7C9C95' }}
                       />
                       <Button
                         variant="outline"
                         size="sm"
                         onClick={() => removeArrayItem('objectives', index)}
+                        className="border-2 hover:opacity-70"
+                        style={{ borderColor: '#E98B2A', color: '#E98B2A' }}
                       >
                         Remove
                       </Button>
@@ -235,24 +249,30 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
                     variant="outline"
                     size="sm"
                     onClick={() => addArrayItem('objectives')}
+                    className="border-2 hover:opacity-70"
+                    style={{ borderColor: '#7C9C95', color: '#7C9C95' }}
                   >
                     Add Objective
                   </Button>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Stakeholders</label>
+                  <label className="block text-sm font-medium mb-2" style={{ color: '#1A2B49' }}>Stakeholders</label>
                   {charter.stakeholders.map((stakeholder: string, index: number) => (
                     <div key={index} className="flex gap-2 mb-2">
                       <Input
                         value={stakeholder}
                         onChange={(e) => updateArrayField('stakeholders', index, e.target.value)}
                         placeholder="Enter stakeholder name and role"
+                        className="border-2 focus:ring-2"
+                        style={{ borderColor: '#7C9C95' }}
                       />
                       <Button
                         variant="outline"
                         size="sm"
                         onClick={() => removeArrayItem('stakeholders', index)}
+                        className="border-2 hover:opacity-70"
+                        style={{ borderColor: '#E98B2A', color: '#E98B2A' }}
                       >
                         Remove
                       </Button>
@@ -262,6 +282,8 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
                     variant="outline"
                     size="sm"
                     onClick={() => addArrayItem('stakeholders')}
+                    className="border-2 hover:opacity-70"
+                    style={{ borderColor: '#7C9C95', color: '#7C9C95' }}
                   >
                     Add Stakeholder
                   </Button>
@@ -269,19 +291,23 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Timeline</label>
+                    <label className="block text-sm font-medium mb-2" style={{ color: '#1A2B49' }}>Timeline</label>
                     <Input
                       value={charter.timeline}
                       onChange={(e) => setCharter(prev => ({ ...prev, timeline: e.target.value }))}
                       placeholder="e.g., 6 months"
+                      className="border-2 focus:ring-2"
+                      style={{ borderColor: '#7C9C95' }}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Budget</label>
+                    <label className="block text-sm font-medium mb-2" style={{ color: '#1A2B49' }}>Budget</label>
                     <Input
                       value={charter.budget}
                       onChange={(e) => setCharter(prev => ({ ...prev, budget: e.target.value }))}
                       placeholder="e.g., $500,000"
+                      className="border-2 focus:ring-2"
+                      style={{ borderColor: '#7C9C95' }}
                     />
                   </div>
                 </div>
@@ -291,10 +317,10 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
 
           {/* AI Chat Assistant */}
           <div className="lg:col-span-1">
-            <Card className="h-full">
+            <Card className="h-full bg-white" style={{ borderColor: '#F7F3ED' }}>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <MessageSquare className="h-5 w-5" />
+                <CardTitle className="flex items-center gap-2" style={{ color: '#1A2B49' }}>
+                  <MessageSquare className="h-5 w-5" style={{ color: '#E98B2A' }} />
                   AI Assistant
                 </CardTitle>
               </CardHeader>
@@ -305,11 +331,20 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
                       key={index}
                       className={`p-3 rounded-lg ${
                         message.type === 'ai'
-                          ? 'bg-blue-50 text-blue-900'
-                          : 'bg-gray-100 text-gray-900 ml-4'
+                          ? 'text-white'
+                          : 'ml-4'
                       }`}
+                      style={{
+                        backgroundColor: message.type === 'ai' ? '#7C9C95' : '#F7F3ED',
+                        color: message.type === 'ai' ? 'white' : '#1A2B49'
+                      }}
                     >
-                      <Badge variant={message.type === 'ai' ? 'default' : 'secondary'} className="mb-2">
+                      <Badge 
+                        className="mb-2 text-white"
+                        style={{ 
+                          backgroundColor: message.type === 'ai' ? '#1A2B49' : '#E98B2A'
+                        }}
+                      >
                         {message.type === 'ai' ? 'AI' : 'You'}
                       </Badge>
                       <p className="text-sm">{message.content}</p>
@@ -324,21 +359,32 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
                     placeholder="Ask for help or guidance..."
                     onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
                     disabled={isProcessingVoice}
+                    className="border-2 focus:ring-2"
+                    style={{ borderColor: '#7C9C95' }}
                   />
                   <Button
                     size="sm"
-                    variant={isRecording ? "destructive" : "outline"}
                     onClick={isRecording ? stopRecording : startRecording}
                     disabled={isProcessingVoice}
+                    className="text-white hover:opacity-90"
+                    style={{ 
+                      backgroundColor: isRecording ? '#E98B2A' : '#7C9C95'
+                    }}
                   >
                     {isRecording ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
                   </Button>
-                  <Button size="sm" onClick={sendMessage} disabled={!currentMessage.trim()}>
+                  <Button 
+                    size="sm" 
+                    onClick={sendMessage} 
+                    disabled={!currentMessage.trim()}
+                    className="text-white hover:opacity-90"
+                    style={{ backgroundColor: '#1A2B49' }}
+                  >
                     <Send className="h-4 w-4" />
                   </Button>
                 </div>
                 {isProcessingVoice && (
-                  <p className="text-sm text-gray-500 mt-2">Processing voice...</p>
+                  <p className="text-sm mt-2" style={{ color: '#7C9C95' }}>Processing voice...</p>
                 )}
               </CardContent>
             </Card>
