@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowRight, CheckCircle, FileText, Users, Target, Shield } from "lucide-react";
@@ -21,10 +20,10 @@ const ProjectCharter = () => {
           <div className="max-w-4xl mx-auto mb-12">
             <div className="bg-white rounded-2xl shadow-sm border p-12" style={{ borderColor: '#F7F3ED' }}>
               <p className="text-xl leading-relaxed mb-8" style={{ color: '#1A2B49' }}>
-                A project charter is the formal "birth certificate" of a capital or construction project, defining its scope, objectives, stakeholders, authority, and high‑level timeline and budget. It aligns the project with organizational strategy, secures stakeholder buy‑in, and empowers the project team with clarity and accountability.
+                A project charter can be the essential foundation for a successful capital or construction project—serving as both formal authorization and a strategic blueprint. It defines the project's scope, objectives, stakeholders, authority structure, and key milestones, aligning the effort with your organization's broader goals. For owners, a well-prepared charter is a powerful tool for establishing governance, driving accountability, and securing stakeholder alignment from the outset.
               </p>
               <p className="text-lg leading-relaxed" style={{ color: '#1A2B49' }}>
-                Acting as a guiding compass throughout the project lifecycle, it helps prevent scope creep and supports informed decision‑making. For owners, a well‑crafted charter ensures oversight, control, and alignment to long‑term strategic goals.
+                More than just documentation, the charter serves as your mechanism for clarity and control. It helps prevent scope creep, accelerates informed decision‑making, and empowers your team with a shared direction—greatly improving the chances that your investment stays on track, within budget, and delivers lasting value.
               </p>
             </div>
           </div>
