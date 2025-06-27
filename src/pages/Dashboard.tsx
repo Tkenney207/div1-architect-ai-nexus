@@ -220,7 +220,14 @@ const Dashboard = () => {
                               variant="outline"
                               size="sm"
                               onClick={() => handleObjectAction('view-charter', project)}
-                              className="border-white text-white hover:bg-white hover:text-gray-900"
+                              className="border-2 text-white hover:text-gray-900"
+                              style={{ borderColor: '#7C9C95', backgroundColor: 'transparent', '--tw-bg-opacity': '0' }}
+                              onMouseEnter={(e) => {
+                                e.currentTarget.style.backgroundColor = '#7C9C95';
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.backgroundColor = 'transparent';
+                              }}
                             >
                               <Eye className="h-4 w-4 mr-1" />
                               View
@@ -229,7 +236,14 @@ const Dashboard = () => {
                               variant="outline"
                               size="sm"
                               onClick={() => handleObjectAction('edit-charter', project)}
-                              className="border-white text-white hover:bg-white hover:text-gray-900"
+                              className="border-2 text-white hover:text-gray-900"
+                              style={{ borderColor: '#E98B2A', backgroundColor: 'transparent' }}
+                              onMouseEnter={(e) => {
+                                e.currentTarget.style.backgroundColor = '#E98B2A';
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.backgroundColor = 'transparent';
+                              }}
                             >
                               <Edit className="h-4 w-4 mr-1" />
                               Edit
@@ -240,7 +254,14 @@ const Dashboard = () => {
                             variant="outline"
                             size="sm"
                             onClick={() => handleObjectAction('edit-charter', project)}
-                            className="border-white text-white hover:bg-white hover:text-gray-900"
+                            className="border-2 text-white hover:text-gray-900"
+                            style={{ borderColor: '#E98B2A', backgroundColor: 'transparent' }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.backgroundColor = '#E98B2A';
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.backgroundColor = 'transparent';
+                            }}
                           >
                             <Plus className="h-4 w-4 mr-1" />
                             Create Charter
