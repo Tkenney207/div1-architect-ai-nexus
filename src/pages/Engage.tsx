@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -17,7 +16,7 @@ const Engage = () => {
           {/* CharterAI Logo */}
           <div className="mb-8">
             <img
-              src="/lovable-uploads/176bc4d2-b0df-42e8-a6f1-d2da97e8d255.png"
+              src="/lovable-uploads/edc62dac-b8ed-4efa-a2b3-49c2b6688e77.png"
               alt="CharterAI Logo"
               className="mx-auto h-32 w-auto"
             />
