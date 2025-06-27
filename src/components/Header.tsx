@@ -50,10 +50,10 @@ const Header = () => {
                     <Link
                       to="/engage"
                       className="block px-4 py-2 text-base font-medium hover:bg-gray-50 transition-colors"
-                      style={{ color: '#1A2B49' }}
                       onClick={() => setIsSolutionsOpen(false)}
                     >
-                      CharterAI
+                      <span style={{ color: '#1A2B49' }}>Charter</span>
+                      <span style={{ color: '#E98B2A' }}>AI</span>
                     </Link>
                   </div>
                 )}
@@ -111,10 +111,11 @@ const Header = () => {
                 <div className="text-base font-medium text-white mb-2">Solutions</div>
                 <Link
                   to="/engage"
-                  className="block pl-4 py-1 text-base font-medium hover:text-orange-500 transition-colors text-white"
+                  className="block pl-4 py-1 text-base font-medium hover:text-orange-500 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  CharterAI
+                  <span className="text-white">Charter</span>
+                  <span style={{ color: '#E98B2A' }}>AI</span>
                 </Link>
               </div>
               <div className="flex flex-col space-y-2 pt-4 border-t border-white/20">
