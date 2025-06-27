@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -86,21 +85,16 @@ const CharterEditor = () => {
   const [aiSuggestions, setAiSuggestions] = useState<string[]>([]);
 
   useEffect(() => {
-    // Load existing charter data if available
-    // This would typically come from your data store
     loadCharterData();
   }, [projectId]);
 
   const loadCharterData = async () => {
-    // Simulate loading charter data
-    // In a real implementation, this would fetch from your database
     console.log('Loading charter data for project:', projectId);
   };
 
   const handleSave = async (updatedCharter: ProjectCharter) => {
     try {
       setCharter(updatedCharter);
-      // Save to database
       toast.success('Charter saved successfully');
     } catch (error) {
       toast.error('Failed to save charter');
@@ -109,7 +103,6 @@ const CharterEditor = () => {
 
   const handleExport = async (format: 'pdf' | 'word' | 'html') => {
     try {
-      // Implement export functionality
       toast.success(`Charter exported as ${format.toUpperCase()}`);
     } catch (error) {
       toast.error('Failed to export charter');
@@ -117,7 +110,6 @@ const CharterEditor = () => {
   };
 
   const generateAISuggestions = async (section: string) => {
-    // Generate AI suggestions for the current section
     const suggestions = [
       "Consider adding more specific success metrics for better measurement",
       "Include stakeholder communication preferences in the analysis",
@@ -138,8 +130,8 @@ const CharterEditor = () => {
             <Button 
               variant="outline" 
               onClick={() => navigate('/dashboard')}
-              className="flex items-center gap-2 border-2 hover:opacity-70"
-              style={{ borderColor: '#1A2B49', color: '#1A2B49' }}
+              className="flex items-center gap-2 border-2 hover:opacity-70 text-white"
+              style={{ borderColor: '#1A2B49', backgroundColor: '#1A2B49' }}
             >
               <ArrowLeft className="h-4 w-4" />
               Back to Dashboard
@@ -161,8 +153,8 @@ const CharterEditor = () => {
             <Button
               variant="outline"
               onClick={() => setShowAIAssistant(!showAIAssistant)}
-              className="flex items-center gap-2 border-2 hover:opacity-70"
-              style={{ borderColor: '#7C9C95', color: '#7C9C95' }}
+              className="flex items-center gap-2 border-2 hover:opacity-70 text-white"
+              style={{ borderColor: '#7C9C95', backgroundColor: '#7C9C95' }}
             >
               <Bot className="h-4 w-4" />
               AI Assistant

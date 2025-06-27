@@ -135,8 +135,8 @@ const ResponseAnalytics = () => {
             <Button 
               variant="outline" 
               onClick={() => navigate('/dashboard')}
-              className="flex items-center gap-2 border-2 hover:opacity-70"
-              style={{ borderColor: '#1A2B49', color: '#1A2B49' }}
+              className="flex items-center gap-2 border-2 hover:opacity-70 text-white"
+              style={{ borderColor: '#1A2B49', backgroundColor: '#1A2B49' }}
             >
               <ArrowLeft className="h-4 w-4" />
               Back to Dashboard
@@ -213,11 +213,11 @@ const ResponseAnalytics = () => {
         </div>
 
         <Tabs defaultValue="synopsis" className="space-y-6">
-          <TabsList className="grid grid-cols-4 w-full max-w-2xl">
-            <TabsTrigger value="synopsis">AI Synopsis</TabsTrigger>
-            <TabsTrigger value="quotes">Stakeholder Quotes</TabsTrigger>
-            <TabsTrigger value="mindmap">Mind Map</TabsTrigger>
-            <TabsTrigger value="analytics">Analytics</TabsTrigger>
+          <TabsList className="grid grid-cols-4 w-full max-w-2xl" style={{ backgroundColor: '#F7F3ED' }}>
+            <TabsTrigger value="synopsis" style={{ color: '#1A2B49' }}>AI Synopsis</TabsTrigger>
+            <TabsTrigger value="quotes" style={{ color: '#1A2B49' }}>Stakeholder Quotes</TabsTrigger>
+            <TabsTrigger value="mindmap" style={{ color: '#1A2B49' }}>Mind Map</TabsTrigger>
+            <TabsTrigger value="analytics" style={{ color: '#1A2B49' }}>Analytics</TabsTrigger>
           </TabsList>
 
           <TabsContent value="synopsis" className="space-y-6">
@@ -243,7 +243,7 @@ const ResponseAnalytics = () => {
                     <h4 className="font-semibold mb-3" style={{ color: '#1A2B49' }}>Key Themes</h4>
                     <div className="space-y-2">
                       {analytics.keyThemes.map((theme, index) => (
-                        <Badge key={index} variant="outline" className="mr-2 mb-2">
+                        <Badge key={index} variant="outline" className="mr-2 mb-2" style={{ borderColor: '#7C9C95', color: '#1A2B49' }}>
                           {theme}
                         </Badge>
                       ))}
@@ -263,7 +263,7 @@ const ResponseAnalytics = () => {
 
                 <div className="border-t pt-4" style={{ borderColor: '#D9D6D0' }}>
                   <h4 className="font-semibold mb-3" style={{ color: '#1A2B49' }}>Charter Readiness Assessment</h4>
-                  <div className="flex items-center justify-between p-4 rounded-lg" style={{ backgroundColor: '#E8F5E8' }}>
+                  <div className="flex items-center justify-between p-4 rounded-lg" style={{ backgroundColor: '#F7F3ED' }}>
                     <span style={{ color: '#1A2B49' }}>Charter completion readiness</span>
                     <Badge className="text-white" style={{ backgroundColor: '#7C9C95' }}>Ready to Proceed</Badge>
                   </div>
@@ -288,14 +288,22 @@ const ResponseAnalytics = () => {
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="pl-10 border-2"
-                        style={{ borderColor: '#7C9C95' }}
+                        style={{ 
+                          borderColor: '#7C9C95',
+                          backgroundColor: '#F7F3ED',
+                          color: '#1A2B49'
+                        }}
                       />
                     </div>
                     <select
                       value={selectedFilter}
                       onChange={(e) => setSelectedFilter(e.target.value)}
                       className="px-3 py-2 border-2 rounded-md"
-                      style={{ borderColor: '#7C9C95', color: '#1A2B49' }}
+                      style={{ 
+                        borderColor: '#7C9C95', 
+                        color: '#1A2B49',
+                        backgroundColor: '#F7F3ED'
+                      }}
                     >
                       <option value="all">All Categories</option>
                       <option value="sponsor">Project Sponsor</option>
@@ -335,10 +343,10 @@ const ResponseAnalytics = () => {
                           </span>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <Badge variant="outline" className="text-xs">
+                          <Badge variant="outline" className="text-xs" style={{ borderColor: '#7C9C95', color: '#1A2B49' }}>
                             {quote.relevanceScore}% relevance
                           </Badge>
-                          <Button size="sm" variant="ghost">
+                          <Button size="sm" variant="ghost" style={{ color: '#7C9C95' }}>
                             <Eye className="h-4 w-4" />
                           </Button>
                         </div>
@@ -357,7 +365,7 @@ const ResponseAnalytics = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex flex-wrap gap-1">
                           {quote.tags.map((tag, index) => (
-                            <Badge key={index} variant="secondary" className="text-xs">
+                            <Badge key={index} variant="secondary" className="text-xs" style={{ backgroundColor: '#F7F3ED', color: '#1A2B49' }}>
                               {tag}
                             </Badge>
                           ))}
@@ -383,8 +391,11 @@ const ResponseAnalytics = () => {
               </CardHeader>
               <CardContent>
                 <div 
-                  className="w-full h-96 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg flex items-center justify-center border-2 border-dashed"
-                  style={{ borderColor: '#D9D6D0' }}
+                  className="w-full h-96 rounded-lg flex items-center justify-center border-2 border-dashed"
+                  style={{ 
+                    backgroundColor: '#F7F3ED',
+                    borderColor: '#D9D6D0'
+                  }}
                 >
                   <div className="text-center">
                     <Brain className="h-16 w-16 mx-auto mb-4" style={{ color: '#7C9C95' }} />
@@ -411,7 +422,7 @@ const ResponseAnalytics = () => {
                           <span className="text-sm" style={{ color: '#1A2B49' }}>Risks & Concerns</span>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#F7F3ED' }}></div>
+                          <div className="w-4 h-4 rounded-full" style={{ backgroundColor: '#D9D6D0' }}></div>
                           <span className="text-sm" style={{ color: '#1A2B49' }}>Resources</span>
                         </div>
                       </div>
@@ -468,7 +479,7 @@ const ResponseAnalytics = () => {
                             {item.readiness}%
                           </span>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div className="w-full rounded-full h-2" style={{ backgroundColor: '#D9D6D0' }}>
                           <div 
                             className="h-2 rounded-full" 
                             style={{ 
