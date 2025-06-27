@@ -234,7 +234,11 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
                     onChange={(e) => setCharter(prev => ({ ...prev, projectName: e.target.value }))}
                     placeholder="Enter project name"
                     className="border-2 focus:ring-2"
-                    style={{ borderColor: '#7C9C95' }}
+                    style={{ 
+                      borderColor: '#7C9C95',
+                      backgroundColor: '#F7F3ED',
+                      color: '#1A2B49'
+                    }}
                   />
                 </div>
 
@@ -246,7 +250,11 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
                     placeholder="Describe the project scope and purpose"
                     rows={4}
                     className="border-2 focus:ring-2"
-                    style={{ borderColor: '#7C9C95' }}
+                    style={{ 
+                      borderColor: '#7C9C95',
+                      backgroundColor: '#F7F3ED',
+                      color: '#1A2B49'
+                    }}
                   />
                 </div>
 
@@ -259,7 +267,11 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
                         onChange={(e) => updateArrayField('objectives', index, e.target.value)}
                         placeholder="Enter project objective"
                         className="border-2 focus:ring-2"
-                        style={{ borderColor: '#7C9C95' }}
+                        style={{ 
+                          borderColor: '#7C9C95',
+                          backgroundColor: '#F7F3ED',
+                          color: '#1A2B49'
+                        }}
                       />
                       <Button
                         variant="outline"
@@ -292,7 +304,11 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
                         onChange={(e) => updateArrayField('stakeholders', index, e.target.value)}
                         placeholder="Enter stakeholder name and role"
                         className="border-2 focus:ring-2"
-                        style={{ borderColor: '#7C9C95' }}
+                        style={{ 
+                          borderColor: '#7C9C95',
+                          backgroundColor: '#F7F3ED',
+                          color: '#1A2B49'
+                        }}
                       />
                       <Button
                         variant="outline"
@@ -324,7 +340,11 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
                       onChange={(e) => setCharter(prev => ({ ...prev, timeline: e.target.value }))}
                       placeholder="e.g., 6 months"
                       className="border-2 focus:ring-2"
-                      style={{ borderColor: '#7C9C95' }}
+                      style={{ 
+                        borderColor: '#7C9C95',
+                        backgroundColor: '#F7F3ED',
+                        color: '#1A2B49'
+                      }}
                     />
                   </div>
                   <div>
@@ -334,7 +354,11 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
                       onChange={(e) => setCharter(prev => ({ ...prev, budget: e.target.value }))}
                       placeholder="e.g., $500,000"
                       className="border-2 focus:ring-2"
-                      style={{ borderColor: '#7C9C95' }}
+                      style={{ 
+                        borderColor: '#7C9C95',
+                        backgroundColor: '#F7F3ED',
+                        color: '#1A2B49'
+                      }}
                     />
                   </div>
                 </div>
@@ -387,7 +411,11 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
                     onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
                     disabled={isProcessingVoice}
                     className="border-2 focus:ring-2"
-                    style={{ borderColor: '#7C9C95' }}
+                    style={{ 
+                      borderColor: '#7C9C95',
+                      backgroundColor: '#F7F3ED',
+                      color: '#1A2B49'
+                    }}
                   />
                   <Button
                     size="sm"
