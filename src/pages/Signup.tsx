@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,7 +25,7 @@ const Signup = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const { signUp } = useAuth();
+  const { signUp, signIn } = useAuth();
   const navigate = useNavigate();
 
   const validateWorkEmail = (email: string) => {
@@ -104,8 +103,17 @@ const Signup = () => {
           toast.error(error.message || "Failed to create account");
         }
       } else {
-        toast.success("Account created successfully! Please check your email to verify your account.");
-        navigate('/signin');
+        // Automatically sign in the user after successful signup
+        const { error: signInError } = await signIn(formData.email, formData.password);
+        
+        if (signInError) {
+          console.error('Auto sign-in error:', signInError);
+          toast.success("Account created successfully! Please check your email to verify your account, then sign in.");
+          navigate('/signin');
+        } else {
+          toast.success("Welcome! Your account has been created and you're now logged in.");
+          navigate('/dashboard');
+        }
       }
     } catch (error) {
       console.error('Signup error:', error);
