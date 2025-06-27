@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Mic, MicOff, Send, Save, FileText, MessageSquare } from "lucide-react";
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
 interface CharterEditorProps {
   projectId: string;
@@ -57,20 +58,25 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
         reader.readAsDataURL(audioBlob);
       });
 
-      const response = await fetch('/api/voice-to-text', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ audio: base64Audio })
+      console.log('Calling voice-to-text function...');
+      const { data, error } = await supabase.functions.invoke('voice-to-text', {
+        body: { audio: base64Audio }
       });
 
-      if (!response.ok) throw new Error('Voice processing failed');
-      
-      const { text } = await response.json();
-      setCurrentMessage(prev => prev + (prev ? ' ' : '') + text);
-      toast.success('Voice converted to text');
+      if (error) {
+        console.error('Supabase function error:', error);
+        throw error;
+      }
+
+      if (data && data.text) {
+        setCurrentMessage(prev => prev + (prev ? ' ' : '') + data.text);
+        toast.success('Voice converted to text');
+      } else {
+        throw new Error('No text returned from voice processing');
+      }
     } catch (error) {
       console.error('Voice to text error:', error);
-      toast.error('Failed to convert voice to text');
+      toast.error('Failed to convert voice to text. Please check your microphone permissions.');
     } finally {
       setIsProcessingVoice(false);
     }
@@ -78,32 +84,53 @@ export const CharterEditor: React.FC<CharterEditorProps> = ({
 
   const startRecording = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const recorder = new MediaRecorder(stream);
+      console.log('Requesting microphone access...');
+      const stream = await navigator.mediaDevices.getUserMedia({ 
+        audio: {
+          sampleRate: 16000,
+          channelCount: 1,
+          echoCancellation: true,
+          noiseSuppression: true
+        }
+      });
+      
+      console.log('Microphone access granted, starting recording...');
+      const recorder = new MediaRecorder(stream, {
+        mimeType: 'audio/webm;codecs=opus'
+      });
+      
+      audioChunks.current = [];
       
       recorder.ondataavailable = (event) => {
-        audioChunks.current.push(event.data);
+        if (event.data.size > 0) {
+          audioChunks.current.push(event.data);
+        }
       };
       
       recorder.onstop = () => {
         const audioBlob = new Blob(audioChunks.current, { type: 'audio/webm' });
+        console.log('Recording stopped, processing audio...', audioBlob.size, 'bytes');
         handleVoiceToText(audioBlob);
-        audioChunks.current = [];
+        stream.getTracks().forEach(track => track.stop());
       };
       
       recorder.start();
       setMediaRecorder(recorder);
       setIsRecording(true);
+      toast.success('Recording started');
     } catch (error) {
-      toast.error('Failed to start recording');
+      console.error('Failed to start recording:', error);
+      toast.error('Failed to access microphone. Please check your browser permissions.');
     }
   };
 
   const stopRecording = () => {
-    if (mediaRecorder) {
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+      console.log('Stopping recording...');
       mediaRecorder.stop();
-      mediaRecorder.stream.getTracks().forEach(track => track.stop());
       setIsRecording(false);
+      setMediaRecorder(null);
+      toast.success('Recording stopped');
     }
   };
 
